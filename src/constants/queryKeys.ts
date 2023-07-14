@@ -120,6 +120,11 @@ const QUERY_KEYS = {
         },
       ],
     },
+    Gauges: (poolAddresses: Ref<string[] | undefined>) => [
+      'pools',
+      'gauges',
+      { poolAddresses },
+    ],
   },
   Pool: {
     Gauges: (poolAddress: Ref<string | undefined>) => [
