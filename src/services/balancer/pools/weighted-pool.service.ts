@@ -1,4 +1,4 @@
-import { toNormalizedWeights } from '@balancer-labs/sdk';
+import { toNormalizedWeights } from '@auroblocks/chimp-sdk';
 import {
   Vault__factory,
   WeightedPool__factory,

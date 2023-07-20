@@ -1,4 +1,4 @@
-import { BatchSwapStep, SwapV2 } from '@balancer-labs/sdk';
+import { BatchSwapStep, SwapV2 } from '@auroblocks/chimp-sdk';
 import { BigNumberish } from '@ethersproject/bignumber';
 import { TransactionRequest } from '@ethersproject/providers';
 

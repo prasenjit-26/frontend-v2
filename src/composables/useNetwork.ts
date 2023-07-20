@@ -39,6 +39,7 @@ export const isOptimism = computed(() => networkId.value === Network.OPTIMISM);
 export const isArbitrum = computed(() => networkId.value === Network.ARBITRUM);
 export const isGnosis = computed(() => networkId.value === Network.GNOSIS);
 export const isGoerli = computed(() => networkId.value === Network.GOERLI);
+export const isMantle = computed(() => networkId.value === Network.MANTLE);
 
 export const hasBridge = computed<boolean>(() => !!networkConfig.bridgeUrl);
 export const isTestnet = computed(() => isGoerli.value);

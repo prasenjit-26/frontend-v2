@@ -1,4 +1,4 @@
-import { AprBreakdown } from '@balancer-labs/sdk';
+import { AprBreakdown } from '@auroblocks/chimp-sdk';
 import { EmptyPoolMock } from '@/__mocks__/pool';
 
 import APRTooltip from './APRTooltip.vue';

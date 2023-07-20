@@ -7,6 +7,7 @@ import mainnet from './mainnet';
 import optimism from './optimism';
 import polygon from './polygon';
 import zkevm from './zkevm';
+import mantle from './mantle';
 
 // We don't import Network from sdk to avoid extra bundle size when loading app (while the SDK is not tree-shakable)
 export enum Network {
@@ -19,6 +20,7 @@ export enum Network {
   FANTOM = 250,
   ZKEVM = 1101,
   ARBITRUM = 42161,
+  MANTLE = 5001,
 }
 
 const config: Record<Network | number, Config> = {
@@ -29,6 +31,7 @@ const config: Record<Network | number, Config> = {
   [Network.OPTIMISM]: optimism,
   [Network.GNOSIS]: gnosisChain,
   [Network.ZKEVM]: zkevm,
+  [Network.MANTLE]: mantle,
 };
 
 export default config;

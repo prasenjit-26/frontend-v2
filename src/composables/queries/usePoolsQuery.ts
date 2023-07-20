@@ -11,7 +11,7 @@ import {
   GraphQLArgs,
   PoolsRepositoryFetchOptions,
   PoolRepository as SDKPoolRepository,
-} from '@balancer-labs/sdk';
+} from '@auroblocks/chimp-sdk';
 import { getPoolsFallbackRepository } from '@/dependencies/PoolsFallbackRepository';
 import { PoolDecorator } from '@/services/pool/decorators/pool.decorator';
 import { flatten } from 'lodash';

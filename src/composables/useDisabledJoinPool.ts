@@ -50,13 +50,13 @@ export function useDisabledJoinPool(pool: Pool) {
     return createdAfterTimestamp(pool) && notVettedTokens.value.length > 0;
   });
 
-  const nonAllowedWeightedPoolAfterTimestamp = computed(() => {
-    return (
-      isWeighted(pool.poolType) &&
-      createdAfterTimestamp(pool) &&
-      !POOLS.Weighted.AllowList.includes(pool.id)
-    );
-  });
+  // const nonAllowedWeightedPoolAfterTimestamp = computed(() => {
+  //   return (
+  //     isWeighted(pool.poolType) &&
+  //     createdAfterTimestamp(pool) &&
+  //     !POOLS.Weighted.AllowList.includes(pool.id)
+  //   );
+  // });
 
   const nonAllowedSymbols = computed(() => {
     return notVettedTokens.value.map(token => token.symbol).join(',');
@@ -66,16 +66,15 @@ export function useDisabledJoinPool(pool: Pool) {
     return noInitLiquidity(pool);
   });
 
-  const requiresAllowListing = computed(() => {
-    return doesRequireAllowListing(pool, account.value);
-  });
+  // const requiresAllowListing = computed(() => {
+  //   return doesRequireAllowListing(pool, account.value);
+  // });
 
   const disableJoinsReason = computed(() => ({
     notInitialLiquidity: notInitialLiquidity.value,
-    requiresAllowListing: requiresAllowListing.value,
+    requiresAllowListing: false,
     nonVettedTokensAfterTimestamp: nonVettedTokensAfterTimestamp.value,
-    nonAllowedWeightedPoolAfterTimestamp:
-      nonAllowedWeightedPoolAfterTimestamp.value,
+    nonAllowedWeightedPoolAfterTimestamp: false,
   }));
 
   const shouldDisableJoins = computed(() => {
