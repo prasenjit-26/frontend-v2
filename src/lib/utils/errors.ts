@@ -110,7 +110,10 @@ function getTags(
   balError: string | null,
   metadata: WalletErrorMetadata
 ): ErrorTags {
-  const tags: { [key: string]: string } = { ...context?.tags, action };
+  const tags: { [key: string]: string } = {
+    ...context?.tags,
+    action,
+  };
 
   if (balError) {
     tags.balError = balError;
@@ -120,38 +123,24 @@ function getTags(
     tags.chainId = `${metadata.chainId}`;
   }
 
+  if (metadata.action) {
+    tags.action = metadata.action;
+  }
+
   return tags;
 }
 
-class BatchSwapError extends Error {
-  name = 'BatchSwapError';
-}
-class JoinPoolError extends Error {
-  name = 'JoinPoolError';
-}
-class ExitPoolError extends Error {
-  name = 'ExitPoolError';
-}
-class CreatePoolError extends Error {
-  name = 'CreatePoolError';
-}
-class CheckpointGaugeError extends Error {
-  name = 'CheckpointGaugeError';
-}
-class VebalSyncError extends Error {
-  name = 'VebalSyncError';
-}
-class ExtendLockError extends Error {
-  name = 'ExtendLockError';
-}
-class UnlockError extends Error {
-  name = 'UnlockError';
-}
-class StakeError extends Error {
-  name = 'StakeError';
-}
-class UnstakeError extends Error {
-  name = 'UnstakeError';
+class SentryError extends Error {
+  constructor(name: string, message: string, cause: Error | unknown) {
+    super(message);
+
+    if (cause instanceof Error && cause.stack) {
+      this.stack = cause.stack;
+    }
+
+    this.name = name;
+    this.cause = cause;
+  }
 }
 
 function constructError(
@@ -161,27 +150,27 @@ function constructError(
 ) {
   switch (action) {
     case 'swap':
-      return new BatchSwapError(message, { cause: originalError });
+      return new SentryError('BatchSwapError', message, originalError);
     case 'invest':
-      return new JoinPoolError(message, { cause: originalError });
+      return new SentryError('JoinPoolError', message, originalError);
     case 'withdraw':
-      return new ExitPoolError(message, { cause: originalError });
+      return new SentryError('ExitPoolError', message, originalError);
     case 'createPool':
-      return new CreatePoolError(message, { cause: originalError });
+      return new SentryError('CreatePoolError', message, originalError);
     case 'userGaugeCheckpoint':
-      return new CheckpointGaugeError(message, { cause: originalError });
+      return new SentryError('CheckpointGaugeError', message, originalError);
     case 'sync':
-      return new VebalSyncError(message, { cause: originalError });
+      return new SentryError('VebalSyncError', message, originalError);
     case 'extendLock':
-      return new ExtendLockError(message, { cause: originalError });
+      return new SentryError('ExtendLockError', message, originalError);
     case 'unlock':
-      return new UnlockError(message, { cause: originalError });
+      return new SentryError('UnlockError', message, originalError);
     case 'stake':
-      return new StakeError(message, { cause: originalError });
+      return new SentryError('StakeError', message, originalError);
     case 'unstake':
-      return new UnstakeError(message, { cause: originalError });
+      return new SentryError('UnstakeError', message, originalError);
     default:
-      return new Error(message, { cause: originalError });
+      return new SentryError('Error', message, originalError);
   }
 }
 
@@ -233,6 +222,10 @@ function isErrorOfType(error: any, messages: RegExp[]): boolean {
     return true;
   }
 
+  if (error.cause?.code && error.cause?.code === 4001) {
+    return true;
+  }
+
   if (error.cause instanceof Error) return isUserRejected(error.cause);
 
   return false;
@@ -243,10 +236,12 @@ function isErrorOfType(error: any, messages: RegExp[]): boolean {
  */
 function isUserRejected(error): boolean {
   const messages = [
+    /rejected/,
     /user rejected transaction/,
     /request rejected/,
     /user rejected methods./,
     /user rejected the transaction/,
+    /user rejected the request/,
     /rejected by user/,
     /user canceled/,
     /cancelled by user/,
@@ -262,10 +257,25 @@ function isUserRejected(error): boolean {
 }
 
 /**
- * Checks if error is caused by user not having enough gas.
+ * Checks if error is caused by user not having enough gas or setting gas too low.
  */
 function isUserNotEnoughGas(error): boolean {
-  const messages = [/insufficient funds for gas/];
+  const messages = [
+    /insufficient funds for gas/,
+    /the signed fee is insufficient/,
+    /EffectivePriorityFeePerGas too low/,
+    /Комиссия за газ обновлена/i,
+    /insufficient eth to pay the network fees/,
+  ];
+
+  return isErrorOfType(error, messages);
+}
+
+/**
+ * Checks if error is caused by user's wallet having bad config / state
+ */
+function isWalletConfigError(error): boolean {
+  const messages = [/invalid rpc url/, /nonce has already been used/];
 
   return isErrorOfType(error, messages);
 }
@@ -294,7 +304,11 @@ function isBotError(error): boolean {
  * Checks if error is caused by the user or the state of their wallet.
  */
 export function isUserError(error): boolean {
-  return isUserRejected(error) || isUserNotEnoughGas(error);
+  return (
+    isUserRejected(error) ||
+    isUserNotEnoughGas(error) ||
+    isWalletConfigError(error)
+  );
 }
 
 /**

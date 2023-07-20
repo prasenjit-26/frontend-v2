@@ -113,6 +113,7 @@ const pools: Pools = {
       '0x3fa8c89704e5d07565444009e5d9e624b40be813000000000000000000000599', // gho/lusd
       '0x9a172e1cb0e99f7e6dcc4c52e4655e8f337d5c0000000000000000000000059a', // gho/mai
       '0xc2b021133d1b0cf07dba696fd5dd89338428225b000000000000000000000598', // gho/bb-a-usd
+      '0xe2d16b0a39f3fbb4389a0e8f1efcbecfb3d1e6e10000000000000000000005a7', // dusd-bb-a-usd
     ],
   },
   Investment: {
@@ -158,6 +159,7 @@ const pools: Pools = {
       '0xb2b918f2d628b4c8ff237b0a1c6ac3bea222fedc00020000000000000000059c', // gho/ohm
       '0x7d98f308db99fdd04bbf4217a4be8809f38faa6400020000000000000000059b', // wstETH/ohm
       '0x158e0fbc2271e1dcebadd365a22e2b4dd173c0db0002000000000000000005a5', // idle/usdc
+      '0x064bcc35bfe023fe717a87574fae9333f98aae4d0002000000000000000005a6', // 80RATE/20WETH
     ],
   },
   Factories: {
@@ -504,6 +506,12 @@ const pools: Pools = {
       boosted: true,
       boostedProtocols: [BoostedProtocol.Aave],
     },
+    '0xe2d16b0a39f3fbb4389a0e8f1efcbecfb3d1e6e10000000000000000000005a7': {
+      name: 'DUSD/Boosted Aave v3 USD',
+      hasIcon: false,
+      boosted: true,
+      boostedProtocols: [BoostedProtocol.Aave],
+    },
   },
   Deep: [
     '0x7b50775383d3d6f0215a8f290f2c9e2eebbeceb20000000000000000000000fe', // bb-a-USD1 (mainnet)
@@ -547,6 +555,7 @@ const pools: Pools = {
     '0x41503c9d499ddbd1dcdf818a1b05e9774203bf46000000000000000000000594', // wstETH-bb-a-WETH-BPT
     '0xd7edb56f63b2a0191742aea32df1f98ca81ed9c600000000000000000000058e', // B-wstETH/bb-ma3-weth
     '0xc2b021133d1b0cf07dba696fd5dd89338428225b000000000000000000000598', // gho/bb-a-usd
+    '0xe2d16b0a39f3fbb4389a0e8f1efcbecfb3d1e6e10000000000000000000005a7', // dusd-bb-a-usd
   ],
   BoostedApr: [
     '0x7b50775383d3d6f0215a8f290f2c9e2eebbeceb2', // bb-a-USD1 (mainnet)
@@ -570,7 +579,7 @@ const pools: Pools = {
   NewVersionAvailable: {
     '0x32296969ef14eb0c6d29669c550d4a0449130230000200000000000000000080': {
       newPool:
-        '0xe0fcbf4d98f0ad982db260f86cf28b49845403c5000000000000000000000504',
+        '0x41503c9d499ddbd1dcdf818a1b05e9774203bf46000000000000000000000594',
       description: 'newVersion.Aave3',
       title: 'announcement',
     },
@@ -578,6 +587,12 @@ const pools: Pools = {
       newPool:
         '0x9001cbbd96f54a658ff4e6e65ab564ded76a543100000000000000000000050a',
       description: 'newVersion.Aave3',
+      title: 'announcement',
+    },
+    '0x5aee1e99fe86960377de9f88689616916d5dcabe000000000000000000000467': {
+      newPool:
+        '0x42ed016f826165c2e5976fe5bc3df540c5ad0af700000000000000000000058b',
+      description: 'newVersion.BalIncentives',
       title: 'announcement',
     },
   },
