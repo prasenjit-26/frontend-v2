@@ -67,7 +67,6 @@ export class ContractConcern extends TransactionConcern {
       return await contractWithSigner[action](...params, txOptions);
     } catch (err) {
       const error = err as WalletError;
-
       error.metadata = await this.getErrorMetadata(
         contractWithSigner,
         action,

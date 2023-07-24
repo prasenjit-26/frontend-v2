@@ -37,7 +37,7 @@ function isActive(page: string): boolean {
     >
       {{ $t('swap') }}
     </DesktopLinkItem>
-    <!-- <DesktopLinkItem
+    <DesktopLinkItem
       :to="{ name: 'claim', params: { networkSlug } }"
       :active="isActive('claim')"
       prefetch
@@ -69,7 +69,7 @@ function isActive(page: string): boolean {
       @click="trackGoal(Goals.ClickNavVebal)"
     >
       veBAL
-    </DesktopLinkItem> -->
+    </DesktopLinkItem>
   </div>
 </template>
 

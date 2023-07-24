@@ -51,7 +51,6 @@ export default class WeightedPoolService {
     const tokenAddresses: Address[] = tokens.map((token: PoolSeedToken) => {
       return token.tokenAddress;
     });
-
     const seedTokens = this.calculateTokenWeights(tokens);
     const swapFeeScaled = scale(new BigNumber(swapFee), 18);
     const rateProviders = Array(tokenAddresses.length).fill(POOLS.ZeroAddress);
@@ -80,7 +79,9 @@ export default class WeightedPoolService {
     provider: WalletProvider | JsonRpcProvider,
     createHash: string
   ): Promise<CreatePoolReturn | null> {
+    console.log('retrievePoolIdAndAddress', createHash);
     const receipt = await provider.getTransactionReceipt(createHash);
+    console.log('receipt', receipt);
     if (!receipt) return null;
 
     const weightedPoolFactoryInterface =
@@ -92,6 +93,7 @@ export default class WeightedPoolService {
           log.address === configService.network.addresses.weightedPoolFactory
       )
       .map(log => {
+        console.log('log', log);
         try {
           return weightedPoolFactoryInterface.parseLog(log);
         } catch {
@@ -99,7 +101,7 @@ export default class WeightedPoolService {
         }
       })
       .find(parsedLog => parsedLog?.name === 'PoolCreated');
-
+    console.log('poolCreationEvent', poolCreationEvent);
     if (!poolCreationEvent) return null;
     const poolAddress = poolCreationEvent.args.pool;
 
@@ -165,7 +167,7 @@ export default class WeightedPoolService {
     const value = this.value(initialBalancesString, tokenAddresses);
 
     tokenAddresses = this.parseTokensIn(tokenAddresses);
-
+    console.log({ tokenAddresses });
     const joinPoolRequest: JoinPoolRequest = {
       assets: tokenAddresses,
       maxAmountsIn: initialBalancesString,

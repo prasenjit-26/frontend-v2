@@ -459,7 +459,6 @@ export default function usePoolCreation() {
 
   async function joinPool() {
     const provider = getProvider();
-
     const tokenAddresses: string[] = poolCreationState.seedTokens.map(
       (token: PoolSeedToken) => {
         if (
@@ -532,11 +531,13 @@ export default function usePoolCreation() {
   }
 
   async function retrievePoolAddress(hash: string) {
+    console.log('Retrieving pool address');
     const response =
       await balancerService.pools.weighted.retrievePoolIdAndAddress(
         getProvider(),
         hash
       );
+    console.log({ response });
     if (response !== null) {
       poolCreationState.poolId = response.id;
       poolCreationState.poolAddress = response.address;
