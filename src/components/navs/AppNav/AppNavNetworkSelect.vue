@@ -133,14 +133,18 @@ function isActive(network: NetworkOption): boolean {
 <template>
   <BalPopover noPad>
     <template #activator>
-      <BalBtn color="white" :size="upToLargeBreakpoint ? 'md' : 'sm'">
+      <BalBtn
+        class="ml-4 network-button"
+        color="white"
+        :size="upToLargeBreakpoint ? 'md' : 'sm'"
+      >
         <template v-if="activeNetwork">
           <img
             :src="buildNetworkIconURL(activeNetwork.id)"
             :alt="activeNetwork.name"
             class="w-6 h-6 rounded-full"
           />
-          <span class="ml-2">
+          <span class="ml-2 font-[500] text-[18px]">
             {{ activeNetwork.name }}
           </span>
           <BalIcon name="chevron-down" size="sm" class="ml-2" />
@@ -165,7 +169,7 @@ function isActive(network: NetworkOption): boolean {
             :alt="network.name"
             class="mr-2 w-6 h-6 rounded-full"
           />
-          <span class="ml-1 font-medium">
+          <span class="ml-1">
             {{ network.name }}
           </span>
         </div>
@@ -178,3 +182,13 @@ function isActive(network: NetworkOption): boolean {
     </div>
   </BalPopover>
 </template>
+<style>
+.network-button {
+  background-color: #8b8dfc82 !important;
+  box-shadow: 0px -5px 4px 0px #31313140 inset;
+  border-radius: 30px;
+  min-height: 45px;
+  box-shadow: 0px 0px 0px 4px #8b8dfc99;
+  box-shadow: 0px 0px 0px 8px #8b8dfc26;
+}
+</style>

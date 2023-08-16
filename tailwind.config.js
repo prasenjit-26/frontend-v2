@@ -17,6 +17,9 @@ module.exports = {
   theme: {
     fontFamily: {
       body: [
+        'Plus Jakarta Sans',
+        'sans-serif',
+        'Montserrat Alternates',
         'Inter-Variable',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -28,7 +31,8 @@ module.exports = {
         '"Segoe UI Emoji"',
       ],
       display: [
-        '"Tiempos Headline Medium"',
+        'Plus Jakarta Sans',
+        'Montserrat Alternates',
         'Times',
         '"Times New Roman"',
         'serif',
@@ -71,7 +75,7 @@ module.exports = {
           100: '#EAF0F6',
           200: '#E2E8F0',
           300: '#CBD5E1',
-          400: '#94A3B8',
+          400: '#A6A6A6',
           500: '#64748B',
           600: '#475569',
           700: '#334155',

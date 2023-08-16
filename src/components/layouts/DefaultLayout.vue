@@ -5,7 +5,7 @@ import AppNav from '@/components/navs/AppNav/AppNav.vue';
 
 <template>
   <div>
-    <div class="app-body">
+    <div class="app-body bg-[url('@/assets/images/bgGradiant.png')]">
       <AppNav />
       <div class="pb-16">
         <slot />
@@ -21,7 +21,7 @@ import AppNav from '@/components/navs/AppNav/AppNav.vue';
 }
 
 .app-body {
-  @apply mb-8;
+  @apply mb-8 bg-cover bg-black;
 
   min-height: calc(100vh - 2rem);
 }

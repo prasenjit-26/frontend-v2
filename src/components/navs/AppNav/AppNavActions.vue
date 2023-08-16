@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
+// import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
 import useBreakpoints from '@/composables/useBreakpoints';
 import { useSidebar } from '@/composables/useSidebar';
 import useWeb3 from '@/services/web3/useWeb3';
 
 import AppNavAccountBtn from './AppNavAccountBtn.vue';
-import AppNavActivityBtn from './AppNavActivityBtn/AppNavActivityBtn.vue';
+// import AppNavActivityBtn from './AppNavActivityBtn/AppNavActivityBtn.vue';
 import AppNavNetworkSelect from './AppNavNetworkSelect.vue';
 import { Goals, trackGoal } from '@/composables/useFathom';
 
@@ -34,19 +34,8 @@ function connectWalletHandler() {
 
 <template>
   <div class="grid grid-rows-1 grid-flow-col gap-2">
-    <DarkModeToggle v-if="isDesktop" />
-    <AppNavActivityBtn v-if="account" />
-    <AppNavAccountBtn v-if="account" />
-    <BalBtn
-      v-else
-      color="white"
-      :size="isMobile ? 'md' : 'sm'"
-      @click="connectWalletHandler"
-    >
-      <WalletIcon class="mr-2" />
-      <span class="hidden lg:inline-block" v-text="$t('connectWallet')" />
-      <span class="lg:hidden" v-text="$t('connect')" />
-    </BalBtn>
+    <!-- <DarkModeToggle v-if="isDesktop" /> -->
+    <!-- <AppNavActivityBtn v-if="account" /> -->
     <AppNavNetworkSelect v-if="!hideNetworkSelect" />
     <BalBtn
       v-if="isMobile"
@@ -57,5 +46,27 @@ function connectWalletHandler() {
     >
       <BalIcon name="menu" size="lg" />
     </BalBtn>
+    <AppNavAccountBtn v-if="account" />
+    <BalBtn
+      v-else
+      color="white"
+      class="ml-5 connect-button"
+      :size="isMobile ? 'md' : 'sm'"
+      @click="connectWalletHandler"
+    >
+      <!-- <WalletIcon class="mr-2" /> -->
+      <span class="hidden lg:inline-block" v-text="$t('connectWallet')" />
+      <span class="lg:hidden" v-text="$t('connect')" />
+    </BalBtn>
   </div>
 </template>
+<style>
+.connect-button {
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  box-shadow: 0px 0px 0px 4px #8b8dfc, 0px 0px 3px 2px #00000040;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 45px;
+}
+</style>

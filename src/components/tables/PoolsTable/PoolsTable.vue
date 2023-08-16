@@ -280,6 +280,7 @@ function iconAddresses(pool: Pool) {
 <template>
   <BalCard
     shadow="lg"
+    class="bg-transparent rounded-[26px]"
     :square="upToLargeBreakpoint"
     :noBorder="upToLargeBreakpoint"
     noPad

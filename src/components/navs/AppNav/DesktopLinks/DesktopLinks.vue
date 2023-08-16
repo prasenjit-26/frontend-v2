@@ -75,6 +75,10 @@ function isActive(page: string): boolean {
 
 <style scoped>
 .desktop-links {
-  @apply grid gap-6 grid-flow-col grid-rows-1 h-full content-center;
+  @apply grid gap-8 grid-flow-col grid-rows-1 content-center p-[10px];
+  box-shadow: 0px 4px 4px 0px #31313140 inset;
+  box-shadow: 0px 0px 0px 2px #8b8dfc;
+  border-radius: 50px;
+  background: #8b8dfc26;
 }
 </style>

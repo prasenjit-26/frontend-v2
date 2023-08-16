@@ -94,17 +94,6 @@ function onColumnSort(columnId: string) {
               @add="addSelectedToken"
               @remove="removeSelectedToken"
             />
-            <BalBtn
-              v-if="!upToMediumBreakpoint"
-              color="blue"
-              size="sm"
-              outline
-              :class="{ 'mt-4': upToMediumBreakpoint }"
-              :block="upToMediumBreakpoint"
-              @click="navigateToCreatePool"
-            >
-              {{ $t('createAPool.title') }}
-            </BalBtn>
           </div>
         </div>
         <PoolsTable

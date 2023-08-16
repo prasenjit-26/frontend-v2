@@ -1,16 +1,38 @@
 <script lang="ts" setup>
-import AppHero from '@/components/heros/AppHero.vue';
 </script>
 
 <template>
-  <AppHero class="h-44">
-    <h1 class="headline" v-text="$t('defiLiquidityPools')" />
-    <p class="mt-2 text-xl text-white" v-text="$t('builtOnBalancer')" />
-  </AppHero>
+  <div class="md:container md:mx-auto">
+    <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
+      <h2
+        class="font-[600] mt-[58px] headline font-montserrat"
+        v-text="$t('headlineText')"
+      />
+      <p
+        class="mt-4 text-white text-[24px] font-montserrat"
+        v-text="$t('headlineSubText')"
+      />
+      <button class="flex justify-center mt-5 create-button">
+        {{ $t('createAPool.title') }}
+        <BalIcon class="ml-2 text-white-400" name="plus" />
+      </button>
+      <div class="flex justify-end">
+        <img src="~@/assets/images/landingPage.gif" alt="logo" width="500" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
 .headline {
-  @apply text-white text-center text-4xl md:text-5xl pb-2 font-display font-normal;
+  @apply text-white text-left text-6xl pb-2 pt-3;
+}
+.create-button {
+  @apply text-white text-[20px] font-[500] py-3 px-6 rounded-full;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  box-shadow: 0px 0px 0px 2px #afafaf40;
+  box-shadow: 0px 0px 0px 3px #8c8eff82 inset;
+  border: 1px solid #9b9b9b;
+  border-radius: 20px;
 }
 </style>

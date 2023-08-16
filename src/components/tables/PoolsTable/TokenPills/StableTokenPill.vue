@@ -20,14 +20,14 @@ withDefaults(defineProps<Props>(), {
 <template>
   <BalTooltip
     :disabled="!hasBalance"
-    class="mr-1 last:mr-0 leading-normal cursor-pointer"
+    class="mr-1 last:mr-0 leading-normal cursor-pointer pill-container"
     textAlign="left"
     :delayMs="50"
   >
     <template #activator>
       <div
         :class="[
-          'pill',
+          'pill bg-transparent',
           {
             'pill-selected': isSelected,
             'pill-picked': isPicked,
@@ -52,7 +52,7 @@ withDefaults(defineProps<Props>(), {
   </BalTooltip>
 </template>
 
-<style scoped>
+<style>
 .pill {
   @apply flex;
   @apply relative;
@@ -63,7 +63,6 @@ withDefaults(defineProps<Props>(), {
 .pill::before {
   @apply w-full h-full;
   @apply absolute;
-  @apply bg-gray-100 dark:bg-gray-700;
 
   content: '';
   transform: skew(-16deg);
@@ -82,7 +81,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .pill-text {
-  @apply px-2 py-1;
+  @apply px-2 py-1 text-[16px] font-[500];
 
   z-index: 1;
 }
@@ -106,5 +105,11 @@ withDefaults(defineProps<Props>(), {
 .pill-hoverable:hover::before,
 .pill-hoverable:focus::before {
   @apply bg-gray-200 dark:bg-gray-900;
+}
+.pill-container {
+  background: #8688ff63;
+  border: 1px solid rgba(139, 141, 252, 1);
+  border-radius: 5px;
+  min-height: 46px;
 }
 </style>

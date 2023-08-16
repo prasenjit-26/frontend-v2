@@ -412,6 +412,8 @@
   "date": "Date",
   "day": "day",
   "defiLiquidityPools": "DeFi liquidity pools",
+  "headlineText": "Launching You into the Future of Decentralized Trading",
+  "headlineSubText": "Explore the Galaxy of Possibilities with Our Web3 DEX Liquidity Pool",
   "delegateFeesTooltip": "Liquidity providers in this pool earn fixed swap fees on every swap utilizing the liquidity in this pool. Control has been delegated to the community, so fees could change in the future if this pool becomes actively managed.",
   "depositing": "depositing",
   "details": "Details",

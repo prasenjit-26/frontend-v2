@@ -13,9 +13,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const classes = computed(() => ({
-  'border-white dark:border-gray-900': !props.active,
-  'border-blue-600 dark:border-blue-400 text-blue-700 dark:text-blue-400':
-    props.active,
+  'border-white dark:border-gray-400': !props.active,
+  'text-white dark:text-white active-button font-[500]': props.active,
 }));
 </script>
 
@@ -38,41 +37,45 @@ const classes = computed(() => ({
 
   @apply top-0 left-0 w-full block absolute overflow-hidden transition-all;
 
-  border-top: 4px solid theme('colors.purple.600');
+  /* border-top: 4px solid theme('colors.purple.600'); */
   transform: translate3d(0%, -101%, 0);
 }
 
 .dark .desktop-link-item::before {
-  border-color: theme('colors.yellow.500');
+  /* border-color: theme('colors.yellow.500'); */
 }
 
 .desktop-link-item.router-link-active::before {
   content: '';
-  border-color: theme('colors.blue.600');
 
   @apply w-full block absolute top-0 left-0;
 
   transform: translate3d(0, 0, 0);
 }
 
-.dark .desktop-link-item.router-link-active::before {
-  content: '';
-  border-color: theme('colors.blue.400');
-}
-
-.desktop-link-item.router-link-active:hover::before {
-  border-color: theme('colors.blue.700');
-}
-
-.dark .desktop-link-item.router-link-active:hover::before {
-  border-color: theme('colors.blue.300');
-}
-
 .desktop-link-item.router-link-active {
-  @apply text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors;
+  @apply transition-colors;
 }
 
 .desktop-link-item:hover::before {
   transform: translate3d(0, 0, 0);
+}
+.active-button {
+  border-radius: 30px;
+  padding: 10px 30px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 66.64%, #8b8dfc 96.39%),
+    linear-gradient(
+      90deg,
+      rgba(106, 17, 203, 0.8) 0%,
+      rgba(37, 117, 252, 0.8) 100%
+    ),
+    linear-gradient(180deg, #8b8dfc 0%, rgba(0, 0, 0, 0) 66.64%);
+  border: 1px solid;
+  border-image-source: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 66.64%,
+    #8b8dfc 96.39%
+  );
+  /* linear-gradient(180deg, #8b8dfc 0%, rgba(0, 0, 0, 0) 66.64%); */
 }
 </style>

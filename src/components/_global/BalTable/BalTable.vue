@@ -214,7 +214,7 @@ watch(
 <template>
   <div
     :class="[
-      'max-w-full whitespace-nowrap overflow-hidden',
+      'max-w-full whitespace-nowrap overflow-hidden pre-table',
       { 'rounded-lg': !square },
     ]"
   >
@@ -235,7 +235,7 @@ watch(
             :key="`header-${column.id}`"
             :ref="columnIndex == 0 ? 'stickyHeaderRef' : undefined"
             :class="[
-              'p-6 bg-white dark:bg-gray-850 headingShadow border-b dark:border-gray-900',
+              'p-6 bg-white dark:bg-gray-850 headingShadow border-b dark:border-gray-900 header-bg',
               column.className,
               getHorizontalStickyClass(columnIndex),
               isColumnStuck ? 'isSticky' : '',
@@ -428,7 +428,13 @@ watch(
 }
 
 .row-bg {
-  @apply bg-white dark:bg-gray-850 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ease-in duration-300;
+  @apply transition-colors ease-in duration-300;
+  background: linear-gradient(
+    0deg,
+    rgba(139, 141, 252, 0.15),
+    rgba(139, 141, 252, 0.15)
+  );
+  border-bottom: 1px solid #595bac;
 }
 
 .bal-table-pagination-btn {
@@ -436,5 +442,39 @@ watch(
   @apply font-medium hover:text-purple-600 dark:hover:text-yellow-500;
   @apply border-t dark:border-gray-900 rounded-b-lg;
   @apply hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer;
+}
+.header-bg {
+  background: linear-gradient(0deg, #0e0f35, #0e0f35),
+    linear-gradient(0deg, rgba(139, 141, 252, 0.6), rgba(139, 141, 252, 0.6));
+}
+tr:first-child td:first-child {
+  -moz-border-radius-topleft: 7px;
+  -webkit-border-top-left-radius: 7px;
+  border-top-left-radius: 7px;
+  box-shadow: -5px -5px 0px 5px rgba(255, 255, 255, 0.4),
+    0px 4px 20px rgba(0, 0, 0, 0.92);
+}
+
+tr:first-child td:last-child {
+  -moz-border-radius-topright: 7px;
+  -webkit-border-top-right-radius: 7px;
+  border-top-right-radius: 7px;
+  box-shadow: 5px -5px -0px 5px rgba(255, 255, 255, 0.4),
+    0px 4px 20px rgba(0, 0, 0, 0.92);
+}
+
+tr:last-child td:first-child {
+  -moz-border-radius-bottomleft: 7px;
+  -webkit-border-bottom-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  box-shadow: -5px 5px 0px 5px rgba(255, 255, 255, 0.4),
+    0px 4px 20px rgba(0, 0, 0, 0.92);
+}
+
+.pre-table {
+  margin: 15px;
+  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
 }
 </style>

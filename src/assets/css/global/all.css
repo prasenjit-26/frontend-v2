@@ -1,4 +1,4 @@
-@import url('./fonts.css');
+/* @import url('./fonts.css'); */
 @import url('./typography.css');
 @import url('./backgrounds.css');
 @import url('./animations.css');
@@ -8,13 +8,13 @@
 html,
 body {
   @apply font-body;
-
+  font-family: 'Plus Jakarta Sans', 'Montserrat Alternates', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 html {
-  @apply text-sm sm:text-base transition-all;
+  @apply text-sm transition-all sm:text-base;
 }
 
 * {
@@ -50,4 +50,8 @@ input[type='number'] {
 
 *::-webkit-scrollbar-thumb {
   @apply bg-gray-200 dark:bg-gray-700;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat Alternates';
 }

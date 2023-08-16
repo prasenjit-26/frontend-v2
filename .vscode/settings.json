@@ -20,7 +20,7 @@
     "editor.formatOnSave": true
   },
   "[css]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "[vue]": {

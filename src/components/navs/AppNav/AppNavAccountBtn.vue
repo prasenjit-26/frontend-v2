@@ -30,7 +30,7 @@ const avatarSize = computed(() => {
   >
     <template #activator>
       <BalBtn
-        class="text-base"
+        class="ml-5 text-base account-button"
         :class="{ btn: upToLargeBreakpoint }"
         :loading="isLoadingProfile"
         :loadingLabel="upToLargeBreakpoint ? '' : $t('connecting')"
@@ -59,4 +59,14 @@ const avatarSize = computed(() => {
   </BalPopover>
 </template>
 
-
+<style>
+.account-button {
+  @apply text-white font-[500] py-4 px-6;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  box-shadow: 0px 0px 0px 2px #afafaf40;
+  box-shadow: 0px 0px 0px 3px #8c8eff82 inset;
+  border: 1px solid #9b9b9b;
+  border-radius: 20px;
+  min-height: 45px;
+}
+</style>

@@ -115,6 +115,7 @@ function onClick() {
     <div class="flex flex-wrap gap-x-6 gap-y-3 items-stretch">
       <BalBtn
         color="white"
+        class="filter-button"
         size="sm"
         :block="upToMediumBreakpoint"
         @click="onClick"
@@ -152,3 +153,12 @@ function onClick() {
     </teleport>
   </div>
 </template>
+<style>
+.filter-button {
+  background-color: #8b8dfc26 !important;
+  box-shadow: inset 0px 2px 9px 4px #06060626, 0px 0px 0px 5px #8b8dfc99,
+    0px 0px 0px 10px #8b8dfc40;
+  min-width: 300px;
+  min-height: 45px;
+}
+</style>

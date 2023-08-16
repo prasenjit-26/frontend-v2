@@ -23,14 +23,14 @@ withDefaults(defineProps<Props>(), {
 <template>
   <BalTooltip
     :disabled="!hasBalance"
-    class="mr-2 last:mr-0 leading-normal cursor-pointer"
+    class="mr-2 last:mr-0 leading-normal cursor-pointer pill-bg"
     textAlign="left"
     :delayMs="50"
   >
     <template #activator>
       <div
         :class="[
-          'pill',
+          'pill bg-transparent',
           {
             'pill-selected': isSelected,
             'pill-picked': isPicked,
@@ -43,6 +43,7 @@ withDefaults(defineProps<Props>(), {
         <div v-if="hasBalance" class="balance-indicator" />
         <span
           :class="[
+            'text-[16px] font-[500]',
             {
               'font-medium': isSelected,
             },
@@ -54,6 +55,7 @@ withDefaults(defineProps<Props>(), {
           v-if="weight !== '0%'"
           :class="[
             'pill-weight',
+            'text-[12px] font-[500]',
             {
               'pill-weight-migration': isOnMigrationCard,
             },
@@ -67,9 +69,9 @@ withDefaults(defineProps<Props>(), {
   </BalTooltip>
 </template>
 
-<style scoped>
+<style>
 .pill {
-  @apply flex items-center px-2 my-1 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 relative max-h-10 items-center;
+  @apply flex items-center px-2 my-1 py-1 rounded-lg relative max-h-10 items-center;
 }
 
 .pill-migration {
@@ -91,7 +93,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .pill-weight {
-  @apply font-medium text-gray-600 dark:text-gray-400 text-xs  mt-px ml-1;
+  @apply font-medium text-white dark:text-white text-xs  mt-px ml-1;
 }
 
 .pill-weight-migration {
@@ -109,5 +111,11 @@ withDefaults(defineProps<Props>(), {
 .pill-hoverable:hover,
 .pill-hoverable:focus {
   @apply bg-gray-200 dark:bg-gray-900;
+}
+.pill-bg {
+  background: #8688ff63;
+  border: 1px solid rgba(139, 141, 252, 1);
+  border-radius: 5px;
+  min-height: 46px;
 }
 </style>
