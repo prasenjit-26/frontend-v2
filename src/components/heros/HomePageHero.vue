@@ -5,11 +5,11 @@
   <div class="md:container md:mx-auto">
     <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
       <h2
-        class="font-[600] mt-[58px] headline font-montserrat"
+        class="font-[600] mt-[58px] headline font-montserrat text[64px]"
         v-text="$t('headlineText')"
       />
       <p
-        class="mt-4 text-white text-[24px] font-montserrat"
+        class="text-white mt-[36px] mb-[36px] text-[24px] font-montserrat leading-[33px]"
         v-text="$t('headlineSubText')"
       />
       <button class="flex justify-center mt-5 create-button">
@@ -30,9 +30,10 @@
 .create-button {
   @apply text-white text-[20px] font-[500] py-3 px-6 rounded-full;
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-  box-shadow: 0px 0px 0px 2px #afafaf40;
-  box-shadow: 0px 0px 0px 3px #8c8eff82 inset;
-  border: 1px solid #9b9b9b;
-  border-radius: 20px;
+box-shadow: inset 0px 0px 0px 3px #8C8EFF82,0px 0px 0px 2px #AFAFAF40 ;
+
+  border: 1px solid #9B9B9B
+  border-radius: 44px;
+  min-height: 55px;
 }
 </style>

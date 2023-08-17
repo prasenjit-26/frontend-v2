@@ -185,10 +185,9 @@ function isActive(network: NetworkOption): boolean {
 <style>
 .network-button {
   background-color: #8b8dfc82 !important;
-  box-shadow: 0px -5px 4px 0px #31313140 inset;
-  border-radius: 30px;
-  min-height: 45px;
-  box-shadow: 0px 0px 0px 4px #8b8dfc99;
-  box-shadow: 0px 0px 0px 8px #8b8dfc26;
+  box-shadow: inset 0px -5px 4px 0px #31313140, 0px 0px 0px 4px #8b8dfc99,
+    0px 0px 0px 8px #8b8dfc26;
+  border-radius: 60px;
+  min-height: 55px;
 }
 </style>

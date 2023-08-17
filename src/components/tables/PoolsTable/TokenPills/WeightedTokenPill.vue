@@ -30,7 +30,7 @@ withDefaults(defineProps<Props>(), {
     <template #activator>
       <div
         :class="[
-          'pill bg-transparent',
+          'pill bg-transparent py-1 px-1 ',
           {
             'pill-selected': isSelected,
             'pill-picked': isPicked,
@@ -71,7 +71,7 @@ withDefaults(defineProps<Props>(), {
 
 <style>
 .pill {
-  @apply flex items-center px-2 my-1 py-1 rounded-lg relative max-h-10 items-center;
+  @apply flex items-center my-1 rounded-lg relative max-h-10 items-center;
 }
 
 .pill-migration {
@@ -110,7 +110,7 @@ withDefaults(defineProps<Props>(), {
 
 .pill-hoverable:hover,
 .pill-hoverable:focus {
-  @apply bg-gray-200 dark:bg-gray-900;
+  background: #5a5a6763;
 }
 .pill-bg {
   background: #8688ff63;

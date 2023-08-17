@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+// import { computed } from 'vue';
 
-import Avatar from '@/components/images/Avatar.vue';
+// import Avatar from '@/components/images/Avatar.vue';
 import useBreakpoints from '@/composables/useBreakpoints';
 import useWeb3 from '@/services/web3/useWeb3';
 import { shorten } from '@/lib/utils';
 
 import AppNavSettings from './AppNavSettings.vue';
 
-const { bp, upToLargeBreakpoint, isMobile } = useBreakpoints();
+const { upToLargeBreakpoint, isMobile } = useBreakpoints();
 const { isLoadingProfile, profile, account } = useWeb3();
 
-const avatarSize = computed(() => {
-  if (bp.value === 'sm') {
-    return 35;
-  } else if (['md', 'lg'].includes(bp.value)) {
-    return 40;
-  } else {
-    return 20;
-  }
-});
+// const avatarSize = computed(() => {
+//   if (bp.value === 'sm') {
+//     return 35;
+//   } else if (['md', 'lg'].includes(bp.value)) {
+//     return 40;
+//   } else {
+//     return 20;
+//   }
+// });
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const avatarSize = computed(() => {
   >
     <template #activator>
       <BalBtn
-        class="ml-5 text-base account-button"
+        class="text-base ml-[40px] account-button"
         :class="{ btn: upToLargeBreakpoint }"
         :loading="isLoadingProfile"
         :loadingLabel="upToLargeBreakpoint ? '' : $t('connecting')"
@@ -38,19 +38,19 @@ const avatarSize = computed(() => {
         :size="upToLargeBreakpoint ? 'md' : 'sm'"
         :circle="upToLargeBreakpoint"
       >
-        <Avatar
+        <!-- <Avatar
           :iconURI="profile?.avatar || ''"
           :address="account"
           :size="avatarSize"
-        />
+        /> -->
         <span
           v-if="profile && profile.ens"
-          class="hidden lg:inline-block pl-2"
+          class="hidden lg:inline-block text-[15px]"
           v-text="profile && profile.ens"
         />
         <span
           v-else
-          class="hidden lg:inline-block pl-2 eth-address"
+          class="hidden lg:inline-block pl-2 eth-address text-[20px] font-[500]"
           v-text="shorten(account)"
         />
       </BalBtn>
@@ -61,12 +61,11 @@ const avatarSize = computed(() => {
 
 <style>
 .account-button {
-  @apply text-white font-[500] py-4 px-6;
+  @apply text-white font-[500] p-[15px] text-[20px];
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-  box-shadow: 0px 0px 0px 2px #afafaf40;
-  box-shadow: 0px 0px 0px 3px #8c8eff82 inset;
+  box-shadow: 0px 0px 0px 4px #8b8dfc, 0px 0px 3px 2px #00000040;
   border: 1px solid #9b9b9b;
-  border-radius: 20px;
-  min-height: 45px;
+  border-radius: 60px;
+  min-height: 55px;
 }
 </style>

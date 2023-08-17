@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
 <template>
   <BalTooltip
     :disabled="!hasBalance"
-    class="mr-1 last:mr-0 leading-normal cursor-pointer pill-container"
+    class="py-1 px-1 mr-1 last:mr-0 leading-normal cursor-pointer pill-container"
     textAlign="left"
     :delayMs="50"
   >
@@ -56,16 +56,7 @@ withDefaults(defineProps<Props>(), {
 .pill {
   @apply flex;
   @apply relative;
-  @apply my-1;
   @apply max-h-10 items-center;
-}
-
-.pill::before {
-  @apply w-full h-full;
-  @apply absolute;
-
-  content: '';
-  transform: skew(-16deg);
 }
 
 .pill:first-child::before {
@@ -81,7 +72,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .pill-text {
-  @apply px-2 py-1 text-[16px] font-[500];
+  @apply text-[16px] font-[500];
 
   z-index: 1;
 }
@@ -102,9 +93,9 @@ withDefaults(defineProps<Props>(), {
   @apply absolute top-0 right-0 -mt-1 -mr-2;
 }
 
-.pill-hoverable:hover::before,
-.pill-hoverable:focus::before {
-  @apply bg-gray-200 dark:bg-gray-900;
+.pill-container:hover,
+.pill-container:focus {
+  background: #5a5a6763;
 }
 .pill-container {
   background: #8688ff63;
