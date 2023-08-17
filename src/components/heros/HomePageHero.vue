@@ -30,9 +30,8 @@
 .create-button {
   @apply text-white text-[20px] font-[500] py-3 px-6 rounded-full;
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-box-shadow: inset 0px 0px 0px 3px #8C8EFF82,0px 0px 0px 2px #AFAFAF40 ;
-
-  border: 1px solid #9B9B9B
+  box-shadow: inset 0px 0px 0px 3px #8c8eff82, 0px 0px 0px 2px #afafaf40;
+  border: 1px solid #9b9b9b;
   border-radius: 44px;
   min-height: 55px;
 }
