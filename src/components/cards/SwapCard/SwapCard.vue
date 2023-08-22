@@ -1,15 +1,13 @@
 <template>
   <BalCard class="relative card-container" :shadow="swapCardShadow" noBorder>
-    <template #header>
-      <div class="flex justify-between items-center w-full">
-        <h4>{{ title }}</h4>
-        <SwapSettingsPopover
-          :context="SwapSettingsContext.swap"
-          :isGasless="swapping.swapGasless.value"
-        />
-      </div>
-    </template>
-    <div>
+    <div class="flex justify-between items-center w-full mb-[20px]">
+      <h4>{{ title }}</h4>
+      <SwapSettingsPopover
+        :context="SwapSettingsContext.swap"
+        :isGasless="swapping.swapGasless.value"
+      />
+    </div>
+    <div class="swap-container">
       <SwapPair
         v-model:tokenInAmount="tokenInAmount"
         v-model:tokenInAddress="tokenInAddress"
@@ -57,6 +55,7 @@
         :label="$t('preview')"
         :disabled="swapDisabled"
         color="gradient"
+        class="rounded-[12px]"
         block
         @click.prevent="handlePreviewButton"
       />
@@ -454,7 +453,14 @@ export default defineComponent({
 .card-container {
   overflow: unset;
 }
-
+.swap-container {
+  box-shadow: 0px 0px 0px 4px #8b8dfc99, 0px 0px 0px 8px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  background: #151526;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+}
 .swap-gasless :deep(.bal-toggle) {
   width: 3rem;
 }

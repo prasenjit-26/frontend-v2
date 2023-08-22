@@ -259,7 +259,7 @@ watch(
                 :name="column.Header"
               />
               <div v-else>
-                <h5 class="text-base">
+                <h5 class="text-[20px] font-[500]">
                   {{ column.name }}
                 </h5>
               </div>
@@ -429,11 +429,7 @@ watch(
 
 .row-bg {
   @apply transition-colors ease-in duration-300;
-  background: linear-gradient(
-    0deg,
-    rgba(139, 141, 252, 0.15),
-    rgba(139, 141, 252, 0.15)
-  );
+  background: #282853;
   border-bottom: 1px solid #595bac;
 }
 

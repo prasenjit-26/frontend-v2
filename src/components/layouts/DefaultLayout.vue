@@ -2,7 +2,7 @@
 import Footer from '@/components/footer/Footer.vue';
 import AppNav from '@/components/navs/AppNav/AppNav.vue';
 </script>
-
+<!-- background-image: url('../assets/images/swapBG.png'); -->
 <template>
   <div>
     <div class="app-body bg-[url('@/assets/images/bgGradiant.png')]">

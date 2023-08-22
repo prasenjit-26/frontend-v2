@@ -84,7 +84,7 @@ onMounted(async () => {
     </BalTabs>
   </div>
   <BalCard
-    class="overflow-x-auto whitespace-nowrap"
+    class="overflow-x-auto whitespace-nowrap table-conatiner"
     :square="upToLargeBreakpoint"
     :noBorder="upToLargeBreakpoint"
     noPad
@@ -94,27 +94,27 @@ onMounted(async () => {
         class="grid p-4 w-full text-base font-semibold border-b dark:border-gray-900"
         :class="[isWeighted ? 'grid-cols-5' : 'grid-cols-4']"
       >
-        <div>{{ $t('token') }}</div>
-        <div v-if="isWeighted" class="justify-self-end">
+        <div class="text-[20px] font-[500]">{{ $t('token') }}</div>
+        <div v-if="isWeighted" class="justify-self-end text-[20px] font-[500]">
           {{ $t('weight') }}
         </div>
-        <div class="justify-self-end">
+        <div class="justify-self-end text-[20px] font-[500]">
           {{ $t('balance') }}
         </div>
-        <div class="justify-self-end">
+        <div class="justify-self-end text-[20px] font-[500]">
           {{ $t('value') }}
         </div>
-        <div class="justify-self-end">
+        <div class="justify-self-end text-[20px] font-[500]">
           {{ $t('poolComposition.token%') }}
         </div>
       </div>
     </template>
 
-    <div class="grid">
+    <div class="grid table-container">
       <div
         v-for="token in rootPool.tokens"
         :key="token.address"
-        class="grid nested-group"
+        class="grid row-bg nested-group h-[78px]"
       >
         <TokenBreakdown
           :token="token"
@@ -133,5 +133,16 @@ onMounted(async () => {
 
 .nested-group:has(.level-2) {
   @apply dark:border-gray-900 border-t first:border-0;
+}
+.table-conatiner {
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+}
+.row-bg {
+  background-color: #282853;
+  border-bottom: 1px solid #8b8dfc99;
+}
+.table-row-container {
+  background: #171635;
 }
 </style>

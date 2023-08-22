@@ -229,6 +229,10 @@ const swapRows = computed<SwapRow[]>(() =>
 
 <style scoped>
 .token-item {
-  @apply m-1 flex items-center p-1 px-2 bg-gray-50 dark:bg-gray-700 rounded-lg;
+  @apply m-1 flex items-center p-1 px-2;
+  background: #4d4d96;
+  border: 1px solid #8b8dfc;
+  padding: 12px 16px 12px 16px;
+  border-radius: 6px;
 }
 </style>

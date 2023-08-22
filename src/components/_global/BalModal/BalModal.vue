@@ -112,14 +112,16 @@ defineExpose({ hide });
 }
 
 .modal-card {
-  @apply mx-auto h-full rounded-b-none sm:rounded-b-lg dark:border-0 relative;
+  @apply mx-auto h-full relative;
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  padding: 10px;
+  background: #151526;
+  border-radius: 20px;
 }
 
 .dark .bal-modal .content::before {
   background-blend-mode: soft-light, soft-light, normal;
-  background: radial-gradient(circle at left, yellow, transparent),
-    radial-gradient(circle at bottom right, blue, transparent),
-    radial-gradient(circle at top, red, transparent);
   content: '';
   display: block;
   width: 100%;

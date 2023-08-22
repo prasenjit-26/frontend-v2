@@ -473,13 +473,16 @@ onBeforeMount(async () => {
 <template>
   <BalModal show @close="onClose">
     <div>
-      <BalStack horizontal align="center" spacing="xs" class="mb-4">
-        <button class="flex text-blue-500 hover:text-blue-700" @click="onClose">
-          <BalIcon class="flex" name="chevron-left" />
-        </button>
-        <h4>
+      <BalStack
+        horizontal
+        align="center"
+        spacing="xs"
+        class="justify-between mb-4"
+      >
+        <h4 class="text-[24px] font-[600]">
           {{ labels.modalTitle }}
         </h4>
+        <button class="flex close-button" @click="onClose">Close</button>
       </BalStack>
       <BalCard noPad class="overflow-auto relative mb-6">
         <template #header>
@@ -505,9 +508,7 @@ onBeforeMount(async () => {
                 block
               />
             </div>
-            <div
-              class="p-3 w-full text-sm bg-gray-50 dark:bg-gray-800 rounded-t-lg border-b dark:border-gray-800"
-            >
+            <div class="w-full rounded-t-lg p-[22px] text-[18px] font-[400]">
               <span>
                 {{ $t('effectivePrice') }}
                 {{
@@ -519,7 +520,7 @@ onBeforeMount(async () => {
             </div>
           </div>
         </template>
-        <div>
+        <div class="preview-details">
           <BalAlert
             v-if="exceedsBalance"
             class="p-3"
@@ -532,9 +533,7 @@ onBeforeMount(async () => {
             block
             square
           />
-          <div
-            class="relative p-3 border-b border-gray-100 dark:border-gray-900"
-          >
+          <div class="relative p-3 border-b first-row">
             <div class="flex items-center">
               <div class="mr-3">
                 <BalAsset
@@ -592,6 +591,7 @@ onBeforeMount(async () => {
           </div>
         </div>
       </BalCard>
+      <div class="border-bottom" />
       <BalCard noPad shadow="none" class="mb-3">
         <template #header>
           <div
@@ -600,11 +600,11 @@ onBeforeMount(async () => {
             <div class="font-semibold">
               {{ labels.swapSummary.title }}
             </div>
-            <div class="flex text-xs uppercase divide-x dark:divide-gray-500">
+            <div class="flex items-center uppercase toggle-select text-[14px]">
               <div
                 :class="[
-                  'pr-2 cursor-pointer font-medium',
-                  { 'text-blue-600': !showSummaryInFiat },
+                  'pr-2 cursor-pointer font-medium toggle-button ',
+                  { 'selected-toggle': !showSummaryInFiat },
                 ]"
                 @click="showSummaryInFiat = false"
               >
@@ -612,8 +612,8 @@ onBeforeMount(async () => {
               </div>
               <div
                 :class="[
-                  'pl-2 cursor-pointer font-medium uppercase',
-                  { 'text-blue-600': showSummaryInFiat },
+                  'pl-2 cursor-pointer font-medium uppercase toggle-button ',
+                  { 'selected-toggle': showSummaryInFiat },
                 ]"
                 @click="showSummaryInFiat = true"
               >
@@ -648,15 +648,15 @@ onBeforeMount(async () => {
         </div>
         <template #footer>
           <div
-            class="p-3 w-full text-sm bg-white dark:bg-gray-800 rounded-b-lg"
+            class="p-3 w-full text-sm bg-white dark:bg-gray-800 rounded-b-lg summary-bg"
           >
-            <div class="font-medium summary-item-row">
+            <div class="font-medium summary-item-row text-[16px] font-[500]">
               <div class="w-64">
                 {{ labels.swapSummary.totalAfterFees }}
               </div>
               <div v-html="summary.totalWithoutSlippage" />
             </div>
-            <div class="summary-item-row text-secondary">
+            <div class="summary-item-row text-secondary text-[16px] font-[500]">
               <div class="w-64">
                 {{ labels.swapSummary.totalWithSlippage }}
               </div>
@@ -740,9 +740,13 @@ onBeforeMount(async () => {
 
 <style scoped>
 .arrow-down {
-  @apply absolute right-0 rounded-full border border-gray-100 flex items-center h-8 w-8 justify-center bg-white mr-3
-    dark:border-gray-800 dark:bg-gray-800;
-
+  @apply absolute  rounded-full  flex items-center h-8 w-8 justify-center  mr-3;
+  right: 0px;
+  left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 0.9px solid #8b8dfc;
+  background: #34355f;
   transform: translateY(-50%);
 }
 
@@ -765,5 +769,59 @@ onBeforeMount(async () => {
 
 .step-approved {
   @apply border-green-500 dark:border-green-500;
+}
+.close-button {
+  border: 0.9px solid #8b8dfc;
+  background: #34355f;
+  border-radius: 25px;
+  padding: 4px;
+  font-size: 14px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+}
+.header-border {
+  border: 1px solid #3f4083;
+}
+.preview-details {
+  background: #282853;
+  border: 1px solid #3f4083;
+  border-radius: 0px 0px 12px 12px;
+}
+.first-row {
+  border-bottom: 1px solid #454680;
+  border-radius: 0px 0px 1px 0px;
+}
+.border-bottom {
+  border: 1px solid #8b8dfc66;
+  background: #8b8dfc66;
+  margin-bottom: 20px;
+}
+.summary-bg {
+  background: #3f4083;
+}
+.toggle-select {
+  border: 1px solid #8b8dfc;
+  box-shadow: inset 0px 4px 4px 0px #00000040;
+  background: #3f4083;
+  border-radius: 37px;
+  padding: 8px;
+  min-width: 170px;
+}
+.toggle-button {
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+}
+.selected-toggle {
+  box-shadow: inset 0px -1px 0px 0px #7b82f6, 0px 0px 4px -4px #00000040;
+  border-radius: 24px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8b8dfc;
 }
 </style>

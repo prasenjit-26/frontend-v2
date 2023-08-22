@@ -50,10 +50,10 @@ function onActivatorClick(): void {
         circle
         color="white"
         size="sm"
-        class="mb-2 text-secondary icon-spin-anim"
+        class="mb-2 text-secondary icon-spin-anim setting-button"
         @click="onActivatorClick"
       >
-        <BalIcon name="settings" size="sm" />
+        <BalIcon name="settings" size="sm" class="brand-color" />
       </BalBtn>
     </template>
 
@@ -141,5 +141,12 @@ function onActivatorClick(): void {
 
 .swap-settings-option.active {
   @apply text-blue-500 border-blue-500;
+}
+.setting-button {
+  border: 1px solid #8b8dfc;
+  background: transparent !important;
+}
+.brand-color {
+  color: #8b8dfc;
 }
 </style>

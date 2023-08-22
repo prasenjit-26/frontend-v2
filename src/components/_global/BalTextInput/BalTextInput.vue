@@ -116,7 +116,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :class="['bal-text-input', parentClasses, borderRadiusClasses]">
+  <div
+    :class="[
+      'bal-text-input bal-text-input-container',
+      parentClasses,
+      borderRadiusClasses,
+    ]"
+  >
     <div
       :class="['input-container', inputContainerClasses, borderRadiusClasses]"
       @mouseover="onMouseOver"
@@ -130,9 +136,6 @@ onMounted(() => {
         </slot>
       </div>
       <div :class="['input-group', inputGroupClasses]">
-        <div v-if="$slots.prepend" :class="['prepend', prependClasses]">
-          <slot name="prepend" />
-        </div>
         <input
           ref="textInput"
           :type="type"
@@ -140,13 +143,19 @@ onMounted(() => {
           :value="modelValue"
           v-bind="inputAttrs"
           :disabled="disabled"
-          :class="['input', inputClasses]"
+          :class="[
+            'input text-[36px] font-[600] custom-text-input',
+            inputClasses,
+          ]"
           @blur="onBlur"
           @input="onInput"
           @keydown="onKeydown"
           @click="onClick"
           @focus="onFocus"
         />
+        <div v-if="$slots.prepend" :class="['prepend', prependClasses]">
+          <slot name="prepend" />
+        </div>
         <div v-if="$slots.append" :class="['append', appendClasses]">
           <slot name="append" />
         </div>
@@ -164,6 +173,7 @@ onMounted(() => {
 <style scoped>
 .input-container {
   @apply transition-colors;
+  background: #212139;
 }
 
 .input-group {
@@ -180,5 +190,13 @@ onMounted(() => {
 
 .error {
   @apply text-xs text-red-500 mt-1 ml-1;
+}
+.bal-text-input-container {
+  box-shadow: 0px 0px 0px 2px #8b8dfc99;
+  background: #212139;
+}
+.custom-text-input {
+  font-weight: 600;
+  font-size: 36px;
 }
 </style>

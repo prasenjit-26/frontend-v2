@@ -99,8 +99,8 @@ const circleSizeClasses = computed(() => {
 const bgGradientClasses = computed(() => {
   if (props.outline) return 'bg-transparent hover:bg-gray-50';
 
-  let fromColor = 'blue';
-  let toColor = 'pink';
+  let fromColor = '#6A11CB';
+  let toColor = '#2575FC';
 
   if (props.color === 'gradient-reverse') {
     fromColor = 'pink';
@@ -187,7 +187,7 @@ const displayClasses = computed(() => {
 
 const shapeClasses = computed(() => {
   if (props.circle || props.rounded) return 'rounded-full';
-  return 'rounded-lg';
+  return 'rounded-[103px]';
 });
 
 const cursorClasses = computed(() => {
@@ -235,7 +235,7 @@ const iconColor = computed(() => {
       </span>
     </div>
     <div v-else class="content">
-      <span v-if="label">
+      <span v-if="label" class="text-[20px] font-[500]">
         {{ label }}
       </span>
       <slot v-else />
@@ -247,7 +247,7 @@ const iconColor = computed(() => {
 <style scoped>
 .bal-btn {
   @apply overflow-hidden tracking-tight;
-  background-color: linear-gradient(180deg, #6a11cb 0%, #2575fc 100%);
+  background: linear-gradient(180deg, #6a11cb 0%, #2575fc 100%);
   font-variation-settings: 'wght' 500;
   transition: all 0.2s ease;
   text-decoration: none !important;

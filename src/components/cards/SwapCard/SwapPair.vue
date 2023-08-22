@@ -176,18 +176,18 @@ onMounted(() => {
       @set-max="emit('update:exactIn', true)"
     />
 
-    <div class="flex items-center my-2">
+    <div class="flex items-center my-2 align-center-toggle">
       <SwapPairToggle @toggle="handleTokenSwitch" />
-      <div class="mx-2 h-px bg-gray-100 dark:bg-gray-700 grow" />
+      <!-- <div class="h-px mx-2 bg-gray-100 dark:bg-gray-700 grow" />
       <div
         v-if="rateLabel"
-        class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer"
+        class="flex items-center text-xs text-gray-600 cursor-pointer dark:text-gray-400"
         @click="isInRate = !isInRate"
         v-html="rateLabel"
-      />
+      /> -->
     </div>
-
     <TokenInput
+      class="mt-[20px]"
       :amount="_tokenOutAmount"
       :address="_tokenOutAddress"
       name="tokenOut"
@@ -201,5 +201,36 @@ onMounted(() => {
       @update:address="handleOutputTokenChange"
       @input="emit('update:exactIn', false)"
     />
+    <div class="info-conatiner">
+      <div
+        v-if="rateLabel"
+        class="flex items-center cursor-pointer text-[20px]"
+        @click="isInRate = !isInRate"
+        v-html="rateLabel"
+      />
+    </div>
   </div>
 </template>
+<style>
+.info-conatiner {
+  box-shadow: 0px 0px 0px 2px #8b8dfc99;
+  background: #212139;
+  padding: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+.align-center-toggle {
+  position: absolute;
+  /* left: 0px; */
+  /* right: 0px; */
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: fit-content;
+  top: 117px;
+}
+</style>

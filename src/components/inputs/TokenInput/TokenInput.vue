@@ -254,7 +254,6 @@ watch(_address, async (newAddress, oldAddress) => {
     step="any"
     spellcheck="false"
     v-bind="$attrs"
-    inputAlignRight
     @blur="emit('blur', $event)"
     @focus="emit('focus', $event)"
     @input="emit('input', $event)"

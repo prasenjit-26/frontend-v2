@@ -148,19 +148,19 @@ function symbolFor(titleTokenIndex: number): string {
         {{ poolTypeLabel }}
       </h3>
     </div>
-    <div class="flex flex-wrap items-center">
+    <div class="flex flex-wrap items-center mb-[16px]">
       <div
         v-for="({ address, weight }, i) in titleTokens"
         :key="i"
-        class="flex items-center px-2 mt-2 mr-2 h-10 bg-gray-50 dark:bg-gray-850 rounded-lg"
+        class="flex items-center mt-2 mr-2 h-[46px] p-[12px] assets-container"
       >
         <BalAsset :address="address" />
-        <span class="ml-2">
+        <span class="ml-2 text-[16px] font-[500]">
           {{ symbolFor(i) }}
         </span>
         <span
           v-if="!isStableLikePool && !!weight && weight !== '0'"
-          class="mt-px ml-1 text-xs font-medium text-gray-400"
+          class="mt-px ml-1 text-[12px] font-[500]"
         >
           {{
             fNum(weight || '0', {
@@ -191,7 +191,7 @@ function symbolFor(titleTokenIndex: number): string {
       </BalLink>
     </div>
     <div class="flex items-center mt-2">
-      <div class="mr-1 text-sm text-secondary" v-html="poolFeeLabel" />
+      <div class="mr-1 text-[16px] font-[400]" v-html="poolFeeLabel" />
       <BalTooltip>
         <template #activator>
           <BalLink
@@ -326,8 +326,13 @@ function symbolFor(titleTokenIndex: number): string {
 </template>
 <style scoped>
 .pool-title {
-  @apply mr-4 capitalize mt-2;
+  @apply mr-4 mb-[20px] capitalize mt-2 text-[36px] font-[500];
 
   font-variation-settings: 'wght' 700;
+}
+.assets-container {
+  border: 1px solid #8b8dfc;
+  background-color: #8688ff63;
+  border-radius: 6px;
 }
 </style>

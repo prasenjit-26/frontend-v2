@@ -137,10 +137,13 @@ export default defineComponent({
 
 .header {
   @apply flex items-center;
+  background-color: #0e0f35;
+  border-bottom: 1px solid #8b8dfc99;
 }
 
 .header-content {
   @apply flex-1 flex items-center;
+  min-height: 78px;
 }
 
 .footer {

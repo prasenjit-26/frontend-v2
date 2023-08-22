@@ -1,4 +1,11 @@
 <script lang="ts" setup>
+import useNetwork from '@/composables/useNetwork';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const { networkSlug } = useNetwork();
+function navigateToCreatePool() {
+  router.push({ name: 'create-pool', params: { networkSlug } });
+}
 </script>
 
 <template>
@@ -12,7 +19,10 @@
         class="text-white mt-[36px] mb-[36px] text-[24px] font-montserrat leading-[33px]"
         v-text="$t('headlineSubText')"
       />
-      <button class="flex justify-center mt-5 create-button">
+      <button
+        class="flex justify-center mt-5 create-button align-center"
+        @click="navigateToCreatePool"
+      >
         {{ $t('createAPool.title') }}
         <BalIcon class="ml-2 text-white-400" name="plus" />
       </button>

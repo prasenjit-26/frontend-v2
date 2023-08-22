@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group flex justify-center items-center w-9 h-9 bg-gray-50 dark:bg-gray-900 rounded-full shadow cursor-pointer toggle-btn"
+    class="group flex justify-center items-center w-9 h-9 rounded-full cursor-pointer toggle-btn"
     @click="toggle"
   >
     <div class="duration-300 ease-in-out" :class="{ 'rotate-180': isRotated }">
@@ -44,7 +44,10 @@ export default defineComponent({
 .icon-swap-toggle {
   @apply transition-transform ease-out duration-200;
 }
-
+.toggle-btn {
+  background: #34355f;
+  border: 1px solid #8b8dfc;
+}
 .toggle-btn:hover .icon-swap-toggle {
   transform: scale(1.2);
 }

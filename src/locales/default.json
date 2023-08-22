@@ -637,7 +637,7 @@
     "title": "Token incentives"
   },
   "liquidityProviderCopy": "People who provide liquidity to eligible pools or swap on eligible token pairs receive weekly $BAL distributions as incentives. $BAL token holders own the Balancer Protocol and can help shape its future by voting on governance proposals.",
-  "liquidityProvision": "Liquidity provision",
+  "liquidityProvision": "Transaction History",
   "loading": "Loading...",
   "loadingBestPrice": "Looking for the best price...",
   "loadMore": "Load more",
@@ -826,11 +826,12 @@
   },
   "poolTransfer": {
     "myPoolBalancesCard": {
-      "title": "My pool balance",
+      "title": "My Positions",
       "altTitle": "My pool liquidity balance",
       "poolsRisks": "pool's risks",
       "risksDisclaimer": "Liquidity Providers encounter risks when using DeFi and Balancer pools. Before proceeding, view this",
-      "underlyingTokens": "Underlying pool tokens"
+      "underlyingTokens": "Underlying pool tokens",
+      "stakedPosition": "Staked Position"
     },
     "myWalletTokensCard": {
       "title": "Pool tokens in my wallet",

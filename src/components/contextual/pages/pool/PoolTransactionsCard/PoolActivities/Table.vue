@@ -70,11 +70,11 @@ const { getToken, priceFor } = useTokens();
  */
 const columns = computed<ColumnDefinition<ActivityRow>[]>(() => [
   {
-    name: t('action'),
-    id: 'action',
-    accessor: 'tx',
-    Cell: 'actionCell',
-    width: 150,
+    name: t('tokens'),
+    id: 'details',
+    accessor: '',
+    Cell: 'detailsCell',
+    width: 325,
     sortable: false,
   },
   {
@@ -88,14 +88,6 @@ const columns = computed<ColumnDefinition<ActivityRow>[]>(() => [
     width: 125,
   },
   {
-    name: t('tokens'),
-    id: 'details',
-    accessor: '',
-    Cell: 'detailsCell',
-    width: 325,
-    sortable: false,
-  },
-  {
     name: t('time'),
     id: 'timeAgo',
     accessor: 'timestamp',
@@ -103,6 +95,14 @@ const columns = computed<ColumnDefinition<ActivityRow>[]>(() => [
     align: 'right',
     sortKey: pool => pool.timestamp,
     width: 200,
+  },
+  {
+    name: t('action'),
+    id: 'action',
+    accessor: 'tx',
+    Cell: 'actionCell',
+    width: 150,
+    sortable: false,
   },
 ]);
 
@@ -194,18 +194,20 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
       @load-more="emit('loadMore')"
     >
       <template #actionCell="action">
-        <div class="py-2 px-6">
+        <div
+          :class="{
+            'py-2 px-6 action-conatine-join w-fit mr-[20px]':
+              action.type === 'Join',
+            'py-2 px-6 action-conatiner-withdraw w-fit mr-[20px]':
+              action.type !== 'Join',
+          }"
+        >
           <div class="flex items-center">
-            <div class="flex mr-3 center">
-              <BalIcon
-                v-if="action.type === 'Join'"
-                name="plus"
-                size="sm"
-                class="text-green-500 dark:text-green-400"
-              />
-              <BalIcon v-else name="minus" size="sm" class="text-red-500" />
+            <div class="text-[14px] font-[500]">{{ action.label }}</div>
+            <div class="flex ml-3 center">
+              <BalIcon v-if="action.type === 'Join'" name="plus" size="sm" />
+              <BalIcon v-else name="minus" size="sm" />
             </div>
-            <div class="text-left">{{ action.label }}</div>
           </div>
         </div>
       </template>
@@ -215,25 +217,29 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
           <template v-for="(tokenAmount, i) in action.tokenAmounts" :key="i">
             <div
               v-if="tokenAmount.amount !== '0'"
-              class="flex items-center p-1 px-2 m-1 bg-gray-50 dark:bg-gray-700 rounded-lg"
+              class="flex items-center m-1 token-conatiner"
             >
               <BalAsset :address="tokenAmount.address" class="mr-2 shrink-0" />
-              <span class="font-numeric">{{ tokenAmount.amount }}</span>
+              <span class="font-numeric text-[16px] font-[500]">
+                {{ tokenAmount.symbol }}
+                <span class="ml-[5px]">
+                  {{ tokenAmount.amount }}
+                </span>
+              </span>
             </div>
           </template>
         </div>
       </template>
 
       <template #valueCell="action">
-        <div class="flex justify-end py-4 px-6 font-numeric">
+        <div class="flex justify-end py-4 px-6 font-numeric text-[20px]">
           {{ action.formattedValue }}
         </div>
       </template>
-
       <template #timeCell="action">
         <div class="py-4 px-6">
           <div
-            class="flex justify-end items-center text-right whitespace-nowrap wrap"
+            class="flex justify-end items-center text-right whitespace-nowrap wrap text-[20px]"
           >
             {{ action.formattedDate }}
             <BalLink
@@ -253,3 +259,19 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
     </BalTable>
   </BalCard>
 </template>
+<style>
+.action-conatine-join {
+  background: #16a34a;
+  border-radius: 26px;
+}
+.action-conatiner-withdraw {
+  border-radius: 26px;
+  background: #dd524c;
+}
+.token-conatiner {
+  background-color: #343563;
+  border: 1px solid #8b8dfc;
+  padding: 12px;
+  border-radius: 6px;
+}
+</style>

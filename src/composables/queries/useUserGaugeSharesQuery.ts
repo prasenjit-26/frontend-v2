@@ -94,7 +94,7 @@ export default function useUserGaugeSharesQuery(
 
       return gaugeShares;
     } catch (error) {
-      console.error('Failed to fetch pool gauges user', {
+      console.trace('Failed to fetch pool gauges user', {
         cause: error,
       });
       throw error;

@@ -58,9 +58,7 @@ const joinDisabled = computed(
 </script>
 
 <template>
-  <div
-    class="p-4 w-full bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-900"
-  >
+  <div class="p-4 w-full border-t border-gray-200 dark:border-gray-900">
     <BalBtn
       v-if="!isWalletReady"
       :label="$t('connectWallet')"
@@ -71,24 +69,25 @@ const joinDisabled = computed(
     <div v-else>
       <div class="grid grid-cols-2 gap-2">
         <BalBtn
-          :tag="joinDisabled ? 'div' : 'router-link'"
-          :to="{ name: 'add-liquidity', params: { networkSlug } }"
-          :label="$t('addLiquidity')"
-          color="gradient"
-          :disabled="joinDisabled"
-          block
-          @click="trackGoal(Goals.ClickAddLiquidity)"
-        />
-
-        <BalBtn
           :tag="hasBpt ? 'router-link' : 'div'"
           :to="{ name: 'withdraw', params: { networkSlug } }"
           :label="$t('withdraw.label')"
           :disabled="!hasBpt"
-          color="blue"
+          color="gradient"
+          class="rounded-[103px] text-[20px] font-[500] min-h-[70px] mr-[30px]"
           outline
           block
           @click="trackGoal(Goals.ClickWithdraw)"
+        />
+        <BalBtn
+          :tag="joinDisabled ? 'div' : 'router-link'"
+          :to="{ name: 'add-liquidity', params: { networkSlug } }"
+          :label="$t('addLiquidity')"
+          color="gradient"
+          class="rounded-[103px] text-[20px] font-[500] min-h-[70px]"
+          :disabled="joinDisabled"
+          block
+          @click="trackGoal(Goals.ClickAddLiquidity)"
         />
       </div>
       <div class="pt-4 text-xs text-secondary">

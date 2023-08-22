@@ -107,7 +107,7 @@ function toggleModal(): void {
           <div class="w-8">
             <BalAsset :address="token?.address" class="shadow" />
           </div>
-          <span class="text-base font-medium">
+          <span class="font-medium text-[21px]">
             {{ token?.symbol }}
           </span>
           <span v-if="Number(weight) > 0" class="ml-2 text-secondary">
@@ -175,9 +175,10 @@ function toggleModal(): void {
 
 <style scoped>
 .token-select-input {
-  @apply shadow rounded-lg flex items-center h-10 px-2 whitespace-nowrap;
+  @apply shadow rounded-lg flex items-center h-10 whitespace-nowrap;
   @apply text-sm;
-
+  border-radius: 58px;
+  padding: 8px;
   font-variation-settings: 'wght' 700;
 }
 
@@ -190,6 +191,7 @@ function toggleModal(): void {
 }
 
 .selected {
-  @apply bg-gray-50 dark:bg-gray-700 text-black dark:text-white;
+  @apply text-black dark:text-white;
+  background-color: #474881;
 }
 </style>
