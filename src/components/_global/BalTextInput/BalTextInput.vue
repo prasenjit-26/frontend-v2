@@ -136,6 +136,9 @@ onMounted(() => {
         </slot>
       </div>
       <div :class="['input-group', inputGroupClasses]">
+        <div v-if="$slots.before" :class="['before', prependClasses]">
+          <slot name="before" />
+        </div>
         <input
           ref="textInput"
           :type="type"

@@ -142,29 +142,26 @@ watch(fee, onCustomInput, { immediate: true });
 
 <template>
   <div ref="cardWrapper">
-    <BalCard shadow="xl" noBorder>
+    <BalCard shadow="xl" noBorder class="center-col-container">
       <BalStack vertical>
         <BalStack vertical spacing="xs">
           <span class="text-xs text-secondary">{{ networkConfig?.name }}</span>
           <BalStack horizontal align="center" spacing="xs">
-            <button
-              class="flex text-blue-500 hover:text-blue-700"
-              @click="goBack"
+            <h5
+              class="font-semibold dark:text-gray-300 text-[24px] mt-[10px] mb-[30px]"
             >
-              <BalIcon class="flex" name="chevron-left" />
-            </button>
-            <h5 class="font-semibold dark:text-gray-300">
               {{ $t('createAPool.setPoolFees') }}
             </h5>
           </BalStack>
         </BalStack>
         <BalStack vertical spacing="sm">
           <div>
-            <h6 class="mb-1">Initial swap fee</h6>
-            <p class="text-gray-600">
+            <h6 class="mb-[20px] text-[20px] font-[500]">Initial swap fee</h6>
+            <p class="text-gray-400 text-[16px] mb-[20px]">
               {{ $t('createAPool.bestFeeOption') }}
             </p>
           </div>
+          <div class="divider" />
           <BalStack spacing="xs" horizontal>
             <BalBtnGroup
               v-model="initialFee"
@@ -175,12 +172,12 @@ watch(fee, onCustomInput, { immediate: true });
               <div :class="['custom-input', customInputClasses]">
                 <input
                   v-model="fee"
-                  class="w-12 h-full text-right bg-transparent"
+                  class="w-12 h-full text-right bg-transparent p-[11px]"
                   placeholder="0.1"
                   type="number"
                   step="any"
                 />
-                <div class="px-1">%</div>
+                <div class="px-1 text-white">%</div>
               </div>
             </div>
           </BalStack>
@@ -295,6 +292,7 @@ watch(fee, onCustomInput, { immediate: true });
           type="submit"
           block
           color="gradient"
+          class="rounded-[12px] text-[20px]"
           :loading="isLoadingSimilarPools"
           @click="proceed"
         >
@@ -307,6 +305,31 @@ watch(fee, onCustomInput, { immediate: true });
 
 <style scoped>
 .custom-input {
-  @apply flex items-center px-1 rounded-lg shadow-inner h-full;
+  @apply flex items-center px-1 h-full;
+  border: 1px solid #5f5f5f;
+  color: #5f5f5f;
+  border-radius: 12px;
+}
+.center-col-container {
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  border-radius: 12px;
+  padding: 16px;
+}
+.warning-class {
+  margin-top: 32px;
+  box-shadow: 0px 0px 0px 4px #ffd04d, 0px 0px 0px 8px #ffd04d40;
+  background: #3a3333;
+  border-radius: 12px;
+  padding: 20px;
+}
+.warning-class > #animateContainer > .bal-alert {
+  background: transparent;
+  border: none;
+}
+.divider {
+  border: 1px solid #454680;
+  width: 100%;
+  margin-bottom: 20px;
 }
 </style>

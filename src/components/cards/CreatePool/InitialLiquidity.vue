@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 
 import AnimatePresence from '@/components/animate/AnimatePresence.vue';
-import TokenInput from '@/components/inputs/TokenInput/TokenInput.vue';
+import TokenInputCreateLiquidity from '@/components/inputs/TokenInput/TokenInputCreateLiquidity.vue';
 import usePoolCreation from '@/composables/pools/usePoolCreation';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { useTokens } from '@/providers/tokens.provider';
@@ -220,7 +220,7 @@ function saveAndProceed() {
 
 <template>
   <div ref="cardWrapper">
-    <BalCard shadow="xl" noBorder>
+    <BalCard shadow="xl" noBorder class="center-col-container">
       <BalStack vertical>
         <BalStack vertical spacing="xs">
           <span class="text-xs text-secondary">{{ networkConfig?.name }}</span>
@@ -233,7 +233,9 @@ function saveAndProceed() {
               <BalIcon class="flex" name="chevron-left" />
             </button>
 
-            <h5 class="font-semibold dark:text-gray-300">
+            <h5
+              class="font-semibold dark:text-gray-300 text-[24px] mt-[10px] mb-[30px]"
+            >
               Set initial liquidity
             </h5>
           </BalStack>
@@ -258,7 +260,7 @@ function saveAndProceed() {
           </AnimatePresence>
         </BalStack>
         <BalStack vertical>
-          <TokenInput
+          <TokenInputCreateLiquidity
             v-for="(token, i) in seedTokens"
             :key="i"
             v-model:amount="token.amount"
@@ -266,15 +268,21 @@ function saveAndProceed() {
             fixedToken
             :weight="token.weight / 100"
             :name="`initial-token-${token.tokenAddress}`"
+            class="create-token-container"
             :options="tokenOptions(i)"
             :rules="[isGreaterThan(0)]"
             @update:amount="handleAmountChange(token.tokenAddress)"
             @update:address="handleAddressChange($event)"
           />
         </BalStack>
-        <BalStack horizontal spacing="sm" align="center">
+        <BalStack
+          horizontal
+          spacing="sm"
+          align="center"
+          class="justify-between"
+        >
           <div>
-            <span class="pl-2 text-sm">{{
+            <span class="pl-2 text-[16px] font-[600]">{{
               t('autoOptimiseLiquidityToggle.label')
             }}</span>
             <BalTooltip width="64">
@@ -297,12 +305,12 @@ function saveAndProceed() {
             />
           </div>
         </BalStack>
-        <div class="p-3 rounded-lg border">
+        <div class="total-conatiner mb-[20px]">
           <BalStack horizontal justify="between">
             <BalStack vertical spacing="none">
-              <h6>{{ t('total') }}</h6>
+              <h6 class="text-[20px] font-[600] mb-[5px]">{{ t('total') }}</h6>
               <BalStack horizontal spacing="xs" class="font-medium">
-                <span class="text-sm">
+                <span class="text-[16px] font-[500]">
                   {{ t('available') }}:
                   {{ fNum(totalLiquidity.toString(), FNumFormats.fiat) }}
                 </span>
@@ -322,7 +330,7 @@ function saveAndProceed() {
               </BalStack>
             </BalStack>
             <BalStack vertical spacing="none">
-              <h6>
+              <h6 class="text-[20px] font-[600]">
                 {{ fNum(currentLiquidity.toString(), FNumFormats.fiat) }}
               </h6>
               <AnimatePresence
@@ -363,6 +371,7 @@ function saveAndProceed() {
           :disabled="isExceedingWalletBalance || hasZeroAmount"
           block
           color="gradient"
+          class="rounded-[12px]"
           @click="saveAndProceed"
         >
           {{ t('preview') }}
@@ -371,3 +380,36 @@ function saveAndProceed() {
     </BalCard>
   </div>
 </template>
+<style scoped>
+.center-col-container {
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  border-radius: 12px;
+  padding: 16px;
+}
+.warning-class {
+  margin-top: 32px;
+  box-shadow: 0px 0px 0px 4px #ffd04d, 0px 0px 0px 8px #ffd04d40;
+  background: #3a3333;
+  border-radius: 12px;
+  padding: 20px;
+}
+.warning-class > #animateContainer > .bal-alert {
+  background: transparent;
+  border: none;
+}
+.create-token-container {
+  background: #282853;
+  border: 1px solid #8b8dfc;
+}
+.custom-text-input {
+  font-size: 32px !important;
+  font-weight: 500 !important;
+}
+.total-conatiner {
+  border: 1px solid #8b8dfc;
+  background: #282853;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+</style>

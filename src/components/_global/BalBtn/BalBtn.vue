@@ -109,7 +109,9 @@ const bgGradientClasses = computed(() => {
     fromColor = 'pink';
     toColor = 'yellow';
   }
-
+  if (props.color === 'gradient') {
+    return `bg-gradient`;
+  }
   if (props.disabled) {
     return `bg-gray-300 dark:bg-gray-700 text-white dark:text-gray-500`;
   }
@@ -247,7 +249,6 @@ const iconColor = computed(() => {
 <style scoped>
 .bal-btn {
   @apply overflow-hidden tracking-tight;
-  background: linear-gradient(180deg, #6a11cb 0%, #2575fc 100%);
   font-variation-settings: 'wght' 500;
   transition: all 0.2s ease;
   text-decoration: none !important;
@@ -261,5 +262,8 @@ const iconColor = computed(() => {
 
 .content {
   @apply flex justify-center items-center w-full h-full;
+}
+.bg-gradient {
+  background: linear-gradient(180deg, #6a11cb 0%, #2575fc 100%);
 }
 </style>

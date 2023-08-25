@@ -125,54 +125,53 @@ watchEffect(() => {
 </script>
 
 <template>
-  <BalTextInput
-    v-model="_weight"
-    name="weight"
-    :placeholder="hintAmount || '0.0'"
-    type="number"
-    :label="label"
-    :decimalLimit="token?.decimals || 18"
-    validateOn="input"
-    autocomplete="off"
-    autocorrect="off"
-    noShadow
-    noBorder
-    noRadius
-    step="any"
-    spellcheck="false"
-    v-bind="$attrs"
-    inputAlignRight
-    @blur="emit('blur', $event)"
-    @input="onInput"
-    @update:model-value="emit('update:weight', $event)"
-    @update:is-valid="emit('update:isValid', $event)"
-    @keydown="emit('keydown', $event)"
-  >
-    <template #prepend>
-      <div class="flex justify-between items-center">
-        <TokenSelectInput
-          v-model="_address"
-          :fixed="fixedToken"
-          class="mr-2"
-          :excludedTokens="excludedTokens"
-          @update:model-value="emit('update:address', $event)"
-        />
-        <BalIcon
-          v-if="showWarningIcon"
-          name="alert-triangle"
-          size="sm"
-          class="text-red-600"
-        />
-      </div>
-    </template>
-    <template #append>
+  <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center">
+      <TokenSelectInput
+        v-model="_address"
+        :fixed="fixedToken"
+        class="mr-2"
+        :excludedTokens="excludedTokens"
+        @update:model-value="emit('update:address', $event)"
+      />
+      <BalIcon
+        v-if="showWarningIcon"
+        name="alert-triangle"
+        size="sm"
+        class="text-red-600"
+      />
+    </div>
+    <div class="flex justify-between items-center">
+      <BalPercentageInput
+        v-model="_weight"
+        name="weight"
+        :placeholder="hintAmount || '0.0'"
+        type="number"
+        :label="label"
+        :decimalLimit="token?.decimals || 18"
+        validateOn="input"
+        autocomplete="off"
+        autocorrect="off"
+        noShadow
+        noBorder
+        noRadius
+        step="any"
+        spellcheck="false"
+        v-bind="$attrs"
+        inputAlignRight
+        class="custom-percentage-input"
+        @blur="emit('blur', $event)"
+        @input="onInput"
+        @update:model-value="emit('update:weight', $event)"
+        @update:is-valid="emit('update:isValid', $event)"
+        @keydown="emit('keydown', $event)"
+      />
       <BalStack align="center" horizontal spacing="none">
-        <BalIcon name="percent" size="sm" class="mt-3 text-gray-600" />
         <button
           :class="[
-            'ml-2 ease-color mt-1 text-secondary hover:text-blue-800 dark:hover:text-blue-800 flex items-center shadow-sm border dark:border-0 bg-gray-50 dark:bg-gray-850 rounded-full p-1 justify-center',
+            'ml-2 brand-icon-container flex items-center rounded-full justify-center',
             {
-              'text-blue-600 dark:text-blue-400': isLocked,
+              'color-brand': isLocked,
               'border-transparent': !isLocked,
             },
           ]"
@@ -197,19 +196,29 @@ watchEffect(() => {
         </button>
         <button
           :class="[
-            'ml-2 ease-color mt-1 text-secondary hover:text-red-500 dark:hover:text-red-500 flex items-center shadow-sm border dark:border-0 bg-gray-50 dark:bg-gray-850 rounded-full p-1 justify-center',
+            'ml-2 brand-icon-container flex items-center rounded-full justify-center',
           ]"
           @click="emit('delete')"
         >
-          <BalIcon name="trash-2" size="sm" />
+          <BalIcon name="trash-2" size="sm" class="color-brand" />
         </button>
       </BalStack>
-    </template>
-  </BalTextInput>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .ease-color {
   transition: color border-color easeout 0.1s;
+}
+.brand-icon-container {
+  background: #212144;
+  border: 1px solid #6162b2;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+}
+.color-brand {
+  color: #6162b2;
 }
 </style>

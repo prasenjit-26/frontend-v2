@@ -30,7 +30,7 @@ withDefaults(defineProps<Props>(), {
     <template #activator>
       <div
         :class="[
-          'pill bg-transparent py-1 px-1 ',
+          'pill bg-transparent',
           {
             'pill-selected': isSelected,
             'pill-picked': isPicked,
@@ -71,7 +71,7 @@ withDefaults(defineProps<Props>(), {
 
 <style>
 .pill {
-  @apply flex items-center my-1 rounded-lg relative max-h-10 items-center;
+  @apply flex items-center relative  items-center;
 }
 
 .pill-migration {
@@ -113,8 +113,9 @@ withDefaults(defineProps<Props>(), {
   background: #5a5a6763;
 }
 .pill-bg {
-  background: #8688ff63;
-  border: 1px solid rgba(139, 141, 252, 1);
+  background: #424281;
+  border: 1px solid #8b8dfc;
+  padding: 12px 16px 12px 16px;
   border-radius: 5px;
   min-height: 46px;
 }

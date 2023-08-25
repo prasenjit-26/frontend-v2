@@ -285,6 +285,7 @@ async function handleTransaction(
           :loading="currentAction?.pending || isLoading"
           :loadingLabel="_loadingLabel"
           block
+          class="rounded-[12px]"
           @click="currentAction?.promise()"
         >
           <div

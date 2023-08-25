@@ -40,23 +40,34 @@ const stepTextClasses = computed(() => {
   });
 });
 
+const horizontalRowClasses = computed(() => {
+  return visibleSteps.value.map(step => {
+    return getActiveClassName(step.state, [
+      [StepState.Active, 'horizontal-row-selected'],
+      [StepState.Todo, 'horizontal-row'],
+      [StepState.Success, 'horizontal-row'],
+      [StepState.Warning, 'horizontal-row'],
+      [StepState.Completed, 'horizontal-row-selected'],
+    ]);
+  });
+});
 const stepCircleClasses = computed(() => {
   return visibleSteps.value.map(step => {
     return getActiveClassName(step.state, [
-      [
-        StepState.Active,
-        'border-2 border-none bg-gradient-from-l bg-gradient-to-r from-blue-600 to-blue-400 text-white active',
-      ],
+      [StepState.Active, 'step-circle-active'],
       [
         StepState.Todo,
-        'border-2 border-gray-300 dark:border-gray-600 text-secondary',
+        'border-2 border-gray-300 dark:border-gray-600 text-secondary step-circle',
       ],
       [
         StepState.Success,
         'border-2 border-none bg-gradient-to-tr from-green-500 to-green-200 text-white',
       ],
       [StepState.Warning, 'border-2 border-none bg-red-500 text-white active'],
-      [StepState.Completed, 'border-2 border-gray-600 font-medium'],
+      [
+        StepState.Completed,
+        'border-2 border-gray-600 font-medium step-circle-active',
+      ],
     ]);
   });
 });
@@ -81,7 +92,7 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
         {{ title }}
       </h6>
     </div>
-    <BalStack vertical spacing="base" class="p-4" justify="center">
+    <BalStack horizontal spacing="base" class="p-4" justify="center">
       <div
         v-for="(step, i) in visibleSteps"
         :key="`vertical-step-${step.tooltip}`"
@@ -91,29 +102,33 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
           :class="{ 'cursor-default': step.state === StepState.Todo }"
           @click="handleNavigate(step.state, i)"
         >
-          <BalStack horizontal align="center" spacing="sm">
+          <BalStack vertical align="center" spacing="sm">
             <div
               :class="[
-                'relative text-sm rounded-full w-7 h-7 flex justify-center items-center',
+                'rounded-full w-[30px] h-[30px] flex justify-center items-center',
                 stepCircleClasses[i],
                 { 'circle-line': i !== visibleSteps.length - 1 },
               ]"
             >
-              <div
-                class="flex absolute top-0 right-0 bottom-0 left-0 justify-center items-center mx-auto w-4"
+              <!-- <span
+                v-if="
+                  ![StepState.Warning, StepState.Error].includes(step.state)
+                "
+                >{{ step.label || i + 1 }}</span
+              > -->
+              <span
+                v-if="
+                  ![StepState.Warning, StepState.Error].includes(step.state)
+                "
+                class="text-[12px]"
+                >{{ step.label || i + 1 }}</span
               >
-                <span
-                  v-if="
-                    ![StepState.Warning, StepState.Error].includes(step.state)
-                  "
-                  >{{ step.label || i + 1 }}</span
-                >
-                <span v-else class="font-semibold">!</span>
-              </div>
+              <span v-else class="font-semibold">!</span>
             </div>
-            <span :class="['text-sm', stepTextClasses[i]]">
+            <span class="text-[16px] font-[600] mt-[14px] mb-[14px]">
               {{ step.tooltip }}
             </span>
+            <div :class="horizontalRowClasses[i]" />
           </BalStack>
         </button>
       </div>
@@ -122,16 +137,26 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
 </template>
 
 <style scoped>
-.circle-line::after {
-  @apply absolute left-0 right-0 my-0 mx-auto bg-gray-300 dark:bg-gray-600 w-px;
-
-  content: '';
-  bottom: -1.125rem;
-  height: 1rem;
+.step-circle-active {
+  border: 1px solid #8b8dfc;
+  color: #8b8dfc;
+  background: #3f3f75;
 }
-
-.circle-line.active::after {
-  bottom: -1rem;
-  height: 1rem;
+.step-circle {
+  border: 1px solid #818181;
+  background: #2a2a4659;
+  color: #818181;
+}
+.horizontal-row-selected {
+  background: #8b8dfc;
+  border-radius: 28px;
+  height: 12px;
+  width: 300px;
+}
+.horizontal-row {
+  background: #505074;
+  border-radius: 28px;
+  height: 12px;
+  width: 300px;
 }
 </style>

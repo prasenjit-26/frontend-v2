@@ -5,7 +5,13 @@
       :key="option.value"
       outline
       size="sm"
-      class="mr-2 capitalize w-18"
+      :class="[
+        'mr-2 capitalize w18 text-[18px]',
+        {
+          'select-button-selected': modelValue === option.value,
+          'select-button': modelValue !== option.value,
+        },
+      ]"
       v-bind="attrs_"
       :color="modelValue === option.value ? 'blue' : 'gray'"
       @click="onSelect(option)"
@@ -54,3 +60,23 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.select-button-selected {
+  border: 1px solid #8b8dfc;
+  background: #3f3f75;
+  border-radius: 12px;
+  padding: 11px;
+  color: #8b8dfc !important;
+  border-color: #8b8dfc !important;
+  font-size: 18px;
+}
+.select-button {
+  border: 1px solid #818181;
+  background: #2b2b3e;
+  border-radius: 12px;
+  padding: 11px;
+  color: #818181 !important;
+  border-color: #818181 !important;
+  font-size: 18px;
+}
+</style>

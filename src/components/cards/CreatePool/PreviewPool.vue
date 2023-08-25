@@ -170,7 +170,7 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
 </script>
 
 <template>
-  <BalStack vertical spacing="xs" class="mb-24">
+  <BalStack vertical spacing="xs" class="mb-24 center-col-container">
     <BalCard shadow="xl" noBorder>
       <BalStack vertical spacing="xs">
         <span class="text-xs text-secondary">{{ networkConfig?.name }}</span>
@@ -193,85 +193,84 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
               <BalIcon class="flex" name="chevron-left" />
             </button>
 
-            <h5 class="font-semibold dark:text-gray-300">
+            <h5
+              class="font-semibold dark:text-gray-300 text-[24px] mt-[10px] mb-[30px]"
+            >
               {{ title }}
             </h5>
           </BalStack>
         </div>
-        <BalCard shadow="none" noPad>
-          <div class="p-2 bg-gray-50 dark:bg-gray-700">
+        <BalCard shadow="none" noPad class="info-container">
+          <!-- <div class="p-2 bg-gray-50 dark:bg-gray-700">
             <h6 class="text-sm">
               {{ $t('createAPool.tokensAndSeedLiquidity') }}
             </h6>
-          </div>
-          <BalStack vertical spacing="none" withBorder>
+          </div> -->
+          <BalStack vertical spacing="lg">
             <div
               v-for="token in seedTokens"
               :key="`tokenpreview-${token.tokenAddress}`"
-              class="p-4"
             >
               <BalStack horizontal justify="between">
-                <BalStack horizontal align="center">
+                <BalStack horizontal align="center" class="asset-container">
                   <BalAsset :address="token.tokenAddress" :size="36" />
                   <BalStack vertical spacing="none">
-                    <span class="font-semibold">
-                      {{ fNum(token.weight / 100, FNumFormats.percent) }}
+                    <span class="font-semibold text-[19px]">
                       {{ getToken(token.tokenAddress)?.symbol }}
-                    </span>
-                    <span
-                      :class="[
-                        'text-sm',
-                        getInitialWeightHighlightClass(token.tokenAddress),
-                      ]"
-                    >
-                      {{ initialWeightLabel }}:
-                      {{
-                        fNum(
-                          initialWeights[token.tokenAddress].toString(),
-                          FNumFormats.percent
-                        )
-                      }}
+                      {{ fNum(token.weight / 100, FNumFormats.percent) }}
                     </span>
                   </BalStack>
                 </BalStack>
                 <BalStack vertical spacing="none" align="end">
+                  <span
+                    :class="[
+                      'text-[14px]',
+                      getInitialWeightHighlightClass(token.tokenAddress),
+                    ]"
+                  >
+                    {{ initialWeightLabel }}:
+                    <!-- {{
+                      fNum(
+                        initialWeights[token.tokenAddress].toString(),
+                        FNumFormats.percent
+                      )
+                    }} -->
+                  </span>
                   <span class="font-semibold">
                     {{ fNum(token.amount, FNumFormats.token) }}
-                  </span>
-                  <span class="text-sm text-secondary">
-                    {{
-                      fNum(
-                        bnum(token.amount)
-                          .times(priceFor(token.tokenAddress))
-                          .toString(),
-                        FNumFormats.fiat
+                    (
+                    <span class="text-sm text-secondary">
+                      {{
+                        fNum(
+                          bnum(token.amount)
+                            .times(priceFor(token.tokenAddress))
+                            .toString(),
+                          FNumFormats.fiat
+                        )
+                      }}
                       )
-                    }}
+                    </span>
                   </span>
                 </BalStack>
               </BalStack>
             </div>
           </BalStack>
-          <BalStack
-            horizontal
-            justify="between"
-            class="p-4 border-t dark:border-gray-600"
-          >
-            <h6>{{ $t('total') }}</h6>
-            <h6>
-              {{ fNum(poolLiquidity.toString(), FNumFormats.fiat) }}
-            </h6>
-          </BalStack>
         </BalCard>
+        <BalStack horizontal justify="between" class="info-container">
+          <h6 class="text-[20px] font-[600]">{{ $t('total') }}</h6>
+          <h6 class="text-[20px] font-[600]">
+            {{ fNum(poolLiquidity.toString(), FNumFormats.fiat) }}
+          </h6>
+        </BalStack>
         <BalCard shadow="none" noPad>
-          <div class="p-2 bg-gray-50 dark:bg-gray-700">
-            <h6 class="text-sm">
+          <div class="summary-header">
+            <h6 class="text-[20px] font-[600]">
               {{ $t('summary') }}
             </h6>
           </div>
-          <BalStack vertical spacing="xs" class="p-3">
+          <BalStack vertical spacing="base" class="info-section">
             <BalStack horizontal justify="between">
-              <span class="text-sm">{{ $t('poolName') }}:</span>
+              <span class="text-[18px] font-[500]">{{ $t('poolName') }}:</span>
               <BalInlineInput
                 v-model="poolName"
                 name="poolName"
@@ -281,7 +280,9 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
               />
             </BalStack>
             <BalStack horizontal justify="between">
-              <span class="text-sm">{{ $t('poolSymbol') }}:</span>
+              <span class="text-[18px] font-[500]"
+                >{{ $t('poolSymbol') }}:</span
+              >
               <BalInlineInput
                 v-model="poolSymbol"
                 name="poolSymbol"
@@ -291,13 +292,15 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
               />
             </BalStack>
             <BalStack horizontal justify="between">
-              <span class="text-sm">{{ $t('poolType') }}:</span>
-              <span class="text-sm capitalize">{{ poolTypeString }}</span>
+              <span class="text-[18px] font-[500]">{{ $t('poolType') }}:</span>
+              <span class="capitalize text-[14px] font-[500]">{{
+                poolTypeString
+              }}</span>
             </BalStack>
             <BalStack horizontal justify="between" class="mt-1">
-              <span class="text-sm">{{ $t('swapFee') }}:</span>
+              <span class="text-[18px] font-[500]">{{ $t('swapFee') }}:</span>
               <BalStack horizontal spacing="sm">
-                <span class="text-sm">{{
+                <span class="text-[14px] font-[500]">{{
                   fNum(initialFee, FNumFormats.percent)
                 }}</span>
                 <button class="hover:text-blue-500" @click="navigateToPoolFee">
@@ -306,9 +309,13 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
               </BalStack>
             </BalStack>
             <BalStack horizontal justify="between">
-              <span class="text-sm">{{ $t('swapFeeManager') }}:</span>
+              <span class="text-[18px] font-[500]"
+                >{{ $t('swapFeeManager') }}:</span
+              >
               <BalStack horizontal spacing="sm">
-                <span class="text-sm">{{ getSwapFeeManager() }}</span>
+                <span class="text-[14px] font-[500]">{{
+                  getSwapFeeManager()
+                }}</span>
                 <button class="hover:text-blue-500" @click="navigateToPoolFee">
                   <BalIcon name="edit" size="xs" />
                 </button>
@@ -354,3 +361,35 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
     </BalCard>
   </BalStack>
 </template>
+<style>
+.center-col-container {
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  border-radius: 12px;
+  padding: 16px;
+}
+.info-container {
+  border: 1px solid #8b8dfc;
+  background: #282853;
+  border-radius: 12px;
+  padding: 24px;
+  border-color: #8b8dfc !important;
+}
+.asset-container {
+  background: #474881;
+  border-radius: 52px;
+  padding: 10px;
+}
+.summary-header {
+  background: #0e0f35;
+  border: 1px solid #3f4083;
+  border-bottom: 1px solid #595bac;
+  border-radius: 12px 12px 0px 0px;
+  padding: 20px;
+}
+.info-section {
+  background: #282853;
+  border: 1px solid #3f4083;
+  padding: 24px;
+}
+</style>

@@ -180,6 +180,7 @@ function toggleModal(): void {
   border-radius: 58px;
   padding: 8px;
   font-variation-settings: 'wght' 700;
+  height: 48px;
 }
 
 .selectable {
@@ -187,7 +188,8 @@ function toggleModal(): void {
 }
 
 .unselected {
-  @apply bg-blue-500 dark:bg-blue-400 text-white;
+  @apply text-white;
+  background-color: #888aff;
 }
 
 .selected {

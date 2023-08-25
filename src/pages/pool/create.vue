@@ -25,6 +25,7 @@ import { useTokens } from '@/providers/tokens.provider';
 import { lsGet, selectByAddress } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
 import { StepState } from '@/types';
+import { useReturnRoute } from '@/composables/useReturnRoute';
 
 /**
  * STATE
@@ -96,7 +97,7 @@ onBeforeMount(async () => {
 const poolCreateTx = computed(() => route.params.tx || '');
 const doSimilarPoolsExist = computed(() => similarPools.value.length > 0);
 const validTokens = computed(() => tokensList.value.filter(t => t !== ''));
-
+const { getReturnRoute } = useReturnRoute();
 const unknownTokens = computed(() => {
   return validTokens.value.filter(token => {
     return (
@@ -209,78 +210,107 @@ watch(
 
 <template>
   <div>
-    <Col3Layout offsetGutters mobileHideGutters class="mt-8">
-      <template #gutterLeft>
-        <div v-if="!upToLargeBreakpoint" class="col-span-3">
-          <BalStack vertical>
-            <BalVerticalSteps
-              title="Create a weighted pool steps"
-              :steps="steps"
-              @navigate="handleNavigate"
-            />
-            <AnimatePresence
-              :isVisible="
-                doSimilarPoolsExist && activeStep === 0 && !!validTokens.length
-              "
-            >
-              <SimilarPoolsCompact />
-            </AnimatePresence>
-          </BalStack>
-        </div>
-      </template>
-      <div class="relative center-col-mh">
-        <BalAlert
-          v-if="!!hasRestoredFromSavedState"
-          type="warning"
-          class="mb-4"
-          :title="$t('createAPool.recoveredState')"
-        >
-          {{ $t('createAPool.recoveredStateInfo') }}
-
-          {{ $t('wantToStartOverInstead') }}
-          <button class="font-semibold text-blue-500" @click="handleReset">
-            {{ $t('clearForms') }}
-          </button>
-        </BalAlert>
-
-        <BalLoadingBlock v-if="isLoading" class="h-64" />
-        <ChooseWeights
-          v-else-if="activeStep === 0 && !hasRestoredFromSavedState"
-        />
-        <PoolFees v-else-if="activeStep === 1" />
-        <SimilarPools v-else-if="activeStep === 2 && similarPools.length > 0" />
-        <InitialLiquidity v-else-if="!isLoading && activeStep === 3" />
-        <PreviewPool v-else-if="activeStep === 4" />
-
-        <div v-if="upToLargeBreakpoint" class="pb-24">
-          <BalAccordion
-            :dependencies="validTokens"
-            :sections="[
-              { title: t('createAPool.poolSummary'), id: 'pool-summary' },
-              { title: t('tokenPrices'), id: 'token-prices' },
-            ]"
+    <div class="flex flex-col justify-center items-center">
+      <div class="w-fit">
+        <div class="flex items-center w-full mb-[40px]">
+          <BalBtn
+            class="back-button"
+            tag="router-link"
+            :to="getReturnRoute()"
+            color="white"
           >
-            <template #pool-summary>
-              <PoolSummary />
+            <BalIcon class="flex" name="chevron-left" />
+          </BalBtn>
+          <div class="w-full text-center">
+            <span class="text-[40px] font-[600]"> Create a Pool </span>
+          </div>
+        </div>
+        <div class="create-layout">
+          <div>
+            <div v-if="!upToLargeBreakpoint" class="col-span-3">
+              <BalStack vertical>
+                <BalVerticalSteps
+                  title="Create a weighted pool steps"
+                  :steps="steps"
+                  @navigate="handleNavigate"
+                />
+                <AnimatePresence
+                  :isVisible="
+                    doSimilarPoolsExist &&
+                    activeStep === 0 &&
+                    !!validTokens.length
+                  "
+                >
+                  <SimilarPoolsCompact />
+                </AnimatePresence>
+              </BalStack>
+            </div>
+          </div>
+          <Col3Layout offsetGutters mobileHideGutters class="mt-8">
+            <div class="relative center-col-mh">
+              <BalAlert
+                v-if="!!hasRestoredFromSavedState"
+                type="warning"
+                class="mb-4"
+                :title="$t('createAPool.recoveredState')"
+              >
+                {{ $t('createAPool.recoveredStateInfo') }}
+
+                {{ $t('wantToStartOverInstead') }}
+                <button
+                  class="font-semibold text-blue-500"
+                  @click="handleReset"
+                >
+                  {{ $t('clearForms') }}
+                </button>
+              </BalAlert>
+
+              <BalLoadingBlock v-if="isLoading" class="h-64" />
+              <ChooseWeights
+                v-else-if="activeStep === 0 && !hasRestoredFromSavedState"
+              />
+              <PoolFees v-else-if="activeStep === 1" />
+              <SimilarPools
+                v-else-if="activeStep === 2 && similarPools.length > 0"
+              />
+              <InitialLiquidity v-else-if="!isLoading && activeStep === 3" />
+              <PreviewPool v-else-if="activeStep === 4" />
+
+              <div v-if="upToLargeBreakpoint" class="pb-24">
+                <BalAccordion
+                  :dependencies="validTokens"
+                  :sections="[
+                    { title: t('createAPool.poolSummary'), id: 'pool-summary' },
+                    { title: t('tokenPrices'), id: 'token-prices' },
+                  ]"
+                >
+                  <template #pool-summary>
+                    <PoolSummary />
+                  </template>
+                  <template #token-prices>
+                    <TokenPrices />
+                  </template>
+                </BalAccordion>
+              </div>
+            </div>
+            <template #gutterRight>
+              <div
+                v-if="!upToLargeBreakpoint"
+                class="col-span-11 lg:col-span-3 pool-summary-container"
+              >
+                <BalStack vertical spacing="base">
+                  <PoolSummary />
+                  <TokenPrices
+                    v-if="validTokens.length > 0"
+                    :toggleUnknownPriceModal="showUnknownTokenModal"
+                  />
+                </BalStack>
+              </div>
             </template>
-            <template #token-prices>
-              <TokenPrices />
-            </template>
-          </BalAccordion>
+          </Col3Layout>
         </div>
       </div>
-      <template #gutterRight>
-        <div v-if="!upToLargeBreakpoint" class="col-span-11 lg:col-span-3">
-          <BalStack vertical spacing="base">
-            <PoolSummary />
-            <TokenPrices
-              v-if="validTokens.length > 0"
-              :toggleUnknownPriceModal="showUnknownTokenModal"
-            />
-          </BalStack>
-        </div>
-      </template>
-    </Col3Layout>
+    </div>
     <UnknownTokenPriceModal
       :isVisible="isUnknownTokenModalVisible"
       :unknownTokens="unknownTokens"
@@ -292,5 +322,25 @@ watch(
 <style scoped>
 .center-col-mh {
   min-height: 550px;
+}
+.create-layout {
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  background: #16162d;
+  border-radius: 12px;
+  width: fit-content;
+}
+.pool-summary-container {
+  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
+    0px 0px 149px -46px #8b8dfccc;
+  background: #16162d;
+  border-radius: 12px;
+  margin-top: -1.5rem;
+}
+.back-button {
+  border: 1px solid #8b8dfc;
+  padding: 12px;
+  border-radius: 12px;
+  background: transparent !important;
 }
 </style>

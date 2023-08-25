@@ -178,7 +178,7 @@ function handleSuccess(details: any): void {
         color="gray"
         outline
         block
-        class="mt-2"
+        class="mt-2 rounded-[12px]"
       >
         {{ $t('viewPool') }}
       </BalBtn>

@@ -50,6 +50,7 @@ const { resolve } = useUrls();
  */
 const chartConfig = computed(() => {
   const validTokens = tokensList.value.filter(t => t !== '');
+  console.log(colors.value);
   if (colors.value.length !== validTokens.length) return;
   return {
     tooltip: {
@@ -185,8 +186,8 @@ async function calculateColors() {
 
 <template>
   <BalCard noPad shadow="none">
-    <div v-if="!upToLargeBreakpoint" class="p-4 border-b dark:border-gray-600">
-      <h6 class="dark:text-gray-300">
+    <div v-if="!upToLargeBreakpoint" class="p-4">
+      <h6 class="text-white text-[20px] font-[600]">
         {{ $t('createAPool.poolSummary') }}
       </h6>
     </div>

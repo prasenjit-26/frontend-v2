@@ -27,7 +27,7 @@ function navigateToCreatePool() {
         <BalIcon class="ml-2 text-white-400" name="plus" />
       </button>
       <div class="flex justify-end">
-        <img src="~@/assets/images/landingPage.gif" alt="logo" width="500" />
+        <img src="~@/assets/images/cubic.gif" alt="logo" />
       </div>
     </div>
   </div>
@@ -44,5 +44,10 @@ function navigateToCreatePool() {
   border: 1px solid #9b9b9b;
   border-radius: 44px;
   min-height: 55px;
+}
+canvas {
+  /* or some other selector */
+  width: 500px;
+  height: 400px;
 }
 </style>

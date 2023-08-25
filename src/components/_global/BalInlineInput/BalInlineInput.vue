@@ -118,7 +118,9 @@ function handleBlur(e: FocusEvent) {
 </script>
 
 <template>
-  <div :class="['bal-text-input', parentClasses, borderRadiusClasses]">
+  <div
+    :class="['bal-text-input inline-input', parentClasses, borderRadiusClasses]"
+  >
     <div
       :class="['input-container', inputContainerClasses, borderRadiusClasses]"
     >
@@ -141,7 +143,7 @@ function handleBlur(e: FocusEvent) {
             :name="name"
             :value="format(modelValue)"
             :disabled="!isEditable || disabled"
-            :class="['input', inputClasses]"
+            :class="['input inline-input-class', inputClasses]"
             @blur="handleBlur"
             @input="onInput"
             @keydown="onKeydown"
@@ -178,10 +180,6 @@ function handleBlur(e: FocusEvent) {
 </template>
 
 <style scoped>
-.input-container {
-  @apply bg-white dark:bg-gray-800;
-}
-
 .input-group {
   @apply flex;
 }
@@ -196,5 +194,17 @@ function handleBlur(e: FocusEvent) {
 
 .error {
   @apply text-xs text-red-500 mt-1 ml-1;
+}
+.inline-input {
+  background: #3e4093;
+  border-radius: 37px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.inline-input-class {
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
 }
 </style>
