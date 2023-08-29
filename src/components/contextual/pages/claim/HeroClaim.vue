@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import liquidityImg from '@/assets/images/AddLiquidity.png';
+import StakeLpImg from '@/assets/images/StakeLp.png';
+import boostImg from '@/assets/images/boost.png';
+import claimImg from '@/assets/images/claim.png';
+
 type Props = {
   title: string;
   description: string;
@@ -8,19 +13,19 @@ defineProps<Props>();
 const features = [
   {
     title: 'Add Liquidity',
-    image: 'src/assets/images/AddLiquidity.png',
+    image: liquidityImg,
   },
   {
     title: 'Stake your LP',
-    image: 'src/assets/images/StakeLp.png',
+    image: StakeLpImg,
   },
   {
     title: 'Get a boost',
-    image: 'src/assets/images/boost.png',
+    image: boostImg,
   },
   {
     title: 'Claim anytime',
-    image: 'src/assets/images/claim.png',
+    image: claimImg,
   },
 ];
 </script>

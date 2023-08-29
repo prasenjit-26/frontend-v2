@@ -11,21 +11,23 @@ function navigateToCreatePool() {
 <template>
   <div class="md:container md:mx-auto">
     <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
-      <h2
-        class="font-[600] mt-[58px] headline font-montserrat text[64px]"
-        v-text="$t('headlineText')"
-      />
-      <p
-        class="text-white mt-[36px] mb-[36px] text-[24px] font-montserrat leading-[33px]"
-        v-text="$t('headlineSubText')"
-      />
-      <button
-        class="flex justify-center mt-5 create-button align-center"
-        @click="navigateToCreatePool"
-      >
-        {{ $t('createAPool.title') }}
-        <BalIcon class="ml-2 text-white-400" name="plus" />
-      </button>
+      <div>
+        <h2
+          class="font-[600] mt-[58px] headline font-montserrat text[64px]"
+          v-text="$t('headlineText')"
+        />
+        <p
+          class="text-white mt-[36px] mb-[36px] text-[24px] font-montserrat leading-[33px]"
+          v-text="$t('headlineSubText')"
+        />
+        <button
+          class="flex justify-center mt-5 create-button align-center"
+          @click="navigateToCreatePool"
+        >
+          {{ $t('createAPool.title') }}
+          <BalIcon class="ml-2 text-white-400" name="plus" />
+        </button>
+      </div>
       <div class="flex justify-end">
         <img src="~@/assets/images/cubic.gif" alt="logo" />
       </div>
