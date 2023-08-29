@@ -22,6 +22,7 @@ const { networkSlug } = useNetwork();
             <AppLogo class="mb-4" />
           </router-link>
         </div>
+        <div></div>
       </div>
       <div class="border-bottom" />
     </div>
@@ -30,7 +31,7 @@ const { networkSlug } = useNetwork();
 
 <style scoped>
 footer {
-  @apply bg-gray-50 dark:bg-gray-900;
+  background: #17163f;
 }
 
 footer :deep(.logotype) {
@@ -39,13 +40,7 @@ footer :deep(.logotype) {
   transform: scale(1.5);
 }
 .border-bottom {
-  background: linear-gradient(
-    90deg,
-    rgba(139, 141, 252, 0) -0.67%,
-    #8b8dfc 51.31%,
-    rgba(255, 255, 255, 0) 101.18%,
-    rgba(139, 141, 252, 0) 101.18%
-  );
+  background: #8b8dfc;
   border: 1px solid;
 
   border-image-source: linear-gradient(

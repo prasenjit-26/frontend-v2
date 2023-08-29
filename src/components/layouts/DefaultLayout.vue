@@ -21,7 +21,7 @@ import AppNav from '@/components/navs/AppNav/AppNav.vue';
 }
 
 .app-body {
-  @apply mb-8 bg-cover bg-black;
+  @apply bg-cover bg-black;
 
   min-height: calc(100vh - 2rem);
 }

@@ -5,106 +5,54 @@ type Props = {
 };
 
 defineProps<Props>();
+const features = [
+  {
+    title: 'Add Liquidity',
+    image: 'src/assets/images/AddLiquidity.png',
+  },
+  {
+    title: 'Stake your LP',
+    image: 'src/assets/images/StakeLp.png',
+  },
+  {
+    title: 'Get a boost',
+    image: 'src/assets/images/boost.png',
+  },
+  {
+    title: 'Claim anytime',
+    image: 'src/assets/images/claim.png',
+  },
+];
 </script>
 
 <template>
-  <div class="bg">
-    <div class="w-full hero-container">
-      <div class="hero-content">
-        <div class="hero-text fade-in-slow">
-          <h1 class="mb-3 text-white title text-shadow">
-            {{ title }}
-          </h1>
-          <p class="max-w-3xl body-text text-shadow">
-            {{ description }}
-          </p>
-        </div>
+  <div class="md:container md:mx-auto mt-[50px]">
+    <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
+      <div class="hero-text fade-in-slow">
+        <h1 class="mb-[36px] font-[600] text-[48px] font-montserrat">
+          {{ title }}
+        </h1>
+        <p class="max-w-3xl font-[400] text-[24px] font-montserrat">
+          {{ description }}
+        </p>
       </div>
-      <div class="hero-graphic-container">
-        <div
-          class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-4 xl:gap-12 items-center w-full fade-in-slow"
-        >
-          <div class="group tip">
-            <img
-              width="144"
-              height="144"
-              class="tip-icon"
-              src="@/assets/images/icons/claims-header/add-liquidity.svg"
-            />
-            <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.addLiquidity') }}
-              <BalTooltip
-                iconSize="xs"
-                textAlign="left"
-                class="relative top-px"
-                iconClass="text-white"
-                width="60"
-              >
-                {{ $t('claimHero.tips.addLiquidity') }}
-              </BalTooltip>
-            </p>
-          </div>
-          <div class="group tip">
-            <img
-              width="144"
-              height="144"
-              class="tip-icon"
-              src="@/assets/images/icons/claims-header/stake.svg"
-            />
-            <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.stake') }}
-              <BalTooltip
-                iconSize="xs"
-                textAlign="left"
-                class="relative top-px"
-                iconClass="text-white"
-                width="60"
-              >
-                {{ $t('claimHero.tips.stake') }}
-              </BalTooltip>
-            </p>
-          </div>
-          <div class="group tip">
-            <img
-              width="144"
-              height="144"
-              class="tip-icon"
-              src="@/assets/images/icons/claims-header/vebal.svg"
-            />
-            <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.boost') }}
-              <BalTooltip
-                iconSize="xs"
-                textAlign="left"
-                class="relative top-px"
-                iconClass="text-white"
-                width="60"
-              >
-                {{ $t('claimHero.tips.boost') }}
-              </BalTooltip>
-            </p>
-          </div>
-          <div class="group tip">
-            <img
-              width="144"
-              height="144"
-              class="tip-icon"
-              src="@/assets/images/icons/claims-header/claim.svg"
-            />
-            <p class="font-semibold tip-label text-shadow">
-              {{ $t('claimHero.tipLabel.claim') }}
-              <BalTooltip
-                iconSize="xs"
-                textAlign="left"
-                class="relative top-px"
-                iconClass="text-white"
-                width="60"
-              >
-                {{ $t('claimHero.tips.claim') }}
-              </BalTooltip>
-            </p>
-          </div>
-        </div>
+      <div class="flex justify-end">
+        <img src="~@/assets/images/claimHero.gif" alt="logo" />
+      </div>
+    </div>
+    <div class="m-[25px] columns-4 md:columns-4 sm:columns-1">
+      <div
+        v-for="(feature, i) in features"
+        :key="i"
+        class="flex justify-center items-center feature-container"
+      >
+        <img
+          :src="feature.image"
+          :alt="feature.title"
+          class="mr-[20px]"
+          width="20"
+        />
+        <span>{{ feature.title }}</span>
       </div>
     </div>
   </div>
@@ -113,8 +61,6 @@ defineProps<Props>();
 <style scoped>
 .bg {
   @apply bg-gradient-to-r from-pink-500 to-yellow-500 relative;
-
-  background-image: url('/images/backgrounds/claims-header.svg');
 
   @apply bg-no-repeat bg-cover bg-center;
 }
@@ -164,5 +110,16 @@ defineProps<Props>();
 
 .tip-number {
   @apply block pb-1;
+}
+.feature-container {
+  box-shadow: 0px 0px 0px 2.25px #8b8dfc99, 0px 0px 0px 4.5px #8b8dfc40;
+  background: linear-gradient(
+    rgba(139, 141, 252, 0.26),
+    rgba(139, 141, 252, 0.32)
+  );
+  border-radius: 27px;
+  padding: 25px;
+  font-size: 24px;
+  font-weight: 500;
 }
 </style>

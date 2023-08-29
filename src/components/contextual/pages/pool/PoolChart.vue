@@ -205,7 +205,7 @@ function getTVLData(periodSnapshots: PoolSnapshot[]) {
   }
 
   return {
-    color: [tailwind.theme.colors.blue['600']],
+    color: ['#4E529C'],
     hoverBorderColor: tailwind.theme.colors.pink['500'],
     hoverColor: darkMode.value
       ? tailwind.theme.colors.gray['900']
@@ -276,7 +276,7 @@ function getFeesData(
       : Number(periodSnapshots[pariodLastSnapshotIdx].swapFees));
 
   return {
-    color: [tailwind.theme.colors.yellow['400']],
+    color: ['#8B8DFC'],
     chartType: 'bar',
     hoverColor: tailwind.theme.colors.pink['500'],
     data: [
@@ -326,7 +326,7 @@ function getVolumeData(
       : Number(periodSnapshots[pariodLastSnapshotIdx].swapVolume));
 
   return {
-    color: [tailwind.theme.colors.green['400']],
+    color: ['#8B8DFC'],
     chartType: 'bar',
     hoverColor: tailwind.theme.colors.pink['500'],
     data: [
@@ -522,6 +522,9 @@ function addLaggingTimestamps() {
 }
 
 .chart {
-  @apply sm:border rounded-xl sm:px-5 sm:pt-5 sm:shadow sm:dark:bg-gray-850 dark:border-transparent;
+  @apply rounded-xl sm:px-5 sm:pt-5 sm:shadow;
+  border: 1px solid #8b8dfc;
+  background: #151526;
+  border-radius: 11px;
 }
 </style>
