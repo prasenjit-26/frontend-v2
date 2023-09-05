@@ -172,7 +172,7 @@
   "license": "MIT",
   "repository": "balancer/frontend-v2",
   "dependencies": {
-    "@auroblocks/chimp-sdk": "^0.0.8",
-    "@auroblocks/chimp-sor": "^0.0.3"
+    "@auroblocks/chimp-sdk": "0.0.13",
+    "@auroblocks/chimp-sor": "0.0.6"
   }
 }

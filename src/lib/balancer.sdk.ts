@@ -16,7 +16,8 @@ export async function fetchPoolsForSor() {
   if (hasFetchedPoolsForSor.value) return;
 
   console.time('fetchPoolsForSor');
-  await balancer.swaps.fetchPools();
+  const pools = await balancer.swaps.fetchPools();
+  console.log('pools', pools);
   hasFetchedPoolsForSor.value = true;
   console.timeEnd('fetchPoolsForSor');
 }

@@ -151,7 +151,10 @@ function isActive(network: NetworkOption): boolean {
         </template>
       </BalBtn>
     </template>
-    <div role="menu" class="flex overflow-hidden flex-col w-52 rounded-lg">
+    <div
+      role="menu"
+      class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu"
+    >
       <div
         class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
       >
@@ -189,5 +192,8 @@ function isActive(network: NetworkOption): boolean {
     0px 0px 0px 8px #8b8dfc26;
   border-radius: 60px;
   min-height: 55px;
+}
+.wallet-menu {
+  background: #16162d;
 }
 </style>

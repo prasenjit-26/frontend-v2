@@ -49,6 +49,7 @@ const {
   setAmountsToMaxBalances,
   saveState,
 } = usePoolCreation();
+console.log('seedTokens', seedTokens.value);
 const { t } = useI18n();
 
 const tokenAddresses = ref([] as string[]);
@@ -168,7 +169,8 @@ function handleAmountChange(tokenAddress) {
 function handleAddressChange(newAddress: string): void {
   useNativeAsset.value = isSameAddress(newAddress, nativeAsset.address);
 }
-
+console.log('nativeAsset', nativeAsset);
+console.log('wrappedNativeAsset', wrappedNativeAsset.value);
 function tokenOptions(index: number): string[] {
   if (
     isSameAddress(tokenAddresses.value[index], wrappedNativeAsset.value.address)

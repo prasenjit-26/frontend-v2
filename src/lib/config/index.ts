@@ -8,6 +8,7 @@ import optimism from './optimism';
 import polygon from './polygon';
 import zkevm from './zkevm';
 import mantle from './mantle';
+import linea_testnet from './linea_testnet';
 
 // We don't import Network from sdk to avoid extra bundle size when loading app (while the SDK is not tree-shakable)
 export enum Network {
@@ -21,6 +22,7 @@ export enum Network {
   ZKEVM = 1101,
   ARBITRUM = 42161,
   MANTLE = 5001,
+  LINEA_TESTNET = 59140,
 }
 
 const config: Record<Network | number, Config> = {
@@ -32,6 +34,7 @@ const config: Record<Network | number, Config> = {
   [Network.GNOSIS]: gnosisChain,
   [Network.ZKEVM]: zkevm,
   [Network.MANTLE]: mantle,
+  [Network.LINEA_TESTNET]: linea_testnet,
 };
 
 export default config;

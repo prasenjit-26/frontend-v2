@@ -52,6 +52,7 @@ export default class WeightedPoolService {
       return token.tokenAddress;
     });
     const seedTokens = this.calculateTokenWeights(tokens);
+    console.log('seedTokens2', seedTokens.values);
     const swapFeeScaled = scale(new BigNumber(swapFee), 18);
     const rateProviders = Array(tokenAddresses.length).fill(POOLS.ZeroAddress);
 

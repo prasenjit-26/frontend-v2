@@ -40,6 +40,9 @@ export const isArbitrum = computed(() => networkId.value === Network.ARBITRUM);
 export const isGnosis = computed(() => networkId.value === Network.GNOSIS);
 export const isGoerli = computed(() => networkId.value === Network.GOERLI);
 export const isMantle = computed(() => networkId.value === Network.MANTLE);
+export const isLineaTestnet = computed(
+  () => networkId.value === Network.LINEA_TESTNET
+);
 
 export const hasBridge = computed<boolean>(() => !!networkConfig.bridgeUrl);
 export const isTestnet = computed(() => isGoerli.value);
