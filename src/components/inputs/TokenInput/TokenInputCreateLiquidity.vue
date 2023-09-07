@@ -82,7 +82,6 @@ const props = withDefaults(defineProps<Props>(), {
   slider: false,
   sliderProps: () => ({}),
 });
-console.log('props', props);
 const emit = defineEmits<{
   (e: 'blur', value: string): void;
   (e: 'input', value: string): void;

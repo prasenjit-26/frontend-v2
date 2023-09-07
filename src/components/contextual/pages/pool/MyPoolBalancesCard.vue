@@ -55,10 +55,8 @@ const { totalLockedValue } = useLock({ enabled: isVeBalPool(props.pool.id) });
 const bptBalance = computed((): string =>
   bnum(balanceFor(props.pool.address)).plus(stakedShares.value).toString()
 );
-console.log({ pool: props.pool });
 const rootPool = computed(() => removeBptFrom(props.pool));
 const tokenData = useTokenBreakdown(rootPool);
-console.log({ tokens: rootPool.value.tokens, tokenData });
 const fiatValue = computed(() => {
   if (isVeBalPool(props.pool.id)) return totalLockedValue.value;
 

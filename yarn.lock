@@ -71,10 +71,10 @@
   dependencies:
     node-fetch "^2.6.1"
 
-"@auroblocks/chimp-sdk@0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.13.tgz#e31052775903216678f85fae038549ab64e94ab0"
-  integrity sha512-GnSS/2TU3iS8fh6trpj7qlmIKD4q6zDABPJ7xQ0AMsl/YkrVxA2ZhH9XgNU58FUH26xYDvvu7SiDY7J5HARpfQ==
+"@auroblocks/chimp-sdk@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.14.tgz#1bae17781e1939d9423d4ff4f0ca0885900b9381"
+  integrity sha512-fg6EeXEv13YJzXT3NMYVCMvniF3+S7p8/Q9z7KMb7jIg7UIa4hePZd4hVh6VtNUwHuJsNbNDC8J1IvVcZ649Nw==
   dependencies:
     "@auroblocks/chimp-sor" "0.0.6"
     "@balancer-labs/sor" "4.1.1-beta.9"

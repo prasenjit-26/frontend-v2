@@ -11,7 +11,7 @@ function navigateToCreatePool() {
 <template>
   <div class="md:container md:mx-auto">
     <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
-      <div>
+      <div class="h-[625px]">
         <h2
           class="font-[600] mt-[58px] headline font-montserrat text[64px]"
           v-text="$t('headlineText')"

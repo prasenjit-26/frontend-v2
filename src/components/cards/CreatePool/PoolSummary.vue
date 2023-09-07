@@ -50,7 +50,6 @@ const { resolve } = useUrls();
  */
 const chartConfig = computed(() => {
   const validTokens = tokensList.value.filter(t => t !== '');
-  console.log(colors.value);
   if (colors.value.length !== validTokens.length) return;
   return {
     tooltip: {

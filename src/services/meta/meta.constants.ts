@@ -1,6 +1,6 @@
 export const ROUTE_META_DATA = {
   home: {
-    metaTitle: 'Balancer DeFi Liquidity Pools on [network_name]',
+    metaTitle: 'Chimp Exchange Liquidity Pools on [network_name]',
     metaDescription:
       'Explore DeFi liquidity pools or create your own. Provide liquidity to accumulate yield from swap fees while retaining your token exposure as prices move',
     metaKeywords: '',
@@ -30,20 +30,20 @@ export const ROUTE_META_DATA = {
       'Get veBAL (voter escrowed B-80BAL-20WETH) for extra liquidity mining incentives, governance voting power and a share of protocol revenue',
   },
   'terms-of-use': {
-    metaTitle: 'Balancer Terms of Use',
+    metaTitle: 'Chimp Exchange Terms of Use',
     metaDescription: 'The rules for the use of the website',
   },
   'privacy-policy': {
-    metaTitle: 'Balancer Privacy Policy',
+    metaTitle: 'Chimp Exchange Privacy Policy',
     metaDescription:
       'How this website collects, uses and shares personal information',
   },
   'cookies-policy': {
-    metaTitle: 'Balancer Cookie Policy',
+    metaTitle: 'Chimp Exchange Cookie Policy',
     metaDescription: 'How this website uses browser cookies',
   },
   risks: {
-    metaTitle: 'Balancer Protocol Risks',
-    metaDescription: 'The risks of using the Balancer Protocol',
+    metaTitle: 'Chimp Exchange Protocol Risks',
+    metaDescription: 'The risks of using the Chimp Exchange Protocol',
   },
 };
