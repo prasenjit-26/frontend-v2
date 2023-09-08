@@ -67,6 +67,6 @@ function connectWalletHandler() {
   box-shadow: 0px 0px 0px 4px #8b8dfc, 0px 0px 3px 2px #00000040;
   border: 1px solid #9b9b9b;
   border-radius: 60px;
-  min-height: 55px;
+  min-height: 50px;
 }
 </style>

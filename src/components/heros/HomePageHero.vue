@@ -13,11 +13,11 @@ function navigateToCreatePool() {
     <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
       <div class="h-[625px]">
         <h2
-          class="font-[600] mt-[58px] headline font-montserrat text[64px]"
+          class="font-[600] mt-[58px] headline font-montserrat text-[53px]"
           v-text="$t('headlineText')"
         />
         <p
-          class="text-white mt-[36px] mb-[36px] text-[24px] font-montserrat leading-[33px]"
+          class="text-white mt-[20px] mb-[20px] text-[24px] font-montserrat leading-[33px]"
           v-text="$t('headlineSubText')"
         />
         <button
@@ -37,7 +37,8 @@ function navigateToCreatePool() {
 
 <style>
 .headline {
-  @apply text-white text-left text-6xl pb-2 pt-3;
+  @apply text-white text-left pb-2 pt-3;
+  line-height: normal;
 }
 .create-button {
   @apply text-white text-[20px] font-[500] py-3 px-6 rounded-full;

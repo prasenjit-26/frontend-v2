@@ -36,7 +36,7 @@ const fillColor = computed(() => {
 
 <template>
   <div class="flex items-center sm:mr-4 app-logo">
-    <img src="~@/assets/images/ChimpLogo.png" alt="logo" width="290" />
+    <img src="~@/assets/images/ChimpLogo.png" alt="logo" width="280" />
   </div>
 </template>
 

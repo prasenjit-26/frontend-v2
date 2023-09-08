@@ -201,9 +201,8 @@ onMounted(() => {
       @update:address="handleOutputTokenChange"
       @input="emit('update:exactIn', false)"
     />
-    <div class="info-conatiner">
+    <div v-if="rateLabel" class="info-conatiner">
       <div
-        v-if="rateLabel"
         class="flex items-center cursor-pointer text-[20px]"
         @click="isInRate = !isInRate"
         v-html="rateLabel"

@@ -43,7 +43,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="swap-bg">
+  <div class="">
     <Col3Layout offsetGutters mobileHideGutters class="mt-8 max-width-custom">
       <!-- <template #gutterLeft>
         <MyWallet />
@@ -82,8 +82,7 @@ onMounted(() => {
   height: 450px;
 }
 .swap-bg {
-  background-size: 100%;
-  min-height: 84vh;
+  background-size: contain;
   background-repeat: no-repeat;
   @apply bg-center;
   transition: all 0.3s ease-in-out;

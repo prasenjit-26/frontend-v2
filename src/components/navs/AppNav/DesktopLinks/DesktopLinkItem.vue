@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const classes = computed(() => ({
-  'border-white dark:border-gray-400 font-[500] text-[#A6A6A6] text-[18px] not-selected':
+  'border-white dark:border-gray-400 font-[500] text-[#A6A6A6] text-[16px] not-selected':
     !props.active,
   'text-white dark:text-white active-button font-[500]': props.active,
 }));
@@ -56,6 +56,9 @@ const classes = computed(() => ({
 .not-selected:last-child {
   @apply mr-[44px];
 }
+.not-selected:first-child {
+  @apply ml-[44px];
+}
 .desktop-link-item.router-link-active {
   @apply transition-colors;
 }
@@ -65,9 +68,9 @@ const classes = computed(() => ({
 }
 .active-button {
   border-radius: 30px;
-  padding: 24px;
-  min-width: 127px;
-  max-height: 55px;
+  padding: 16px 32px;
+  min-width: fit-content;
+  max-height: 43px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 66.64%, #8b8dfc 96.39%),
     linear-gradient(
       90deg,
@@ -82,7 +85,7 @@ const classes = computed(() => ({
     #8b8dfc 96.39%
   );
   font-family: Plus Jakarta Sans;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 23px;
   letter-spacing: 0em;

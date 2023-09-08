@@ -191,7 +191,7 @@ function isActive(network: NetworkOption): boolean {
   box-shadow: inset 0px -5px 4px 0px #31313140, 0px 0px 0px 4px #8b8dfc99,
     0px 0px 0px 8px #8b8dfc26;
   border-radius: 60px;
-  min-height: 55px;
+  min-height: 50px;
 }
 .wallet-menu {
   background: #16162d;
