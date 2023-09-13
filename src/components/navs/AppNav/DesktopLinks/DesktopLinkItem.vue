@@ -29,8 +29,7 @@ const classes = computed(() => ({
 <style scoped>
 .desktop-link-item {
   @apply h-full flex-col justify-center cursor-pointer hover:text-purple-600 dark:hover:text-yellow-500 flex relative
-    overflow-hidden p-0 transition-all
-    ease-in-out duration-500;
+    overflow-hidden p-0;
 }
 
 .desktop-link-item::before {
@@ -39,7 +38,7 @@ const classes = computed(() => ({
   @apply top-0 left-0 w-full block absolute overflow-hidden transition-all;
 
   /* border-top: 4px solid theme('colors.purple.600'); */
-  transform: translate3d(0%, -101%, 0);
+  /* transform: translate3d(0%, -101%, 0); */
 }
 
 .dark .desktop-link-item::before {
@@ -51,7 +50,7 @@ const classes = computed(() => ({
 
   @apply w-full block absolute top-0 left-0;
 
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0); */
 }
 .not-selected:last-child {
   @apply mr-[44px];
@@ -64,7 +63,7 @@ const classes = computed(() => ({
 }
 
 .desktop-link-item:hover::before {
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0); */
 }
 .active-button {
   border-radius: 30px;

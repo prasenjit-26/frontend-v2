@@ -67,10 +67,12 @@ const { networkSlug } = useNetwork();
 </template>
 
 <style scoped>
-footer {
+.dark footer {
   background: #17163f;
 }
-
+footer {
+  background: #ececff;
+}
 footer :deep(.logotype) {
   @apply origin-top-left;
 
@@ -126,8 +128,13 @@ footer :deep(.logotype) {
   font-weight: 600;
   padding: 16px 20px;
 }
-.copyright-text {
+.dark .copyright-text {
   color: #d1d1d1;
+  font-size: 18px;
+  font-weight: 500;
+}
+.copyright-text {
+  color: #000000;
   font-size: 18px;
   font-weight: 500;
 }

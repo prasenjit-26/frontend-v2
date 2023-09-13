@@ -9,27 +9,29 @@ function navigateToCreatePool() {
 </script>
 
 <template>
-  <div class="md:container md:mx-auto">
-    <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
-      <div class="h-[625px]">
-        <h2
-          class="font-[600] mt-[58px] headline font-montserrat text-[53px]"
-          v-text="$t('headlineText')"
-        />
-        <p
-          class="text-white mt-[20px] mb-[20px] text-[24px] font-montserrat leading-[33px]"
-          v-text="$t('headlineSubText')"
-        />
-        <button
-          class="flex justify-center mt-5 create-button align-center"
-          @click="navigateToCreatePool"
-        >
-          {{ $t('createAPool.title') }}
-          <BalIcon class="ml-2 text-white-400" name="plus" />
-        </button>
-      </div>
-      <div class="flex justify-end">
-        <img src="~@/assets/images/cubic.gif" alt="logo" />
+  <div class="stars-bg">
+    <div class="md:container md:mx-auto">
+      <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
+        <div class="h-[625px]">
+          <h2
+            class="font-[600] mt-[58px] headline font-montserrat text-[53px]"
+            v-text="$t('headlineText')"
+          />
+          <p
+            class="text-black dark:text-white mt-[20px] mb-[30px] text-[24px] font-montserrat leading-[33px]"
+            v-text="$t('headlineSubText')"
+          />
+          <button
+            class="flex justify-center mt-5 create-button align-center"
+            @click="navigateToCreatePool"
+          >
+            {{ $t('createAPool.title') }}
+            <BalIcon class="ml-2 text-white-400" name="plus" />
+          </button>
+        </div>
+        <div class="flex justify-end">
+          <img src="~@/assets/images/cubic.gif" alt="logo" />
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +39,7 @@ function navigateToCreatePool() {
 
 <style>
 .headline {
-  @apply text-white text-left pb-2 pt-3;
+  @apply text-primary-500 dark:text-white text-left pb-2 pt-3;
   line-height: normal;
 }
 .create-button {
@@ -55,5 +57,9 @@ canvas {
   /* or some other selector */
   width: 500px;
   height: 400px;
+}
+.dark .stars-bg {
+  background-image: url('@/assets/images/starsBg.png');
+  background-size: contain;
 }
 </style>

@@ -145,7 +145,8 @@ const swapRows = computed<SwapRow[]>(() =>
   <BalCard
     class="overflow-x-auto"
     :square="upToLargeBreakpoint"
-    :noBorder="upToLargeBreakpoint"
+    noBorder
+    shadow="none"
     noPad
   >
     <BalTable
@@ -186,14 +187,14 @@ const swapRows = computed<SwapRow[]>(() =>
       </template>
 
       <template #detailsCell="action">
-        <div class="flex flex-wrap items-center py-4 px-6 -mt-1">
+        <div class="flex flex-col items-center py-4 px-6 -mt-1">
           <div class="token-item">
             <BalAsset :address="action.tokenIn" class="mr-2 shrink-0" />
             <span class="font-numeric">{{
               fNum(action.tokenAmountIn, FNumFormats.token)
             }}</span>
           </div>
-          <BalIcon name="arrow-right" class="mx-1" />
+          <BalIcon name="arrow-down" class="mx-1" />
           <div class="token-item">
             <BalAsset :address="action.tokenOut" class="mr-2 shrink-0" />
             <span class="font-numeric">{{
@@ -228,10 +229,17 @@ const swapRows = computed<SwapRow[]>(() =>
 </template>
 
 <style scoped>
-.token-item {
+.dark .token-item {
   @apply m-1 flex items-center p-1 px-2;
   background: #4d4d96;
   border: 1px solid #8b8dfc;
+  padding: 12px 16px 12px 16px;
+  border-radius: 6px;
+}
+.token-item {
+  @apply m-1 flex items-center p-1 px-2;
+  border: 1px solid #8b8dfc;
+  background: #bec0ff;
   padding: 12px 16px 12px 16px;
   border-radius: 6px;
 }

@@ -60,12 +60,19 @@ const { isLoadingProfile, profile, account } = useWeb3();
 </template>
 
 <style>
-.account-button {
+.dark .account-button {
   @apply text-white font-[500] p-[15px] text-[20px];
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
   box-shadow: 0px 0px 0px 3px #8b8dfc, 0px 0px 3px 2px #00000040;
   border: 1px solid #9b9b9b;
   border-radius: 60px;
+  min-height: 50px;
+}
+.account-button {
+  @apply text-white font-[500] p-[15px] text-[20px];
+  border-radius: 60px;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  box-shadow: 0px 0px 0px 4px #8b8dfc, 0px 0px 3px 2px rgba(0, 0, 0, 0.25);
   min-height: 50px;
 }
 </style>

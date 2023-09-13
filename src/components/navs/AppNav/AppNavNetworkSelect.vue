@@ -186,11 +186,19 @@ function isActive(network: NetworkOption): boolean {
   </BalPopover>
 </template>
 <style>
-.network-button {
+.dark .network-button {
   background-color: #8b8dfc82 !important;
   box-shadow: inset 0px -5px 4px 0px #31313140, 0px 0px 0px 4px #8b8dfc99,
     0px 0px 0px 8px #8b8dfc26;
   border-radius: 60px;
+  min-height: 50px;
+}
+.network-button {
+  border-radius: 60px;
+  background: #bbbcfd;
+  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 8px rgba(139, 141, 252, 0.15);
+  backdrop-filter: blur(20px);
   min-height: 50px;
 }
 .wallet-menu {

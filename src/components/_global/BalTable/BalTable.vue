@@ -235,7 +235,7 @@ watch(
             :key="`header-${column.id}`"
             :ref="columnIndex == 0 ? 'stickyHeaderRef' : undefined"
             :class="[
-              'p-6 bg-white dark:bg-gray-850 headingShadow border-b dark:border-gray-900 header-bg',
+              'p-6 headingShadow border-b dark:border-gray-900 header-bg',
               column.className,
               getHorizontalStickyClass(columnIndex),
               isColumnStuck ? 'isSticky' : '',
@@ -259,9 +259,9 @@ watch(
                 :name="column.Header"
               />
               <div v-else>
-                <h5 class="text-[20px] font-[500]">
+                <span class="font-medium text-[20px] font-[500]">
                   {{ column.name }}
-                </h5>
+                </span>
               </div>
               <BalIcon
                 v-if="
@@ -402,7 +402,7 @@ watch(
 
 <style>
 .horizontalSticky {
-  @apply z-10 opacity-95 xs:opacity-90;
+  @apply z-10;
 
   /* Set the sticky cell to inherit table row's background-color in order for the opacity property to have an effect */
   background-color: inherit;
@@ -427,21 +427,28 @@ watch(
   box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 15%);
 }
 
-.row-bg {
+.dark .row-bg {
   @apply transition-colors ease-in duration-300;
   background: #282853;
   border-bottom: 1px solid #595bac;
 }
-
+.row-bg {
+  @apply transition-colors ease-in duration-300;
+  border-bottom: 1px solid #a5a5fd;
+  background: #d5d6ff;
+}
 .bal-table-pagination-btn {
   @apply flex items-center justify-center h-16 transition-all;
   @apply font-medium hover:text-purple-600 dark:hover:text-yellow-500;
   @apply border-t dark:border-gray-900 rounded-b-lg;
   @apply hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer;
 }
-.header-bg {
+.dark .header-bg {
   background: linear-gradient(0deg, #0e0f35, #0e0f35),
     linear-gradient(0deg, rgba(139, 141, 252, 0.6), rgba(139, 141, 252, 0.6));
+}
+.header-bg {
+  @apply bg-primary-400;
 }
 tr:first-child td:first-child {
   -moz-border-radius-topleft: 7px;

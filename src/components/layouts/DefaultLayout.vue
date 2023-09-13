@@ -5,7 +5,7 @@ import AppNav from '@/components/navs/AppNav/AppNav.vue';
 <!-- background-image: url('../assets/images/swapBG.png'); -->
 <template>
   <div>
-    <div class="app-body bg-[url('@/assets/images/bgGradiant.png')]">
+    <div class="app-body">
       <AppNav />
       <div class="pb-16">
         <slot />
@@ -21,8 +21,12 @@ import AppNav from '@/components/navs/AppNav/AppNav.vue';
 }
 
 .app-body {
-  @apply bg-cover bg-black;
+  @apply bg-cover dark:bg-black;
+  background: #e2e3ff;
 
   min-height: calc(100vh - 2rem);
+}
+.dark .app-body {
+  background-image: url('@/assets/images/bgGradiant.png');
 }
 </style>

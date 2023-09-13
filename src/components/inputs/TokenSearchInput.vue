@@ -159,6 +159,8 @@ function onClick() {
   box-shadow: inset 0px 2px 9px 4px #06060626, 0px 0px 0px 5px #8b8dfc99,
     0px 0px 0px 10px #8b8dfc40;
   min-width: 300px;
-  min-height: 45px;
+  min-height: 50px;
+  border-radius: 12px;
+  margin-right: 20px;
 }
 </style>

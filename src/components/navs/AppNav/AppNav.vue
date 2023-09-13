@@ -74,8 +74,9 @@ onUnmounted(() => {
 <style scoped>
 #app-nav {
   @apply w-full z-30;
-  @apply bg-white dark:bg-transparent;
+  @apply dark:bg-transparent;
   @apply border-b border-transparent;
+  background: #e2e3ff;
 
   transition: all 0.2s ease-in-out;
 }

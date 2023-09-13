@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-// import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
+import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
 import useBreakpoints from '@/composables/useBreakpoints';
 import { useSidebar } from '@/composables/useSidebar';
 import useWeb3 from '@/services/web3/useWeb3';
@@ -34,7 +34,7 @@ function connectWalletHandler() {
 
 <template>
   <div class="grid grid-rows-1 grid-flow-col gap-2">
-    <!-- <DarkModeToggle v-if="isDesktop" /> -->
+    <DarkModeToggle v-if="isDesktop" />
     <!-- <AppNavActivityBtn v-if="account" /> -->
     <AppNavNetworkSelect v-if="!hideNetworkSelect" />
     <BalBtn

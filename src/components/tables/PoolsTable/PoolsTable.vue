@@ -33,6 +33,7 @@ import PoolsTableActionsCell from './PoolsTableActionsCell.vue';
 import TokenPills from './TokenPills/TokenPills.vue';
 import TokensWhite from '@/assets/images/icons/tokens_white.svg';
 import TokensBlack from '@/assets/images/icons/tokens_black.svg';
+import sparklesImg from '@/assets/images/star.png';
 import { poolMetadata } from '@/lib/config/metadata';
 import PoolsTableExtraInfo from './PoolsTableExtraInfo.vue';
 
@@ -112,18 +113,20 @@ const columns = computed<ColumnDefinition<Pool>[]>(() => [
     Cell: 'iconColumnCell',
     width: 125,
     noGrow: true,
+    align: 'center',
   },
   {
     name: t('composition'),
     id: 'poolName',
     accessor: 'id',
+    align: 'center',
     Cell: 'poolNameCell',
     width: props.hiddenColumns.length >= 2 ? wideCompositionWidth.value : 350,
   },
   {
     name: t('myBoost'),
     accessor: pool => `${bnum(boostFor(pool)).toFixed(3)}x`,
-    align: 'right',
+    align: 'center',
     id: 'myBoost',
     hidden: !props.showBoost,
     sortKey: pool => Number(boostFor(pool)),
@@ -138,7 +141,7 @@ const columns = computed<ColumnDefinition<Pool>[]>(() => [
         maximumFractionDigits: 0,
         fixedFormat: true,
       }),
-    align: 'right',
+    align: 'center',
     id: 'myBalance',
     hidden: !props.showPoolShares,
     sortKey: pool => Number(balanceValue(pool)),
@@ -152,7 +155,7 @@ const columns = computed<ColumnDefinition<Pool>[]>(() => [
         style: 'currency',
         maximumFractionDigits: 0,
       }),
-    align: 'right',
+    align: 'center',
     id: 'totalLiquidity',
     sortKey: pool => {
       const apr = Number(pool.totalLiquidity);
@@ -160,12 +163,12 @@ const columns = computed<ColumnDefinition<Pool>[]>(() => [
       return apr;
     },
     width: 150,
-    cellClassName: 'font-numeric',
+    cellClassName: 'font-numeric font-[500] text-center text-[20px]',
   },
   {
     name: t('volume24h', [t('hourAbbrev')]),
     accessor: pool => pool?.volumeSnapshot || '0',
-    align: 'right',
+    align: 'center',
     id: 'volume',
     Cell: 'volumeCell',
     sortKey: pool => {
@@ -175,13 +178,13 @@ const columns = computed<ColumnDefinition<Pool>[]>(() => [
       return volume;
     },
     width: 175,
-    cellClassName: 'font-numeric',
+    cellClassName: 'font-numeric font-[500] text-center',
   },
   {
     name: props.showPoolShares ? t('myApr') : t('apr'),
     Cell: 'aprCell',
     accessor: pool => pool?.apr?.min.toString() || '0',
-    align: 'right',
+    align: 'center',
     id: 'apr',
     sortKey: pool => {
       let apr = 0;
@@ -195,12 +198,13 @@ const columns = computed<ColumnDefinition<Pool>[]>(() => [
         : 0;
     },
     width: 150,
+    cellClassName: 'font-[500] text-center',
   },
   {
     name: t('expiryDate'),
     Cell: 'lockEndDateCell',
     accessor: 'lockedEndDate',
-    align: 'right',
+    align: 'center',
     id: 'lockEndDate',
     width: 150,
   },
@@ -279,11 +283,11 @@ function iconAddresses(pool: Pool) {
 
 <template>
   <BalCard
-    shadow="lg"
+    shadow="none"
     class="bg-transparent rounded-[26px]"
     :square="upToLargeBreakpoint"
-    :noBorder="upToLargeBreakpoint"
     noPad
+    noBorder
   >
     <BalTable
       :columns="visibleColumns"
@@ -305,7 +309,7 @@ function iconAddresses(pool: Pool) {
       @load-more="emit('loadMore')"
     >
       <template #iconColumnHeader>
-        <div class="flex items-center">
+        <div class="flex justify-center items-center">
           <img
             v-if="darkMode"
             :src="TokensWhite"
@@ -330,7 +334,10 @@ function iconAddresses(pool: Pool) {
         </div>
       </template>
       <template #poolNameCell="pool">
-        <div v-if="!isLoading" class="flex items-center py-4 px-6">
+        <div
+          v-if="!isLoading"
+          class="flex justify-center items-center py-4 px-6"
+        >
           <div v-if="poolMetadata(pool.id)?.name" class="pr-2 text-left">
             {{ poolMetadata(pool.id)?.name }}
           </div>
@@ -348,10 +355,10 @@ function iconAddresses(pool: Pool) {
       <template #volumeCell="pool">
         <div
           :key="columnStates.volume"
-          class="flex justify-end py-4 px-6 -mt-1 font-numeric"
+          class="flex justify-center py-4 px-6 -mt-1 font-numeric"
         >
           <BalLoadingBlock v-if="!pool?.volumeSnapshot" class="w-12 h-4" />
-          <span v-else class="text-right">
+          <span v-else class="text-center text-[20px] font-[500]">
             {{
               fNum(
                 pool?.volumeSnapshot < VOLUME_THRESHOLD
@@ -370,7 +377,7 @@ function iconAddresses(pool: Pool) {
         <div
           :key="columnStates.aprs"
           :class="[
-            'flex justify-end py-4 px-6 -mt-1 font-numeric text-right',
+            'flex justify-center py-4 px-6 -mt-1 font-numeric text-center font-[500] text-[20px]',
             {
               'text-gray-300 dark:text-gray-600 line-through': isLBP(
                 pool.poolType
@@ -381,14 +388,15 @@ function iconAddresses(pool: Pool) {
           <BalLoadingBlock v-if="!pool?.apr" class="w-12 h-4" />
           <template v-else>
             {{ aprLabelFor(pool) }}
-            <BalTooltip
+            <img :src="sparklesImg" alt="chimp" class="ml-[16px] w-[20px]" />
+            <!-- <BalTooltip
               v-if="isLBP(pool.poolType)"
               width="36"
               :text="$t('lbpAprTooltip')"
               iconSize="sm"
               iconClass="ml-1"
             />
-            <APRTooltip v-else-if="pool?.apr" :pool="pool" />
+            <APRTooltip v-else-if="pool?.apr" :pool="pool" /> -->
           </template>
         </div>
       </template>

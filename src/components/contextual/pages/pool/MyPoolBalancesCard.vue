@@ -91,7 +91,7 @@ function symbolFor(token: PoolToken): string {
 </script>
 
 <template>
-  <BalCard shadow="2xl" noPad class="postion-container">
+  <BalCard shadow="none" noBorder noPad class="postion-container">
     <template #header>
       <div class="card-header">
         <h5 class="text-[20px] font-[600]">
@@ -202,8 +202,12 @@ function symbolFor(token: PoolToken): string {
   background-color: #00000029;
   border-radius: 12px;
 }
-.row-bg {
+.dark .row-bg {
   background-color: #282853;
   border-bottom: 1px solid #8b8dfc99;
+}
+.row-bg {
+  border-bottom: 1px solid #a5a5fd;
+  background: #d5d6ff;
 }
 </style>

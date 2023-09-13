@@ -34,10 +34,14 @@ const features = [
   <div class="md:container md:mx-auto mt-[50px]">
     <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
       <div class="hero-text fade-in-slow">
-        <h1 class="mb-[36px] font-[600] text-[48px] font-montserrat">
+        <h1
+          class="leading-normal mb-[36px] font-[600] text-[48px] font-montserrat"
+        >
           {{ title }}
         </h1>
-        <p class="max-w-3xl font-[400] text-[24px] font-montserrat">
+        <p
+          class="max-w-3xl leading-normal font-[400] text-[24px] font-montserrat"
+        >
           {{ description }}
         </p>
       </div>

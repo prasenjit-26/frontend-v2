@@ -1,5 +1,5 @@
 <template>
-  <BalCard class="relative card-container" :shadow="swapCardShadow" noBorder>
+  <BalCard class="relative card-container" shadow="none" noBorder>
     <div class="flex justify-between items-center w-full mb-[20px]">
       <h4>{{ title }}</h4>
       <SwapSettingsPopover
@@ -452,12 +452,22 @@ export default defineComponent({
 /* This is needed because the swap settings popover overflows */
 .card-container {
   overflow: unset;
+  background: transparent;
 }
-.swap-container {
+.dark .swap-container {
   box-shadow: 0px 0px 0px 4px #8b8dfc99, 0px 0px 0px 8px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
   background: #151526;
   border-radius: 20px;
+  padding: 20px;
+  position: relative;
+}
+.swap-container {
+  border-radius: 20px;
+  background: #d5d6ff;
+  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 8px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
   padding: 20px;
   position: relative;
 }

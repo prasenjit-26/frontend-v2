@@ -71,6 +71,19 @@ function isActive(page: string): boolean {
       veBAL
     </DesktopLinkItem>
   </div>
+  <!-- <div class="container">
+    <div class="tabs">
+      <input id="radio-1" type="radio" name="tabs" checked />
+      <label class="tab" for="radio-1"
+        >Upcoming<span class="notification">2</span></label
+      >
+      <input id="radio-2" type="radio" name="tabs" />
+      <label class="tab" for="radio-2">Development</label>
+      <input id="radio-3" type="radio" name="tabs" />
+      <label class="tab" for="radio-3">Completed</label>
+      <span class="glider"></span>
+    </div>
+  </div> -->
 </template>
 
 <style scoped>

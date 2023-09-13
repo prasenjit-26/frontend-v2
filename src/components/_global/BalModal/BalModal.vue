@@ -103,21 +103,30 @@ defineExpose({ hide });
 .content {
   @apply relative w-full h-3/4 sm:h-auto max-h-screen;
 
-  max-width: 450px;
+  max-width: 800px;
   transform-style: preserve-3d;
 }
 
 .modal-bg {
-  @apply absolute h-full w-full bg-black/90;
+  @apply absolute h-full w-full bg-white/70 dark:bg-black/90;
 }
 
-.modal-card {
+.dark .modal-card {
   @apply mx-auto h-full relative;
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
   padding: 10px;
   background: #151526;
   border-radius: 20px;
+}
+.modal-card {
+  @apply mx-auto h-full relative;
+  padding: 10px;
+  border-radius: 12px;
+  background: #d5d6ff;
+  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
 }
 
 .dark .bal-modal .content::before {

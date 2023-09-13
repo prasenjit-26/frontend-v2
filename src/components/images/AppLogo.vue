@@ -32,11 +32,18 @@ const fillColor = computed(() => {
     ? tailwind.theme.colors.white
     : tailwind.theme.colors.gray['900'];
 });
+const useDarkLogo = computed(() => (props.forceDark ? true : darkMode.value));
 </script>
 
 <template>
   <div class="flex items-center sm:mr-4 app-logo">
-    <img src="~@/assets/images/ChimpLogo.png" alt="logo" width="280" />
+    <img
+      v-if="useDarkLogo"
+      src="~@/assets/images/ChimpLogo.png"
+      alt="logo"
+      width="280"
+    />
+    <img v-else src="~@/assets/images/logoLight.png" alt="logo" width="280" />
   </div>
 </template>
 

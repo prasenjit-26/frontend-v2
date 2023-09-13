@@ -135,10 +135,15 @@ export default defineComponent({
   width: 0;
 }
 
-.header {
+.dark .header {
   @apply flex items-center;
   background-color: #0e0f35;
   border-bottom: 1px solid #8b8dfc99;
+}
+.header {
+  @apply flex items-center;
+  border-bottom: 1px solid #a5a5fd;
+  background: #acb0ff;
 }
 
 .header-content {

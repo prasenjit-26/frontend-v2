@@ -23,9 +23,15 @@ const classes = computed(() => {
 </template>
 
 <style>
-.bal-blank-slate {
-  @apply border dark:border-gray-700 border-dashed p-6 flex flex-col justify-center rounded-lg;
+.dark .bal-blank-slate {
+  @apply border border-gray-700 border-dashed p-6 flex flex-col justify-center rounded-lg;
 
   min-height: 5px;
+}
+.bal-blank-slate {
+  @apply border border-dashed p-6 flex flex-col justify-center rounded-lg;
+  min-height: 5px;
+  border: 1px solid #8b8dfc;
+  background: #dedeff;
 }
 </style>

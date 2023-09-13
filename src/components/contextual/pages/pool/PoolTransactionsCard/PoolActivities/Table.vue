@@ -175,8 +175,9 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
   <BalCard
     class="overflow-x-auto"
     :square="upToLargeBreakpoint"
-    :noBorder="upToLargeBreakpoint"
+    noBorder
     noPad
+    shadow="none"
   >
     <BalTable
       :columns="columns"
@@ -203,8 +204,10 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
           }"
         >
           <div class="flex items-center">
-            <div class="text-[14px] font-[500]">{{ action.label }}</div>
-            <div class="flex ml-3 center">
+            <div class="whitespace-nowrap text-[14px] font-[500]">
+              {{ action.label }}
+            </div>
+            <div class="flex ml-2 center">
               <BalIcon v-if="action.type === 'Join'" name="plus" size="sm" />
               <BalIcon v-else name="minus" size="sm" />
             </div>
@@ -263,15 +266,25 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
 .action-conatine-join {
   background: #16a34a;
   border-radius: 26px;
+  padding: 10px 16px;
+  color: white;
 }
 .action-conatiner-withdraw {
   border-radius: 26px;
   background: #dd524c;
+  padding: 10px 16px;
+  color: white;
 }
-.token-conatiner {
+.dark .token-conatiner {
   background-color: #343563;
   border: 1px solid #8b8dfc;
-  padding: 12px;
+  padding: 10px 5px;
   border-radius: 6px;
+}
+.token-conatiner {
+  border-radius: 6px;
+  border: 1px solid #8b8dfc;
+  background: #bec0ff;
+  padding: 10px 5px;
 }
 </style>

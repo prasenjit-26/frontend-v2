@@ -86,12 +86,12 @@ onMounted(async () => {
   <BalCard
     class="overflow-x-auto whitespace-nowrap table-conatiner"
     :square="upToLargeBreakpoint"
-    :noBorder="upToLargeBreakpoint"
+    noBorder
     noPad
   >
     <template #header>
       <div
-        class="grid p-4 w-full text-base font-semibold border-b dark:border-gray-900"
+        class="grid p-4 w-full text-base font-semibold"
         :class="[isWeighted ? 'grid-cols-5' : 'grid-cols-4']"
       >
         <div class="text-[20px] font-[500]">{{ $t('token') }}</div>
@@ -138,9 +138,13 @@ onMounted(async () => {
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
 }
-.row-bg {
+.dark .row-bg {
   background-color: #282853;
   border-bottom: 1px solid #8b8dfc99;
+}
+.row-bg {
+  border-bottom: 1px solid #a5a5fd;
+  background: #d5d6ff;
 }
 .table-row-container {
   background: #171635;

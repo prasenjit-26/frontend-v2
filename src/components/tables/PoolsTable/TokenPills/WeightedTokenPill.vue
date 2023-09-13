@@ -93,7 +93,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .pill-weight {
-  @apply font-medium text-white dark:text-white text-xs  mt-px ml-1;
+  @apply font-medium text-black dark:text-white text-xs  mt-px ml-1;
 }
 
 .pill-weight-migration {
@@ -112,11 +112,18 @@ withDefaults(defineProps<Props>(), {
 .pill-hoverable:focus {
   background: #5a5a6763;
 }
-.pill-bg {
+.dark .pill-bg {
   background: #424281;
   border: 1px solid #8b8dfc;
   padding: 12px 16px 12px 16px;
-  border-radius: 5px;
+  border-radius: 6px;
+  min-height: 46px;
+}
+.pill-bg {
+  border: 1px solid #8b8dfc;
+  background: #bec0ff;
+  padding: 12px 16px 12px 16px;
+  border-radius: 6px;
   min-height: 46px;
 }
 </style>

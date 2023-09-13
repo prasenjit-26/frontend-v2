@@ -7,6 +7,7 @@ const props = defineProps<{ wallet: Wallet }>();
 
 const { connectWallet, toggleWalletSelectModal } = useWeb3();
 function handleClick() {
+  console.log('props.', props.wallet);
   connectWallet(props.wallet);
   toggleWalletSelectModal(false);
 }
@@ -15,9 +16,16 @@ function handleClick() {
 <template>
   <button class="wallet-connect-btn" @click="handleClick">
     <div class="flex items-center" style="width: 70%">
-      <img :src="buildConnectorIconURL(wallet)" class="mr-4 w-10 h-10" />
-      <h5 class="text-base text-gray-700 dark:text-white">
-        <span class="capitalize">{{ WalletNameMap[wallet] }}</span>
+      <img
+        :src="buildConnectorIconURL(wallet)"
+        class="mr-4 w-[36px] h-[36px]"
+      />
+      <h5
+        class="font-bold text-gray-700 dark:text-white text-[20px] font-[700]"
+      >
+        <span class="capitalize whitespace-nowrap">{{
+          WalletNameMap[wallet]
+        }}</span>
       </h5>
     </div>
   </button>
@@ -26,8 +34,6 @@ function handleClick() {
 <style>
 .wallet-connect-btn {
   @apply transition-all;
-  @apply bg-white dark:bg-gray-850 hover:bg-gray-50 dark:hover:bg-gray-800;
-  @apply border dark:border-gray-900;
-  @apply p-4 flex justify-start items-center w-full h-14 rounded-md mb-3 shadow-lg;
+  @apply flex justify-start items-center w-full mb-[20px];
 }
 </style>

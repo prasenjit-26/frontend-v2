@@ -12,6 +12,7 @@ const { darkMode, toggleDarkMode } = useDarkMode();
 <template>
   <BalBtn
     color="white"
+    class="toggle-button"
     :size="isMobile ? 'md' : 'sm'"
     :circle="isMobile"
     @click="toggleDarkMode"
@@ -20,3 +21,10 @@ const { darkMode, toggleDarkMode } = useDarkMode();
     <SunIcon v-else />
   </BalBtn>
 </template>
+<style>
+.toggle-button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+</style>

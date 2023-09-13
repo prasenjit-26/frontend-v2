@@ -25,6 +25,8 @@ const { upToLargeBreakpoint } = useBreakpoints();
     class="overflow-x-auto table-details-container"
     :square="upToLargeBreakpoint"
     noPad
+    noBorder
+    shadow="none"
   >
     <template v-for="(row, i) in tableData" :key="i">
       <div v-if="row" class="table-row">
@@ -56,14 +58,26 @@ const { upToLargeBreakpoint } = useBreakpoints();
 .table-row {
   @apply flex border-b font-[400] text-[20px];
   min-height: 78px;
+  border-bottom: 1px solid #a5a5fd;
+  background: #d5d6ff;
+}
+.dark .table-row {
+  @apply flex border-b font-[400] text-[20px];
+  min-height: 78px;
   border-bottom: 1px solid #8b8dfc99;
   background: #282853;
 }
 
-.table-row:first-child {
+.dark .table-row:first-child {
   @apply font-[500] text-[20px];
   background: #171635;
   border-bottom: 1px solid #8b8dfc99;
+  border-radius: 12px 12px 0px 0px;
+}
+.table-row:first-child {
+  @apply font-[500] text-[20px];
+  border-bottom: 1px solid #a5a5fd;
+  background: #acb0ff;
   border-radius: 12px 12px 0px 0px;
 }
 
@@ -72,7 +86,7 @@ const { upToLargeBreakpoint } = useBreakpoints();
 }
 
 .table-row-title {
-  @apply flex items-center py-3 px-4 flex-1 dark:border-gray-700;
+  @apply flex items-center py-3 px-4 flex-1 dark:border-gray-700 border-primary-500;
 
   border-right-width: 1px;
 }

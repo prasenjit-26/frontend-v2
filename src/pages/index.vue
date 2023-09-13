@@ -67,8 +67,8 @@ function onColumnSort(columnId: string) {
     <HomePageHero />
     <div class="xl:container xl:px-4 pt-10 md:pt-8 xl:mx-auto">
       <BalStack vertical>
-        <div class="px-4 xl:px-0">
-          <div class="flex justify-between items-end mb-2">
+        <div class="px-4 xl:px-0 mb-[40px]">
+          <div class="flex justify-between items-end mb-[30px] mr-[20px]">
             <h3>
               {{ networkConfig.chainName }}
               <span class="lowercase">{{ $t('pools') }}</span>

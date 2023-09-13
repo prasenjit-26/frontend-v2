@@ -147,7 +147,7 @@ onMounted(() => {
           v-bind="inputAttrs"
           :disabled="disabled"
           :class="[
-            'input text-[36px] font-[600] custom-text-input',
+            'input text-[36px] font-[600] custom-text-input text-white dark:text-black',
             inputClasses,
           ]"
           @blur="onBlur"
@@ -174,11 +174,20 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.input-container {
+.dark .input-container {
   @apply transition-colors;
   background: #212139;
 }
-
+.input-container {
+  @apply transition-colors;
+  border-radius: 12px;
+  background: linear-gradient(
+      0deg,
+      rgba(139, 141, 252, 0.15) 0%,
+      rgba(139, 141, 252, 0.15) 100%
+    ),
+    #8b8dfc;
+}
 .input-group {
   @apply flex;
 }
@@ -194,7 +203,7 @@ onMounted(() => {
 .error {
   @apply text-xs text-red-500 mt-1 ml-1;
 }
-.bal-text-input-container {
+.dark .bal-text-input-container {
   box-shadow: 0px 0px 0px 2px #8b8dfc99;
   background: #212139;
 }

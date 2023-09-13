@@ -92,7 +92,12 @@ watch(popoverOpened, () => {
       <slot name="activator" />
     </div>
     <div :class="['bal-popover-wrapper', popoverWrapperClasses]">
-      <BalCard shadow="lg" v-bind="$attrs" darkBgColor="800">
+      <BalCard
+        shadow="lg"
+        v-bind="$attrs"
+        darkBgColor="800"
+        class="popover-card"
+      >
         <slot :close="hidePopover" />
       </BalCard>
     </div>
@@ -105,7 +110,18 @@ watch(popoverOpened, () => {
 
   transition: all 0.2s ease-in-out;
 }
-
+.popover-card {
+  border-radius: 17px;
+  border: 1px solid #5455a4;
+  background: #d5d6ff;
+  box-shadow: 0px 0px 16px 0px rgba(139, 141, 252, 0.46);
+}
+.dark .popover-card {
+  border-radius: 17px;
+  border: 1px solid #5455a4;
+  background: #262850;
+  box-shadow: 0px 0px 16px 0px rgba(139, 141, 252, 0.46);
+}
 .bal-popover-wrapper-visible {
   @apply visible opacity-100;
 }

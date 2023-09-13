@@ -73,28 +73,31 @@ const veBalBalanceTooltip = computed(() => {
     class="md:container flex justify-center items-center md:mx-auto w-full mt-[50px]"
   >
     <div class="balance-container">
-      <h1
-        class="text-white text-[32px] font-[600]"
-        v-text="$t('myBalancerBalance')"
-      />
-
-      <template v-if="isWalletReady || isWalletConnecting">
-        <BalLoadingBlock
-          v-if="isLoadingTotalValue"
-          class="mx-auto w-40 h-10"
-          white
+      <div class="flex justify-between items-center w-full">
+        <h1
+          class="text-white text-[32px] font-[600]"
+          v-text="$t('myBalancerBalance')"
         />
-        <div v-else class="text-white text-[32px] font-[600]">
-          {{ totalInvestedLabel }}
-        </div>
-      </template>
-      <template v-else>
-        <div class="text-3xl font-semibold text-white">
-          {{ fNum('0', FNumFormats.fiat) }}
-        </div>
-        <HeroConnectWalletButton class="mt-4" />
-      </template>
 
+        <template v-if="isWalletReady || isWalletConnecting">
+          <BalLoadingBlock
+            v-if="isLoadingTotalValue"
+            class="mx-auto w-40 h-10"
+            white
+          />
+          <div v-else class="text-white text-[32px] font-[600]">
+            {{ totalInvestedLabel }}
+          </div>
+        </template>
+        <template v-else>
+          <div class="text-3xl font-semibold text-white">
+            {{ fNum('0', FNumFormats.fiat) }}
+          </div>
+        </template>
+      </div>
+      <div v-if="!isWalletReady">
+        <HeroConnectWalletButton class="mt-4" />
+      </div>
       <ProceedToSyncModal
         :isVisible="showProceedModal"
         @close="showProceedModal = false"
@@ -134,7 +137,8 @@ const veBalBalanceTooltip = computed(() => {
   border-radius: 20px;
   padding: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
   max-width: 600px;
   width: 100%;

@@ -203,7 +203,7 @@ onMounted(() => {
     />
     <div v-if="rateLabel" class="info-conatiner">
       <div
-        class="flex items-center cursor-pointer text-[20px]"
+        class="flex items-center text-white dark:text-black cursor-pointer text-[20px]"
         @click="isInRate = !isInRate"
         v-html="rateLabel"
       />
@@ -211,9 +211,17 @@ onMounted(() => {
   </div>
 </template>
 <style>
-.info-conatiner {
+.dark .info-conatiner {
   box-shadow: 0px 0px 0px 2px #8b8dfc99;
   background: #212139;
+  padding: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+.info-conatiner {
+  background: #7476f3;
+  box-shadow: 0px 0px 0px 2px rgba(139, 141, 252, 0.6);
   padding: 18px;
   margin-top: 20px;
   margin-bottom: 20px;
