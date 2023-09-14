@@ -10,6 +10,7 @@ type Props = {
   noPad?: boolean;
   noContentPad?: boolean;
   fireworks?: boolean;
+  minWidth?: number;
 };
 
 /**
@@ -22,6 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   noPad: false,
   noContentPad: false,
   fireworks: false,
+  minWidth: 450,
 });
 
 defineEmits(['close']);
@@ -53,6 +55,7 @@ watch(
  * EXPOSE
  */
 defineExpose({ hide });
+console.log('minWidth', props.minWidth);
 </script>
 
 <template>
@@ -67,7 +70,13 @@ defineExpose({ hide });
     </transition>
     <div class="content-container">
       <Transition name="modal" @after-leave="$emit('close')">
-        <div v-if="showContent" class="content">
+        <div
+          v-if="showContent"
+          class="content"
+          :style="{
+            maxWidth: props.minWidth ? `${props.minWidth}px` : '800px',
+          }"
+        >
           <BalCard
             :title="title"
             shadow="lg"
@@ -103,7 +112,6 @@ defineExpose({ hide });
 .content {
   @apply relative w-full h-3/4 sm:h-auto max-h-screen;
 
-  max-width: 800px;
   transform-style: preserve-3d;
 }
 

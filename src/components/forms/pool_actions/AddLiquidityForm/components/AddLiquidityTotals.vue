@@ -39,14 +39,17 @@ const {
 </script>
 
 <template>
-  <div class="data-table">
-    <div class="data-table-row total-row">
-      <div class="p-2">
+  <div>
+    <div class="flex justify-between items-center w-full mb-[12px]">
+      <div class="text-[24px] font-[500]">
         {{ $t('total') }}
       </div>
-      <div class="data-table-number-col">
+      <div class="data-table-number-col text-[24px] font-[600]">
         {{ fNum(fiatValueIn, FNumFormats.fiat) }}
-        <div v-if="isWalletReady && hasBalanceForSomeTokens" class="text-sm">
+        <div
+          v-if="isWalletReady && hasBalanceForSomeTokens"
+          class="text-sm ml-[15px]"
+        >
           <span v-if="maximized" class="text-gray-400 dark:text-gray-600">
             {{ $t('maxed') }}
           </span>
@@ -60,8 +63,8 @@ const {
         </div>
       </div>
     </div>
-    <div :class="['data-table-row price-impact-row', priceImpactClasses]">
-      <div class="p-2">
+    <div class="flex justify-between items-center w-full">
+      <div class="text-[16px] font-[500]">
         {{ $t('priceImpact') }}
       </div>
       <div class="data-table-number-col">

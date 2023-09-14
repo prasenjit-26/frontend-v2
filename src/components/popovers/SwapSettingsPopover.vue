@@ -50,7 +50,7 @@ function onActivatorClick(): void {
         circle
         color="white"
         size="sm"
-        class="mb-2 text-secondary icon-spin-anim setting-button"
+        class="text-secondary icon-spin-anim setting-button"
         @click="onActivatorClick"
       >
         <BalIcon name="settings" size="sm" class="brand-color" />

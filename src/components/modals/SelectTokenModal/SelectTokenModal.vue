@@ -181,9 +181,21 @@ watchEffect(() => {
 
 <template>
   <BalModal show noContentPad @close="$emit('close')">
-    <template #header>
-      <div class="flex justify-between items-center w-full">
-        <div class="flex items-center">
+    <div class="px-4 pt-3 pb-3 mr-2">
+      <BalStack
+        horizontal
+        align="center"
+        spacing="xs"
+        class="justify-between mb-4"
+      >
+        <h4 class="text-[24px] font-[600]">
+          {{ title }}
+        </h4>
+        <button class="flex close-button-modal" @click="$emit('close')">
+          Close
+        </button>
+      </BalStack>
+      <!-- <div class="flex items-center">
           <BalBtn
             v-if="state.selectTokenList"
             color="gray"
@@ -196,10 +208,10 @@ watchEffect(() => {
             <BalIcon name="arrow-left" size="sm" />
           </BalBtn>
           <h5>{{ title }}</h5>
-        </div>
-        <div
+        </div> -->
+      <!-- <div
           v-if="!state.selectTokenList && !hideTokenLists"
-          class="group flex items-center mr-2 cursor-pointer"
+          class="flex items-center mr-2 cursor-pointer group"
           @click="toggleSelectTokenList"
         >
           <span class="text-xs text-secondary">{{ $t('tokenLists') }}</span>
@@ -215,12 +227,11 @@ watchEffect(() => {
             <BalIcon
               name="chevron-down"
               size="sm"
-              class="ml-1 text-blue-500 group-hover:text-pink-500 group-focus:text-pink-500 dark:text-blue-400 transition-all duration-200 ease-out"
+              class="ml-1 text-blue-500 transition-all duration-200 ease-out group-hover:text-pink-500 group-focus:text-pink-500 dark:text-blue-400"
             />
           </div>
-        </div>
-      </div>
-    </template>
+        </div> -->
+    </div>
     <template v-if="state.selectTokenList">
       <div class="flex px-4 pt-2 pb-3 mr-2">
         <BalTextInput
@@ -230,6 +241,7 @@ watchEffect(() => {
           size="sm"
           class="w-full"
           autoFocus
+          :fontSize="18"
         >
           <template #prepend>
             <div class="flex justify-center items-center w-8 h-full">
@@ -268,6 +280,7 @@ watchEffect(() => {
           size="sm"
           class="w-full"
           autoFocus
+          :fontSize="18"
         >
           <template #prepend>
             <div class="flex justify-center items-center w-8 h-full">
@@ -315,6 +328,18 @@ watchEffect(() => {
 <style scoped>
 .list-height {
   height: 70vh;
+}
+.close-button-modal {
+  border: 0.9px solid #8b8dfc;
+  background: #34355f;
+  border-radius: 25px;
+  padding: 4px;
+  font-size: 14px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
 }
 </style>
 

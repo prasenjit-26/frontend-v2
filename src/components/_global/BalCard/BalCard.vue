@@ -149,6 +149,10 @@ export default defineComponent({
 .header-content {
   @apply flex-1 flex items-center;
   min-height: 78px;
+  /* border-top: 1px solid rgba(139, 141, 252, 0.6);
+  border-left: 1px solid rgba(139, 141, 252, 0.6);
+  border-right: 1px solid rgba(139, 141, 252, 0.6);
+  border-radius: 12px 12px 0px 0px; */
 }
 
 .footer {

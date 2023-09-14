@@ -203,7 +203,7 @@ onMounted(() => {
     />
     <div v-if="rateLabel" class="info-conatiner">
       <div
-        class="flex items-center text-white dark:text-black cursor-pointer text-[20px]"
+        class="flex items-center text-white cursor-pointer text-[20px]"
         @click="isInRate = !isInRate"
         v-html="rateLabel"
       />

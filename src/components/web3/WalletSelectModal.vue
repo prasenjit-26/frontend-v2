@@ -53,7 +53,7 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
 </script>
 
 <template>
-  <BalModal :show="props.isVisible" @close="emit('close')">
+  <BalModal :show="props.isVisible" :minWidth="800" @close="emit('close')">
     <!-- <BalRadio
       :checked="isBalRulesAccepted"
       value="bal-rules"

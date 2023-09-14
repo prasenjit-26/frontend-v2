@@ -471,7 +471,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <BalModal show @close="onClose">
+  <BalModal show :minWidth="500" @close="onClose">
     <div>
       <BalStack
         horizontal
@@ -482,7 +482,7 @@ onBeforeMount(async () => {
         <h4 class="text-[24px] font-[600]">
           {{ labels.modalTitle }}
         </h4>
-        <button class="flex close-button" @click="onClose">Close</button>
+        <button class="flex close-button-modal" @click="onClose">Close</button>
       </BalStack>
       <BalCard noPad class="overflow-auto relative mb-6">
         <template #header>
@@ -597,13 +597,13 @@ onBeforeMount(async () => {
           <div
             class="flex justify-between items-center p-3 w-full border-b dark:border-gray-900"
           >
-            <div class="font-semibold">
+            <div class="text-[20px] font-[600]">
               {{ labels.swapSummary.title }}
             </div>
             <div class="flex items-center uppercase toggle-select text-[14px]">
               <div
                 :class="[
-                  'pr-2 cursor-pointer font-medium toggle-button ',
+                  'pr-2 cursor-pointer font-medium toggle-button-default ',
                   { 'selected-toggle': !showSummaryInFiat },
                 ]"
                 @click="showSummaryInFiat = false"
@@ -612,7 +612,7 @@ onBeforeMount(async () => {
               </div>
               <div
                 :class="[
-                  'pl-2 cursor-pointer font-medium uppercase toggle-button ',
+                  'pl-2 cursor-pointer font-medium uppercase toggle-button-default ',
                   { 'selected-toggle': showSummaryInFiat },
                 ]"
                 @click="showSummaryInFiat = true"
@@ -623,13 +623,13 @@ onBeforeMount(async () => {
           </div>
         </template>
         <div v-if="swapping.isCowswapSwap.value" class="p-3 text-sm">
-          <div class="summary-item-row">
+          <div class="summary-item-row mb-[16px]">
             <div>
               {{ labels.swapSummary.totalBeforeFees }}
             </div>
             <div v-html="summary.amountBeforeFees" />
           </div>
-          <div class="summary-item-row">
+          <div class="summary-item-row mb-[16px]">
             <div>{{ $t('swapSummary.gasCosts') }}</div>
             <div class="text-green-400">-{{ zeroFee }}</div>
           </div>
@@ -650,7 +650,9 @@ onBeforeMount(async () => {
           <div
             class="p-3 w-full text-sm bg-white dark:bg-gray-800 rounded-b-lg summary-bg"
           >
-            <div class="font-medium summary-item-row text-[16px] font-[500]">
+            <div
+              class="font-medium summary-item-row text-[16px] font-[500] mb-[20px]"
+            >
               <div class="w-64">
                 {{ labels.swapSummary.totalAfterFees }}
               </div>
@@ -751,7 +753,7 @@ onBeforeMount(async () => {
 }
 
 .summary-item-row {
-  @apply flex justify-between mb-1;
+  @apply flex justify-between mb-[10px];
 }
 
 .step {
@@ -770,7 +772,7 @@ onBeforeMount(async () => {
 .step-approved {
   @apply border-green-500 dark:border-green-500;
 }
-.close-button {
+.close-button-modal {
   border: 0.9px solid #8b8dfc;
   background: #34355f;
   border-radius: 25px;
@@ -809,8 +811,9 @@ onBeforeMount(async () => {
   border-radius: 37px;
   padding: 8px;
   min-width: 170px;
+  max-height: 40px;
 }
-.toggle-button {
+.toggle-button-default {
   width: 50%;
   text-align: center;
   padding: 10px;
@@ -818,10 +821,11 @@ onBeforeMount(async () => {
 .selected-toggle {
   box-shadow: inset 0px -1px 0px 0px #7b82f6, 0px 0px 4px -4px #00000040;
   border-radius: 24px;
-  padding: 10px;
+  padding: 12px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #8b8dfc;
+  max-height: 20px;
 }
 </style>

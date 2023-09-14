@@ -28,7 +28,12 @@
           </p>
         </div>
         <div v-if="actionLabel" :class="[actionClasses]">
-          <BalBtn :color="btnColor" size="xs" @click="$emit('action-click')">
+          <BalBtn
+            :color="btnColor"
+            size="xs"
+            class="p-[10px]"
+            @click="$emit('action-click')"
+          >
             {{ actionLabel }}
           </BalBtn>
         </div>

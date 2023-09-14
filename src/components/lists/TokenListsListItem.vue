@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center py-3 px-4 text-base leading-5 highlight">
+  <div class="flex items-center py-3 px-4 text-base token-item">
     <img
       :src="url(tokenlist.logoURI)"
       class="inline-block p-1 mr-3 align-middle bg-white rounded-full"

@@ -189,7 +189,7 @@ const displayClasses = computed(() => {
 
 const shapeClasses = computed(() => {
   if (props.circle || props.rounded) return 'rounded-full';
-  return 'rounded-[103px]';
+  return 'rounded-[12px]';
 });
 
 const cursorClasses = computed(() => {
@@ -264,6 +264,10 @@ const iconColor = computed(() => {
   @apply flex justify-center items-center w-full h-full;
 }
 .bg-gradient {
-  background: linear-gradient(180deg, #6a11cb 0%, #2575fc 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(106, 17, 203, 0.75) 0%,
+    rgba(37, 117, 252, 0.75) 100%
+  );
 }
 </style>

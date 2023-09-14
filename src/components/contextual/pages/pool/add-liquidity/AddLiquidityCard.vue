@@ -18,6 +18,7 @@ import { Pool } from '@/services/pool/types';
  */
 type Props = {
   pool: Pool;
+  hanldeClose?: any;
 };
 
 /**
@@ -25,6 +26,7 @@ type Props = {
  */
 const props = defineProps<Props>();
 const pool = toRef(props, 'pool');
+const emit = defineEmits(['close', 'success']);
 
 /**
  * COMPOSABLES
@@ -45,29 +47,50 @@ onMounted(() => resetTabs());
 watch(activeTab, value => {
   setIsSingleAssetJoin(value === Tab.SingleToken);
 });
+function handleClose() {
+  console.log('props', props);
+  props.hanldeClose();
+}
 </script>
 
 <template>
   <BalCard shadow="xl" exposeOverflow noBorder>
-    <template #header>
-      <div class="w-full">
-        <div class="text-xs leading-none text-secondary">
-          {{ network.chainName }}
-        </div>
-        <div class="flex justify-between items-center">
-          <h4>{{ $t('addLiquidity') }}</h4>
-          <SwapSettingsPopover :context="SwapSettingsContext.invest" />
-        </div>
-        <BalTabs
-          v-if="isDeepPool && isPreMintedBptPool"
-          v-model="activeTab"
-          :tabs="tabs"
-          class="p-0 m-0 -mb-px whitespace-nowrap"
-          noPad
-        />
+    <BalStack
+      horizontal
+      align="center"
+      spacing="xs"
+      class="justify-between mb-4"
+    >
+      <h4 class="text-[24px] font-[600]">Deposit</h4>
+      <div class="flex items-center">
+        <SwapSettingsPopover :context="SwapSettingsContext.invest" />
+        <button class="flex close-button-modal ml-[10px]" @click="handleClose">
+          Close
+        </button>
       </div>
-    </template>
+    </BalStack>
+    <BalTabs
+      v-if="isDeepPool && isPreMintedBptPool"
+      v-model="activeTab"
+      :tabs="tabs"
+      class="p-0 m-0 -mb-px whitespace-nowrap"
+      noPad
+    />
     <AddLiquidityForm :pool="pool" />
   </BalCard>
 </template>
+<style>
+.close-button-modal {
+  border: 0.9px solid #8b8dfc;
+  background: #34355f;
+  border-radius: 25px;
+  padding: 4px;
+  font-size: 14px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+}
+</style>
 

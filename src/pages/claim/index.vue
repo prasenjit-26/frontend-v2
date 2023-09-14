@@ -331,8 +331,8 @@ onBeforeMount(async () => {
         >
           {{ $t('noClaimableIncentives') }}
         </BalBlankSlate>
-        <div class="px-4 xl:px-0 mb-16">
-          <h2 class="mt-8 font-body text-2xl font-semibold">
+        <!-- <div class="px-4 mb-16 xl:px-0">
+          <h2 class="mt-8 text-2xl font-semibold font-body">
             {{ $t('pages.claim.titles.incentivesOnOtherNetworks') }}
           </h2>
           <BalFlexGrid class="mt-4" flexWrap>
@@ -346,7 +346,7 @@ onBeforeMount(async () => {
               <img
                 :src="buildNetworkIconURL(network.id as unknown as  Network)"
                 :alt="network.id"
-                class="mr-2 w-6 h-6 rounded-full shadow-sm"
+                class="w-6 h-6 mr-2 rounded-full shadow-sm"
               />
               {{ $t('pages.claim.btns.claimOn') }} {{ network.name }}
             </BalBtn>
@@ -359,7 +359,7 @@ onBeforeMount(async () => {
             >{{ $t('legacyClaims') }}
             <BalIcon name="arrow-right" size="sm" class="mx-1"
           /></BalLink>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

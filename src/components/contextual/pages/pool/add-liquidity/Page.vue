@@ -11,6 +11,7 @@ import { Pool } from '@/services/pool/types';
 
 type Props = {
   pool: Pool;
+  hanldeClose?: any;
 };
 
 /**
@@ -34,19 +35,13 @@ const { isMobile } = useBreakpoints();
 </script>
 
 <template>
-  <Col2Layout leftSpan="5" rightSpan="7">
-    <template v-if="!isMobile" #left>
-      <MyWallet :pool="pool" />
-    </template>
-    <template #right>
-      <AddLiquidityCard :pool="pool" />
-    </template>
-
+  <div>
+    <AddLiquidityCard :pool="pool" :hanldeClose="props.hanldeClose" />
     <Accordion
       v-if="isMobile"
       :pool="pool"
       class="mt-4"
       :isDeepPool="isDeepPool"
     />
-  </Col2Layout>
+  </div>
 </template>

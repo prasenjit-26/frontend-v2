@@ -239,6 +239,7 @@ watch(
       <BalBtn
         v-else
         :label="$t('preview')"
+        class="rounded-[12px]"
         color="gradient"
         :disabled="
           !hasAmountsIn ||

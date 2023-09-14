@@ -2,12 +2,9 @@
   <div
     ref="animateRef"
     :class="[
-      `flex items-center py-3 border border-transparent ml-4 mr-2 px-2 text-base
-  leading-5 opacity-0 highlight hover:bg-blue-50 dark:hover:bg-blue-900
-  rounded-lg transition-colors ease-in duration-300`,
+      `flex items-center py-3  ml-4 mr-2 px-2 text-base opacity-0  token-item-default transition-colors ease-in duration-300`,
       {
-        'bg-blue-50 dark:bg-blue-900 border-blue-200 dark:border-blue-500':
-          focussed,
+        'token-item': focussed,
       },
     ]"
   >
@@ -105,3 +102,19 @@ export default {
   },
 };
 </script>
+<style>
+.token-item {
+  border-radius: 12px;
+  background: rgba(139, 141, 252, 0.6);
+  box-shadow: 0px 0px 0px 2px #8b8dfc;
+  margin-top: 5px;
+}
+.token-item-default {
+  border-radius: 12px;
+}
+.token-item-default:hover {
+  border-radius: 12px;
+  border: 1px solid #8b8dfc;
+  background: rgba(64, 65, 113, 0.6);
+}
+</style>

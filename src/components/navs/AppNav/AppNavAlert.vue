@@ -5,7 +5,7 @@
     :class="['app-nav-alert', classes]"
     @click="handleClick"
   >
-    <div class="flex flex-1 md:justify-center fade-in-slow">
+    <div class="flex flex-1 md:justify-center items-center fade-in-slow">
       <BalIcon v-if="iconName" :name="iconName" class="mr-3" />
       <div>
         <p class="alert-label">
@@ -13,7 +13,7 @@
         </p>
         <BalBtn
           v-if="alert.action && alert.actionLabel"
-          class="cursor-pointer"
+          class="cursor-pointer p-[10px] pl-[20px] pr-[20px] h-[50px]"
           color="white"
           size="xs"
           :label="alert.actionLabel"

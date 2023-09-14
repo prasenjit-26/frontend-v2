@@ -32,6 +32,7 @@ type Props = {
   noShadow?: boolean;
   noBorder?: boolean;
   autoFocus?: boolean;
+  fontSize?: number;
   format?: (input: string | number) => string | number;
 };
 
@@ -52,6 +53,7 @@ const props = withDefaults(defineProps<Props>(), {
   noShadow: false,
   noBorder: false,
   autoFocus: false,
+  fontSize: 36,
 });
 
 const emit = defineEmits<{
@@ -146,10 +148,10 @@ onMounted(() => {
           :value="modelValue"
           v-bind="inputAttrs"
           :disabled="disabled"
-          :class="[
-            'input text-[36px] font-[600] custom-text-input text-white dark:text-black',
-            inputClasses,
-          ]"
+          :class="['input  font-[600]  text-white', inputClasses]"
+          :style="{
+            fontSize: props.fontSize ? `${props.fontSize}px` : '36px',
+          }"
           @blur="onBlur"
           @input="onInput"
           @keydown="onKeydown"

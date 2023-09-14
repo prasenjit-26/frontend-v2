@@ -8,7 +8,7 @@ import {
 import useNetwork from '@/composables/useNetwork';
 import { Pool } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
-
+import AddLiquidityModal from '@/components/contextual/pages/pool/add-liquidity/AddLiquidityModal.vue';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import { useDisabledJoinPool } from '@/composables/useDisabledJoinPool';
 import { useTokens } from '@/providers/tokens.provider';
@@ -40,7 +40,7 @@ const { isWalletReady, startConnectWithInjectedProvider } = useWeb3();
 const { networkSlug } = useNetwork();
 const { shouldDisableJoins } = useDisabledJoinPool(props.pool);
 const { balanceFor } = useTokens();
-
+const isDepositModalVisible = ref(false);
 /**
  * COMPUTED
  */
@@ -55,9 +55,22 @@ const joinDisabled = computed(
     isMigratablePool(props.pool) ||
     shouldDisableJoins.value
 );
+
+function handleAddLiquidityOpen() {
+  trackGoal(Goals.ClickAddLiquidity);
+  isDepositModalVisible.value = true;
+}
+function handleAddLiquidityClose() {
+  isDepositModalVisible.value = false;
+}
 </script>
 
 <template>
+  <AddLiquidityModal
+    :isVisible="isDepositModalVisible"
+    :pool="props.pool"
+    @close="handleAddLiquidityClose"
+  />
   <div class="p-4 w-full border-t border-gray-200 dark:border-gray-900">
     <BalBtn
       v-if="!isWalletReady"
@@ -80,14 +93,12 @@ const joinDisabled = computed(
           @click="trackGoal(Goals.ClickWithdraw)"
         />
         <BalBtn
-          :tag="joinDisabled ? 'div' : 'router-link'"
-          :to="{ name: 'add-liquidity', params: { networkSlug } }"
           :label="$t('addLiquidity')"
           color="gradient"
           class="rounded-[103px] text-[20px] font-[500] min-h-[70px]"
           :disabled="joinDisabled"
           block
-          @click="trackGoal(Goals.ClickAddLiquidity)"
+          @click="handleAddLiquidityOpen"
         />
       </div>
       <div class="pt-4 text-xs text-secondary">

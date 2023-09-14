@@ -226,6 +226,7 @@ const chartGrid = computed(() => {
       hFull
       growContent
       noPad
+      class="pairgraph-container"
       :noBorder="upToLargeBreakpoint"
     >
       <div class="relative p-4 h-full bg-transparent">
@@ -297,5 +298,15 @@ const chartGrid = computed(() => {
 
   right: 0;
   top: 0;
+}
+.dark .pairgraph-container {
+  border-radius: 10px;
+  border: 1px solid #8b8dfc;
+  background: #151526;
+}
+.pairgraph-container {
+  border-radius: 10px;
+  border: 1px solid #8b8dfc;
+  background: #dedeff;
 }
 </style>
