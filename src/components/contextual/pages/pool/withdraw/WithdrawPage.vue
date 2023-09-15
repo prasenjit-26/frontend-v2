@@ -3,7 +3,6 @@ import WithdrawForm from '@/components/forms/pool_actions/WithdrawForm/WithdrawF
 import SwapSettingsPopover, {
   SwapSettingsContext,
 } from '@/components/popovers/SwapSettingsPopover.vue';
-import { configService } from '@/services/config/config.service';
 import useWithdrawPageTabs from '@/composables/pools/useWithdrawPageTabs';
 import WithdrawPageTabs from './WithdrawPageTabs.vue';
 import { provideExitPool } from '@/providers/local/exit-pool.provider';
@@ -11,6 +10,7 @@ import { Pool } from '@/services/pool/types';
 
 type Props = {
   pool: Pool;
+  handleClose?: any;
 };
 
 /**
@@ -28,7 +28,6 @@ provideExitPool(pool);
 /**
  * COMPOSABLES
  */
-const { network } = configService;
 const { resetTabs } = useWithdrawPageTabs();
 
 onMounted(() => resetTabs());
@@ -36,18 +35,27 @@ onMounted(() => resetTabs());
 
 <template>
   <BalCard shadow="xl" exposeOverflow noBorder>
-    <template #header>
-      <div class="w-full">
-        <div class="text-xs leading-none text-secondary">
-          {{ network.chainName }}
-        </div>
-        <div class="flex justify-between items-center">
-          <h4>{{ $t('withdrawFromPool') }}</h4>
-          <SwapSettingsPopover :context="SwapSettingsContext.invest" />
-        </div>
-        <WithdrawPageTabs v-if="!(pool.isInRecoveryMode && pool.isPaused)" />
+    <BalStack
+      horizontal
+      align="center"
+      spacing="xs"
+      class="justify-between mb-4"
+    >
+      <h4 class="text-[24px] font-[600]">{{ $t('withdrawFromPool') }}</h4>
+      <div class="flex items-center">
+        <SwapSettingsPopover :context="SwapSettingsContext.invest" />
+        <button
+          class="flex close-button-modal ml-[10px]"
+          @click="props.handleClose"
+        >
+          Close
+        </button>
       </div>
-    </template>
+    </BalStack>
+    <WithdrawPageTabs
+      v-if="!(pool.isInRecoveryMode && pool.isPaused)"
+      class="mb-[20px]"
+    />
     <WithdrawForm :pool="pool" />
   </BalCard>
 </template>

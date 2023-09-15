@@ -9,6 +9,7 @@ import useNetwork from '@/composables/useNetwork';
 import { Pool } from '@/services/pool/types';
 import useWeb3 from '@/services/web3/useWeb3';
 import AddLiquidityModal from '@/components/contextual/pages/pool/add-liquidity/AddLiquidityModal.vue';
+import RemoveLiquidityModal from '@/components/contextual/pages/pool/withdraw/RemoveLiquidityModal.vue';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import { useDisabledJoinPool } from '@/composables/useDisabledJoinPool';
 import { useTokens } from '@/providers/tokens.provider';
@@ -41,6 +42,7 @@ const { networkSlug } = useNetwork();
 const { shouldDisableJoins } = useDisabledJoinPool(props.pool);
 const { balanceFor } = useTokens();
 const isDepositModalVisible = ref(false);
+const isWithdrawModalVisible = ref(false);
 /**
  * COMPUTED
  */
@@ -63,6 +65,13 @@ function handleAddLiquidityOpen() {
 function handleAddLiquidityClose() {
   isDepositModalVisible.value = false;
 }
+function handleRemoveLiquidityOpen() {
+  trackGoal(Goals.ClickWithdraw);
+  isWithdrawModalVisible.value = true;
+}
+function handleRemoveLiquidityClose() {
+  isWithdrawModalVisible.value = false;
+}
 </script>
 
 <template>
@@ -70,6 +79,11 @@ function handleAddLiquidityClose() {
     :isVisible="isDepositModalVisible"
     :pool="props.pool"
     @close="handleAddLiquidityClose"
+  />
+  <RemoveLiquidityModal
+    :isVisible="isWithdrawModalVisible"
+    :pool="props.pool"
+    @close="handleRemoveLiquidityClose"
   />
   <div class="p-4 w-full border-t border-gray-200 dark:border-gray-900">
     <BalBtn
@@ -82,20 +96,24 @@ function handleAddLiquidityClose() {
     <div v-else>
       <div class="grid grid-cols-2 gap-2">
         <BalBtn
-          :tag="hasBpt ? 'router-link' : 'div'"
-          :to="{ name: 'withdraw', params: { networkSlug } }"
           :label="$t('withdraw.label')"
           :disabled="!hasBpt"
           color="gradient"
           class="rounded-[103px] text-[20px] font-[500] min-h-[70px] mr-[30px]"
+          :style="{
+            borderRadius: '103px',
+          }"
           outline
           block
-          @click="trackGoal(Goals.ClickWithdraw)"
+          @click="handleRemoveLiquidityOpen"
         />
         <BalBtn
           :label="$t('addLiquidity')"
           color="gradient"
           class="rounded-[103px] text-[20px] font-[500] min-h-[70px]"
+          :style="{
+            borderRadius: '103px',
+          }"
           :disabled="joinDisabled"
           block
           @click="handleAddLiquidityOpen"
