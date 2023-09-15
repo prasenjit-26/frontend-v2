@@ -54,59 +54,61 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
 </script>
 
 <template>
-  <div class="container mx-auto mt-[100px]">
-    <div class="grid grid-cols-2 gap-4">
-      <!-- <template #gutterLeft>
+  <div>
+    <div class="container mx-auto max-w-[1300px] h-[75vh]">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- <template #gutterLeft>
         <MyWallet />
       </template> -->
-      <div class="mt-[25px]">
-        <div class="flex items-center mb-[20px]">
-          <div class="flex items-center mr-[16px]">
-            <BalAsset
-              :address="inputTokentoken?.address"
-              class="shadow"
-              :size="30"
-            />
-            <span class="text-[20px] font-[600] ml-[10px]">{{
-              inputTokentoken?.symbol
-            }}</span>
+        <div class="mt-[25px]">
+          <div class="flex items-center mb-[20px]">
+            <div class="flex items-center mr-[16px]">
+              <BalAsset
+                :address="inputTokentoken?.address"
+                class="shadow"
+                :size="30"
+              />
+              <span class="text-[20px] font-[600] ml-[10px]">{{
+                inputTokentoken?.symbol
+              }}</span>
+            </div>
+            <div class="swapsymbol-container mr-[16px]">
+              <img :src="swapSymbol" alt="swap" width="20" />
+            </div>
+            <div class="flex items-center">
+              <BalAsset
+                :address="outputTokentoken?.address"
+                class="shadow"
+                :size="30"
+              />
+              <span class="text-[20px] font-[600] ml-[10px]">{{
+                outputTokentoken?.symbol
+              }}</span>
+            </div>
           </div>
-          <div class="swapsymbol-container mr-[16px]">
-            <img :src="swapSymbol" alt="swap" width="20" />
-          </div>
-          <div class="flex items-center">
-            <BalAsset
-              :address="outputTokentoken?.address"
-              class="shadow"
-              :size="30"
-            />
-            <span class="text-[20px] font-[600] ml-[10px]">{{
-              outputTokentoken?.symbol
-            }}</span>
-          </div>
+          <!-- <MyWallet /> -->
+          <PairPriceGraph />
+          <!-- <BridgeLink v-if="hasBridge" class="mt-4" /> -->
         </div>
-        <!-- <MyWallet /> -->
-        <PairPriceGraph />
-        <!-- <BridgeLink v-if="hasBridge" class="mt-4" /> -->
-      </div>
-      <div>
-        <SwapCard />
-        <div class="p-4 sm:p-0 lg:p-0 mt-8">
-          <BalAccordion
-            v-if="upToLargeBreakpoint"
-            class="w-full"
-            :sections="sections"
-          >
-            <template #my-wallet>
-              <MyWallet />
-            </template>
-            <template #price-chart>
-              <PairPriceGraph />
-            </template>
-            <template v-if="hasBridge" #bridge>
-              <BridgeLink />
-            </template>
-          </BalAccordion>
+        <div>
+          <SwapCard />
+          <div class="p-4 sm:p-0 lg:p-0 mt-8">
+            <BalAccordion
+              v-if="upToLargeBreakpoint"
+              class="w-full"
+              :sections="sections"
+            >
+              <template #my-wallet>
+                <MyWallet />
+              </template>
+              <template #price-chart>
+                <PairPriceGraph />
+              </template>
+              <template v-if="hasBridge" #bridge>
+                <BridgeLink />
+              </template>
+            </BalAccordion>
+          </div>
         </div>
       </div>
     </div>
@@ -116,13 +118,6 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
 <style scoped>
 .graph-modal {
   height: 450px;
-}
-.swap-bg {
-  background-size: contain;
-  background-repeat: no-repeat;
-  @apply bg-center;
-  transition: all 0.3s ease-in-out;
-  background-image: url('../assets/images/swapBG.png');
 }
 .max-width-custom {
   max-width: 90% !important;
