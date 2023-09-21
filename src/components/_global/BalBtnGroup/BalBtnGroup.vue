@@ -61,7 +61,7 @@ export default defineComponent({
 });
 </script>
 <style>
-.select-button-selected {
+.dark .select-button-selected {
   border: 1px solid #8b8dfc;
   background: #3f3f75;
   border-radius: 12px;
@@ -69,8 +69,19 @@ export default defineComponent({
   color: #8b8dfc !important;
   border-color: #8b8dfc !important;
   font-size: 18px;
+  height: 48px;
 }
-.select-button {
+.select-button-selected {
+  border: 1px solid #4e529c;
+  background: #8b8dfc;
+  border-radius: 12px;
+  padding: 11px;
+  color: #ffffff !important;
+  border-color: #4e529c !important;
+  font-size: 18px;
+  height: 48px;
+}
+.dark .select-button {
   border: 1px solid #818181;
   background: #2b2b3e;
   border-radius: 12px;
@@ -78,5 +89,16 @@ export default defineComponent({
   color: #818181 !important;
   border-color: #818181 !important;
   font-size: 18px;
+  height: 48px;
+}
+.select-button {
+  border: 1px solid #818181;
+  background: rgba(156, 156, 156, 0.2);
+  border-radius: 12px;
+  padding: 11px;
+  color: #818181 !important;
+  border-color: #818181 !important;
+  font-size: 18px;
+  height: 48px;
 }
 </style>

@@ -20,6 +20,7 @@ const { isLoadingProfile, profile, account } = useWeb3();
 //     return 20;
 //   }
 // });
+console.log('heree', account.value);
 </script>
 
 <template>

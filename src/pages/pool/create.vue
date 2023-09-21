@@ -222,7 +222,11 @@ watch(
             <BalIcon class="flex" name="chevron-left" />
           </BalBtn>
           <div class="w-full text-center">
-            <span class="text-[40px] font-[600]"> Create a Pool </span>
+            <span
+              class="text-primary-500 dark:text-white text-[40px] font-[600]"
+            >
+              Create a Pool
+            </span>
           </div>
         </div>
         <div class="create-layout">
@@ -230,7 +234,7 @@ watch(
             <div v-if="!upToLargeBreakpoint" class="col-span-3">
               <BalStack vertical>
                 <BalVerticalSteps
-                  title="Create a weighted pool steps"
+                  title=""
                   :steps="steps"
                   @navigate="handleNavigate"
                 />
@@ -324,6 +328,14 @@ watch(
   min-height: 550px;
 }
 .create-layout {
+  border-radius: 12px;
+  background: #cacbff;
+  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
+  width: fit-content;
+}
+.dark .create-layout {
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
   background: #16162d;

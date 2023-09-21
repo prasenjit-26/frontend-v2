@@ -6,8 +6,8 @@ import { useTokens } from '@/providers/tokens.provider';
 
 export default function useGlobalQueryWatchers() {
   const {
-    priceQueryError,
-    refetchPrices,
+    // priceQueryError,
+    // refetchPrices,
     balancesQueryError,
     refetchBalances,
     allowancesQueryError,
@@ -16,21 +16,21 @@ export default function useGlobalQueryWatchers() {
   const { addAlert, removeAlert } = useAlerts();
   const { t } = useI18n();
 
-  watch(priceQueryError, () => {
-    if (priceQueryError.value) {
-      addAlert({
-        id: 'price-fetch-error',
-        label: t('alerts.price-fetch-error'),
-        type: AlertType.ERROR,
-        persistent: true,
-        action: refetchPrices,
-        actionLabel: t('alerts.retry-label'),
-        priority: AlertPriority.MEDIUM,
-      });
-    } else {
-      removeAlert('price-fetch-error');
-    }
-  });
+  // watch(priceQueryError, () => {
+  //   if (priceQueryError.value) {
+  //     addAlert({
+  //       id: 'price-fetch-error',
+  //       label: t('alerts.price-fetch-error'),
+  //       type: AlertType.ERROR,
+  //       persistent: true,
+  //       action: refetchPrices,
+  //       actionLabel: t('alerts.retry-label'),
+  //       priority: AlertPriority.MEDIUM,
+  //     });
+  //   } else {
+  //     removeAlert('price-fetch-error');
+  //   }
+  // });
 
   watch(balancesQueryError, () => {
     if (balancesQueryError.value) {

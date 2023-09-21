@@ -211,9 +211,16 @@ watchEffect(() => {
 .ease-color {
   transition: color border-color easeout 0.1s;
 }
-.brand-icon-container {
+.dark .brand-icon-container {
   background: #212144;
   border: 1px solid #6162b2;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+}
+.brand-icon-container {
+  background: #c6c6ff;
+  border: 1px solid #8b8dfc;
   width: 48px;
   height: 48px;
   padding: 12px;

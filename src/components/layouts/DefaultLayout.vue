@@ -2,9 +2,12 @@
 import Footer from '@/components/footer/Footer.vue';
 import AppNav from '@/components/navs/AppNav/AppNav.vue';
 import { useRoute } from 'vue-router';
+import useWeb3 from '@/services/web3/useWeb3';
+import whiteListedAddress from '@/data/whiteListedAddress.json';
 
 const route = useRoute();
 const isSwapPage = ref(false);
+const isUserAllowedToUse = ref(false);
 // do a `console.log(route)` to see route attributes (fullPath, hash, params, path...)
 onMounted(() => {
   console.log('route fullPath mounted', route.fullPath);
@@ -24,22 +27,72 @@ watch(
     }
   }
 );
+const { account } = useWeb3();
+const handleWhiteListedLogic = address => {
+  console.log('here', address);
+  if (account) {
+    if (import.meta.env.VITE_IS_ALPHA_WHITELISTENABLED) {
+      if (
+        whiteListedAddress
+          .toString()
+          .toLowerCase()
+          .includes(address.toLowerCase())
+      ) {
+        isUserAllowedToUse.value = true;
+      } else {
+        isUserAllowedToUse.value = false;
+      }
+    } else {
+      isUserAllowedToUse.value = true;
+    }
+  } else {
+    isUserAllowedToUse.value = true;
+  }
+};
+handleWhiteListedLogic(account.value);
+if (window.ethereum) {
+  window.ethereum.on('accountsChanged', function (accounts) {
+    console.log('accountsChanges', accounts[0]);
+    handleWhiteListedLogic(accounts[0]);
+  });
+}
 </script>
 <!-- background-image: url('../assets/images/swapBG.png'); -->
 <template>
   <div>
     <div class="app-body">
       <AppNav />
-      <div v-if="isSwapPage" class="swap-bg">
-        <div class="mt-[100px]">
+      <div v-if="isUserAllowedToUse">
+        <div v-if="isSwapPage" class="swap-bg">
+          <div class="mt-[100px]">
+            <div class="pb-16">
+              <slot />
+            </div>
+          </div>
+        </div>
+        <div v-else>
           <div class="pb-16">
             <slot />
           </div>
         </div>
       </div>
       <div v-else>
-        <div class="pb-16">
-          <slot />
+        <div class="mt-[100px]">
+          <div class="pb-16">
+            <div class="flex flex-col justify-center items-center">
+              <p
+                class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[30px] font-montserrat"
+              >
+                ALPHA Testnet Access: Limited User Preview for Chimp Exchange
+              </p>
+              <p
+                class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[20px]"
+              >
+                We're sorry, but it appears that your account is not currently
+                whitelisted to access Chimp Exchange
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -61,11 +114,18 @@ watch(
 .dark .app-body {
   background-image: url('@/assets/images/bgGradiant.png');
 }
-.swap-bg {
+.dark .swap-bg {
   background-size: 101vw 100%;
   background-repeat: no-repeat;
   @apply bg-center;
   transition: all 0.3s ease-in-out;
   background-image: url('@/assets/images/swapBG.png');
+}
+.swap-bg {
+  background-size: 101vw 100%;
+  background-repeat: no-repeat;
+  @apply bg-center;
+  transition: all 0.3s ease-in-out;
+  background-image: url('@/assets/images/starBgLight.png');
 }
 </style>

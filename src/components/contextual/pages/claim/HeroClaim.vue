@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import useDarkMode from '@/composables/useDarkMode';
 import liquidityImg from '@/assets/images/AddLiquidity.png';
 import StakeLpImg from '@/assets/images/StakeLp.png';
 import boostImg from '@/assets/images/boost.png';
@@ -10,6 +11,7 @@ type Props = {
 };
 
 defineProps<Props>();
+const { darkMode } = useDarkMode();
 const features = [
   {
     title: 'Add Liquidity',
@@ -35,7 +37,7 @@ const features = [
     <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
       <div class="hero-text fade-in-slow">
         <h1
-          class="leading-normal mb-[36px] font-[600] text-[48px] font-montserrat"
+          class="leading-normal text-primary-600 dark:text-white mb-[36px] font-[600] text-[48px] font-montserrat"
         >
           {{ title }}
         </h1>
@@ -46,7 +48,8 @@ const features = [
         </p>
       </div>
       <div class="flex justify-end">
-        <img src="~@/assets/images/claimHero.gif" alt="logo" />
+        <img v-if="darkMode" src="~@/assets/images/claimHero.gif" alt="logo" />
+        <img v-else src="~@/assets/images/planetLight.gif" alt="logo" />
       </div>
     </div>
     <div class="m-[25px] columns-4 md:columns-4 sm:columns-1">
@@ -130,5 +133,6 @@ const features = [
   padding: 25px;
   font-size: 24px;
   font-weight: 500;
+  font-family: Montserrat Alternates;
 }
 </style>

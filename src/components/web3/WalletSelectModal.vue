@@ -125,10 +125,12 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
           <BalStack horizontal align="center" justify="center" class="mb-30px">
             <div class="logocontainer" />
             <BalStack vertical align="start" justify="center">
-              <span class="text-[14px] font-[700] mb-[5px]">
+              <span
+                class="text-black dark:text-white text-[14px] font-[700] mb-[5px]"
+              >
                 A Home for your Digital Assets
               </span>
-              <span class="text-[14px] font-[700] gray-color">
+              <span class="text-[14px] font-[500] gray-color">
                 Wallets are used to send, receive, store, and display digital
                 assets like Ethereum and NFTs.
               </span>
@@ -140,7 +142,7 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
               <span class="text-[14px] font-[700] mb-[5px]">
                 A New Way to Log In
               </span>
-              <span class="text-[14px] font-[700] gray-color">
+              <span class="text-[14px] font-[500] gray-color">
                 Instead of creating new accounts and passwords on every website,
                 just connect your wallet.
               </span>
@@ -170,7 +172,7 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
   </BalModal>
 </template>
 <style>
-.recommendedtext {
+.dark .recommendedtext {
   color: rgba(255, 255, 255, 0.6);
   font-family: Plus Jakarta Sans;
   font-size: 20px;
@@ -178,8 +180,26 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
   font-weight: 600;
   line-height: 18px;
 }
-.connectwallettext {
+.recommendedtext {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Plus Jakarta Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+}
+.dark .connectwallettext {
   color: #fff;
+  text-align: center;
+  font-family: Plus Jakarta Sans;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+}
+.connectwallettext {
+  color: #000;
   text-align: center;
   font-family: Plus Jakarta Sans;
   font-size: 32px;
@@ -198,15 +218,33 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
   border-radius: 12px;
 }
 .gray-color {
+  color: rgba(0, 0, 0, 0.8);
+}
+.dark .gray-color {
   color: rgba(255, 255, 255, 0.6);
 }
 .blue-color {
   color: #0e76fd;
 }
-.close-button {
+.dark .close-button {
   border-radius: 9999px;
   border: 1px solid #8b8dfc;
   background: #44457c;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 9px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  position: absolute;
+  right: 0;
+  top: -7px;
+}
+.close-button {
+  border-radius: 9999px;
+  border: 1px solid #4e529c;
+  background: rgba(229, 230, 255, 0.4);
   display: flex;
   width: 40px;
   height: 40px;

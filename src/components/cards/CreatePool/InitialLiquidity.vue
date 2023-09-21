@@ -387,10 +387,17 @@ function saveAndProceed() {
   border-radius: 12px;
   padding: 16px;
 }
-.warning-class {
+.dark .warning-class {
   margin-top: 32px;
   box-shadow: 0px 0px 0px 4px #ffd04d, 0px 0px 0px 8px #ffd04d40;
   background: #3a3333;
+  border-radius: 12px;
+  padding: 20px;
+}
+.warning-class {
+  margin-top: 32px;
+  background: rgba(255, 208, 77, 0.4);
+  box-shadow: 0px 0px 0px 4px #ffd04d, 0px 0px 0px 8px rgba(255, 208, 77, 0.25);
   border-radius: 12px;
   padding: 20px;
 }

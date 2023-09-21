@@ -484,7 +484,7 @@ onBeforeMount(async () => {
         </h4>
         <button class="flex close-button-modal" @click="onClose">Close</button>
       </BalStack>
-      <BalCard noPad class="overflow-auto relative mb-6">
+      <BalCard noPad class="overflow-auto relative mb-6" shadow="none" noBorder>
         <template #header>
           <div class="w-full">
             <div>
@@ -600,7 +600,7 @@ onBeforeMount(async () => {
             <div class="text-[20px] font-[600]">
               {{ labels.swapSummary.title }}
             </div>
-            <div class="flex items-center uppercase toggle-select text-[14px]">
+            <div class="flex items-center toggle-select text-[14px]">
               <div
                 :class="[
                   'pr-2 cursor-pointer font-medium toggle-button-default ',
@@ -653,13 +653,13 @@ onBeforeMount(async () => {
             <div
               class="font-medium summary-item-row text-[16px] font-[500] mb-[20px]"
             >
-              <div class="w-64">
+              <div class="w-64 font-[500]">
                 {{ labels.swapSummary.totalAfterFees }}
               </div>
               <div v-html="summary.totalWithoutSlippage" />
             </div>
             <div class="summary-item-row text-secondary text-[16px] font-[500]">
-              <div class="w-64">
+              <div class="w-64 font-[500]">
                 {{ labels.swapSummary.totalWithSlippage }}
               </div>
               <div
@@ -741,7 +741,7 @@ onBeforeMount(async () => {
 </template>
 
 <style scoped>
-.arrow-down {
+.dark .arrow-down {
   @apply absolute  rounded-full  flex items-center h-8 w-8 justify-center  mr-3;
   right: 0px;
   left: 0px;
@@ -749,6 +749,16 @@ onBeforeMount(async () => {
   margin-left: auto;
   border: 0.9px solid #8b8dfc;
   background: #34355f;
+  transform: translateY(-50%);
+}
+.arrow-down {
+  @apply absolute  rounded-full  flex items-center h-8 w-8 justify-center  mr-3;
+  right: 0px;
+  left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 0.9px solid #8b8dfc;
+  background: #dadbff;
   transform: translateY(-50%);
 }
 
@@ -772,9 +782,21 @@ onBeforeMount(async () => {
 .step-approved {
   @apply border-green-500 dark:border-green-500;
 }
-.close-button-modal {
+.dark .close-button-modal {
   border: 0.9px solid #8b8dfc;
   background: #34355f;
+  border-radius: 25px;
+  padding: 4px;
+  font-size: 14px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+}
+.close-button-modal {
+  border: 1px solid #4e529c;
+  background: rgba(229, 230, 255, 0.4);
   border-radius: 25px;
   padding: 4px;
   font-size: 14px;
@@ -787,9 +809,19 @@ onBeforeMount(async () => {
 .header-border {
   border: 1px solid #3f4083;
 }
-.preview-details {
+.dark .preview-details {
   background: #282853;
   border: 1px solid #3f4083;
+  border-radius: 0px 0px 12px 12px;
+}
+.preview-details {
+  border: 1px solid #3f4083;
+  background: linear-gradient(
+      0deg,
+      rgba(139, 141, 252, 0.15) 0%,
+      rgba(139, 141, 252, 0.15) 100%
+    ),
+    #d5d6ff;
   border-radius: 0px 0px 12px 12px;
 }
 .first-row {
@@ -801,14 +833,26 @@ onBeforeMount(async () => {
   background: #8b8dfc66;
   margin-bottom: 20px;
 }
-.summary-bg {
+.dark .summary-bg {
   background: #3f4083;
 }
-.toggle-select {
+.summary-bg {
+  background: #e1e2ff;
+}
+.dark .toggle-select {
   border: 1px solid #8b8dfc;
   box-shadow: inset 0px 4px 4px 0px #00000040;
   background: #3f4083;
   border-radius: 37px;
+  padding: 8px;
+  min-width: 170px;
+  max-height: 40px;
+}
+.toggle-select {
+  border-radius: 37px;
+  border: 1px solid #8b8dfc;
+  background: #dadbff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   padding: 8px;
   min-width: 170px;
   max-height: 40px;
@@ -818,7 +862,7 @@ onBeforeMount(async () => {
   text-align: center;
   padding: 10px;
 }
-.selected-toggle {
+.dark .selected-toggle {
   box-shadow: inset 0px -1px 0px 0px #7b82f6, 0px 0px 4px -4px #00000040;
   border-radius: 24px;
   padding: 12px 20px;
@@ -827,5 +871,17 @@ onBeforeMount(async () => {
   align-items: center;
   background: #8b8dfc;
   max-height: 20px;
+}
+.selected-toggle {
+  border-radius: 24px;
+  background: #8b8dfc;
+  box-shadow: 0px 0px 4px -4px rgba(0, 0, 0, 0.25),
+    inset 0px -1px 0px 0px #7b82f6;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 20px;
+  color: #ffffff;
 }
 </style>

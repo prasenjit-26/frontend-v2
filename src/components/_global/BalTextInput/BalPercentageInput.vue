@@ -159,7 +159,7 @@ onMounted(() => {
 .custom-percentage-input::placeholder {
   font-size: 18px;
 }
-.custom-percentage-input-container {
+.dark .custom-percentage-input-container {
   border: 1px solid #5d5ea0;
   padding: 11px 16px 11px 16px;
   border-radius: 12px;
@@ -168,6 +168,19 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+.custom-percentage-input-container {
+  border: 1px solid #5d5ea0;
+  background: #acb0ff;
+  padding: 11px 16px 11px 16px;
+  border-radius: 12px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
   font-size: 18px;
 }
 </style>

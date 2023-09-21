@@ -205,6 +205,7 @@ async function submit(
 
     if (tx) handleTransaction(tx, state, actionInfo);
   } catch (error) {
+    console.log('errir', error);
     state.init = false;
     state.confirming = false;
     state.error = formatErrorMsg(error);

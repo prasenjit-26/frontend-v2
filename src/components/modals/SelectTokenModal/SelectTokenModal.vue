@@ -329,9 +329,21 @@ watchEffect(() => {
 .list-height {
   height: 70vh;
 }
-.close-button-modal {
+.dark .close-button-modal {
   border: 0.9px solid #8b8dfc;
   background: #34355f;
+  border-radius: 25px;
+  padding: 4px;
+  font-size: 14px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+}
+.close-button-modal {
+  border: 1px solid #4e529c;
+  background: rgba(229, 230, 255, 0.4);
   border-radius: 25px;
   padding: 4px;
   font-size: 14px;

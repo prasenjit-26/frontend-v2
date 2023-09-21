@@ -2,7 +2,7 @@
 import { StepState } from '@/types';
 
 type Props = {
-  title: string;
+  title: string | null;
   steps: Step[];
 };
 
@@ -87,7 +87,7 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
 
 <template>
   <BalCard noPad shadow="none">
-    <div class="p-4 border-b dark:border-gray-600">
+    <div v-if="title" class="p-4 border-b dark:border-gray-600">
       <h6 class="dark:text-gray-300">
         {{ title }}
       </h6>
@@ -137,14 +137,25 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
 </template>
 
 <style scoped>
-.step-circle-active {
+.dark .step-circle-active {
   border: 1px solid #8b8dfc;
   color: #8b8dfc;
   background: #3f3f75;
 }
-.step-circle {
+.step-circle-active {
+  color: #8b8dfc;
+  border-radius: 25.2px;
+  border: 1px solid #8b8dfc;
+  background: rgba(139, 141, 252, 0.35);
+}
+.dark .step-circle {
   border: 1px solid #818181;
   background: #2a2a4659;
+  color: #818181;
+}
+.step-circle {
+  border: 1px solid #818181;
+  background: rgba(208, 208, 208, 0.35);
   color: #818181;
 }
 .horizontal-row-selected {
@@ -153,8 +164,14 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
   height: 12px;
   width: 300px;
 }
-.horizontal-row {
+.dark .horizontal-row {
   background: #505074;
+  border-radius: 28px;
+  height: 12px;
+  width: 300px;
+}
+.horizontal-row {
+  background: rgba(129, 129, 129, 0.5);
   border-radius: 28px;
   height: 12px;
   width: 300px;

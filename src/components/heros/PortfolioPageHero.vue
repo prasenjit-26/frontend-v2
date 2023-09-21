@@ -130,11 +130,25 @@ const veBalBalanceTooltip = computed(() => {
   position: absolute;
   border-bottom-right-radius: 8px;
 }
-.balance-container {
+.dark .balance-container {
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
   background: #161627;
   border-radius: 20px;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+}
+.balance-container {
+  border-radius: 20px;
+  background: #8b8dfc;
+  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
   padding: 50px;
   display: flex;
   justify-content: center;

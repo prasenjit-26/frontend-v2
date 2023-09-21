@@ -20,9 +20,7 @@ function handleClick() {
         :src="buildConnectorIconURL(wallet)"
         class="mr-4 w-[36px] h-[36px]"
       />
-      <h5
-        class="font-bold text-gray-700 dark:text-white text-[20px] font-[700]"
-      >
+      <h5 class="font-bold text-black dark:text-white text-[20px] font-[700]">
         <span class="capitalize whitespace-nowrap">{{
           WalletNameMap[wallet]
         }}</span>

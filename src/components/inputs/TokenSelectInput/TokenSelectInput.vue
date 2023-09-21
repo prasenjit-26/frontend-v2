@@ -81,7 +81,10 @@ function toggleModal(): void {
       <span class="text-base font-medium">
         {{ token?.symbol }}
       </span>
-      <span v-if="Number(weight) > 0" class="ml-2 text-secondary">
+      <span
+        v-if="Number(weight) > 0"
+        class="ml-2 text-gray-100 dark:text-gray-400"
+      >
         {{
           fNum(weight, {
             style: 'percent',
@@ -110,7 +113,10 @@ function toggleModal(): void {
           <span class="font-medium text-[21px]">
             {{ token?.symbol }}
           </span>
-          <span v-if="Number(weight) > 0" class="ml-2 text-secondary">
+          <span
+            v-if="Number(weight) > 0"
+            class="ml-2 text-gray-100 dark:text-gray-400"
+          >
             {{
               fNum(weight, {
                 style: 'percent',
@@ -191,8 +197,12 @@ function toggleModal(): void {
   background-color: #888aff;
 }
 
-.selected {
-  @apply text-black dark:text-white;
+.dark .selected {
+  @apply text-white;
   background-color: #474881;
+}
+.selected {
+  @apply text-white;
+  background-color: #4e529c;
 }
 </style>

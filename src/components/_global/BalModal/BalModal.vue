@@ -55,7 +55,6 @@ watch(
  * EXPOSE
  */
 defineExpose({ hide });
-console.log('minWidth', props.minWidth);
 </script>
 
 <template>

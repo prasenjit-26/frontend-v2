@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const classes = computed(() => ({
-  'border-white dark:border-gray-400 font-[500] text-[#A6A6A6] text-[16px] not-selected':
+  'border-white dark:border-gray-400 font-[500] text-black dark:text-gray-400 text-[16px] not-selected':
     !props.active,
   'text-white dark:text-white active-button font-[500]': props.active,
 }));

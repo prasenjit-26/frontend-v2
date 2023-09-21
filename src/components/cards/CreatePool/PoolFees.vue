@@ -156,8 +156,8 @@ watch(fee, onCustomInput, { immediate: true });
         </BalStack>
         <BalStack vertical spacing="sm">
           <div>
-            <h6 class="mb-[20px] text-[20px] font-[500]">Initial swap fee</h6>
-            <p class="text-gray-400 text-[16px] mb-[20px]">
+            <p class="mb-[20px] text-[20px] font-[500]">Initial swap fee</p>
+            <p class="text-black dark:text-gray-400 text-[16px] mb-[20px]">
               {{ $t('createAPool.bestFeeOption') }}
             </p>
           </div>
@@ -316,10 +316,17 @@ watch(fee, onCustomInput, { immediate: true });
   border-radius: 12px;
   padding: 16px;
 }
-.warning-class {
+.dark .warning-class {
   margin-top: 32px;
   box-shadow: 0px 0px 0px 4px #ffd04d, 0px 0px 0px 8px #ffd04d40;
   background: #3a3333;
+  border-radius: 12px;
+  padding: 20px;
+}
+.warning-class {
+  margin-top: 32px;
+  background: rgba(255, 208, 77, 0.4);
+  box-shadow: 0px 0px 0px 4px #ffd04d, 0px 0px 0px 8px rgba(255, 208, 77, 0.25);
   border-radius: 12px;
   padding: 20px;
 }
@@ -327,8 +334,13 @@ watch(fee, onCustomInput, { immediate: true });
   background: transparent;
   border: none;
 }
-.divider {
+.dark .divider {
   border: 1px solid #454680;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.divider {
+  border: 1px solid rgba(139, 141, 252, 0.4);
   width: 100%;
   margin-bottom: 20px;
 }
