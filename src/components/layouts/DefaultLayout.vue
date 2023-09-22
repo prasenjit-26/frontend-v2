@@ -79,17 +79,28 @@ if (window.ethereum) {
       <div v-else>
         <div class="mt-[100px]">
           <div class="pb-16">
-            <div class="flex flex-col justify-center items-center">
+            <div class="flex flex-col justify-center items-center h-[50vh]">
               <p
-                class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[30px] font-montserrat"
+                class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat"
               >
                 ALPHA Testnet Access: Limited User Preview for Chimp Exchange
               </p>
               <p
-                class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[20px]"
+                class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[25px]"
               >
                 We're sorry, but it appears that your account is not currently
                 whitelisted to access Chimp Exchange
+              </p>
+              <p
+                class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[25px]"
+              >
+                To get access to the alpha testnet please join our
+                <a
+                  href="https://discord.com/invite/EVFY8VhJkf"
+                  target="_blank"
+                  class="link-color font-[500]"
+                  >Chimp Exchange discord</a
+                >
               </p>
             </div>
           </div>
@@ -127,5 +138,8 @@ if (window.ethereum) {
   @apply bg-center;
   transition: all 0.3s ease-in-out;
   background-image: url('@/assets/images/starBgLight.png');
+}
+.link-color {
+  color: #2575fc;
 }
 </style>
