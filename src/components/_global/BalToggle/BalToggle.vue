@@ -55,8 +55,7 @@ export default defineComponent({
 }
 
 .bal-toggle-checkbox {
-  @apply absolute block w-6 h-6 rounded-full border-4
-    dark:appearance-none cursor-pointer transition-colors;
+  @apply absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer transition-colors;
   border-color: #111133;
   background-color: #8b8dfc;
 }

@@ -150,21 +150,23 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
           </BalStack>
           <span class="text-center text-[12px] font-[500] gray-color">
             By connecting a wallet, you agree to ChimpExchange
-            <router-link
+            <!-- <router-link
               target="_blank"
               :to="{ name: 'terms-of-use' }"
               class="blue-color"
             >
               Terms of Service
-            </router-link>
+            </router-link> -->
+            <span class="blue-color"> Terms of Service </span>
             and consent to its
-            <router-link
+            <!-- <router-link
               :to="{ name: 'privacy-policy' }"
               target="_blank"
               class="blue-color"
             >
               Privacy Policy.
-            </router-link>
+            </router-link> -->
+            <span class="blue-color"> Privacy Policy. </span>
           </span>
         </BalStack>
       </div>

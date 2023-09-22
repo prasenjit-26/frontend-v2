@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
 import DesktopLinkItem from './DesktopLinkItem.vue';
-import useNetwork, { isGoerli } from '@/composables/useNetwork';
+import useNetwork from '@/composables/useNetwork';
 import { Goals, trackGoal } from '@/composables/useFathom';
 
 /**
@@ -37,7 +37,7 @@ function isActive(page: string): boolean {
     >
       {{ $t('swap') }}
     </DesktopLinkItem>
-    <DesktopLinkItem
+    <!-- <DesktopLinkItem
       :to="{ name: 'claim', params: { networkSlug } }"
       :active="isActive('claim')"
       prefetch
@@ -53,7 +53,7 @@ function isActive(page: string): boolean {
       :active="isActive('faucet')"
     >
       Faucet
-    </DesktopLinkItem>
+    </DesktopLinkItem> -->
     <DesktopLinkItem
       :to="{ name: 'portfolio', params: { networkSlug } }"
       :active="isActive('portfolio')"
@@ -62,14 +62,14 @@ function isActive(page: string): boolean {
     >
       {{ $t('portfolio') }}
     </DesktopLinkItem>
-    <DesktopLinkItem
+    <!-- <DesktopLinkItem
       :to="{ name: 'vebal', params: { networkSlug } }"
       :active="isActive('vebal')"
       prefetch
       @click="trackGoal(Goals.ClickNavVebal)"
     >
       veBAL
-    </DesktopLinkItem>
+    </DesktopLinkItem> -->
   </div>
   <!-- <div class="container">
     <div class="tabs">

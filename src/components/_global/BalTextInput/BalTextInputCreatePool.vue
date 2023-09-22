@@ -147,7 +147,7 @@ onMounted(() => {
           v-bind="inputAttrs"
           :disabled="disabled"
           :class="[
-            'input text-[36px] font-[600] custom-text-input',
+            'input text-[36px] font-[600] custom-text-input text-white',
             inputClasses,
           ]"
           @blur="onBlur"
@@ -174,11 +174,19 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.input-container {
+.dark .input-container {
   @apply transition-colors;
   background: #212139;
 }
-
+.input-container {
+  @apply transition-colors;
+  background: linear-gradient(
+      0deg,
+      rgba(139, 141, 252, 0.15) 0%,
+      rgba(139, 141, 252, 0.15) 100%
+    ),
+    #8b8dfc;
+}
 .input-group {
   @apply flex;
 }

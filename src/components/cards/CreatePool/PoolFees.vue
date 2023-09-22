@@ -141,7 +141,13 @@ watch(fee, onCustomInput, { immediate: true });
 </script>
 
 <template>
-  <div ref="cardWrapper">
+  <div ref="cardWrapper" class="flex">
+    <button
+      class="flex text-blue-500 hover:text-blue-700 mr-[25px] back-button"
+      @click="goBack"
+    >
+      <BalIcon class="flex" name="chevron-left" />
+    </button>
     <BalCard shadow="xl" noBorder class="center-col-container">
       <BalStack vertical>
         <BalStack vertical spacing="xs">
@@ -343,5 +349,12 @@ watch(fee, onCustomInput, { immediate: true });
   border: 1px solid rgba(139, 141, 252, 0.4);
   width: 100%;
   margin-bottom: 20px;
+}
+.back-button {
+  border: 1px solid #8b8dfc;
+  padding: 12px;
+  border-radius: 12px;
+  background: transparent !important;
+  height: fit-content;
 }
 </style>

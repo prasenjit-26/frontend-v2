@@ -219,20 +219,19 @@ function saveAndProceed() {
 </script>
 
 <template>
-  <div ref="cardWrapper">
+  <div ref="cardWrapper" class="flex">
+    <button
+      v-if="!createPoolTxHash"
+      class="flex text-blue-500 hover:text-blue-700 mr-[25px] back-button"
+      @click="goBack"
+    >
+      <BalIcon class="flex" name="chevron-left" />
+    </button>
     <BalCard shadow="xl" noBorder class="center-col-container">
       <BalStack vertical>
         <BalStack vertical spacing="xs">
           <span class="text-xs text-secondary">{{ networkConfig?.name }}</span>
           <BalStack horizontal spacing="xs" align="center">
-            <button
-              v-if="!createPoolTxHash"
-              class="flex text-blue-500 hover:text-blue-700"
-              @click="goBack"
-            >
-              <BalIcon class="flex" name="chevron-left" />
-            </button>
-
             <h5
               class="font-semibold dark:text-gray-300 text-[24px] mt-[10px] mb-[30px]"
             >
@@ -308,9 +307,11 @@ function saveAndProceed() {
         <div class="total-conatiner mb-[20px]">
           <BalStack horizontal justify="between">
             <BalStack vertical spacing="none">
-              <h6 class="text-[20px] font-[600] mb-[5px]">{{ t('total') }}</h6>
+              <h6 class="text-white text-[20px] font-[600] mb-[5px]">
+                {{ t('total') }}
+              </h6>
               <BalStack horizontal spacing="xs" class="font-medium">
-                <span class="text-[16px] font-[500]">
+                <span class="text-white text-[16px] font-[500]">
                   {{ t('available') }}:
                   {{ fNum(totalLiquidity.toString(), FNumFormats.fiat) }}
                 </span>
@@ -330,7 +331,7 @@ function saveAndProceed() {
               </BalStack>
             </BalStack>
             <BalStack vertical spacing="none">
-              <h6 class="text-[20px] font-[600]">
+              <h6 class="text-white text-[20px] font-[600]">
                 {{ fNum(currentLiquidity.toString(), FNumFormats.fiat) }}
               </h6>
               <AnimatePresence
@@ -413,10 +414,28 @@ function saveAndProceed() {
   font-size: 32px !important;
   font-weight: 500 !important;
 }
-.total-conatiner {
+.dark .total-conatiner {
   border: 1px solid #8b8dfc;
   background: #282853;
   border-radius: 12px;
   padding: 16px 20px;
+}
+.total-conatiner {
+  border: 1px solid #8b8dfc;
+  background: linear-gradient(
+      0deg,
+      rgba(139, 141, 252, 0.15) 0%,
+      rgba(139, 141, 252, 0.15) 100%
+    ),
+    #8b8dfc;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+.back-button {
+  border: 1px solid #8b8dfc;
+  padding: 12px;
+  border-radius: 12px;
+  background: transparent !important;
+  height: fit-content;
 }
 </style>

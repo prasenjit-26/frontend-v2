@@ -184,9 +184,9 @@ async function calculateColors() {
 </script>
 
 <template>
-  <BalCard noPad shadow="none">
+  <BalCard noPad shadow="none" noBorder>
     <div v-if="!upToLargeBreakpoint" class="p-4">
-      <h6 class="text-white text-[20px] font-[600]">
+      <h6 class="text-black dark:text-white text-[20px] font-[600]">
         {{ $t('createAPool.poolSummary') }}
       </h6>
     </div>

@@ -195,8 +195,15 @@ function handleBlur(e: FocusEvent) {
 .error {
   @apply text-xs text-red-500 mt-1 ml-1;
 }
-.inline-input {
+.dark .inline-input {
   background: #3e4093;
+  border-radius: 37px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.inline-input {
+  background: #8b8dfc;
   border-radius: 37px;
   padding: 8px;
   font-size: 14px;

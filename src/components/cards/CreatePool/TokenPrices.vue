@@ -42,10 +42,10 @@ const hasUnknownPrice = computed(() =>
 </script>
 
 <template>
-  <BalCard noPad shadow="none" :noBorder="upToLargeBreakpoint">
+  <BalCard noPad shadow="none" noBorder class="token-class">
     <div v-if="!upToLargeBreakpoint" class="p-4 border-b dark:border-gray-600">
       <BalStack horizontal spacing="sm" align="center">
-        <h6 class="dark:text-gray-300">
+        <h6 class="text-white">
           {{ $t('tokenPrices') }}
         </h6>
         <BalTooltip class="mt-1" :text="$t('correctTokenPricing')" />
@@ -133,3 +133,15 @@ const hasUnknownPrice = computed(() =>
     </div>
   </BalCard>
 </template>
+<style>
+.token-class {
+  border-radius: 12px;
+  background: #8b8dfc;
+  margin: 10px;
+}
+.dark .token-class {
+  border-radius: 12px;
+  background: #282853;
+  margin: 10px;
+}
+</style>

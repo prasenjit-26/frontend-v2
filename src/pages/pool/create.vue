@@ -342,11 +342,18 @@ watch(
   border-radius: 12px;
   width: fit-content;
 }
-.pool-summary-container {
+.dark .pool-summary-container {
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
   background: #16162d;
   border-radius: 12px;
+  margin-top: -1.5rem;
+}
+.pool-summary-container {
+  border-radius: 12px;
+  background: #d5d6ff;
+  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 10px rgba(139, 141, 252, 0.25);
   margin-top: -1.5rem;
 }
 .back-button {

@@ -22,7 +22,7 @@ const { networkSlug } = useNetwork();
             <AppLogo class="mb-4" />
           </router-link>
         </div>
-        <div class="columns-2 md:columns-2 sm:columns-1">
+        <!-- <div class="columns-2 md:columns-2 sm:columns-1">
           <div class="flex flex-col">
             <a class="link-text">About</a>
             <a class="link-text">Docs</a>
@@ -35,7 +35,7 @@ const { networkSlug } = useNetwork();
             <a class="link-text">Cookie Policy</a>
             <a class="link-text">3rd Party services</a>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="border-bottom" />
       <div class="flex flex-col md:flex-row gap-8 md:justify-between pb-[40px]">
@@ -43,22 +43,29 @@ const { networkSlug } = useNetwork();
           ©2023 Chimpexchange. All rights reserved.
         </span>
         <div class="flex gap-3 justify-center items-center">
-          <a>
+          <a href="https://twitter.com/ChimpExchange" target="_blank">
             <img
               src="~@/assets/images/Twitter.png"
               alt="twitter"
               width="40px"
             />
           </a>
-          <a>
+          <a
+            href="https://www.linkedin.com/company/chimp-exchange/"
+            target="_blank"
+          >
             <img
               src="~@/assets/images/Linkedin.png"
               alt="twitter"
               width="40px"
             />
           </a>
-          <a>
-            <img src="~@/assets/images/Gmail.png" alt="twitter" width="40px" />
+          <a href="https://discord.com/invite/EVFY8VhJkf" target="_blank">
+            <img
+              src="~@/assets/images/discord-mark-blue.png"
+              alt="twitter"
+              width="40px"
+            />
           </a>
         </div>
       </div>
