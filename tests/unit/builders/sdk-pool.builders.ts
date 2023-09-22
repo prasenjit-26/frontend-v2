@@ -67,7 +67,7 @@ export const defaultSdkPool = {
     {
       id: '0x9ee0af1ee0a0782daf5f1af47fd49b2a766bd8d40001000000000000000004b9-0xfa8449189744799ad2ace7e0ebac8bb7575eff47',
       symbol: 'BAL',
-      name: 'Balancer Governance Token',
+      name: 'Chimp Governance Token',
       decimals: 18,
       address: '0xfa8449189744799ad2ace7e0ebac8bb7575eff47',
       balance: '1.313481443776109341',

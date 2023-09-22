@@ -7,12 +7,12 @@ export const ROUTE_META_DATA = {
   },
   pool: {
     metaTitle: '[pool_symbol]',
-    metaDescription: '[pool_name] — a Balancer [pool_type] pool',
+    metaDescription: '[pool_name] — a Chimp [pool_type] pool',
   },
   swap: {
     metaTitle: 'Swap DeFi tokens on [network_name]',
     metaDescription:
-      'Swap ERC-20 tokens using Balancer liquidity or with CoW protocol for gas-less signature trades, MEV protection and the best prices via intelligent routing across DeFi exchanges',
+      'Swap ERC-20 tokens using Chimp liquidity or with CoW protocol for gas-less signature trades, MEV protection and the best prices via intelligent routing across DeFi exchanges',
   },
   claim: {
     metaTitle: 'Claim liquidity mining incentives from staking',
@@ -20,9 +20,9 @@ export const ROUTE_META_DATA = {
       'LPs who stake can claim liquidity mining incentives. veBAL holders can boost incentives and claim their share of protocol revenue',
   },
   portfolio: {
-    metaTitle: 'Balancer portfolio',
+    metaTitle: 'Chimp portfolio',
     metaDescription:
-      'Track your Balancer Portfolio, including your unstaked and stake LP positions',
+      'Track your Chimp Portfolio, including your unstaked and stake LP positions',
   },
   vebal: {
     metaTitle: 'veBAL tokenomics',

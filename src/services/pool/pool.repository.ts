@@ -36,7 +36,7 @@ export default class PoolRepository {
     return {
       fetch: async (): Promise<Pool[]> => {
         const pool = await balancerAPIService.pool.get(this.queryArgs);
-        if (!pool) throw new Error('Cannot find pool via Balancer API');
+        if (!pool) throw new Error('Cannot find pool via Chimp API');
 
         return [pool];
       },

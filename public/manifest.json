@@ -1,9 +1,9 @@
 {
-  "short_name": "Balancer",
-  "name": "Balancer",
-  "description": "Swap tokens and manage your assets on Balancer Protocol",
+  "short_name": "Chimp",
+  "name": "Chimp Exchange",
+  "description": "Swap tokens and manage your assets on Chimp Exchange Protocol",
   "providedBy": {
-    "name": "Balancer",
+    "name": "Chimp",
     "url": "https://balancer.fi"
   },
   "icons": [
