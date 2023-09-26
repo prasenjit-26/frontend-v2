@@ -8,7 +8,10 @@
       :disabled="disabled"
       class="bal-toggle-checkbox"
     />
-    <label :for="name" class="bal-toggle-track" />
+    <label
+      :for="name"
+      :class="`${modelValue ? 'bal-toggle-track-checked' : 'bal-toggle-track'}`"
+    />
   </div>
   <label v-if="label" class="ml-2 text-xs dark:text-white">
     {{ label }}
@@ -54,23 +57,43 @@ export default defineComponent({
   @apply relative inline-block w-10 align-middle select-none transition duration-200 ease-out;
 }
 
-.bal-toggle-checkbox {
+.dark .bal-toggle-checkbox {
   @apply absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer transition-colors;
   border-color: #111133;
   background-color: #8b8dfc;
 }
-
-.bal-toggle-track {
-  @apply block overflow-hidden h-6 rounded-full
-    dark:group-hover:cursor-pointer transition-colors;
+.bal-toggle-checkbox {
+  @apply absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer transition-colors;
+  border-color: #d5d6ff;
+  background-color: #4d4d96;
+}
+.dark .bal-toggle-track {
+  @apply block overflow-hidden h-6 rounded-full group-hover:cursor-pointer transition-colors;
   background-color: #111133;
   box-shadow: 0px 0px 0px 2px #8b8dfc;
 }
-
-.bal-toggle-checkbox:checked {
-  @apply right-0
-    dark:transition-colors;
+.bal-toggle-track {
+  @apply block overflow-hidden h-6 rounded-full;
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #8b8dfc;
+}
+.bal-toggle-track-checked {
+  @apply block overflow-hidden h-6 rounded-full;
+  background-color: #9ea3ff;
+  box-shadow: 0px 0px 0px 2px #8b8dfc;
+}
+.dark .bal-toggle-track-checked {
+  @apply block overflow-hidden h-6 rounded-full group-hover:cursor-pointer transition-colors;
+  background-color: #111133;
+  box-shadow: 0px 0px 0px 2px #8b8dfc;
+}
+.dark .bal-toggle-checkbox:checked {
+  @apply right-0 transition-colors;
   border-color: #484897;
+}
+.bal-toggle-checkbox:checked {
+  @apply right-0;
+  border-color: #9ea3ff;
 }
 
 .bal-toggle-track[for='swapGasless'] {
@@ -90,9 +113,11 @@ export default defineComponent({
 }
 
 .bal-toggle-checkbox:checked + .bal-toggle-track {
+  background-color: #9ea3ff;
+}
+.dark .bal-toggle-checkbox:checked + .bal-toggle-track {
   background-color: #484897;
 }
-
 .bal-toggle-checkbox[disabled] {
   @apply border-gray-300 dark:border-gray-700 cursor-not-allowed;
 }

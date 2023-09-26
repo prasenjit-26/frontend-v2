@@ -80,11 +80,10 @@ function injectUnknownPrices() {
 </script>
 
 <template>
-  <BalModal
-    :title="t('unknownTokenPrice')"
-    :show="isVisible"
-    @close="$emit('close')"
-  >
+  <BalModal :show="isVisible" @close="$emit('close')">
+    <h4 class="text-[24px] font-[600] mb-[20px]">
+      {{ $t('unknownTokenPrice') }}
+    </h4>
     <BalStack vertical isDynamic>
       <p>
         {{

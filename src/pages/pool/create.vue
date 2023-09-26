@@ -232,7 +232,7 @@ watch(
         <div class="create-layout">
           <div>
             <div v-if="!upToLargeBreakpoint" class="col-span-3">
-              <BalStack vertical>
+              <BalStack vertical noBorder>
                 <BalVerticalSteps
                   title=""
                   :steps="steps"
@@ -250,7 +250,75 @@ watch(
               </BalStack>
             </div>
           </div>
-          <Col3Layout offsetGutters mobileHideGutters class="mt-8">
+          <div class="flex flex-row w-full">
+            <div class="flex flex-1 justify-start" />
+            <div class="flex justify-center max-w-[500px]">
+              <div class="relative center-col-mh">
+                <BalAlert
+                  v-if="!!hasRestoredFromSavedState"
+                  type="warning"
+                  class="mb-4"
+                  :title="$t('createAPool.recoveredState')"
+                >
+                  {{ $t('createAPool.recoveredStateInfo') }}
+
+                  {{ $t('wantToStartOverInstead') }}
+                  <button
+                    class="font-semibold text-blue-500"
+                    @click="handleReset"
+                  >
+                    {{ $t('clearForms') }}
+                  </button>
+                </BalAlert>
+
+                <BalLoadingBlock v-if="isLoading" class="h-64" />
+                <ChooseWeights
+                  v-else-if="activeStep === 0 && !hasRestoredFromSavedState"
+                />
+                <PoolFees v-else-if="activeStep === 1" />
+                <SimilarPools
+                  v-else-if="activeStep === 2 && similarPools.length > 0"
+                />
+                <InitialLiquidity v-else-if="!isLoading && activeStep === 3" />
+                <PreviewPool v-else-if="activeStep === 4" />
+
+                <div v-if="upToLargeBreakpoint" class="pb-24">
+                  <BalAccordion
+                    :dependencies="validTokens"
+                    :sections="[
+                      {
+                        title: t('createAPool.poolSummary'),
+                        id: 'pool-summary',
+                      },
+                      { title: t('tokenPrices'), id: 'token-prices' },
+                    ]"
+                  >
+                    <template #pool-summary>
+                      <PoolSummary />
+                    </template>
+                    <template #token-prices>
+                      <TokenPrices />
+                    </template>
+                  </BalAccordion>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-1 justify-end mt-[25px] mr-[25px]">
+              <div
+                v-if="!upToLargeBreakpoint"
+                class="w-full ml-[45px] pool-summary-container max-w-[300px]"
+              >
+                <BalStack vertical spacing="base">
+                  <PoolSummary />
+                  <TokenPrices
+                    v-if="validTokens.length > 0"
+                    :toggleUnknownPriceModal="showUnknownTokenModal"
+                  />
+                </BalStack>
+              </div>
+            </div>
+          </div>
+          <!-- <Col3Layout offsetGutters mobileHideGutters class="mt-8">
             <div class="relative center-col-mh">
               <BalAlert
                 v-if="!!hasRestoredFromSavedState"
@@ -311,7 +379,7 @@ watch(
                 </BalStack>
               </div>
             </template>
-          </Col3Layout>
+          </Col3Layout> -->
         </div>
       </div>
     </div>
