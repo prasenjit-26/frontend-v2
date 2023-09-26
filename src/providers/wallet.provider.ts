@@ -232,9 +232,12 @@ export const wallets = () => {
       // the wallet parameter will be provided by the front-end by means of
       // modal selection or otherwise
       const connector = await getWalletConnector(wallet);
-      console.log({ connector });
-      if (connector.id === 'injectedMetamask') {
-        if (connector.chainId !== Number(import.meta.env.VITE_NETWORK)) {
+      if (connector && connector.id && connector.id === 'injectedMetamask') {
+        if (
+          connector &&
+          connector.chainId &&
+          connector.chainId.value !== Number(import.meta.env.VITE_NETWORK)
+        ) {
           switchEthereumChain();
         }
       }
