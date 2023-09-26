@@ -36,8 +36,8 @@ function connectWalletHandler() {
   <div class="grid grid-rows-1 grid-flow-col gap-2">
     <DarkModeToggle v-if="isDesktop" />
     <!-- <AppNavActivityBtn v-if="account" /> -->
-    <AppNavNetworkSelect v-if="!hideNetworkSelect" />
-    <BalBtn
+    <AppNavNetworkSelect v-if="isDesktop" />
+    <!-- <BalBtn
       v-if="isMobile"
       color="white"
       flat
@@ -45,7 +45,7 @@ function connectWalletHandler() {
       @click="setSidebarOpen(true)"
     >
       <BalIcon name="menu" size="lg" />
-    </BalBtn>
+    </BalBtn> -->
     <AppNavAccountBtn v-if="account" />
     <BalBtn
       v-else
@@ -64,7 +64,7 @@ function connectWalletHandler() {
 .connect-button {
   @apply text-white font-[500] p-[15px] text-[20px];
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-  box-shadow: 0px 0px 0px 4px #8b8dfc, 0px 0px 3px 2px #00000040;
+  box-shadow: 0px 0px 0px 2px #8b8dfc, 0px 0px 3px 2px #00000040;
   border: 1px solid #9b9b9b;
   border-radius: 60px;
   min-height: 50px;
