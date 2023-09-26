@@ -17,7 +17,7 @@ const config: Config = {
   network: 'Mantle',
   trustWalletNetwork: 'mantle',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: false,
   rpc: 'https://rpc.testnet.mantle.xyz',
   ws: `wss://ws.testnet.mantle.xyz`,
