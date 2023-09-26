@@ -170,6 +170,46 @@ export const wallets = () => {
     return new Connector(alreadyConnectedAccount.value);
   }
 
+  const switchEthereumChain = async () => {
+    if (window.ethereum) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [
+            {
+              chainId: `0x${Number(import.meta.env.VITE_NETWORK).toString(16)}`,
+            },
+          ],
+        });
+      } catch (e: any) {
+        if (e.code === 4902) {
+          try {
+            await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                {
+                  chainId: `0x${Number(import.meta.env.VITE_NETWORK).toString(
+                    16
+                  )}`,
+                  chainName: 'Smart Chain - Testnet',
+                  nativeCurrency: {
+                    name: 'LineaEth',
+                    symbol: 'ETH', // 2-6 characters long
+                    decimals: 18,
+                  },
+                  blockExplorerUrls: ['https://goerli.lineascan.build/'],
+                  rpcUrls: ['https://rpc.goerli.linea.build'],
+                },
+              ],
+            });
+          } catch (addError) {
+            console.error(addError);
+          }
+        }
+        // console.error(e)
+      }
+    }
+  };
   /**
 
   @param wallet User supplied web3 provider. i.e. (web3, ethers)
@@ -192,7 +232,12 @@ export const wallets = () => {
       // the wallet parameter will be provided by the front-end by means of
       // modal selection or otherwise
       const connector = await getWalletConnector(wallet);
-
+      console.log({ connector });
+      if (connector.id === 'injectedMetamask') {
+        if (connector.chainId !== Number(import.meta.env.VITE_NETWORK)) {
+          switchEthereumChain();
+        }
+      }
       if (!connector) {
         throw new Error(
           `Wallet [${wallet}] is not supported yet. Please contact the dev team to add this connector.`
