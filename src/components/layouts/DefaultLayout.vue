@@ -70,7 +70,7 @@ console.log('isMobile', isMobile.value);
           <p
             class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat"
           >
-            The Alpha Testnet is Deskop only. Mobile Version will be live on
+            The Alpha Testnet is Desktop only. Mobile Version will be live on
             beta testnet.
           </p>
         </div>
