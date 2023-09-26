@@ -3,11 +3,13 @@ import Footer from '@/components/footer/Footer.vue';
 import AppNav from '@/components/navs/AppNav/AppNav.vue';
 import { useRoute } from 'vue-router';
 import useWeb3 from '@/services/web3/useWeb3';
+import useBreakpoints from '@/composables/useBreakpoints';
 import whiteListedAddress from '@/data/whiteListedAddress.json';
 
 const route = useRoute();
 const isSwapPage = ref(false);
 const isUserAllowedToUse = ref(false);
+const { isMobile } = useBreakpoints();
 // do a `console.log(route)` to see route attributes (fullPath, hash, params, path...)
 onMounted(() => {
   console.log('route fullPath mounted', route.fullPath);
@@ -56,52 +58,65 @@ if (window.ethereum) {
     handleWhiteListedLogic(accounts[0]);
   });
 }
+console.log('isMobile', isMobile.value);
 </script>
 <!-- background-image: url('../assets/images/swapBG.png'); -->
 <template>
   <div>
     <div class="app-body">
       <AppNav />
-      <div v-if="isUserAllowedToUse">
-        <div v-if="isSwapPage" class="swap-bg">
-          <div class="mt-[100px]">
+      <div v-if="isMobile">
+        <div class="flex flex-col justify-center items-center h-[50vh]">
+          <p
+            class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat"
+          >
+            The Alpha Testnet is Deskop only. Mobile Version will be live on
+            beta testnet.
+          </p>
+        </div>
+      </div>
+      <div v-else>
+        <div v-if="isUserAllowedToUse">
+          <div v-if="isSwapPage" class="swap-bg">
+            <div class="mt-[100px]">
+              <div class="pb-16">
+                <slot />
+              </div>
+            </div>
+          </div>
+          <div v-else>
             <div class="pb-16">
               <slot />
             </div>
           </div>
         </div>
         <div v-else>
-          <div class="pb-16">
-            <slot />
-          </div>
-        </div>
-      </div>
-      <div v-else>
-        <div class="mt-[100px]">
-          <div class="pb-16">
-            <div class="flex flex-col justify-center items-center h-[50vh]">
-              <p
-                class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat"
-              >
-                ALPHA Testnet Access: Limited User Preview for Chimp Exchange
-              </p>
-              <p
-                class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[25px]"
-              >
-                We're sorry, but it appears that your account is not currently
-                whitelisted to access Chimp Exchange
-              </p>
-              <p
-                class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[25px]"
-              >
-                To get access to the alpha testnet please join our
-                <a
-                  href="https://discord.com/invite/EVFY8VhJkf"
-                  target="_blank"
-                  class="link-color font-[500]"
-                  >Chimp Exchange discord</a
+          <div class="mt-[100px]">
+            <div class="pb-16">
+              <div class="flex flex-col justify-center items-center h-[50vh]">
+                <p
+                  class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat"
                 >
-              </p>
+                  ALPHA Testnet Access: Limited User Preview for Chimp Exchange
+                </p>
+                <p
+                  class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[25px]"
+                >
+                  We're sorry, but it appears that your account is not currently
+                  whitelisted to access Chimp Exchange
+                </p>
+                <p
+                  class="max-w-3xl leading-normal text-center font-[400] text-[20px] font-montserrat mt-[25px]"
+                >
+                  To get access to the alpha testnet please join our
+                  <a
+                    href="https://discord.com/invite/EVFY8VhJkf"
+                    target="_blank"
+                    class="link-color font-[500]"
+                    >Chimp Exchange discord</a
+                  >
+                </p>
+              </div>
             </div>
           </div>
         </div>
