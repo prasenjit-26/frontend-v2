@@ -94,8 +94,13 @@ console.log('isMobile', isMobile.value);
           <div class="mt-[100px]">
             <div class="pb-16">
               <div class="flex flex-col justify-center items-center h-[50vh]">
+                <img
+                  src="~@/assets/images/notwhitlisted.png"
+                  alt="chimp"
+                  width="250px"
+                />
                 <p
-                  class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat"
+                  class="leading-normal text-center text-primary-600 dark:text-white font-[600] text-[35px] font-montserrat mt-[20px]"
                 >
                   ALPHA Testnet Access: Limited User Preview for Chimp Exchange
                 </p>
