@@ -318,7 +318,7 @@ function onAlertMountChange() {
         <BalStack vertical spacing="xs">
           <span class="text-xs text-secondary">{{ networkName }}</span>
           <h5
-            class="font-semibold dark:text-gray-300 text-[24px] mt-[10px] mb-[30px]"
+            class="font-semibold dark:text-gray-300 xs:text-[14px] sm:text-[16px] xl:text-[24px] mt-[10px] mb-[30px]"
           >
             {{ $t('createAPool.chooseTokenWeights') }}
           </h5>
@@ -469,8 +469,9 @@ function onAlertMountChange() {
 </template>
 <style>
 .center-col-container {
-  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
-    0px 0px 149px -46px #8b8dfccc;
+  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
   border-radius: 12px;
   padding: 16px;
 }

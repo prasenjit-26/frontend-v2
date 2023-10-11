@@ -74,7 +74,7 @@ describe('APRTooltip', () => {
       expect(getByTestId('total-apr').textContent).toBe(
         'Total APR0.78% - 1.95%'
       );
-      expect(getByTestId('vebal-apr').textContent).toContain(
+      expect(getByTestId('slChimp-apr').textContent).toContain(
         '1.17% Max locking/veBAL APR'
       );
     });

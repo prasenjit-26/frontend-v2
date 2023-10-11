@@ -297,7 +297,6 @@ function iconAddresses(pool: Pool) {
       :isLoadingMore="isLoadingMore"
       :skeletonClass="skeletonClass"
       sticky="both"
-      :square="upToLargeBreakpoint"
       :onRowClick="handleRowClick"
       :isPaginated="isPaginated"
       isOnlyDescSort

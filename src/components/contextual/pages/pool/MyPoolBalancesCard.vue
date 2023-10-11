@@ -94,22 +94,30 @@ function symbolFor(token: PoolToken): string {
   <BalCard shadow="none" noBorder noPad class="postion-container">
     <template #header>
       <div class="card-header">
-        <h5 class="text-[20px] font-[600]">
+        <h5
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[600]"
+        >
           {{ $t('poolTransfer.myPoolBalancesCard.title') }}
         </h5>
-        <h5 class="text-[16px] font-[600]">
+        <h5
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[600]"
+        >
           {{ isWalletReady ? fNum(fiatValue, FNumFormats.fiat) : '-' }}
         </h5>
       </div>
     </template>
     <div
-      class="grid table-container pl-[40px] pr-[40px] pt-[20px] pb-[20px] row-bg"
+      class="grid table-container xs:pl-[15px] sm:pl-[20px] xs:pr-[15px] sm:pr-[20px] pl-[40px] pr-[40px] pt-[20px] pb-[20px] row-bg"
     >
       <div class="flex justify-between items-center mb-[20px]">
-        <span class="text-[20px] font-[500]">
+        <span
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[500]"
+        >
           {{ $t('poolTransfer.myPoolBalancesCard.stakedPosition') }}
         </span>
-        <span class="text-[16px] font-[600]">
+        <span
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[600]"
+        >
           {{ isWalletReady ? fNum(fiatValue, FNumFormats.fiat) : '-' }}
         </span>
       </div>
@@ -124,24 +132,32 @@ function symbolFor(token: PoolToken): string {
             class="z-10 mr-2 shrink-0"
             :size="22"
           />
-          <span class="text-[20px] font-[500]">
+          <span
+            class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[500]"
+          >
             {{ tokenData[token.address].userBalanceLabel }}
             {{ symbolFor(token) }}
           </span>
         </div>
-        <span class="text-[16px] font-[600]">
+        <span
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[600]"
+        >
           {{ tokenData[token.address].userFiatLabel }}
         </span>
       </div>
     </div>
     <div
-      class="grid table-container pl-[40px] pr-[40px] pt-[20px] pb-[20px] row-bg"
+      class="grid table-container xs:pl-[15px] sm:pl-[20px] xs:pr-[15px] sm:pr-[20px] pl-[40px] pr-[40px] pt-[20px] pb-[20px] row-bg"
     >
       <div class="flex justify-between items-center mb-[20px]">
-        <span class="text-[20px] font-[500]">
+        <span
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[500]"
+        >
           {{ $t('poolTransfer.myPoolBalancesCard.stakedPosition') }}
         </span>
-        <span class="text-[16px] font-[600]">
+        <span
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[600]"
+        >
           {{ isWalletReady ? fNum(fiatValue, FNumFormats.fiat) : '-' }}
         </span>
       </div>
@@ -156,12 +172,16 @@ function symbolFor(token: PoolToken): string {
             class="z-10 mr-2 shrink-0"
             :size="22"
           />
-          <span class="text-[20px] font-[500]">
+          <span
+            class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[500]"
+          >
             {{ tokenData[token.address].userBalanceLabel }}
             {{ symbolFor(token) }}
           </span>
         </div>
-        <span class="text-[16px] font-[600]">
+        <span
+          class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[600]"
+        >
           {{ tokenData[token.address].userFiatLabel }}
         </span>
       </div>

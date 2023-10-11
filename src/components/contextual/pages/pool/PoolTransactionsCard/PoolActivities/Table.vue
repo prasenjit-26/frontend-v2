@@ -223,7 +223,9 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
               class="flex items-center m-1 token-conatiner"
             >
               <BalAsset :address="tokenAmount.address" class="mr-2 shrink-0" />
-              <span class="font-numeric text-[16px] font-[500]">
+              <span
+                class="font-numeric xs:text-[12px] sm:text-[14px] text-[16px] font-[500]"
+              >
                 {{ tokenAmount.symbol }}
                 <span class="ml-[5px]">
                   {{ tokenAmount.amount }}

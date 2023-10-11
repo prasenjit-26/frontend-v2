@@ -85,7 +85,6 @@ onMounted(async () => {
   </div>
   <BalCard
     class="overflow-x-auto whitespace-nowrap table-conatiner"
-    :square="upToLargeBreakpoint"
     noBorder
     noPad
   >
@@ -94,17 +93,28 @@ onMounted(async () => {
         class="grid p-4 w-full text-base font-semibold"
         :class="[isWeighted ? 'grid-cols-5' : 'grid-cols-4']"
       >
-        <div class="text-[20px] font-[500]">{{ $t('token') }}</div>
-        <div v-if="isWeighted" class="justify-self-end text-[20px] font-[500]">
+        <div class="xs:text-[16px] sm:text-[18px] text-[20px] font-[500]">
+          {{ $t('token') }}
+        </div>
+        <div
+          v-if="isWeighted"
+          class="justify-self-end xs:text-[16px] sm:text-[18px] text-[20px] font-[500]"
+        >
           {{ $t('weight') }}
         </div>
-        <div class="justify-self-end text-[20px] font-[500]">
+        <div
+          class="justify-self-end xs:text-[16px] sm:text-[18px] text-[20px] font-[500]"
+        >
           {{ $t('balance') }}
         </div>
-        <div class="justify-self-end text-[20px] font-[500]">
+        <div
+          class="justify-self-end xs:text-[16px] sm:text-[18px] text-[20px] font-[500]"
+        >
           {{ $t('value') }}
         </div>
-        <div class="justify-self-end text-[20px] font-[500]">
+        <div
+          class="justify-self-end xs:text-[16px] sm:text-[18px] text-[20px] font-[500]"
+        >
           {{ $t('poolComposition.token%') }}
         </div>
       </div>

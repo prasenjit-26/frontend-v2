@@ -10,6 +10,7 @@ import { useTokens } from '@/providers/tokens.provider';
 import { bnum, isSameAddress, shortenLabel } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
 import useNetwork from '@/composables/useNetwork';
+import useBreakpoints from '@/composables/useBreakpoints';
 
 /**
  * PROPS & EMITS
@@ -167,12 +168,13 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
     'text-orange-500': initialWeights[tokenAddress]?.lt(0.01),
   };
 }
+const { isDesktop } = useBreakpoints();
 </script>
 
 <template>
   <div class="flex">
     <button
-      v-if="!createPoolTxHash"
+      v-if="!createPoolTxHash && isDesktop"
       class="flex text-blue-500 hover:text-blue-700 mr-[25px] back-button"
       @click="goBack"
     >
@@ -195,7 +197,7 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
             </BalCircle>
             <BalStack horizontal align="center" spacing="xs">
               <h5
-                class="font-semibold dark:text-gray-300 text-[24px] mt-[10px] mb-[30px]"
+                class="font-semibold dark:text-gray-300 sm:text-[20px] xs:text-[18px] lg:text-[24px] mt-[10px] mb-[30px]"
               >
                 {{ title }}
               </h5>
@@ -214,9 +216,14 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
               >
                 <BalStack horizontal justify="between">
                   <BalStack horizontal align="center" class="asset-container">
-                    <BalAsset :address="token.tokenAddress" :size="36" />
+                    <BalAsset
+                      :address="token.tokenAddress"
+                      :size="isDesktop ? 36 : 20"
+                    />
                     <BalStack vertical spacing="none">
-                      <span class="font-semibold text-white text-[19px]">
+                      <span
+                        class="font-semibold text-white sm:text-[14px] xs:text-[12px] lg:text-[19px]"
+                      >
                         {{ getToken(token.tokenAddress)?.symbol }}
                         {{ fNum(token.weight / 100, FNumFormats.percent) }}
                       </span>
@@ -258,20 +265,29 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
             </BalStack>
           </BalCard>
           <BalStack horizontal justify="between" class="info-container">
-            <h6 class="text-white text-[20px] font-[600]">{{ $t('total') }}</h6>
-            <h6 class="text-white text-[20px] font-[600]">
+            <h6
+              class="text-white sm:text-[16px] xs:text-[14px] lg:text-[20px] font-[600]"
+            >
+              {{ $t('total') }}
+            </h6>
+            <h6
+              class="text-white sm:text-[16px] xs:text-[14px] lg:text-[20px] font-[600]"
+            >
               {{ fNum(poolLiquidity.toString(), FNumFormats.fiat) }}
             </h6>
           </BalStack>
           <BalCard shadow="none" noPad>
             <div class="summary-header">
-              <h6 class="text-[20px] font-[600]">
+              <h6
+                class="sm:text-[18px] xs:text-[16px] lg:text-[20px] font-[600]"
+              >
                 {{ $t('summary') }}
               </h6>
             </div>
             <BalStack vertical spacing="base" class="info-section">
               <BalStack horizontal justify="between">
-                <span class="text-[18px] font-[500]"
+                <span
+                  class="sm:text-[16px] xs:text-[14px] lg:text-[18px] font-[500]"
                   >{{ $t('poolName') }}:</span
                 >
                 <BalInlineInput
@@ -283,7 +299,8 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
                 />
               </BalStack>
               <BalStack horizontal justify="between">
-                <span class="text-[18px] font-[500]"
+                <span
+                  class="sm:text-[16px] xs:text-[14px] lg:text-[18px] font-[500]"
                   >{{ $t('poolSymbol') }}:</span
                 >
                 <BalInlineInput
@@ -295,19 +312,25 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
                 />
               </BalStack>
               <BalStack horizontal justify="between">
-                <span class="text-[18px] font-[500]"
+                <span
+                  class="sm:text-[16px] xs:text-[14px] lg:text-[18px] font-[500]"
                   >{{ $t('poolType') }}:</span
                 >
-                <span class="capitalize text-[14px] font-[500]">{{
-                  poolTypeString
-                }}</span>
+                <span
+                  class="capitalize sm:text-[12px] xs:text-[11px] lg:text-[14px] font-[500]"
+                  >{{ poolTypeString }}</span
+                >
               </BalStack>
               <BalStack horizontal justify="between" class="mt-1">
-                <span class="text-[18px] font-[500]">{{ $t('swapFee') }}:</span>
+                <span
+                  class="sm:text-[16px] xs:text-[14px] lg:text-[18px] font-[500]"
+                  >{{ $t('swapFee') }}:</span
+                >
                 <BalStack horizontal spacing="sm">
-                  <span class="text-[14px] font-[500]">{{
-                    fNum(initialFee, FNumFormats.percent)
-                  }}</span>
+                  <span
+                    class="sm:text-[12px] xs:text-[11px] lg:text-[14px] font-[500]"
+                    >{{ fNum(initialFee, FNumFormats.percent) }}</span
+                  >
                   <button
                     class="hover:text-blue-500"
                     @click="navigateToPoolFee"
@@ -317,13 +340,15 @@ function getInitialWeightHighlightClass(tokenAddress: string) {
                 </BalStack>
               </BalStack>
               <BalStack horizontal justify="between">
-                <span class="text-[18px] font-[500]"
+                <span
+                  class="sm:text-[16px] xs:text-[14px] lg:text-[18px] font-[500]"
                   >{{ $t('swapFeeManager') }}:</span
                 >
                 <BalStack horizontal spacing="sm">
-                  <span class="text-[14px] font-[500]">{{
-                    getSwapFeeManager()
-                  }}</span>
+                  <span
+                    class="sm:text-[12px] xs:text-[11px] lg:text-[14px] font-[500]"
+                    >{{ getSwapFeeManager() }}</span
+                  >
                   <button
                     class="hover:text-blue-500"
                     @click="navigateToPoolFee"

@@ -9,7 +9,7 @@ import rateProviders from './rateProviders';
 const config: Config = {
   key: '59140',
   chainId: 59140,
-  chainName: 'Linea Testnet',
+  chainName: 'Linea',
   name: 'Linea Testnet',
   shortName: 'Linea',
   monorepoName: 'Linea',

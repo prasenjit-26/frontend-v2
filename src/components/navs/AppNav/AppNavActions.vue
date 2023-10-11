@@ -36,19 +36,20 @@ function connectWalletHandler() {
   <div class="grid grid-rows-1 grid-flow-col gap-2">
     <DarkModeToggle v-if="isDesktop" />
     <!-- <AppNavActivityBtn v-if="account" /> -->
-    <AppNavNetworkSelect v-if="isDesktop" />
-    <!-- <BalBtn
-      v-if="isMobile"
+    <AppNavNetworkSelect />
+    <AppNavAccountBtn v-if="account" />
+    <BalBtn
+      v-if="isMobile && account"
       color="white"
       flat
       circle
+      class="h-[24px]"
       @click="setSidebarOpen(true)"
     >
-      <BalIcon name="menu" size="lg" />
-    </BalBtn> -->
-    <AppNavAccountBtn v-if="account" />
+      <img src="~@/assets/images/hamBurgerMenu.png" alt="menu" width="30" />
+    </BalBtn>
     <BalBtn
-      v-else
+      v-if="!account"
       color="white"
       class="ml-5 connect-button"
       :size="isMobile ? 'md' : 'sm'"
@@ -62,11 +63,10 @@ function connectWalletHandler() {
 </template>
 <style>
 .connect-button {
-  @apply text-white font-[500] p-[15px] text-[20px];
+  @apply text-white font-[500] xs:p-[10px] sm:p-[12px] p-[15px] xs:text-[12px] xs:text-[14px] text-[20px]  xs:h-[35px] sm:h-[40px];
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
   box-shadow: 0px 0px 0px 2px #8b8dfc, 0px 0px 3px 2px #00000040;
   border: 1px solid #9b9b9b;
   border-radius: 60px;
-  min-height: 50px;
 }
 </style>

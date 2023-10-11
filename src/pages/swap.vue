@@ -22,7 +22,7 @@ provideUserTokens();
  * COMPOSABLES
  */
 const { setSelectedTokens } = usePoolFilters();
-const { upToLargeBreakpoint } = useBreakpoints();
+const { upToLargeBreakpoint, isDesktop } = useBreakpoints();
 
 /**
  * COMPUTED
@@ -55,12 +55,14 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
 
 <template>
   <div>
-    <div class="container mx-auto max-w-[1300px] h-[75vh]">
-      <div class="grid grid-cols-2 gap-4">
+    <div class="container mx-auto max-w-[1300px] h-[75vh] pl-[24px] pr-[24px]">
+      <div
+        class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xs:grid-cols-1 gap-4"
+      >
         <!-- <template #gutterLeft>
         <MyWallet />
       </template> -->
-        <div class="mt-[25px]">
+        <div v-if="isDesktop" class="mt-[25px]">
           <div class="flex items-center mb-[20px]">
             <div class="flex items-center mr-[16px]">
               <BalAsset
@@ -92,7 +94,7 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
         </div>
         <div>
           <SwapCard />
-          <div class="p-4 sm:p-0 lg:p-0 mt-8">
+          <div v-if="isDesktop" class="p-4 sm:p-0 lg:p-0 mt-8">
             <BalAccordion
               v-if="upToLargeBreakpoint"
               class="w-full"

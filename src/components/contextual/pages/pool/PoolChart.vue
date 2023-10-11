@@ -522,13 +522,13 @@ function addLaggingTimestamps() {
 }
 
 .dark .chart {
-  @apply rounded-xl sm:px-5 sm:pt-5 sm:shadow;
+  @apply rounded-xl px-5 pt-5 sm:shadow;
   border: 1px solid #8b8dfc;
   background: #151526;
   border-radius: 11px;
 }
 .chart {
-  @apply rounded-xl sm:px-5 sm:pt-5 sm:shadow;
+  @apply rounded-xl px-5 pt-5 sm:shadow;
   border: 1px solid #8b8dfc;
   background: #dedeff;
   border-radius: 11px;

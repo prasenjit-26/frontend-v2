@@ -113,13 +113,13 @@ const routes: RouteRecordRaw[] = [
     meta: { layout: 'PoolLayout' },
   },
   {
-    path: '/:networkSlug/vebal',
-    name: 'vebal',
+    path: '/:networkSlug/slChimp',
+    name: 'slChimp',
     component: VeBalPage,
   },
   {
-    path: '/:networkSlug/get-vebal',
-    name: 'get-vebal',
+    path: '/:networkSlug/get-slChimp',
+    name: 'get-slChimp',
     component: GetVeBalPage,
     meta: { layout: 'FocussedLayout' },
   },

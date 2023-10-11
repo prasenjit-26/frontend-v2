@@ -143,7 +143,7 @@ onUnmounted(() => {
       <BalBtn
         v-if="lockablePoolId === pool.id"
         tag="router-link"
-        :to="{ name: 'get-vebal' }"
+        :to="{ name: 'get-slChimp' }"
         color="gradient"
         block
         class="flex mt-2"

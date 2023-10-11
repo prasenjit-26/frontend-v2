@@ -143,7 +143,10 @@ function handleBlur(e: FocusEvent) {
             :name="name"
             :value="format(modelValue)"
             :disabled="!isEditable || disabled"
-            :class="['input inline-input-class', inputClasses]"
+            :class="[
+              'input xs:text-[11px] sm:text-[12px] lg:text-[14px] inline-input-class',
+              inputClasses,
+            ]"
             @blur="handleBlur"
             @input="onInput"
             @keydown="onKeydown"
@@ -210,7 +213,6 @@ function handleBlur(e: FocusEvent) {
   font-weight: 500;
 }
 .inline-input-class {
-  font-size: 14px;
   font-weight: 500;
   background: transparent;
 }

@@ -3,14 +3,15 @@
 
 // import Avatar from '@/components/images/Avatar.vue';
 import useBreakpoints from '@/composables/useBreakpoints';
+import Web3Avatar from 'web3-avatar-vue';
 import useWeb3 from '@/services/web3/useWeb3';
 import { shorten } from '@/lib/utils';
 
 import AppNavSettings from './AppNavSettings.vue';
-
-const { upToLargeBreakpoint, isMobile } = useBreakpoints();
+import 'web3-avatar-vue/dist/style.css';
+const { upToLargeBreakpoint, isMobile, bp } = useBreakpoints();
 const { isLoadingProfile, profile, account } = useWeb3();
-
+console.log('profile', profile);
 // const avatarSize = computed(() => {
 //   if (bp.value === 'sm') {
 //     return 35;
@@ -20,7 +21,6 @@ const { isLoadingProfile, profile, account } = useWeb3();
 //     return 20;
 //   }
 // });
-console.log('heree', account.value);
 </script>
 
 <template>
@@ -30,7 +30,14 @@ console.log('heree', account.value);
     :detached="isMobile ? true : undefined"
   >
     <template #activator>
+      <div v-if="isMobile" class="mobile-account ml-[20px] mr-[20px]">
+        <Web3Avatar
+          address="0x11Ed0AC7D6142481E459B6e5d4bfB5646277796f"
+          class="w-[24px] h-[24px]"
+        />
+      </div>
       <BalBtn
+        v-else
         class="text-base ml-[40px] account-button"
         :class="{ btn: upToLargeBreakpoint }"
         :loading="isLoadingProfile"
@@ -75,5 +82,10 @@ console.log('heree', account.value);
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
   box-shadow: 0px 0px 0px 4px #8b8dfc, 0px 0px 3px 2px rgba(0, 0, 0, 0.25);
   min-height: 50px;
+}
+.mobile-account {
+  box-shadow: 0px 0px 0px 1.728px #8b8dfc,
+    0px 0px 1.296px 0.864px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
 }
 </style>

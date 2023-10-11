@@ -99,7 +99,7 @@ function handleRemoveLiquidityClose() {
           :label="$t('withdraw.label')"
           :disabled="!hasBpt"
           color="gradient"
-          class="rounded-[103px] text-[20px] font-[500] min-h-[70px] mr-[30px]"
+          class="rounded-[103px] text-[20px] font-[500] xs:min-h[40px] sm:min-h[40px] min-h-[70px] mr-[30px]"
           :style="{
             borderRadius: '103px',
           }"
@@ -110,7 +110,7 @@ function handleRemoveLiquidityClose() {
         <BalBtn
           :label="$t('addLiquidity')"
           color="gradient"
-          class="rounded-[103px] text-[20px] font-[500] min-h-[70px]"
+          class="rounded-[103px] text-[20px] font-[500] xs:min-h[40px] sm:min-h[40px] min-h-[70px]"
           :style="{
             borderRadius: '103px',
           }"

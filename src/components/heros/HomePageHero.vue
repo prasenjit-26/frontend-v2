@@ -11,14 +11,14 @@ function navigateToCreatePool() {
 <template>
   <div class="stars-bg">
     <div class="md:container md:mx-auto">
-      <div class="m-[25px] columns-2 md:columns-2 sm:columns-1">
-        <div class="h-[625px]">
+      <div class="m-[25px] lg:columns-2 md:columns-2 sm:columns-1">
+        <div class="h-[625px] centeralign">
           <h2
             class="font-[600] mt-[58px] headline font-montserrat text-[53px]"
             v-text="$t('headlineText')"
           />
           <p
-            class="text-black dark:text-white mt-[20px] mb-[30px] text-[24px] font-montserrat leading-[33px]"
+            class="text-black dark:text-white subtext mt-[20px] mb-[30px] text-[24px] font-montserrat leading-[33px]"
             v-text="$t('headlineSubText')"
           />
           <button
@@ -38,9 +38,26 @@ function navigateToCreatePool() {
 </template>
 
 <style>
+@media (max-width: 768px) {
+  .headline {
+    text-align: center !important;
+  }
+  .subtext {
+    text-align: center !important;
+  }
+  .centeralign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 .headline {
-  @apply text-primary-500 dark:text-white text-left pb-2 pt-3;
+  @apply text-primary-500 dark:text-white pb-2 pt-3;
   line-height: normal;
+  text-align: left;
+}
+.subtext {
+  text-align: left;
 }
 .create-button {
   @apply text-white text-[20px] font-[500] py-3 px-6 rounded-full;

@@ -237,7 +237,10 @@ const iconColor = computed(() => {
       </span>
     </div>
     <div v-else class="content">
-      <span v-if="label" class="text-[20px] font-[500]">
+      <span
+        v-if="label"
+        class="xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[500]"
+      >
         {{ label }}
       </span>
       <slot v-else />
