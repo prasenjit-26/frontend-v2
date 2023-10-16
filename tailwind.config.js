@@ -2,7 +2,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const {
   generateButtonClassSafelist,
 } = require('./src/components/_global/BalBtn/button-options.js');
-console.log(defaultTheme.screens);
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
 
