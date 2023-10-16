@@ -13,7 +13,7 @@
     "build:witChunkSizeCheck": "node ./scripts/buildWithChunkSizeCheck.mjs",
     "build:analyze": "BUILD_ANALIZE=true npm run build",
     "build:docker": "export NODE_OPTIONS=--max-old-space-size=8192 && npm run build",
-    "build:withouttokenlists": "vite build",
+    "build:withouttokenlists": "export NODE_OPTIONS=--max-old-space-size=8192 && vite build",
     "build:watch": "vite build --watch",
     "preview": "vite preview",
     "vitest": "vitest",
