@@ -101,49 +101,61 @@ console.log('visibleSteps', visibleSteps);
         {{ title }}
       </h6>
     </div>
-    <BalStack horizontal spacing="base" class="p-4 w-full" justify="center">
-      <div v-if="isDesktop">
-        <div
-          v-for="(step, i) in visibleSteps"
-          :key="`vertical-step-${step.tooltip}`"
-          class="flex items-center"
+    <BalStack
+      v-if="isDesktop"
+      horizontal
+      spacing="base"
+      class="p-4 w-full"
+      justify="center"
+    >
+      <div
+        v-for="(step, i) in visibleSteps"
+        :key="`vertical-step-${step.tooltip}`"
+        class="flex items-center"
+      >
+        <button
+          :class="{ 'cursor-default': step.state === StepState.Todo }"
+          @click="handleNavigate(step.state, i)"
         >
-          <button
-            :class="{ 'cursor-default': step.state === StepState.Todo }"
-            @click="handleNavigate(step.state, i)"
-          >
-            <BalStack vertical align="center" spacing="sm">
-              <div
-                :class="[
-                  'rounded-full w-[30px] h-[30px] flex justify-center items-center',
-                  stepCircleClasses[i],
-                  { 'circle-line': i !== visibleSteps.length - 1 },
-                ]"
-              >
-                <!-- <span
+          <BalStack vertical align="center" spacing="sm">
+            <div
+              :class="[
+                'rounded-full w-[30px] h-[30px] flex justify-center items-center',
+                stepCircleClasses[i],
+                { 'circle-line': i !== visibleSteps.length - 1 },
+              ]"
+            >
+              <!-- <span
                 v-if="
                   ![StepState.Warning, StepState.Error].includes(step.state)
                 "
                 >{{ step.label || i + 1 }}</span
               > -->
-                <span
-                  v-if="
-                    ![StepState.Warning, StepState.Error].includes(step.state)
-                  "
-                  class="text-[12px]"
-                  >{{ step.label || i + 1 }}</span
-                >
-                <span v-else class="font-semibold">!</span>
-              </div>
-              <span class="text-[16px] font-[600] mt-[14px] mb-[14px]">
-                {{ step.tooltip }}
-              </span>
-              <div :class="horizontalRowClasses[i]" />
-            </BalStack>
-          </button>
-        </div>
+              <span
+                v-if="
+                  ![StepState.Warning, StepState.Error].includes(step.state)
+                "
+                class="text-[12px]"
+                >{{ step.label || i + 1 }}</span
+              >
+              <span v-else class="font-semibold">!</span>
+            </div>
+            <span class="text-[16px] font-[600] mt-[14px] mb-[14px]">
+              {{ step.tooltip }}
+            </span>
+            <div :class="horizontalRowClasses[i]" />
+          </BalStack>
+        </button>
       </div>
-      <div v-else class="w-full">
+    </BalStack>
+    <BalStack
+      v-else
+      horizontal
+      spacing="base"
+      class="p-4 w-full"
+      justify="center"
+    >
+      <div class="w-full">
         <div
           v-for="(step, i) in visibleSteps"
           :key="`vertical-step-${step.tooltip}`"

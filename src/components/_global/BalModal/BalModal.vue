@@ -67,7 +67,7 @@ defineExpose({ hide });
         </div>
       </div>
     </transition>
-    <div class="content-container">
+    <div class="content-container-modal">
       <Transition name="modal" @after-leave="$emit('close')">
         <div
           v-if="showContent"
@@ -103,9 +103,12 @@ defineExpose({ hide });
 .bal-modal {
   @apply top-0 left-0 fixed h-screen w-full z-40;
 }
-
-.content-container {
+.bal-modal::-webkit-scrollbar {
+  display: none;
+}
+.content-container-modal {
   @apply flex h-screen items-end sm:items-center justify-center;
+  overflow-y: scroll;
 }
 
 .content {
@@ -134,6 +137,7 @@ defineExpose({ hide });
   box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
     0px 0px 0px 10px rgba(139, 141, 252, 0.25),
     0px 0px 149px -46px rgba(139, 141, 252, 0.8);
+  min-height: 88vh;
 }
 
 .dark .bal-modal .content::before {

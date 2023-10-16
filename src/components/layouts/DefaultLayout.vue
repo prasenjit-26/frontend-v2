@@ -2,14 +2,14 @@
 import Footer from '@/components/footer/Footer.vue';
 import AppNav from '@/components/navs/AppNav/AppNav.vue';
 import { useRoute } from 'vue-router';
-import useWeb3 from '@/services/web3/useWeb3';
-import useBreakpoints from '@/composables/useBreakpoints';
-import whiteListedAddress from '@/data/whiteListedAddress.json';
+// import useWeb3 from '@/services/web3/useWeb3';
+// import useBreakpoints from '@/composables/useBreakpoints';
+// import whiteListedAddress from '@/data/whiteListedAddress.json';
 
 const route = useRoute();
 const isSwapPage = ref(false);
-const isUserAllowedToUse = ref(false);
-const { isMobile } = useBreakpoints();
+// const isUserAllowedToUse = ref(false);
+// const { isMobile } = useBreakpoints();
 // do a `console.log(route)` to see route attributes (fullPath, hash, params, path...)
 onMounted(() => {
   console.log('route fullPath mounted', route.fullPath);
@@ -29,36 +29,35 @@ watch(
     }
   }
 );
-const { account } = useWeb3();
-const handleWhiteListedLogic = address => {
-  console.log('here', address);
-  if (account) {
-    if (import.meta.env.VITE_IS_ALPHA_WHITELISTENABLED) {
-      if (
-        whiteListedAddress
-          .toString()
-          .toLowerCase()
-          .includes(address.toLowerCase())
-      ) {
-        isUserAllowedToUse.value = true;
-      } else {
-        isUserAllowedToUse.value = false;
-      }
-    } else {
-      isUserAllowedToUse.value = true;
-    }
-  } else {
-    isUserAllowedToUse.value = true;
-  }
-};
-handleWhiteListedLogic(account.value);
-if (window.ethereum) {
-  window.ethereum.on('accountsChanged', function (accounts) {
-    console.log('accountsChanges', accounts[0]);
-    handleWhiteListedLogic(accounts[0]);
-  });
-}
-console.log('isMobile', isMobile.value);
+// const { account } = useWeb3();
+// const handleWhiteListedLogic = address => {
+//   console.log('here', address);
+//   if (account) {
+//     if (import.meta.env.VITE_IS_ALPHA_WHITELISTENABLED) {
+//       if (
+//         whiteListedAddress
+//           .toString()
+//           .toLowerCase()
+//           .includes(address.toLowerCase())
+//       ) {
+//         isUserAllowedToUse.value = true;
+//       } else {
+//         isUserAllowedToUse.value = false;
+//       }
+//     } else {
+//       isUserAllowedToUse.value = true;
+//     }
+//   } else {
+//     isUserAllowedToUse.value = true;
+//   }
+// };
+// handleWhiteListedLogic(account.value);
+// if (window.ethereum) {
+//   window.ethereum.on('accountsChanged', function (accounts) {
+//     console.log('accountsChanges', accounts[0]);
+//     handleWhiteListedLogic(accounts[0]);
+//   });
+// }
 </script>
 <!-- background-image: url('../assets/images/swapBG.png'); -->
 <template>
@@ -76,7 +75,7 @@ console.log('isMobile', isMobile.value);
         </div>
       </div>
       <div v-else> -->
-      <div v-if="isUserAllowedToUse">
+      <div>
         <div v-if="isSwapPage" class="swap-bg">
           <div class="mt-[100px]">
             <div class="pb-16">
@@ -90,7 +89,7 @@ console.log('isMobile', isMobile.value);
           </div>
         </div>
       </div>
-      <div v-else>
+      <!-- <div v-else>
         <div class="mt-[100px]">
           <div class="pb-16">
             <div class="flex flex-col justify-center items-center h-[50vh]">
@@ -124,7 +123,7 @@ console.log('isMobile', isMobile.value);
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- </div> -->
     <Footer />

@@ -50,11 +50,11 @@ const navLinks = [
     path: `/${networkSlug}/portfolio`,
     goal: Goals.ClickNavPortfolio,
   },
-  {
-    label: 'slChimp',
-    path: `/${networkSlug}/slChimp`,
-    goal: Goals.ClickNavVebal,
-  },
+  // {
+  //   label: 'slChimp',
+  //   path: `/${networkSlug}/slChimp`,
+  //   goal: Goals.ClickNavVebal,
+  // },
 ];
 
 // const ecosystemLinks = [

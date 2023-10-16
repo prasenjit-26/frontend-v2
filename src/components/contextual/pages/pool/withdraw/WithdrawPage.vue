@@ -34,7 +34,7 @@ onMounted(() => resetTabs());
 </script>
 
 <template>
-  <BalCard shadow="xl" exposeOverflow noBorder>
+  <BalCard shadow="xl" exposeOverflow noBorder class="scroll-card">
     <BalStack
       horizontal
       align="center"
@@ -59,3 +59,10 @@ onMounted(() => resetTabs());
     <WithdrawForm :pool="pool" />
   </BalCard>
 </template>
+<style>
+@media (max-width: 768px) {
+  .scroll-card {
+    min-height: 80vh;
+  }
+}
+</style>
