@@ -14,7 +14,7 @@ function navigateToCreatePool() {
       <div class="m-[25px] lg:columns-2 md:columns-2 sm:columns-1">
         <div class="h-[625px] centeralign">
           <h2
-            class="font-[600] mt-[58px] headline font-montserrat text-[53px]"
+            class="font-[600] mt-[58px] headline font-montserrat sm:text-[40px] xs:text-[38px] lg:text-[53px]"
             v-text="$t('headlineText')"
           />
           <p

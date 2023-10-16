@@ -2,11 +2,13 @@
 import { ref } from 'vue';
 
 import WalletButton from '@/components/web3/WalletButton.vue';
-import { EXTERNAL_LINKS } from '@/constants/links';
+// import { EXTERNAL_LINKS } from '@/constants/links';
+import useBreakpoints from '@/composables/useBreakpoints';
 import { SupportedWallets } from '@/providers/wallet.provider';
-import LS_KEYS from '@/constants/local-storage.keys';
+// import LS_KEYS from '@/constants/local-storage.keys';
 import { useWalletHelpers } from '@/composables/useWalletHelpers';
 import { useUserAgent } from '@/composables/useUserAgent';
+import { is } from 'date-fns/locale';
 
 interface Props {
   isVisible?: boolean;
@@ -50,6 +52,7 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
 //   accepted.value = isBalRulesAccepted.value ? '0' : '1';
 //   localStorage.setItem(LS_KEYS.App.TermsAccepted, accepted.value);
 // }
+const { isDesktop } = useBreakpoints();
 </script>
 
 <template>
@@ -101,7 +104,7 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
       </template>
     </BalRadio>
   -->
-    <div class="grid grid-cols-5 gap-4">
+    <div class="grid sm:grid-cols-1 lg:grid-cols-5 xs:grid-cols-1 gap-4">
       <div class="relative col-span-2 p-[28px]">
         <p class="connectwallettext mb-[20px]">Connect Wallet</p>
         <span class="recommendedtext mt-[24px] mb-[30px]"> Recommended </span>
@@ -115,7 +118,7 @@ const isBalRulesAccepted = computed(() => accepted.value === '1');
         <div class="border-right" />
       </div>
       <div class="relative col-span-3 p-[28px]">
-        <button class="close-button" @click="emit('close')">
+        <button v-if="isDesktop" class="close-button" @click="emit('close')">
           <BalIcon name="x" size="sm" />
         </button>
         <BalStack vertical align="center" justify="center" class="h-full">
