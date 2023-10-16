@@ -50,6 +50,7 @@ const hasVebalAPR = computed((): boolean => isVeBalPool(props.pool.id));
 const totalLabel = computed((): string =>
   apr.value ? totalAprLabel(apr.value, props.pool.boost) : '0'
 );
+console.log('coming here', props);
 </script>
 
 <template v-slot:aprCell="pool">

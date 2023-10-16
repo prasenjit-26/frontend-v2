@@ -54,6 +54,7 @@ export interface Contracts {
   faucet: string;
   gaugeRewardsHelper?: string;
   omniVotingEscrow?: string;
+  reliquery?: string;
 }
 
 export interface RateProviders {

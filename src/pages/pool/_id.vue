@@ -87,6 +87,7 @@ const aprQuery = usePoolAprQuery(poolId);
 const loadingApr = computed(
   () => aprQuery.isLoading.value || Boolean(aprQuery.error.value)
 );
+console.log('aprQuery', aprQuery.data.value);
 const poolApr = computed(() => aprQuery.data.value);
 //#endregion
 
@@ -156,7 +157,10 @@ const isStakablePool = computed(
     POOLS.Stakable.VotingGaugePools.includes(poolId) ||
     POOLS.Stakable.AllowList.includes(poolId)
 );
-
+const isFarmEnabled = computed(
+  (): boolean => (POOLS && POOLS.Farms && POOLS.Farms.includes(poolId)) || false
+);
+console.log('isFarmEnabled', isFarmEnabled.value);
 const poolPremintedBptIndex = computed(() => {
   if (!pool.value) return null;
   return preMintedBptIndex(pool.value) ?? null;

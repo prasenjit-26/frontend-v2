@@ -24,6 +24,7 @@ const contracts: Contracts = {
   feeDistributorDeprecated: '',
   faucet: '',
   gaugeRewardsHelper: '',
+  reliquery: lineaTestnet.Reliquery,
 };
 
 export default contracts;

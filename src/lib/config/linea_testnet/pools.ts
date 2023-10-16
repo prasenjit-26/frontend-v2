@@ -51,6 +51,7 @@ const pools: Pools = {
   BoostedApr: [],
   DisabledJoins: [],
   Risks: {},
+  Farms: ['0xec401733428706811dc419134a72905c30c19a0800020000000000000000002b'],
 };
 
 export default pools;
