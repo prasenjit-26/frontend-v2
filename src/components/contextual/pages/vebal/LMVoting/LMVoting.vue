@@ -274,6 +274,7 @@ watch(
           type="text"
           :placeholder="$t('filterByToken')"
           size="sm"
+          :fontSize="18"
         >
           <template #prepend>
             <div class="flex items-center h-full">

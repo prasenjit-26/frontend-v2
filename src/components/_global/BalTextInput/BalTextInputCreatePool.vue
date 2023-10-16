@@ -147,7 +147,7 @@ onMounted(() => {
           v-bind="inputAttrs"
           :disabled="disabled"
           :class="[
-            'input text-[36px] font-[600] custom-text-input text-white',
+            'input sm:text-[20px] xs:text-[22px] lg:text-[28px] font-[600] custom-text-input text-white',
             inputClasses,
           ]"
           @blur="onBlur"
@@ -205,9 +205,5 @@ onMounted(() => {
 .bal-text-input-container {
   box-shadow: 0px 0px 0px 2px #8b8dfc99;
   background: #212139;
-}
-.custom-text-input {
-  font-weight: 500;
-  font-size: 28px;
 }
 </style>

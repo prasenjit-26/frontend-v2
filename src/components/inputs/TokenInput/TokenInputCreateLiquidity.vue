@@ -283,7 +283,9 @@ watch(_address, async (newAddress, oldAddress) => {
         <div
           class="flex justify-between items-center text-sm leading-none text-gray-600 dark:text-gray-400 mt-[20px] mb-[18px]"
         >
-          <div class="text-white truncate text-[16px] font-[600]">
+          <div
+            class="text-white truncate sm:text-[14px] xs:text-[12px] text-[16px] font-[600]"
+          >
             <template v-if="hasAmount && hasToken">
               <span v-if="!hideFiatValue">
                 {{ fNum(tokenValue, FNumFormats.fiat) }}
@@ -307,7 +309,10 @@ watch(_address, async (newAddress, oldAddress) => {
             <img :src="walletIcon" class="mr-1 w-4 h-4" alt="wallt Icon" />
 
             <BalLoadingBlock v-if="balanceLoading" class="mx-2 w-12 h-4" />
-            <span v-else class="mx-1 text-white text-[16px] font-[600]">
+            <span
+              v-else
+              class="mx-1 text-white sm:text-[14px] xs:text-[12px] text-[16px] font-[600]"
+            >
               {{ fNum(tokenBalance, FNumFormats.token) }}
             </span>
 

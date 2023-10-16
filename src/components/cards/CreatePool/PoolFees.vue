@@ -7,6 +7,7 @@ import { isRequired, isValidAddress } from '@/lib/utils/validations';
 import useWeb3 from '@/services/web3/useWeb3';
 import { shorten } from '@/lib/utils';
 import useNetwork from '@/composables/useNetwork';
+import useBreakpoints from '@/composables/useBreakpoints';
 
 const emit = defineEmits(['update:height']);
 
@@ -136,13 +137,14 @@ async function onChangeFeeController(val: string) {
     height: cardWrapper.value?.offsetHeight || 0,
   });
 }
-
+const { isDesktop } = useBreakpoints();
 watch(fee, onCustomInput, { immediate: true });
 </script>
 
 <template>
   <div ref="cardWrapper" class="flex">
     <button
+      v-if="isDesktop"
       class="flex text-blue-500 hover:text-blue-700 mr-[25px] back-button"
       @click="goBack"
     >

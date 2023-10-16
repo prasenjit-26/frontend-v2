@@ -43,7 +43,7 @@ const { getToken, tokens, balances } = useTokens();
 const { account } = useWeb3();
 const { veBalTokenInfo } = useVeBal();
 const { t } = useI18n();
-const { upToMediumBreakpoint } = useBreakpoints();
+const { upToMediumBreakpoint, isMobile } = useBreakpoints();
 
 /**
  * COMPUTED
@@ -113,7 +113,15 @@ function onClick() {
 <template>
   <div>
     <div class="flex flex-wrap gap-x-6 gap-y-3 items-stretch">
+      <BalIcon
+        v-if="isMobile"
+        name="search"
+        size="lg"
+        class="w-[30px]"
+        @click="onClick"
+      />
       <BalBtn
+        v-else
         color="white"
         class="filter-button"
         size="sm"
@@ -137,7 +145,7 @@ function onClick() {
         </BalChip>
       </div>
       <TokenSearchInputSelectTokens
-        v-if="selectableTokensAddresses.length"
+        v-if="selectableTokensAddresses.length && !isMobile"
         :label="selectTokensLabel"
         :addresses="selectableTokensAddresses"
         @click="address => addToken(address)"

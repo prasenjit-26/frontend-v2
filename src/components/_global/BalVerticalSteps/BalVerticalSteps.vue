@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { StepState } from '@/types';
+import useBreakpoints from '@/composables/useBreakpoints';
 
 type Props = {
   title: string | null;
@@ -24,7 +25,7 @@ const visibleSteps = computed(() => {
     step => step.isVisible === undefined || step.isVisible
   );
 });
-
+const { upToLargeBreakpoint, isDesktop } = useBreakpoints();
 const stepTextClasses = computed(() => {
   return visibleSteps.value.map(step => {
     return getActiveClassName(step.state, [
@@ -76,13 +77,21 @@ const stepCircleClasses = computed(() => {
  * METHODS
  */
 function handleNavigate(state: StepState, stepIndex: number) {
-  if (state === StepState.Todo) return;
-  emit('navigate', stepIndex);
+  if (isDesktop) {
+    if (state === StepState.Todo) return;
+    emit('navigate', stepIndex);
+  } else {
+    if (stepIndex > 0 && stepIndex < props.steps.length) {
+      if (props.steps[stepIndex].state === StepState.Todo) return;
+      emit('navigate', stepIndex);
+    }
+  }
 }
 
 function getActiveClassName<T>(state: T, classes: [T, string][]) {
   return (classes.find(_class => _class[0] === state) || [])[1] || '';
 }
+console.log('visibleSteps', visibleSteps);
 </script>
 
 <template>
@@ -92,7 +101,13 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
         {{ title }}
       </h6>
     </div>
-    <BalStack horizontal spacing="base" class="p-4" justify="center">
+    <BalStack
+      v-if="isDesktop"
+      horizontal
+      spacing="base"
+      class="p-4 w-full"
+      justify="center"
+    >
       <div
         v-for="(step, i) in visibleSteps"
         :key="`vertical-step-${step.tooltip}`"
@@ -131,6 +146,68 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
             <div :class="horizontalRowClasses[i]" />
           </BalStack>
         </button>
+      </div>
+    </BalStack>
+    <BalStack
+      v-else
+      horizontal
+      spacing="base"
+      class="p-4 w-full"
+      justify="center"
+    >
+      <div class="w-full">
+        <div
+          v-for="(step, i) in visibleSteps"
+          :key="`vertical-step-${step.tooltip}`"
+          class="flex items-center"
+        >
+          <div
+            v-if="step.state === 1"
+            class="flex justify-between items-center w-full"
+          >
+            <div
+              class="icon-conatainer"
+              @click="handleNavigate(step.state, i - 1)"
+            >
+              <BalIcon name="chevron-left" />
+            </div>
+            <button @click="handleNavigate(step.state, i)">
+              <BalStack vertical align="center" spacing="sm">
+                <div
+                  :class="[
+                    'rounded-full w-[30px] h-[30px] flex justify-center items-center',
+                    stepCircleClasses[i],
+                    { 'circle-line': i !== visibleSteps.length - 1 },
+                  ]"
+                >
+                  <!-- <span
+                v-if="
+                  ![StepState.Warning, StepState.Error].includes(step.state)
+                "
+                >{{ step.label || i + 1 }}</span
+              > -->
+                  <span
+                    v-if="
+                      ![StepState.Warning, StepState.Error].includes(step.state)
+                    "
+                    class="text-[12px]"
+                    >{{ step.label || i + 1 }}</span
+                  >
+                  <span v-else class="font-semibold">!</span>
+                </div>
+                <span class="text-[16px] font-[600] mt-[14px] mb-[14px]">
+                  {{ step.tooltip }}
+                </span>
+              </BalStack>
+            </button>
+            <div
+              class="icon-conatainer"
+              @click="handleNavigate(step.state, i + 1)"
+            >
+              <BalIcon name="chevron-right" />
+            </div>
+          </div>
+        </div>
       </div>
     </BalStack>
   </BalCard>
@@ -175,5 +252,13 @@ function getActiveClassName<T>(state: T, classes: [T, string][]) {
   border-radius: 28px;
   height: 12px;
   width: 300px;
+}
+.icon-conatainer {
+  border-radius: 6px;
+  padding: 5px;
+  background: #14132c;
+  box-shadow: 0px 2px 9px 4px rgba(6, 6, 6, 0.15) inset,
+    0px 0px 0px 2px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 4px rgba(139, 141, 252, 0.25);
 }
 </style>

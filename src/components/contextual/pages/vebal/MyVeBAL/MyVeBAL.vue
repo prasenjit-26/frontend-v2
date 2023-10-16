@@ -18,7 +18,14 @@ const {
   totalLockedValue,
 } = useLock();
 const { isWalletReady } = useWeb3();
-
+console.log('check', {
+  isLoadingLockPool: isLoadingLockPool.value,
+  isLoadingLockInfo: isLoadingLockInfo.value,
+  lockPool: lockPool.value,
+  lockPoolToken: lockPoolToken.value,
+  lock: lock.value,
+  totalLockedValue: totalLockedValue.value,
+});
 /**
  * COMPUTED
  */

@@ -20,7 +20,7 @@ const { lockPool, lock } = useLock();
 </script>
 
 <template>
-  <div>
+  <div class="pl-[24px] pr-[24px]">
     <PortfolioPageHero />
     <div class="xl:container xl:px-4 pt-10 md:pt-12 xl:mx-auto">
       <BalStack vertical>

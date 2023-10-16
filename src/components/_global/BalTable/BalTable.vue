@@ -259,7 +259,9 @@ watch(
                 :name="column.Header"
               />
               <div v-else>
-                <span class="font-medium text-[20px] font-[500]">
+                <span
+                  class="font-medium xs:text-[12px] sm:text-[16px] text-[20px] font-[500]"
+                >
                   {{ column.name }}
                 </span>
               </div>

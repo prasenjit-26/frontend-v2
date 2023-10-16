@@ -35,7 +35,7 @@ const { networkId, getNetworkSlug } = useNetwork();
         color="gradient"
         @click="
           $router.push({
-            name: 'vebal',
+            name: 'slChimp',
             params: { networkSlug: getNetworkSlug(Network.MAINNET) },
           })
         "

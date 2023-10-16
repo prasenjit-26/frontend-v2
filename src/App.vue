@@ -9,7 +9,7 @@ import useWeb3Watchers from '@/composables/watchers/useWeb3Watchers';
 import { DEFAULT_TOKEN_DECIMALS } from '@/constants/tokens';
 import useWeb3 from '@/services/web3/useWeb3';
 
-import GlobalModalContainer from './components/modals/GlobalModalContainer.vue';
+// import GlobalModalContainer from './components/modals/GlobalModalContainer.vue';
 import AppSidebar from './components/navs/AppNav/AppSidebar/AppSidebar.vue';
 import SanctionedWalletModal from './components/web3/SanctionedWalletModal.vue';
 import useBackgroundColor from './composables/useBackgroundColor';
@@ -119,5 +119,5 @@ watch(route, newRoute => {
     <AppSidebar v-if="sidebarOpen" />
     <Notifications />
   </div>
-  <GlobalModalContainer />
+  <!-- <GlobalModalContainer /> -->
 </template>

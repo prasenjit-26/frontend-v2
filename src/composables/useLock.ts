@@ -29,7 +29,6 @@ export function useLock({ enabled = true }: Options = {}) {
     shouldFetchLockPool
   );
   const { lockQuery } = useUserData();
-
   /**
    * COMPUTED
    */

@@ -152,10 +152,10 @@ function symbolFor(titleTokenIndex: number): string {
       <div
         v-for="({ address, weight }, i) in titleTokens"
         :key="i"
-        class="flex items-center mt-2 mr-2 h-[46px] p-[12px] assets-container"
+        class="flex items-center mt-2 mr-2 h-[46px] p-[12px] xs:p-[7px] sm:p-[7px] assets-container"
       >
         <BalAsset :address="address" />
-        <span class="ml-2 text-[16px] font-[500]">
+        <span class="ml-2 xs:text-[10px] sm:text-[12px] text-[16px] font-[500]">
           {{ symbolFor(i) }}
         </span>
         <span
@@ -191,7 +191,10 @@ function symbolFor(titleTokenIndex: number): string {
       </BalLink>
     </div>
     <div class="flex items-center mt-2">
-      <div class="mr-1 text-[16px] font-[400]" v-html="poolFeeLabel" />
+      <div
+        class="mr-1 xs:text-[12px] sm:text-[14px] text-[16px] font-[400]"
+        v-html="poolFeeLabel"
+      />
       <BalTooltip>
         <template #activator>
           <BalLink
@@ -326,7 +329,7 @@ function symbolFor(titleTokenIndex: number): string {
 </template>
 <style scoped>
 .pool-title {
-  @apply mr-4 mb-[20px] capitalize mt-2 text-[36px] font-[500];
+  @apply mr-4 mb-[20px] capitalize mt-2 xs:text-[24px] sm:text-[28px] md:text-[30px] text-[36px]   font-[500];
 
   font-variation-settings: 'wght' 700;
 }

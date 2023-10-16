@@ -5,6 +5,7 @@ import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { useTokens } from '@/providers/tokens.provider';
 import useVeBal from '@/composables/useVeBAL';
 import { bnum } from '@/lib/utils';
+import useBreakpoints from '@/composables/useBreakpoints';
 
 import SwapPairToggle from './SwapPairToggle.vue';
 
@@ -158,6 +159,7 @@ onMounted(() => {
     handleOutAmountChange(props.tokenOutAmount);
   }
 });
+const { isDesktop } = useBreakpoints();
 </script>
 
 <template>
@@ -170,6 +172,7 @@ onMounted(() => {
       :excludedTokens="veBalTokenInfo ? [veBalTokenInfo.address] : []"
       :ignoreWalletBalance="swapLoading"
       autoFocus
+      :fontSize="isDesktop ? 36 : 20"
       @update:amount="handleInAmountChange"
       @update:address="handleInputTokenChange"
       @input="emit('update:exactIn', true)"
@@ -195,6 +198,7 @@ onMounted(() => {
       :priceImpact="priceImpact"
       noRules
       noMax
+      :fontSize="isDesktop ? 36 : 20"
       disableNativeAssetBuffer
       :excludedTokens="veBalTokenInfo ? [veBalTokenInfo.address] : []"
       @update:amount="handleOutAmountChange"

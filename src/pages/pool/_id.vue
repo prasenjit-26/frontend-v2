@@ -185,7 +185,7 @@ watch(
 </script>
 
 <template>
-  <div class="xl:container lg:px-4 pt-8 xl:mx-auto">
+  <div class="xl:container lg:px-4 pt-8 xl:mx-auto ml-[24px] mr-[24px]">
     <div
       class="grid grid-cols-1 lg:grid-cols-3 gap-x-0 lg:gap-x-4 xl:gap-x-8 gap-y-8"
     >
@@ -236,7 +236,7 @@ watch(
           </div>
           <div class="mb-4">
             <h3
-              class="px-4 lg:px-0 mb-3 font-[500]"
+              class="px-4 lg:px-0 mb-3 xs:text-[18px] sm:text-[18px] font-[500]"
               v-text="$t('poolComposition.title')"
             />
             <BalLoadingBlock v-if="loadingPool" class="h-64" />

@@ -126,7 +126,6 @@ export default defineComponent({
 .bal-card {
   @apply flex flex-col;
 }
-
 .card-container {
   @apply flex flex-col;
 }

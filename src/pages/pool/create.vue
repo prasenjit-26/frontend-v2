@@ -13,7 +13,7 @@ import PreviewPool from '@/components/cards/CreatePool/PreviewPool.vue';
 import SimilarPools from '@/components/cards/CreatePool/SimilarPools.vue';
 import SimilarPoolsCompact from '@/components/cards/CreatePool/SimilarPoolsCompact.vue';
 import TokenPrices from '@/components/cards/CreatePool/TokenPrices.vue';
-import Col3Layout from '@/components/layouts/Col3Layout.vue';
+// import Col3Layout from '@/components/layouts/Col3Layout.vue';
 import UnknownTokenPriceModal from '@/components/modals/UnknownTokenPrice/UnknownTokenPriceModal.vue';
 import usePoolCreation, {
   POOL_CREATION_STATE_KEY,
@@ -51,7 +51,7 @@ const {
 } = usePoolCreation();
 const { removeAlert } = useAlerts();
 const { t } = useI18n();
-const { upToLargeBreakpoint } = useBreakpoints();
+const { upToLargeBreakpoint, isDesktop } = useBreakpoints();
 const { priceFor, getToken, injectTokens, injectedPrices } = useTokens();
 const route = useRoute();
 const { isWalletReady } = useWeb3();
@@ -210,8 +210,10 @@ watch(
 
 <template>
   <div>
-    <div class="flex flex-col justify-center items-center">
-      <div class="w-fit">
+    <div
+      class="flex flex-col justify-center items-center sm:mr-[25px] xs:mr-[25px] sm:ml-[25px] xs:ml-[25px]"
+    >
+      <div class="sm:w-full xs:w-full lg:w-fit">
         <div class="flex items-center w-full mb-[40px]">
           <BalBtn
             class="back-button"
@@ -229,7 +231,7 @@ watch(
             </span>
           </div>
         </div>
-        <div class="create-layout">
+        <div class="sm:w-full xs:w-full lg:w-fit create-layout">
           <div>
             <div v-if="!upToLargeBreakpoint" class="col-span-3">
               <BalStack vertical noBorder>
@@ -249,11 +251,32 @@ watch(
                 </AnimatePresence>
               </BalStack>
             </div>
+            <div v-else>
+              <BalStack vertical noBorder>
+                <!-- <BalHorizontalStep :steps="steps" @navigate="handleNavigate" /> -->
+                <BalVerticalSteps
+                  title=""
+                  :steps="steps"
+                  @navigate="handleNavigate"
+                />
+                <AnimatePresence
+                  :isVisible="
+                    doSimilarPoolsExist &&
+                    activeStep === 0 &&
+                    !!validTokens.length
+                  "
+                >
+                  <SimilarPoolsCompact />
+                </AnimatePresence>
+              </BalStack>
+            </div>
           </div>
           <div class="flex flex-row w-full">
-            <div class="flex flex-1 justify-start" />
-            <div class="flex justify-center max-w-[500px]">
-              <div class="relative center-col-mh">
+            <div v-if="isDesktop" class="flex flex-1 justify-start" />
+            <div
+              class="flex justify-center sm:w-full xs:w-full lg:max-w-[500px]"
+            >
+              <div class="relative sm:w-full xs:w-full center-col-mh">
                 <BalAlert
                   v-if="!!hasRestoredFromSavedState"
                   type="warning"
@@ -303,7 +326,7 @@ watch(
                 </div>
               </div>
             </div>
-            <div class="flex flex-1 justify-end mt-[25px] mr-[25px]">
+            <div class="flex flex-1 justify-end mt-[25px] lg:mr-[25px]">
               <div
                 v-if="!upToLargeBreakpoint"
                 class="w-full ml-[45px] pool-summary-container max-w-[300px]"
@@ -318,68 +341,6 @@ watch(
               </div>
             </div>
           </div>
-          <!-- <Col3Layout offsetGutters mobileHideGutters class="mt-8">
-            <div class="relative center-col-mh">
-              <BalAlert
-                v-if="!!hasRestoredFromSavedState"
-                type="warning"
-                class="mb-4"
-                :title="$t('createAPool.recoveredState')"
-              >
-                {{ $t('createAPool.recoveredStateInfo') }}
-
-                {{ $t('wantToStartOverInstead') }}
-                <button
-                  class="font-semibold text-blue-500"
-                  @click="handleReset"
-                >
-                  {{ $t('clearForms') }}
-                </button>
-              </BalAlert>
-
-              <BalLoadingBlock v-if="isLoading" class="h-64" />
-              <ChooseWeights
-                v-else-if="activeStep === 0 && !hasRestoredFromSavedState"
-              />
-              <PoolFees v-else-if="activeStep === 1" />
-              <SimilarPools
-                v-else-if="activeStep === 2 && similarPools.length > 0"
-              />
-              <InitialLiquidity v-else-if="!isLoading && activeStep === 3" />
-              <PreviewPool v-else-if="activeStep === 4" />
-
-              <div v-if="upToLargeBreakpoint" class="pb-24">
-                <BalAccordion
-                  :dependencies="validTokens"
-                  :sections="[
-                    { title: t('createAPool.poolSummary'), id: 'pool-summary' },
-                    { title: t('tokenPrices'), id: 'token-prices' },
-                  ]"
-                >
-                  <template #pool-summary>
-                    <PoolSummary />
-                  </template>
-                  <template #token-prices>
-                    <TokenPrices />
-                  </template>
-                </BalAccordion>
-              </div>
-            </div>
-            <template #gutterRight>
-              <div
-                v-if="!upToLargeBreakpoint"
-                class="col-span-11 lg:col-span-3 pool-summary-container"
-              >
-                <BalStack vertical spacing="base">
-                  <PoolSummary />
-                  <TokenPrices
-                    v-if="validTokens.length > 0"
-                    :toggleUnknownPriceModal="showUnknownTokenModal"
-                  />
-                </BalStack>
-              </div>
-            </template>
-          </Col3Layout> -->
         </div>
       </div>
     </div>
@@ -401,14 +362,13 @@ watch(
   box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
     0px 0px 0px 10px rgba(139, 141, 252, 0.25),
     0px 0px 149px -46px rgba(139, 141, 252, 0.8);
-  width: fit-content;
 }
 .dark .create-layout {
-  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
-    0px 0px 149px -46px #8b8dfccc;
+  box-shadow: 0px 0px 0px 2px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 4px rgba(139, 141, 252, 0.25),
+    0px 0px 149px -92px rgba(139, 141, 252, 0.8);
   background: #16162d;
   border-radius: 12px;
-  width: fit-content;
 }
 .dark .pool-summary-container {
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
@@ -429,5 +389,13 @@ watch(
   padding: 12px;
   border-radius: 12px;
   background: transparent !important;
+}
+@media (max-width: 768px) {
+  .create-layout {
+    box-shadow: none;
+  }
+  .dark .create-layout {
+    box-shadow: none;
+  }
 }
 </style>

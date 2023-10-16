@@ -103,7 +103,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="custom-percentage-input-container">
+  <div
+    class="custom-percentage-input-container sm:w-[60px] xs:w-[60px] lg:w-[100px]"
+  >
     <input
       ref="textInput"
       :type="type"
@@ -111,14 +113,16 @@ onMounted(() => {
       :value="modelValue"
       v-bind="inputAttrs"
       :disabled="disabled"
-      :class="['custom-percentage-input text-right text-[16px]']"
+      :class="[
+        'custom-percentage-input text-right sm:text-[11px] xs:text-[13px] lg:text-[18px]',
+      ]"
       @blur="onBlur"
       @input="onInput"
       @keydown="onKeydown"
       @click="onClick"
       @focus="onFocus"
     />
-    <span class="ml-[5px]">%</span>
+    <span class="ml-[5px] sm:text-[11px] xs:text-[13px] lg:text-[18px]">%</span>
   </div>
 </template>
 
@@ -154,7 +158,6 @@ onMounted(() => {
 .custom-percentage-input {
   background: transparent;
   width: 100%;
-  font-size: 18px;
 }
 .custom-percentage-input::placeholder {
   font-size: 18px;
@@ -164,7 +167,6 @@ onMounted(() => {
   padding: 11px 16px 11px 16px;
   border-radius: 12px;
   background: #282853;
-  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,11 +178,21 @@ onMounted(() => {
   background: #acb0ff;
   padding: 11px 16px 11px 16px;
   border-radius: 12px;
-  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;
   font-size: 18px;
+}
+@media (max-width: 768px) {
+  .custom-percentage-input::placeholder {
+    font-size: 13px;
+  }
+  .dark .custom-percentage-input-container {
+    padding: 11px 5px 11px 5px;
+  }
+  .custom-percentage-input-container {
+    padding: 11px 5px 11px 5px;
+  }
 }
 </style>

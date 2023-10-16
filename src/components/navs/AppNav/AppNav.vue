@@ -20,7 +20,7 @@ const appNav = ref<HTMLDivElement>();
 /**
  * COMPOSABLES
  */
-const { bp, isDesktop } = useBreakpoints();
+const { isMobile, isDesktop } = useBreakpoints();
 const { trackGoal, Goals } = useFathom();
 const { currentAlert } = useAlerts();
 const { networkSlug } = useNetwork();
@@ -54,17 +54,15 @@ onUnmounted(() => {
   <AppNavAlert v-if="currentAlert" :alert="currentAlert" />
   <nav id="app-nav" ref="appNav" class="top-0 lg:px-6 pr-1 pl-4 pt-[50px]">
     <div class="flex justify-between items-center">
-      <!-- <div class="flex items-center h-full"> -->
       <router-link
         :to="{ name: 'home', params: { networkSlug } }"
         @click="trackGoal(Goals.ClickNavLogo)"
       >
-        <AppIcon v-if="['xs', 'sm'].includes(bp)" />
+        <AppIcon v-if="isMobile" />
         <AppLogo v-else />
       </router-link>
 
       <DesktopLinks v-if="isDesktop" class="ml-8 font-medium" />
-      <!-- </div> -->
 
       <AppNavActions />
     </div>

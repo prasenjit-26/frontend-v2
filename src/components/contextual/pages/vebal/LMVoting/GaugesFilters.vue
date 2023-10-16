@@ -65,7 +65,7 @@ function updateNetwork(network: number) {
 <template>
   <BalPopover noPad class="flex-0">
     <template #activator>
-      <BalBtn class="flex-1 h-full" color="white" size="sm">
+      <BalBtn class="flex-1 h-full more-filters" color="white" size="sm">
         <BalIcon
           name="filter"
           size="lg"
@@ -118,3 +118,19 @@ function updateNetwork(network: number) {
     </div>
   </BalPopover>
 </template>
+<style>
+.dark .more-filters {
+  border-radius: 12px;
+  background: rgba(217, 217, 217, 0.08);
+  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 8px rgba(139, 141, 252, 0.25),
+    0px 2px 9px 4px rgba(6, 6, 6, 0.15) inset;
+}
+.more-filters {
+  border-radius: 12px;
+  background: rgba(217, 217, 217, 0.08);
+  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 8px rgba(139, 141, 252, 0.25),
+    0px 2px 9px 4px rgba(6, 6, 6, 0.15) inset;
+}
+</style>

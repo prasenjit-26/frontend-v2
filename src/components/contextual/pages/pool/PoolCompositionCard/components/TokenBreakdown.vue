@@ -93,7 +93,7 @@ function symbolFor(token: PoolToken): string {
         "
       />
       <span
-        class="group-hover:text-purple-500 dark:group-hover:text-yellow-500 transition-colors text-[20px] font-[500]"
+        class="group-hover:text-purple-500 dark:group-hover:text-yellow-500 transition-colors xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px] font-[500]"
         >{{ symbolFor(token) }}</span
       >
       <BalIcon

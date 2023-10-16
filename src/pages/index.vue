@@ -44,7 +44,7 @@ const { pools, isLoading, poolsIsFetchingNextPage, loadMorePools } = usePools(
   selectedTokens,
   poolsSortField
 );
-const { upToMediumBreakpoint } = useBreakpoints();
+const { upToMediumBreakpoint, isMobile } = useBreakpoints();
 const { networkSlug, networkConfig } = useNetwork();
 
 const isPaginated = computed(() => pools.value.length >= 10);
@@ -69,23 +69,20 @@ function onColumnSort(columnId: string) {
       <BalStack vertical>
         <div class="px-4 xl:px-0 mb-[40px]">
           <div class="flex justify-between items-end mb-[30px] mr-[20px]">
-            <h3>
+            <h3 class="whitespace-nowrap">
               {{ networkConfig.chainName }}
               <span class="lowercase">{{ $t('pools') }}</span>
             </h3>
-            <BalBtn
-              v-if="upToMediumBreakpoint"
-              color="blue"
-              size="sm"
-              outline
-              :class="{ 'mt-4': upToMediumBreakpoint }"
-              @click="navigateToCreatePool"
-            >
-              {{ $t('createAPool.title') }}
-            </BalBtn>
+            <TokenSearchInput
+              v-if="isMobile"
+              v-model="selectedTokens"
+              @add="addSelectedToken"
+              @remove="removeSelectedToken"
+            />
           </div>
 
           <div
+            v-if="!isMobile"
             class="flex flex-col md:flex-row justify-between items-end lg:items-center w-full"
           >
             <TokenSearchInput

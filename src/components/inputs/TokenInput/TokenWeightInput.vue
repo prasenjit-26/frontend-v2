@@ -228,4 +228,14 @@ watchEffect(() => {
 .color-brand {
   color: #6162b2;
 }
+@media (max-width: 768px) {
+  .dark .brand-icon-container {
+    width: 35px;
+    height: 35px;
+  }
+  .brand-icon-container {
+    width: 35px;
+    height: 35px;
+  }
+}
 </style>

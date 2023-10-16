@@ -46,6 +46,7 @@ type Props = {
   placeholder?: string;
   tokenSelectProps?: Partial<TokenSelectProps>;
   slider?: boolean;
+  fontSize?: number;
   sliderProps?: Partial<BalRangeInputProps>;
 };
 
@@ -254,6 +255,7 @@ watch(_address, async (newAddress, oldAddress) => {
     step="any"
     spellcheck="false"
     v-bind="$attrs"
+    :fontSize="fontSize"
     @blur="emit('blur', $event)"
     @focus="emit('focus', $event)"
     @input="emit('input', $event)"

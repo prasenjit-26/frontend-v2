@@ -91,7 +91,10 @@ const title = computed((): string => {
 <template>
   <div class="mb-5">
     <div>
-      <h3 class="px-4 lg:px-0 mb-3 text-[32px] font-[500]" v-text="title" />
+      <h3
+        class="px-4 lg:px-0 mb-3 xs:text-[18px] sm:text-[22px] text-[32px] font-[500]"
+        v-text="title"
+      />
       <div
         class="flex justify-between items-end mx-4 lg:mx-0 mb-6 border-b dark:border-gray-900"
       >

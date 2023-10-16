@@ -40,31 +40,35 @@ const blockIcon = ref<HTMLDivElement>();
 const navLinks = [
   { label: t('pool'), path: '/', goal: Goals.ClickNavPools },
   { label: t('swap'), path: `/${networkSlug}/swap`, goal: Goals.ClickNavSwap },
-  {
-    label: t('claim'),
-    path: `/${networkSlug}/claim`,
-    goal: Goals.ClickNavClaim,
-  },
+  // {
+  //   label: t('claim'),
+  //   path: `/${networkSlug}/claim`,
+  //   goal: Goals.ClickNavClaim,
+  // },
   {
     label: t('portfolio'),
     path: `/${networkSlug}/portfolio`,
     goal: Goals.ClickNavPortfolio,
   },
-  { label: 'veBAL', path: `/${networkSlug}/vebal`, goal: Goals.ClickNavVebal },
+  // {
+  //   label: 'slChimp',
+  //   path: `/${networkSlug}/slChimp`,
+  //   goal: Goals.ClickNavVebal,
+  // },
 ];
 
-const ecosystemLinks = [
-  { label: t('build'), url: 'https://balancer.fi/build' },
-  { label: t('blog'), url: 'https://medium.com/balancer-protocol' },
-  { label: t('docs'), url: 'https://docs.balancer.fi/' },
-  { label: t('governance'), url: 'https://vote.balancer.fi/#/' },
-  { label: t('analytics'), url: 'https://dune.xyz/balancerlabs' },
-  { label: t('forum'), url: 'https://forum.balancer.fi/' },
-  {
-    label: t('grants'),
-    url: 'http://grants.balancer.community',
-  },
-];
+// const ecosystemLinks = [
+//   { label: t('build'), url: 'https://balancer.fi/build' },
+//   { label: t('blog'), url: 'https://medium.com/balancer-protocol' },
+//   { label: t('docs'), url: 'https://docs.balancer.fi/' },
+//   { label: t('governance'), url: 'https://vote.balancer.fi/#/' },
+//   { label: t('analytics'), url: 'https://dune.xyz/balancerlabs' },
+//   { label: t('forum'), url: 'https://forum.balancer.fi/' },
+//   {
+//     label: t('grants'),
+//     url: 'http://grants.balancer.community',
+//   },
+// ];
 
 const socialLinks = {
   TwitterIcon: {
@@ -116,13 +120,7 @@ watch(blockNumber, async () => {
 
 <template>
   <div class="opacity-0 fade-in-delay">
-    <div
-      class="flex flex-col justify-center px-4 h-20 border-b border-gray-800"
-    >
-      <AppLogo forceDark />
-    </div>
-
-    <div class="grid mt-2 text-lg grid-col-1">
+    <div class="grid mt-2 text-lg grid-col-1 mt-[70px]">
       <div
         v-for="link in navLinks"
         :key="link.label"
@@ -133,7 +131,7 @@ watch(blockNumber, async () => {
       </div>
     </div>
 
-    <div class="grid mt-5 text-sm grid-col-1">
+    <!-- <div class="grid mt-5 text-sm grid-col-1">
       <span class="px-4 pb-1 font-medium text-secondary">Ecosystem</span>
       <BalLink
         v-for="link in ecosystemLinks"
@@ -146,7 +144,7 @@ watch(blockNumber, async () => {
         {{ link.label }}
         <BalIcon name="arrow-up-right" size="sm" class="ml-1 text-secondary" />
       </BalLink>
-    </div>
+    </div> -->
 
     <div class="px-4 mt-6">
       <div class="mt-2 side-bar-btn" @click="toggleDarkMode">
@@ -156,24 +154,32 @@ watch(blockNumber, async () => {
       </div>
     </div>
 
-    <div class="grid grid-rows-1 grid-flow-col auto-cols-min gap-2 px-4 mt-4">
-      <BalLink
-        v-for="(link, componentName) in socialLinks"
-        :key="componentName"
-        :href="link.url"
-        class="social-link"
-        noStyle
-        external
+    <div class="flex justify-center items-center px-4 mt-4">
+      <a
+        href="https://twitter.com/ChimpExchange"
+        target="_blank"
+        class="w-[40px] h-[40px] mr-[12px]"
       >
-        <component :is="getSocialComponent(componentName)" />
-      </BalLink>
-      <BalLink
-        href="mailto:contact@balancer.finance"
-        class="social-link"
-        noStyle
+        <img src="~@/assets/images/Twitter.png" alt="twitter" width="40px" />
+      </a>
+      <a
+        href="https://www.linkedin.com/company/chimp-exchange/"
+        target="_blank"
+        class="w-[40px] h-[40px] mr-[12px]"
       >
-        <EmailIcon />
-      </BalLink>
+        <img src="~@/assets/images/Linkedin.png" alt="twitter" width="40px" />
+      </a>
+      <a
+        href="https://discord.com/invite/EVFY8VhJkf"
+        target="_blank"
+        class="w-[40px] h-[40px] mr-[12px]"
+      >
+        <img
+          src="~@/assets/images/discord-mark-blue.png"
+          alt="twitter"
+          width="40px"
+        />
+      </a>
     </div>
 
     <div class="px-4 mt-6 text-xs">
@@ -202,6 +208,11 @@ watch(blockNumber, async () => {
 <style scoped>
 .side-bar-link {
   @apply transition duration-300 p-4 py-1.5 hover:bg-gray-850 cursor-pointer;
+  text-align: right;
+  font-family: Montserrat Alternates;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 27px;
 }
 
 .side-bar-btn {

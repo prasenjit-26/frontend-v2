@@ -72,10 +72,10 @@ const veBalBalanceTooltip = computed(() => {
   <div
     class="md:container flex justify-center items-center md:mx-auto w-full mt-[50px]"
   >
-    <div class="balance-container">
+    <div class="balance-container sm:p-[28px] xs:p-[24px] xl:p-[50px]">
       <div class="flex justify-between items-center w-full">
         <h1
-          class="text-white text-[32px] font-[600]"
+          class="text-white xs:text-[14px] sm:text-[20px] xl:text-[32px] font-[600]"
           v-text="$t('myBalancerBalance')"
         />
 
@@ -85,7 +85,10 @@ const veBalBalanceTooltip = computed(() => {
             class="mx-auto w-40 h-10"
             white
           />
-          <div v-else class="text-white text-[32px] font-[600]">
+          <div
+            v-else
+            class="text-white xs:text-[14px] sm:text-[20px] xl:text-[32px] font-[600]"
+          >
             {{ totalInvestedLabel }}
           </div>
         </template>
@@ -131,11 +134,12 @@ const veBalBalanceTooltip = computed(() => {
   border-bottom-right-radius: 8px;
 }
 .dark .balance-container {
-  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
-    0px 0px 149px -46px #8b8dfccc;
+  box-shadow: 0px 0px 0px 2px rgba(139, 141, 252, 0.6),
+    0px 0px 0px 4px rgba(139, 141, 252, 0.25),
+    0px 0px 89.4px -27.6px rgba(139, 141, 252, 0.8);
+
   background: #161627;
   border-radius: 20px;
-  padding: 50px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -149,7 +153,6 @@ const veBalBalanceTooltip = computed(() => {
   box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
     0px 0px 0px 10px rgba(139, 141, 252, 0.25),
     0px 0px 149px -46px rgba(139, 141, 252, 0.8);
-  padding: 50px;
   display: flex;
   justify-content: center;
   flex-direction: column;

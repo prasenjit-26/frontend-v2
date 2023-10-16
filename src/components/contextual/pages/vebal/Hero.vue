@@ -3,9 +3,9 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
-import coin1 from '@/assets/images/coins/coins-1.png';
-import coin2 from '@/assets/images/coins/coins-2.png';
-import coin3 from '@/assets/images/coins/coins-3.png';
+import coin1 from '@/assets/images/chimpLogo1.png';
+import coin2 from '@/assets/images/chimpLogo2.png';
+import coin3 from '@/assets/images/chimpLogo3.png';
 
 /**
  * COMPOSABLES
@@ -27,9 +27,9 @@ const benefits = computed(() => [
  */
 function navigateToGetVeBAL() {
   router.push({
-    name: 'get-vebal',
+    name: 'get-slChimp',
     query: {
-      returnRoute: 'vebal',
+      returnRoute: 'slChimp',
     },
   });
 }
@@ -39,23 +39,32 @@ function navigateToGetVeBAL() {
   <div class="hero-container">
     <div class="hero-content">
       <div
-        class="py-8 lg:py-4 px-4 lg:px-8 2xl:px-0 xl:pt-0 max-w-md hero-text"
+        class="py-8 lg:py-4 px-4 lg:px-8 2xl:px-0 xl:pt-0 max-w-xl hero-text"
       >
-        <p class="font-medium eyebrow">veBAL</p>
-        <h1 class="mb-5 text-white title">
+        <p
+          class="font-medium sm:text-center lg:text-left xs:text-center eyebrow"
+        >
+          slCHIMP
+        </p>
+        <h1
+          class="mb-5 sm:text-center lg:text-left xs:text-center text-black dark:text-white title lg:text-[48px] sm:text-[30px] sm:text-[28px]"
+        >
           {{ $t('veBAL.hero.title') }}
         </h1>
         <ul>
           <li
             v-for="(benefit, i) in benefits"
             :key="i"
-            class="flex items-center mb-2 text-white"
+            class="flex sm:justify-center lg:justify-start xs:justify-center items-center mb-2 text-center sm:text-center lg:text-left xs:text-center text-black dark:text-white bullet-points lg:text-[24px] sm:text-[16px] sm:text-[14px]"
           >
             – {{ benefit }}
           </li>
         </ul>
         <div class="flex mt-6">
-          <BalBtn class="mr-3 hero-btn btn-gold" @click="navigateToGetVeBAL">
+          <BalBtn
+            class="mr-3 btn-gold min-w-[140px]"
+            @click="navigateToGetVeBAL"
+          >
             {{ $t('veBAL.hero.buttons.getVeBAL') }}
           </BalBtn>
           <BalBtn
@@ -76,70 +85,22 @@ function navigateToGetVeBAL() {
           </BalBtn>
         </div>
       </div>
-      <div class="coins">
-        <div class="group coin">
-          <div class="w-full coin-wrapper">
-            <BalImage
-              class="graphic"
-              width="330"
-              height="377"
-              :src="coin1"
-              alt="BAL and WETH tokens"
-            />
-          </div>
-          <div class="font-semibold caption">
-            <p
-              class="inline mr-1 text-sm lg:text-base tracking-tighter lg:tracking-normal"
-            >
-              {{ $t('veBAL.hero.tokens.balWETH') }}
-            </p>
-            <BalTooltip iconSize="xs" textAlign="left" class="mt-1 font-medium">
-              {{ $t('veBAL.hero.tokenInfo.balWETH') }}
-            </BalTooltip>
-          </div>
-        </div>
-        <div class="group coin">
-          <div class="coin-wrapper">
-            <BalImage
-              class="graphic"
-              width="330"
-              height="377"
-              :src="coin2"
-              alt="B-80BAL-20WETH LP token"
-            />
-          </div>
-          <div class="font-semibold caption">
-            <p
-              class="inline mr-1 text-sm lg:text-base tracking-tighter lg:tracking-normal"
-            >
-              {{ $t('veBAL.hero.tokens.lpToken') }}
-            </p>
-            <BalTooltip iconSize="xs" textAlign="left" class="mt-1">
-              {{ $t('veBAL.hero.tokenInfo.lpToken') }}
-            </BalTooltip>
-          </div>
-        </div>
-        <div class="group coin">
-          <div class="coin-wrapper">
-            <BalImage
-              class="graphic"
-              width="330"
-              height="377"
-              :src="coin3"
-              alt="veBAL token"
-            />
-          </div>
-          <div class="font-semibold caption">
-            <p
-              class="inline mr-1 text-sm lg:text-base tracking-tighter lg:tracking-normal"
-            >
-              {{ $t('veBAL.hero.tokens.veBAL') }}
-            </p>
-            <BalTooltip iconSize="xs" textAlign="left" class="mt-1">
-              {{ $t('veBAL.hero.tokenInfo.veBAL') }}
-            </BalTooltip>
-          </div>
-        </div>
+      <div class="justify-center w-full coins">
+        <img
+          :src="coin1"
+          alt="slchimp"
+          class="object-contain lg:max-w-[200px] sm:max-w-[100px] xs:max-w-[100px]"
+        />
+        <img
+          :src="coin2"
+          alt="slchimp"
+          class="object-contain lg:max-w-[200px] sm:max-w-[100px] xs:max-w-[100px]"
+        />
+        <img
+          :src="coin3"
+          alt="slchimp"
+          class="object-contain max-w-[200px] sm:max-w-[100px] xs:max-w-[100px]"
+        />
       </div>
     </div>
   </div>
@@ -150,47 +111,33 @@ function navigateToGetVeBAL() {
 
   min-height: 440px;
   z-index: 0;
-  background-color: #0b0f19;
+  background-color: #ececff;
 }
-
 .dark .hero-container {
-  background-color: #0e1420;
-}
-
-.hero-container::before {
-  content: ' ';
-  background-image: url('/images/patterns/fish-scale.png');
-  background-repeat: repeat;
-
-  @apply block absolute left-0 top-0 w-full h-full opacity-10 z-0;
-}
-
-.dark .hero-container::before {
-  opacity: 0.07;
-}
-
-.hero-container::after {
-  content: ' ';
-  background: linear-gradient(45deg, rgb(0 0 0 / 100%), rgb(0 0 0 / 50%)),
-    url('/images/backgrounds/vebal-hero-noise.svg');
-
-  @apply block absolute left-0 top-0 w-full h-full bg-no-repeat bg-cover opacity-20 z-0;
+  @apply flex content-center relative w-full;
 
   min-height: 440px;
+  z-index: 0;
+  background-color: transparent;
+}
+.dark .hero-container {
+  background-color: transparent;
 }
 
 .hero-content {
-  @apply flex flex-col md:flex-row md:items-center max-w-screen-2xl mx-auto md:gap-4 lg:gap-8 py-4 md:py-8
+  @apply grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 max-w-screen-2xl mx-auto md:gap-4 lg:gap-8 py-4 md:py-8
     xl:pl-4 w-full z-10;
 }
 
 .eyebrow {
   @apply mb-4;
 
-  color: #ccb373;
-  background: linear-gradient(#ccb373, #977622);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #8b8dfc;
+  font-family: Montserrat Alternates;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
 }
 
 .hero-text {
@@ -201,19 +148,32 @@ function navigateToGetVeBAL() {
 
 .title {
   @apply max-w-sm;
+  font-family: Montserrat Alternates;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .hero-btn {
   min-width: 140px;
+  border-radius: 44px;
+  border: 1px solid #9b9b9b;
+  box-shadow: 0px 0px 0px 2px rgba(175, 175, 175, 0.25),
+    0px 0px 0px 3px rgba(140, 142, 255, 0.51) inset;
 }
 
 .btn-gold {
-  background: linear-gradient(45deg, #977622, #ccb373);
-  transition: 0.5s all ease-in-out;
-}
-
-.btn-gold:hover {
-  background: linear-gradient(-45deg, #ae8d39, #684e09);
+  border-radius: 44px;
+  border: 1px solid #9b9b9b;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  box-shadow: 0px 0px 0px 2px rgba(175, 175, 175, 0.25),
+    0px 0px 0px 3px rgba(140, 142, 255, 0.51) inset;
+  color: #fff;
+  font-family: Plus Jakarta Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
 }
 
 .coins {
@@ -252,5 +212,11 @@ function navigateToGetVeBAL() {
 
 .caption .bal-icon {
   animation: fadeInMoveUp 0.5s ease-out 0.15s both;
+}
+.bullet-points {
+  font-family: Plus Jakarta Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
 }
 </style>

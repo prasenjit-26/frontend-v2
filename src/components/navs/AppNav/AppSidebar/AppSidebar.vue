@@ -27,18 +27,18 @@ watch(showSidebar, () => {
 <template>
   <Transition name="overlay" appear @after-enter="showSidebar = true">
     <div class="sidebar-overlay">
+      <div class="app-sidebar_empty" @click="showSidebar = false"></div>
       <Transition name="sidebar" @after-leave="setSidebarOpen(false)">
         <div v-if="showSidebar" class="app-sidebar">
+          <BalIcon
+            name="x"
+            size="lg"
+            class="flex fixed top-4 right-2 justify-center items-center text-white cursor-pointer close-icon"
+            @click="showSidebar = false"
+          />
           <SidebarContent @close="showSidebar = false" />
         </div>
       </Transition>
-      <div class="app-sidebar_empty" @click="showSidebar = false">
-        <BalIcon
-          name="x"
-          size="lg"
-          class="flex fixed top-4 right-2 justify-center items-center text-white cursor-pointer close-icon"
-        />
-      </div>
     </div>
   </Transition>
 </template>
@@ -53,8 +53,15 @@ watch(showSidebar, () => {
 }
 
 .app-sidebar {
-  @apply text-white shadow-xl h-full w-3/4 max-w-sm bg-gray-900 cursor-default overflow-y-auto pb-4;
-
+  @apply text-white shadow-xl h-full w-3/4 max-w-sm cursor-default overflow-y-auto pb-4;
+  background: linear-gradient(
+    180deg,
+    #03011f 0%,
+    #161485 26.04%,
+    #1d1cd3 52.08%,
+    #1e22ff 76.56%,
+    #363aff 100%
+  );
   will-change: transform;
 }
 

@@ -142,9 +142,11 @@ function isActive(network: NetworkOption): boolean {
           <img
             :src="buildNetworkIconURL(activeNetwork.id)"
             :alt="activeNetwork.name"
-            class="w-6 h-6 rounded-full"
+            class="w-6 h-6 rounded-full xs:w-[10px] xs:w-[12px] xs:h-[10px] xs:h-[12px]"
           />
-          <span class="ml-2 font-[500] text-[18px]">
+          <span
+            class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+          >
             {{ activeNetwork.name }}
           </span>
           <BalIcon name="chevron-down" size="sm" class="ml-2" />
@@ -187,19 +189,19 @@ function isActive(network: NetworkOption): boolean {
 </template>
 <style>
 .dark .network-button {
+  @apply min-h-[50px] xs:min-h-[30px] sm:min-h-[30px] xs:h-[25px] sm:h-[30px] lg:h-[50px];
   background-color: #8b8dfc82 !important;
   box-shadow: inset 0px -5px 4px 0px #31313140, 0px 0px 0px 4px #8b8dfc99,
     0px 0px 0px 8px #8b8dfc26;
   border-radius: 60px;
-  min-height: 50px;
 }
 .network-button {
+  @apply min-h-[50px] xs:min-h-[30px] sm:min-h-[30px] h-[50px];
   border-radius: 60px;
   background: #bbbcfd;
   box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
     0px 0px 0px 8px rgba(139, 141, 252, 0.15);
   backdrop-filter: blur(20px);
-  min-height: 50px;
 }
 .wallet-menu {
   background: #16162d;

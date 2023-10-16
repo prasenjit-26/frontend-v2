@@ -9,6 +9,7 @@ import { useTokens } from '@/providers/tokens.provider';
 import { bnum, isSameAddress } from '@/lib/utils';
 import { isGreaterThan } from '@/lib/utils/validations';
 import useNetwork from '@/composables/useNetwork';
+import useBreakpoints from '@/composables/useBreakpoints';
 
 const emit = defineEmits(['update:height']);
 
@@ -216,18 +217,23 @@ function saveAndProceed() {
   saveState();
   proceed();
 }
+const { isDesktop } = useBreakpoints();
 </script>
 
 <template>
   <div ref="cardWrapper" class="flex">
     <button
-      v-if="!createPoolTxHash"
+      v-if="!createPoolTxHash && isDesktop"
       class="flex text-blue-500 hover:text-blue-700 mr-[25px] back-button"
       @click="goBack"
     >
       <BalIcon class="flex" name="chevron-left" />
     </button>
-    <BalCard shadow="xl" noBorder class="center-col-container">
+    <BalCard
+      shadow="xl"
+      noBorder
+      class="center-col-container-liquidity lg:p-[16px] xs:p-[10px] sm:p-[12px]"
+    >
       <BalStack vertical>
         <BalStack vertical spacing="xs">
           <span class="text-xs text-secondary">{{ networkConfig?.name }}</span>
@@ -307,11 +313,15 @@ function saveAndProceed() {
         <div class="total-conatiner mb-[20px]">
           <BalStack horizontal justify="between">
             <BalStack vertical spacing="none">
-              <h6 class="text-white text-[20px] font-[600] mb-[5px]">
+              <h6
+                class="text-white sm:text-[16px] xs:text-[12px] text-[20px] font-[600] mb-[5px]"
+              >
                 {{ t('total') }}
               </h6>
               <BalStack horizontal spacing="xs" class="font-medium">
-                <span class="text-white text-[16px] font-[500]">
+                <span
+                  class="text-white sm:text-[14px] xs:text-[12px] text-[16px] font-[500]"
+                >
                   {{ t('available') }}:
                   {{ fNum(totalLiquidity.toString(), FNumFormats.fiat) }}
                 </span>
@@ -331,7 +341,9 @@ function saveAndProceed() {
               </BalStack>
             </BalStack>
             <BalStack vertical spacing="none">
-              <h6 class="text-white text-[20px] font-[600]">
+              <h6
+                class="text-white sm:text-[16px] xs:text-[12px] text-[20px] font-[600]"
+              >
                 {{ fNum(currentLiquidity.toString(), FNumFormats.fiat) }}
               </h6>
               <AnimatePresence
@@ -382,11 +394,10 @@ function saveAndProceed() {
   </div>
 </template>
 <style scoped>
-.center-col-container {
+.center-col-container-liquidity {
   box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
     0px 0px 149px -46px #8b8dfccc;
   border-radius: 12px;
-  padding: 16px;
 }
 .dark .warning-class {
   margin-top: 32px;
