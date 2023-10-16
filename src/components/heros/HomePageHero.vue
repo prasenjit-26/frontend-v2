@@ -11,8 +11,10 @@ function navigateToCreatePool() {
 <template>
   <div class="stars-bg">
     <div class="md:container md:mx-auto">
-      <div class="m-[25px] lg:columns-2 md:columns-2 sm:columns-1">
-        <div class="h-[625px] centeralign">
+      <div
+        class="lg:m-[25px] xs:ml-[25px] xs:mr-[25px] lg:columns-2 md:columns-2 sm:columns-1 sm:ml-[25px] sm:mr-[25px]"
+      >
+        <div class="lg:h-[625px] centeralign">
           <h2
             class="font-[600] mt-[58px] headline font-montserrat sm:text-[40px] xs:text-[38px] lg:text-[53px]"
             v-text="$t('headlineText')"

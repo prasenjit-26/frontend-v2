@@ -78,13 +78,13 @@ watch(
       <div>
         <div v-if="isSwapPage" class="swap-bg">
           <div class="mt-[100px]">
-            <div class="pb-16">
+            <div class="sm:pb-3 lg:pb-16 xs:pb-3">
               <slot />
             </div>
           </div>
         </div>
         <div v-else>
-          <div class="pb-16">
+          <div class="sm:pb-3 lg:pb-16 xs:pb-3">
             <slot />
           </div>
         </div>

@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
 <template>
   <BalTooltip
     :disabled="!hasBalance"
-    class="mr-2 last:mr-0 leading-normal cursor-pointer pill-bg"
+    class="last:mr-0 leading-normal cursor-pointer mr-[5px] pill-bg mb-[5px]"
     textAlign="left"
     :delayMs="50"
   >
@@ -43,7 +43,7 @@ withDefaults(defineProps<Props>(), {
         <div v-if="hasBalance" class="balance-indicator" />
         <span
           :class="[
-            'text-[16px] font-[500]',
+            'xs:text-[12px] sm:text-[14px] lg:text-[16px] font-[500]',
             {
               'font-medium': isSelected,
             },
@@ -72,6 +72,8 @@ withDefaults(defineProps<Props>(), {
 <style>
 .pill {
   @apply flex items-center relative  items-center;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .pill-migration {
@@ -113,17 +115,15 @@ withDefaults(defineProps<Props>(), {
   background: #5a5a6763;
 }
 .dark .pill-bg {
+  @apply sm:p-[5px] xs:p-[5px] lg:pt-[12px] lg:pl-[16px] lg:pr-[16px] lg:pb-[12px] lg:min-h-[46px] min-h-[30px];
   background: #424281;
   border: 1px solid #8b8dfc;
-  padding: 12px 16px 12px 16px;
   border-radius: 6px;
-  min-height: 46px;
 }
 .pill-bg {
+  @apply sm:p-[5px] xs:p-[5px] lg:pt-[12px] lg:pl-[16px] lg:pr-[16px] lg:pb-[12px] lg:min-h-[46px] min-h-[30px];
   border: 1px solid #8b8dfc;
   background: #bec0ff;
-  padding: 12px 16px 12px 16px;
   border-radius: 6px;
-  min-height: 46px;
 }
 </style>

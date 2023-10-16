@@ -145,4 +145,10 @@ watch(popoverOpened, () => {
     transform: translateX(calc(-100% + v-bind(activatorHalfWidthPx)));
   }
 }
+@media (max-width: 400px) {
+  .align-center-transform {
+    transform: translateX(-webkit-calc(-75% + v-bind(activatorHalfWidthPx)));
+    transform: translateX(calc(-75% + v-bind(activatorHalfWidthPx)));
+  }
+}
 </style>

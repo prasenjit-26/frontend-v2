@@ -39,7 +39,7 @@ const { networkSlug } = useNetwork();
       </div>
       <div class="border-bottom" />
       <div class="flex flex-col md:flex-row gap-8 md:justify-between pb-[40px]">
-        <span class="copyright-text">
+        <span class="text-center copyright-text">
           ©2023 Chimpexchange. All rights reserved.
         </span>
         <div class="flex gap-3 justify-center items-center">
