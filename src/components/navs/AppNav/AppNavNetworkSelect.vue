@@ -189,7 +189,7 @@ function isActive(network: NetworkOption): boolean {
 </template>
 <style>
 .dark .network-button {
-  @apply h-[35px] lg:min-h-[40px] xs:min-h-[30px] sm:min-h-[30px] xs:h-[25px] sm:h-[30px] lg:h-[40px];
+  @apply lg:min-h-[40px] lg:h-[40px] xs:min-h-[30px] sm:min-h-[30px] h-[30px];
   background-color: #8b8dfc82 !important;
   box-shadow: inset 0px -5px 4px 0px #31313140, 0px 0px 0px 4px #8b8dfc99,
     0px 0px 0px 8px #8b8dfc26;
@@ -199,7 +199,7 @@ function isActive(network: NetworkOption): boolean {
   @apply lg:min-h-[40px] lg:h-[40px] xs:min-h-[30px] sm:min-h-[30px] h-[30px];
   border-radius: 60px;
   background: #bbbcfd;
-  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
+  box-shadow: 0px 0px 0px 3px rgba(139, 141, 252, 0.6),
     0px 0px 0px 8px rgba(139, 141, 252, 0.15);
   backdrop-filter: blur(20px);
 }
