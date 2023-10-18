@@ -19,8 +19,6 @@ import { usePoolStaking } from '@/providers/local/pool-staking.provider';
 import { useLock } from '@/composables/useLock';
 import { configService } from '@/services/config/config.service';
 import { removeBptFrom } from '@/composables/usePoolHelpers';
-import ReliqueryAbi from '@/lib/abi/Reliquery.json';
-import { getMulticaller } from '@/dependencies/Multicaller';
 import { useTokenBreakdown } from './PoolCompositionCard/components/composables/useTokenBreakdown';
 const { getToken } = useTokens();
 /**
@@ -44,11 +42,12 @@ const emit = defineEmits<{
  */
 const { balanceFor } = useTokens();
 const { fNum } = useNumbers();
-const { isWalletReady, account } = useWeb3();
+const { isWalletReady } = useWeb3();
 const { isMigratablePool } = usePoolHelpers(toRef(props, 'pool'));
 const { stakedShares } = usePoolStaking();
 const { networkSlug } = useNetwork();
 const router = useRouter();
+
 const { totalLockedValue } = useLock({ enabled: isVeBalPool(props.pool.id) });
 
 /**
@@ -90,13 +89,6 @@ function navigateToPoolMigration(pool: Pool) {
 function symbolFor(token: PoolToken): string {
   return getToken(token.address)?.symbol || token.symbol || '---';
 }
-const getFarmDetails = () => {
-  console.log('fetch farm details', account.value);
-  const Multicaller = getMulticaller();
-  const multicaller = new Multicaller();
-  // const calls =
-};
-onMounted(() => getFarmDetails());
 </script>
 
 <template>

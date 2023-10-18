@@ -6,6 +6,7 @@ import {
   PoolTransactionsCard,
   MyPoolBalancesCard,
   PoolCompositionCard,
+  PoolFarmsDetailsCard,
   PoolContractDetails,
 } from '@/components/contextual/pages/pool';
 import StakingIncentivesCard from '@/components/contextual/pages/pool/staking/StakingIncentivesCard.vue';
@@ -245,6 +246,7 @@ watch(
             />
             <BalLoadingBlock v-if="loadingPool" class="h-64" />
             <PoolCompositionCard v-else-if="pool" :pool="pool" />
+            <PoolFarmsDetailsCard v-if="pool" :pool="pool" />
           </div>
 
           <div ref="intersectionSentinel" />
