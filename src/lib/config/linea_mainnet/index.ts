@@ -7,30 +7,30 @@ import tokens from './tokens';
 import rateProviders from './rateProviders';
 
 const config: Config = {
-  key: '59140',
-  chainId: 59140,
-  chainName: 'Linea Testnet',
-  name: 'Linea Testnet',
+  key: '59144',
+  chainId: 59144,
+  chainName: 'Linea',
+  name: 'Linea Mainnet',
   shortName: 'Linea',
   monorepoName: 'Linea',
-  slug: 'lineatestnet',
-  network: 'Linea Testnet',
+  slug: 'linea',
+  network: 'Linea',
   trustWalletNetwork: 'linea',
   unknown: false,
   visibleInUI: true,
   testNetwork: false,
-  rpc: 'https://rpc.goerli.linea.build',
+  rpc: 'https://rpc.linea.build',
   ws: `wss://ws.testnet.mantle.xyz`,
-  publicRpc: 'https://rpc.goerli.linea.build',
-  explorer: 'https://goerli.lineascan.build/',
+  publicRpc: 'https://rpc.linea.build',
+  explorer: 'https://lineascan.build',
   explorerName: 'LineaExplorer',
   subgraph:
-    'https://graph-query.goerli.linea.build/subgraphs/name/Chimp-Exchange/chimp-exchange-subgraph',
+    'https://graph-query.linea.build/subgraphs/name/Chimp-Exchange/chimp-exchange-subgraph',
   balancerApi: 'https://api.balancer.fi',
   poolsUrlV2: '',
   subgraphs: {
     main: [
-      'https://graph-query.goerli.linea.build/subgraphs/name/Chimp-Exchange/chimp-exchange-subgraph',
+      'https://graph-query.linea.build/subgraphs/name/Chimp-Exchange/chimp-exchange-subgraph',
     ],
     aave: '',
     gauge:

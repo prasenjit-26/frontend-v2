@@ -9,6 +9,7 @@ import polygon from './polygon';
 import zkevm from './zkevm';
 import mantle from './mantle';
 import linea_testnet from './linea_testnet';
+import linea_mainnet from './linea_mainnet';
 
 // We don't import Network from sdk to avoid extra bundle size when loading app (while the SDK is not tree-shakable)
 export enum Network {
@@ -23,6 +24,7 @@ export enum Network {
   ARBITRUM = 42161,
   MANTLE = 5001,
   LINEA_TESTNET = 59140,
+  LINEA = 59144,
 }
 
 const config: Record<Network | number, Config> = {
@@ -35,6 +37,7 @@ const config: Record<Network | number, Config> = {
   [Network.ZKEVM]: zkevm,
   [Network.MANTLE]: mantle,
   [Network.LINEA_TESTNET]: linea_testnet,
+  [Network.LINEA]: linea_mainnet,
 };
 
 export default config;

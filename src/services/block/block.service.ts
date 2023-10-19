@@ -7,6 +7,7 @@ import {
   isGoerli,
   isMantle,
   isLineaTestnet,
+  isLinea,
 } from '@/composables/useNetwork';
 import { rpcProviderService } from '../rpc-provider/rpc-provider.service';
 import { configService } from '../config/config.service';
@@ -22,11 +23,13 @@ export default class BlockService {
     timestamp: string,
     useRange = true
   ): Promise<number> {
+    console.log('isLinea', isLinea.value);
     if (
       isGnosis.value ||
       isGoerli.value ||
       isMantle.value ||
-      isLineaTestnet.value
+      isLineaTestnet.value ||
+      isLinea.value
     )
       return this.fetchBlockByApprox(timestamp);
     return this.fetchBlockByTimeWithGraph(timestamp, useRange);

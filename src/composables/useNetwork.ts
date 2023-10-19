@@ -43,7 +43,7 @@ export const isMantle = computed(() => networkId.value === Network.MANTLE);
 export const isLineaTestnet = computed(
   () => networkId.value === Network.LINEA_TESTNET
 );
-
+export const isLinea = computed(() => networkId.value === Network.LINEA);
 export const hasBridge = computed<boolean>(() => !!networkConfig.bridgeUrl);
 export const isTestnet = computed(() => isGoerli.value);
 

@@ -94,7 +94,7 @@ export default function usePoolCreation() {
       return tokenA > tokenB ? 1 : -1;
     })
   );
-
+  console.log('tokensList', tokensList.value);
   const hasUnlistedToken = computed(() =>
     tokensList.value.some(tokenAddress => {
       return tokenAddress && isUnlistedToken(tokenAddress);

@@ -71,10 +71,10 @@
   dependencies:
     node-fetch "^2.6.1"
 
-"@auroblocks/chimp-sdk@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.14.tgz#1bae17781e1939d9423d4ff4f0ca0885900b9381"
-  integrity sha512-fg6EeXEv13YJzXT3NMYVCMvniF3+S7p8/Q9z7KMb7jIg7UIa4hePZd4hVh6VtNUwHuJsNbNDC8J1IvVcZ649Nw==
+"@auroblocks/chimp-sdk@0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.16.tgz#bd097f89ca456fe2c2d57d4d5ca072dfb4cf4658"
+  integrity sha512-Fdz/2Dg0ry4v9/nLkUEeHaopZpBsmWXKVcPdmNaUeTGgaEed1jQIFCroAhle0jfYWwQ+fAZXDxquHg6SBbZm9Q==
   dependencies:
     "@auroblocks/chimp-sor" "0.0.6"
     "@balancer-labs/sor" "4.1.1-beta.9"
@@ -98,6 +98,14 @@
   resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sor/-/chimp-sor-0.0.6.tgz#5a4294a6a65c9f56470c83ef9f5e8505b3eeb524"
   integrity sha512-wzvgZwT4g69KifFLviuRnscZHMJcUlOrZUD7+J2+JaGTisrKh3F7B0Iw5NUzPFjxZYzS8ARGfhIL0WUaHkU3Lg==
   dependencies:
+    isomorphic-fetch "^2.2.1"
+
+"@auroblocks/chimp-sor@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sor/-/chimp-sor-0.0.8.tgz#a249bac78a8145ac4b7fb32cb77eb2bff6c7da72"
+  integrity sha512-AFP1GshbPSafi856iUZul3YIAE203RyCuKxWxncZ4SEbA4ASyxGaxeRfBJknAHHi2pCDWPRx7Pbl019KibvYOQ==
+  dependencies:
+    "@auroblocks/chimp-sdk" "0.0.16"
     isomorphic-fetch "^2.2.1"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.22.13":

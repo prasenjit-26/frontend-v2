@@ -25,7 +25,6 @@ export default function useTokenPricesQuery(
   const queryKey = reactive(
     QUERY_KEYS.Tokens.Prices(networkId, pricesToInject)
   );
-
   function priceArrayToMap(prices: GqlTokenPrice[]): TokenPrices {
     return prices.reduce(
       (obj, item) => ((obj[getAddress(item.address)] = item.price), obj),
