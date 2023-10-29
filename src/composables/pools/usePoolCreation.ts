@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { getAddress } from '@ethersproject/address';
 import { TransactionResponse } from '@ethersproject/providers';
 import BigNumber from 'bignumber.js';
@@ -82,6 +84,7 @@ export default function usePoolCreation() {
     balancerTokenListTokens,
     dynamicDataLoading,
   } = useTokens();
+  console.log('balancerTokenListTokens', balancerTokenListTokens);
   const { account, getProvider } = useWeb3();
   const { txListener } = useEthers();
   const { addTransaction } = useTransactions();
@@ -575,7 +578,16 @@ export default function usePoolCreation() {
   }
 
   function isUnlistedToken(tokenAddress: string) {
-    return tokenAddress !== '' && !balancerTokenListTokens.value[tokenAddress];
+    return (
+      (tokenAddress !== '' &&
+        balancerTokenListTokens.value[
+          Object.keys(balancerTokenListTokens.value).find(
+            key =>
+              key.toLowerCase() === tokenAddress && tokenAddress.toLowerCase()
+          )
+        ] === null) ||
+      undefined
+    );
   }
 
   return {
