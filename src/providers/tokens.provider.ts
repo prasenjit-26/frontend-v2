@@ -117,7 +117,6 @@ export const tokensProvider = (
   const activeTokenListTokens = computed(
     (): TokenInfoMap => mapTokenListTokens(activeTokenLists.value)
   );
-
   /**
    * All tokens from Balancer token lists, e.g. 'listed' and 'vetted'.
    */
@@ -138,7 +137,6 @@ export const tokensProvider = (
       ...state.injectedTokens,
     })
   );
-
   const wrappedNativeAsset = computed(
     (): TokenInfo => getToken(TOKENS.Addresses.wNativeAsset)
   );
@@ -411,7 +409,10 @@ export const tokensProvider = (
    */
   function priceFor(address: string): number {
     try {
-      const price = selectByAddressFast(prices.value, getAddress(address));
+      const price = selectByAddressFast(
+        prices.value,
+        getAddress(address).toLowerCase()
+      );
       if (!price) {
         return 0;
       }
