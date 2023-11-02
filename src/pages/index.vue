@@ -60,6 +60,7 @@ function onColumnSort(columnId: string) {
   poolsSortField.value = columnId;
   lsSet(LS_KEYS.App.PoolSorting, columnId);
 }
+console.log('pools', pools);
 </script>
 
 <template>

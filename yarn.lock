@@ -93,7 +93,30 @@
     json-to-graphql-query "^2.2.4"
     lodash "^4.17.21"
 
-"@auroblocks/chimp-sdk@0.0.20":
+"@auroblocks/chimp-sdk@0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.21.tgz#893bac0842d0edd4d3ce25ee14febc17107c1ff7"
+  integrity sha512-ljBwqCAHhpglrNSxg8aXfdG846Uvy+lqC1tpUhLznmnX7TAK01d2cLGN4hMxmdMOV/FLem+SMWldyeBIT5YGCw==
+  dependencies:
+    "@auroblocks/chimp-sdk" "^0.0.20"
+    "@auroblocks/chimp-sor" "0.0.6"
+    "@balancer-labs/sor" "4.1.1-beta.9"
+    "@ethersproject/abi" "^5.4.0"
+    "@ethersproject/abstract-signer" "^5.4.0"
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/base64" "5.5.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/bytes" "^5.4.0"
+    "@ethersproject/constants" "^5.4.0"
+    "@ethersproject/contracts" "^5.4.0"
+    "@ethersproject/providers" "^5.4.5"
+    axios "^0.24.0"
+    graphql "^15.6.1"
+    graphql-request "^3.5.0"
+    json-to-graphql-query "^2.2.4"
+    lodash "^4.17.21"
+
+"@auroblocks/chimp-sdk@^0.0.20":
   version "0.0.20"
   resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.20.tgz#b18c73562597d62c06a7fd87db74b1b3c915a18e"
   integrity sha512-yYl/JXaBR6Rb0kDkFRRELl+81Om/EPB1YK4VHyvJ9LY8YhSqTun6Lq3yLTC3eY9QTO/3JrakJSMO9MiyrVel0A==

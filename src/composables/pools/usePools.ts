@@ -33,7 +33,7 @@ export default function usePools(
       ? flatten(paginatedPools.pages.map(page => page.pools))
       : [];
   });
-
+  console.log('pools value', pools.value);
   const isLoading = computed(() => isQueryLoading(poolsQuery));
 
   const poolsHasNextPage = computed(() => poolsQuery.hasNextPage?.value);
