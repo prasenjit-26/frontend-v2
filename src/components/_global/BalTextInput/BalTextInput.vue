@@ -148,7 +148,10 @@ onMounted(() => {
           :value="modelValue"
           v-bind="inputAttrs"
           :disabled="disabled"
-          :class="['input  font-[600]  text-white', inputClasses]"
+          :class="[
+            'text-input-placeholder-calass input  font-[600]  text-white',
+            inputClasses,
+          ]"
           :style="{
             fontSize: props.fontSize ? `${props.fontSize}px` : '36px',
           }"
@@ -218,5 +221,23 @@ onMounted(() => {
 .custom-text-input {
   font-weight: 600;
   font-size: 36px;
+}
+.text-input-placeholder-calass::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #fff;
+}
+.text-input-placeholder-calass:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+  opacity: 1;
+}
+.text-input-placeholder-calass::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff;
+  opacity: 1;
+}
+.text-input-placeholder-calass:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #fff;
 }
 </style>

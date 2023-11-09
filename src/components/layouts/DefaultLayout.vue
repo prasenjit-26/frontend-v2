@@ -137,7 +137,7 @@ watch(
 
 .app-body {
   @apply bg-cover dark:bg-black;
-  background: #e2e3ff;
+  background: #ececfe;
 
   min-height: calc(100vh - 2rem);
 }

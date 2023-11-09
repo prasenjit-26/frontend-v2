@@ -74,7 +74,7 @@ onUnmounted(() => {
   @apply w-full z-30;
   @apply dark:bg-transparent;
   @apply border-b border-transparent;
-  background: #e2e3ff;
+  background: #ececfe;
 
   transition: all 0.2s ease-in-out;
 }
