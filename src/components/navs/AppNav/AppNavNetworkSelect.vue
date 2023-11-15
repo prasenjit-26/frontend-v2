@@ -203,7 +203,10 @@ function isActive(network: NetworkOption): boolean {
     0px 0px 0px 8px rgba(139, 141, 252, 0.15);
   backdrop-filter: blur(20px);
 }
-.wallet-menu {
+.dark .wallet-menu {
   background: #16162d;
+}
+.wallet-menu {
+  background: #d5d6ff;
 }
 </style>
