@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+// import { computed } from 'vue';
 
 import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
 import useBreakpoints from '@/composables/useBreakpoints';
@@ -15,13 +15,13 @@ import { Goals, trackGoal } from '@/composables/useFathom';
  * COMPOSABLES
  */
 const { isMobile, isDesktop } = useBreakpoints();
-const { account, connector, startConnectWithInjectedProvider } = useWeb3();
+const { account, startConnectWithInjectedProvider } = useWeb3();
 const { setSidebarOpen } = useSidebar();
 
 /**
  * COMPUTED
  */
-const hideNetworkSelect = computed(() => connector.value?.id === 'gnosis');
+// const hideNetworkSelect = computed(() => connector.value?.id === 'gnosis');
 
 /**
  * METHODS
@@ -33,21 +33,11 @@ function connectWalletHandler() {
 </script>
 
 <template>
-  <div class="grid grid-rows-1 grid-flow-col gap-2">
+  <div class="grid grid-flow-col grid-rows-1 gap-2">
     <DarkModeToggle v-if="isDesktop" />
     <!-- <AppNavActivityBtn v-if="account" /> -->
     <AppNavNetworkSelect />
     <AppNavAccountBtn v-if="account" />
-    <BalBtn
-      v-if="isMobile && account"
-      color="white"
-      flat
-      circle
-      class="h-[24px]"
-      @click="setSidebarOpen(true)"
-    >
-      <img src="~@/assets/images/hamBurgerMenu.png" alt="menu" width="30" />
-    </BalBtn>
     <BalBtn
       v-if="!account"
       color="white"
@@ -58,6 +48,16 @@ function connectWalletHandler() {
       <!-- <WalletIcon class="mr-2" /> -->
       <span class="hidden lg:inline-block" v-text="$t('connectWallet')" />
       <span class="lg:hidden" v-text="$t('connect')" />
+    </BalBtn>
+    <BalBtn
+      v-if="isMobile"
+      color="white"
+      flat
+      circle
+      class="h-[24px]"
+      @click="setSidebarOpen(true)"
+    >
+      <img src="~@/assets/images/hamBurgerMenu.png" alt="menu" width="30" />
     </BalBtn>
   </div>
 </template>
