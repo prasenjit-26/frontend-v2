@@ -56,7 +56,7 @@ onMounted(() => resetTabs());
       v-if="!(pool.isInRecoveryMode && pool.isPaused)"
       class="mb-[20px]"
     />
-    <WithdrawForm :pool="pool" />
+    <WithdrawForm :pool="pool" :handleClose="handleClose" />
   </BalCard>
 </template>
 <style>

@@ -3,7 +3,7 @@ import { onMounted, watch } from 'vue';
 import SwapSettingsPopover, {
   SwapSettingsContext,
 } from '@/components/popovers/SwapSettingsPopover.vue';
-import { configService } from '@/services/config/config.service';
+// import { configService } from '@/services/config/config.service';
 import AddLiquidityForm from '@/components/forms/pool_actions/AddLiquidityForm/AddLiquidityForm.vue';
 import useAddLiquidityTabs, {
   Tab,
@@ -26,12 +26,12 @@ type Props = {
  */
 const props = defineProps<Props>();
 const pool = toRef(props, 'pool');
-const emit = defineEmits(['close', 'success']);
+// const emit = defineEmits(['close', 'success']);
 
 /**
  * COMPOSABLES
  */
-const { network } = configService;
+// const { network } = configService;
 const { activeTab, resetTabs } = useAddLiquidityTabs();
 const { setIsSingleAssetJoin } = useJoinPool();
 const { isDeepPool, isPreMintedBptPool } = usePoolHelpers(pool);
@@ -76,7 +76,7 @@ function handleClose() {
       class="p-0 m-0 -mb-px whitespace-nowrap"
       noPad
     />
-    <AddLiquidityForm :pool="pool" />
+    <AddLiquidityForm :pool="pool" :handleClose="handleClose" />
   </BalCard>
 </template>
 <style>

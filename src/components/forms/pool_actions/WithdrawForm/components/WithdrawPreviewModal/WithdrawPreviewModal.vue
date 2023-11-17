@@ -16,6 +16,7 @@ import useNetwork from '@/composables/useNetwork';
  */
 type Props = {
   pool: Pool;
+  handleModalClose: any;
 };
 
 type AmountMap = {
@@ -178,8 +179,13 @@ function handleClose(): void {
     <WithdrawActions
       :pool="pool"
       class="mt-4"
+      :handleClose="handleClose"
+      :handleModalClose="handleModalClose"
       @error="$emit('close')"
       @success="withdrawalConfirmed = true"
     />
+    <BalBtn color="gradient" outline block class="mt-2" @click="handleClose">
+      Close
+    </BalBtn>
   </BalModal>
 </template>

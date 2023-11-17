@@ -26,6 +26,7 @@ import { useUserTokens } from '@/providers/local/user-tokens.provider';
  */
 type Props = {
   pool: Pool;
+  handleClose: any;
 };
 
 /**
@@ -206,7 +207,7 @@ watch(
 
     <div
       v-if="highPriceImpact"
-      class="p-2 pb-2 mt-5 rounded-lg border dark:border-gray-700 high-price-impact"
+      class="p-2 pb-2 mt-5 border rounded-lg dark:border-gray-700 high-price-impact"
     >
       <BalCheckbox
         v-model="highPriceImpactAccepted"
@@ -257,6 +258,7 @@ watch(
       <AddLiquidityPreview
         v-if="showPreview"
         :pool="pool"
+        :handleCloseCardModal="handleClose"
         @close="showPreview = false"
         @show-stake-modal="showStakeModal = true"
       />

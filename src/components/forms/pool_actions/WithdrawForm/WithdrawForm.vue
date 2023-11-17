@@ -18,6 +18,7 @@ import useNetwork from '@/composables/useNetwork';
 
 type Props = {
   pool: Pool;
+  handleClose: any;
 };
 
 /**
@@ -128,7 +129,7 @@ onBeforeMount(() => {
 
     <div
       v-if="highPriceImpact"
-      class="p-2 pb-2 mt-4 rounded-lg border dark:border-gray-700"
+      class="p-2 pb-2 mt-4 border rounded-lg dark:border-gray-700"
     >
       <BalCheckbox
         v-model="highPriceImpactAccepted"
@@ -176,6 +177,7 @@ onBeforeMount(() => {
       <WithdrawPreviewModal
         v-if="showPreview"
         :pool="pool"
+        :handleModalClose="props.handleClose"
         @close="showPreview = false"
       />
     </teleport>

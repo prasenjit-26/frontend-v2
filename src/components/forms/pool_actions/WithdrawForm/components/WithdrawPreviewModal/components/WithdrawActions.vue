@@ -25,6 +25,8 @@ import useNumbers, { FNumFormats } from '@/composables/useNumbers';
  */
 type Props = {
   pool: Pool;
+  handleClose: any;
+  handleModalClose: any;
 };
 
 /**
@@ -152,6 +154,8 @@ async function submit(): Promise<TransactionResponse> {
 }
 
 function redirect() {
+  props.handleClose();
+  props.handleModalClose();
   if (shouldExitViaInternalBalance.value) {
     router.push({ name: 'balances', params: { networkSlug } });
   } else {

@@ -20,6 +20,7 @@ import { oneSecondInMs } from '@/composables/useTime';
  */
 type Props = {
   pool: Pool;
+  handleCloseCardModal: any;
 };
 
 type AmountMap = {
@@ -221,12 +222,16 @@ useIntervalFn(() => {
       :description="$t('investment.error.rektPriceImpact.description')"
       class="mt-6 mb-2"
     />
-
     <Actions
       :pool="pool"
       class="mt-4"
+      :handleClose="handleClose"
+      :handleCloseCardModal="handleCloseCardModal"
       @success="confirmed = true"
       @show-stake-modal="handleShowStakeModal"
     />
+    <BalBtn color="gradient" outline block class="mt-2" @click="handleClose">
+      Close
+    </BalBtn>
   </BalModal>
 </template>
