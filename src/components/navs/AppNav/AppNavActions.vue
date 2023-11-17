@@ -10,11 +10,13 @@ import AppNavAccountBtn from './AppNavAccountBtn.vue';
 // import AppNavActivityBtn from './AppNavActivityBtn/AppNavActivityBtn.vue';
 import AppNavNetworkSelect from './AppNavNetworkSelect.vue';
 import { Goals, trackGoal } from '@/composables/useFathom';
+import useDarkMode from '@/composables/useDarkMode';
 
 /**
  * COMPOSABLES
  */
 const { isMobile, isDesktop } = useBreakpoints();
+const { darkMode } = useDarkMode();
 const { account, startConnectWithInjectedProvider } = useWeb3();
 const { setSidebarOpen } = useSidebar();
 
@@ -30,6 +32,7 @@ function connectWalletHandler() {
   trackGoal(Goals.ClickNavConnectWallet);
   startConnectWithInjectedProvider();
 }
+const useDarkLogo = computed(() => darkMode.value);
 </script>
 
 <template>
@@ -57,7 +60,18 @@ function connectWalletHandler() {
       class="h-[24px]"
       @click="setSidebarOpen(true)"
     >
-      <img src="~@/assets/images/hamBurgerMenu.png" alt="menu" width="30" />
+      <img
+        v-if="useDarkLogo"
+        src="~@/assets/images/hamBurgerMenu.png"
+        alt="menu"
+        width="30"
+      />
+      <img
+        v-else
+        src="~@/assets/images/hamburgerBlack.png"
+        alt="menu"
+        width="30"
+      />
     </BalBtn>
   </div>
 </template>
