@@ -40,7 +40,7 @@ const config: Config = {
   bridgeUrl: 'https://wallet.polygon.technology/zkEVM-Bridge/bridge',
   supportsEIP1559: false,
   supportsElementPools: false,
-  blockTime: 2,
+  blockTime: 8,
   nativeAsset: {
     name: 'LineaETH',
     address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
