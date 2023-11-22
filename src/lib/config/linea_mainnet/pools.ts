@@ -32,11 +32,13 @@ const pools: Pools = {
   Weighted: {
     // Only effective after given timestamp here: usePool.ts#createdAfterTimestamp
     // see useDisabledJoinPool.ts#nonAllowedWeightedPoolAfterTimestamp for logic.
-    AllowList: [],
+    AllowList: [
+      '0x90d8053f7e29faaf5189bdce796a516e29f1f5d3000000000000000000000000',
+    ],
   },
   Factories: {
-    '0x0E027d85f326Ff39ebCCbf4a79335c79324ca2Ce': 'weightedPool', // Weighted v4
-    '0x55813EDB4b83a3286bB69c826Cb81BF8c7773524': 'composableStablePool', // ComposableStable V4
+    '0x0e027d85f326ff39ebccbf4a79335c79324ca2ce': 'weightedPool', // Weighted v4
+    '0x55813edb4b83a3286bb69c826cb81bf8c7773524': 'composableStablePool', // ComposableStable V4
   },
   Stakable: {
     VotingGaugePools: [],

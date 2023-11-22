@@ -9,9 +9,8 @@ import { shorten } from '@/lib/utils';
 
 import AppNavSettings from './AppNavSettings.vue';
 import 'web3-avatar-vue/dist/style.css';
-const { upToLargeBreakpoint, isMobile, bp } = useBreakpoints();
+const { upToLargeBreakpoint, isMobile } = useBreakpoints();
 const { isLoadingProfile, profile, account } = useWeb3();
-console.log('profile', profile);
 // const avatarSize = computed(() => {
 //   if (bp.value === 'sm') {
 //     return 35;

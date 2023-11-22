@@ -42,12 +42,10 @@ export default class PoolService {
    */
   public async setTotalLiquidity(): Promise<string> {
     let totalLiquidity = this.pool.totalLiquidity;
-    console.log('totalLiquidity', totalLiquidity, this.pool);
     try {
       const sdkTotalLiquidity = await getBalancerSDK().pools.liquidity(
         this.pool as unknown as SDKPool
       );
-      console.log('sdkTotalLiquidity', sdkTotalLiquidity);
       // if totalLiquidity can be computed from coingecko prices, use that
       // else, use the value retrieved from the subgraph
       if (bnum(totalLiquidity).gt(0)) {
