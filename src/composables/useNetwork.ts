@@ -22,6 +22,7 @@ const NETWORK_ID =
   localStorageNetworkId ||
   (Number(import.meta.env.VITE_NETWORK) as Network) ||
   Network.MAINNET;
+console.log('NETWORK_ID', NETWORK_ID);
 if (windowAvailable) localStorage.setItem('networkId', NETWORK_ID.toString());
 export const networkSlug = config[NETWORK_ID].slug;
 export const networkConfig = config[NETWORK_ID];

@@ -51,7 +51,12 @@ const pools: Pools = {
   BoostedApr: [],
   DisabledJoins: [],
   Risks: {},
-  Farms: ['0xec401733428706811dc419134a72905c30c19a0800020000000000000000002b'],
+  Farms: ['0xb04584cb66edce8ebd829831f4e8a211c009ef88000200000000000000000005'],
+  Reliquery: {
+    '0xb04584cb66edce8ebd829831f4e8a211c009ef88000200000000000000000005': {
+      pid: '0',
+    },
+  },
 };
 
 export default pools;

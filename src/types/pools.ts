@@ -95,6 +95,9 @@ export type PoolMigrationInfo = {
   riskI18nLabels?: string[];
   showOldVHint?: boolean;
 };
+export type ReliqueryInfo = {
+  pid: string;
+};
 
 export type Pools = {
   IdsMap: Partial<NamedPools>;
@@ -140,6 +143,7 @@ export type Pools = {
   Migrations?: Record<string, PoolMigrationInfo>;
   Issues?: Partial<Record<PoolWarning, string[]>>;
   Risks?: Record<string, RiskKey[]>;
+  Reliquery?: Record<string, ReliqueryInfo>;
 };
 
 export enum PoolWarning {

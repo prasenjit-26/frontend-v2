@@ -55,7 +55,11 @@ export type TransactionAction =
   | 'stake'
   | 'restake'
   | 'sync'
-  | 'userGaugeCheckpoint';
+  | 'userGaugeCheckpoint'
+  | 'depositRelic'
+  | 'withdrawRelic'
+  | 'harvestRelic'
+  | 'createRelic';
 
 export type TransactionType = 'order' | 'tx';
 
