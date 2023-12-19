@@ -12,7 +12,7 @@ import BridgeLink from '@/components/links/BridgeLink.vue';
 import { hasBridge } from '@/composables/useNetwork';
 import { provideUserTokens } from '@/providers/local/user-tokens.provider';
 import swapSymbol from '@/assets/images/swapSymbol.png';
-
+import Cede from './cede.vue';
 /**
  * PROVIDERS
  */
@@ -23,7 +23,7 @@ provideUserTokens();
  */
 const { setSelectedTokens } = usePoolFilters();
 const { upToLargeBreakpoint, isDesktop } = useBreakpoints();
-
+const emit = defineEmits(['close', 'success']);
 /**
  * COMPUTED
  */
@@ -43,6 +43,7 @@ onMounted(() => {
   // selectedPoolTokens are only persisted between the Home/Pool pages
   setSelectedTokens([]);
 });
+const showCedestoreModal = ref(false);
 const { getToken } = useTokens();
 const { inputAsset, outputAsset } = useSwapAssets();
 const inputTokentoken = computed<TokenInfo | undefined>(() =>
@@ -51,10 +52,20 @@ const inputTokentoken = computed<TokenInfo | undefined>(() =>
 const outputTokentoken = computed<TokenInfo | undefined>(() =>
   outputAsset.value ? getToken(outputAsset.value) : undefined
 );
+function handleClose() {
+  showCedestoreModal.value = false;
+  emit('close');
+}
+function showModal() {
+  showCedestoreModal.value = true;
+}
 </script>
 
 <template>
   <div>
+    <BalModal :show="showCedestoreModal" @close="handleClose">
+      <Cede />
+    </BalModal>
     <div class="container mx-auto max-w-[1300px] h-[75vh] pl-[24px] pr-[24px]">
       <div
         class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xs:grid-cols-1 gap-4"
@@ -93,6 +104,7 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
           <!-- <BridgeLink v-if="hasBridge" class="mt-4" /> -->
         </div>
         <div>
+          <BalBtn :onclick="showModal"> Connect Cede Store </BalBtn>
           <SwapCard />
           <div v-if="isDesktop" class="p-4 sm:p-0 lg:p-0 mt-8">
             <BalAccordion
