@@ -63,8 +63,14 @@ function showModal() {
 
 <template>
   <div>
-    <BalModal :show="showCedestoreModal" @close="handleClose">
-      <Cede />
+    <BalModal :minWidth="438" :show="showCedestoreModal" @close="handleClose">
+      <div>
+        <div class="flex justify-between items-center mb-[25px]">
+          <p class="title-cede-text">CeDe Store</p>
+          <BalBtn class="bal-btn-cede" :onclick="handleClose">Close</BalBtn>
+        </div>
+        <Cede />
+      </div>
     </BalModal>
     <div class="container mx-auto max-w-[1300px] h-[75vh] pl-[24px] pr-[24px]">
       <div
@@ -104,7 +110,9 @@ function showModal() {
           <!-- <BridgeLink v-if="hasBridge" class="mt-4" /> -->
         </div>
         <div>
-          <BalBtn :onclick="showModal"> Connect Cede Store </BalBtn>
+          <BalBtn :onclick="showModal" class="rounded-[28px]">
+            Connect Cede Store
+          </BalBtn>
           <SwapCard />
           <div v-if="isDesktop" class="p-4 sm:p-0 lg:p-0 mt-8">
             <BalAccordion
@@ -157,5 +165,45 @@ function showModal() {
   padding: 3.6px;
   justify-content: center;
   align-items: center;
+}
+.bal-btn-cede {
+  color: #000000;
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  width: 80px;
+  border-radius: 25.2px;
+  border: 0.9px solid #8b8dfc;
+  padding: 3.6px;
+  background: #dadbff;
+}
+.dark .bal-btn-cede {
+  color: var(--Text-White, #fff);
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  width: 80px;
+  border-radius: 25.2px;
+  border: 0.9px solid #8b8dfc;
+  padding: 3.6px;
+  background: #34355f;
+}
+.title-cede-text {
+  color: #000;
+  font-family: Plus Jakarta Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 33.6px */
+}
+.dark .title-cede-text {
+  color: #fff;
+  font-family: Plus Jakarta Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 33.6px */
 }
 </style>
