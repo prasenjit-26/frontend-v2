@@ -9,12 +9,22 @@ import useDarkMode from '@/composables/useDarkMode';
 import { getConnectorLogo } from '@/services/web3/wallet-logos';
 import { getConnectorName } from '@/services/web3/wallet-names';
 import { useUserSettings } from '@/providers/user-settings.provider';
+import { useTokens } from '@/providers/tokens.provider';
 import { isEIP1559SupportedNetwork } from '@/composables/useNetwork';
 import { Network } from '@/lib/config';
+import Cede from '../../../pages/cede.vue';
 
 // COMPOSABLES
 const { darkMode, setDarkMode } = useDarkMode();
-
+const showCedestoreModal = ref(false);
+const emit = defineEmits(['close', 'success']);
+const {
+  balanceFor,
+  priceFor,
+  nativeAsset,
+  wrappedNativeAsset,
+  dynamicDataLoading,
+} = useTokens();
 const {
   account,
   profile,
@@ -36,6 +46,7 @@ const data = reactive({
 
 // COMPUTED
 const avatarUri = computed(() => profile.value?.avatar || undefined);
+const tokenBalance = computed(() => balanceFor(nativeAsset.address));
 const networkColorClass = computed(() => {
   let color = 'green';
 
@@ -69,12 +80,28 @@ function copyAddress() {
     data.copiedAddress = false;
   }, 2 * 1000);
 }
+function handleClose() {
+  showCedestoreModal.value = false;
+  emit('close');
+}
+function showModal() {
+  showCedestoreModal.value = true;
+}
 </script>
 
 <template>
+  <BalModal :minWidth="438" :show="showCedestoreModal" @close="handleClose">
+    <div>
+      <div class="flex justify-between items-center mb-[25px]">
+        <p class="title-cede-text">CeDe Store</p>
+        <BalBtn class="bal-btn-cede" :onclick="handleClose">Close</BalBtn>
+      </div>
+      <Cede />
+    </div>
+  </BalModal>
   <div>
-    <div class="p-4 border-b dark:border-gray-900">
-      <div class="flex justify-between items-center mb-6">
+    <div class="p-4">
+      <div class="flex justify-between items-center">
         <h5 class="tracking-tight leading-none" v-text="$t('account')" />
         <div class="flex gap-2 items-center">
           <BalBtn color="gray" size="xs" @click="toggleWalletSelectModal">
@@ -93,68 +120,70 @@ function copyAddress() {
           </div>
         </div>
       </div>
-      <div class="flex mt-1 mb-1">
-        <div class="flex">
-          <div class="relative">
-            <Avatar :iconURI="avatarUri" :address="account" :size="44" />
-            <div class="connector-icon-wrapper">
-              <img
-                :src="connectorLogo"
-                class="flex absolute right-0 bottom-0 justify-center items-center p-0.5 w-5 h-5 bg-white rounded-full"
-              />
-            </div>
+    </div>
+    <div class="info-conatainer-modal rounded-[20px] m-[20px]">
+      <div class="flex items-center">
+        <div class="flex items-center">
+          <img :src="connectorLogo" class="w-[50px] h-[50px]" />
+          <div class="ml-[10px]">
+            <p class="font-[400]">
+              {{
+                isUnsupportedNetwork ? $t('unsupportedNetwork') : networkName
+              }}
+            </p>
+            <p
+              class="font-bold text-black dark:text-white"
+              v-text="shorten(account)"
+            />
           </div>
-          <div class="ml-2">
-            <div class="flex items-baseline address">
-              <div
-                class="font-bold text-black dark:text-white"
-                v-text="shorten(account)"
-              />
-              <div class="flex ml-3">
-                <BalTooltip width="auto">
-                  <template #activator>
-                    <BalBtn
-                      circle
-                      color="gray"
-                      size="xs"
-                      flat
-                      @click="copyAddress"
-                    >
-                      <BalIcon
-                        v-if="data.copiedAddress"
-                        name="check"
-                        size="xs"
-                      />
-                      <BalIcon v-else name="clipboard" size="xs" />
-                    </BalBtn>
-                  </template>
-                  <div
-                    class="text-center"
-                    v-text="
-                      data.copiedAddress ? $t('copied') : $t('copyAddress')
-                    "
+          <div class="flex ml-3">
+            <BalTooltip width="auto">
+              <template #activator>
+                <BalBtn class="button-container" @click="copyAddress">
+                  <img
+                    src="~@/assets/images/copy.svg"
+                    alt="twitter"
+                    class="w-[30px]"
                   />
-                </BalTooltip>
-                <BalBtn
-                  circle
-                  flat
-                  color="gray"
-                  size="xs"
-                  tag="a"
-                  :href="explorerLinks.addressLink(account)"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="ml-2"
-                >
-                  <BalIcon name="arrow-up-right" size="xs" />
                 </BalBtn>
-              </div>
-            </div>
-            <div class="text-sm">
-              {{ connectorName }}
-            </div>
+              </template>
+              <div
+                class="text-center"
+                v-text="data.copiedAddress ? $t('copied') : $t('copyAddress')"
+              />
+            </BalTooltip>
+            <BalBtn
+              class="ml-2 button-container"
+              tag="a"
+              :href="explorerLinks.addressLink(account)"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="~@/assets/images/logout.svg"
+                alt="twitter"
+                class="w-[30px]"
+              />
+            </BalBtn>
           </div>
         </div>
+      </div>
+      <div class="info-conatainer-modal rounded-[12px] mt-[20px] mb-[20px]">
+        <div class="flex">
+          <img
+            src="~@/assets/images/eth.png"
+            alt="LineaEth"
+            width="25"
+            class="object-contain mr-[10px]"
+          />
+          {{ parseFloat(tokenBalance.toString()).toFixed(3) }} ETH
+        </div>
+      </div>
+      <div class="flex items-center">
+        <BalBtn class="w-full modal-button"> Bridge </BalBtn>
+        <BalBtn class="w-full ml-[15px] modal-button" :onclick="showModal">
+          Add Funds
+        </BalBtn>
       </div>
     </div>
     <div class="hidden px-4 mt-4">
@@ -253,5 +282,29 @@ function copyAddress() {
 
 .slippage-input.active {
   @apply text-blue-500 border-blue-500 border-2 ring;
+}
+.info-conatainer-modal {
+  border: 1px solid #8b8dfc;
+  padding: 20px 15px;
+  border: 1px solid #8b8dfc;
+  background: rgba(134, 136, 255, 0.39);
+  box-shadow: 0px 0px 0px 2px rgba(134, 136, 255, 0.39);
+}
+.dark .info-conatainer-modal {
+  border: 1px solid #8b8dfc;
+  background: #141438;
+  padding: 20px 15px;
+  box-shadow: 0px 0px 0px 2px rgba(134, 136, 255, 0.39);
+}
+.button-container {
+  border-radius: 8px;
+  background: #8b8dfc;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+}
+.modal-button {
+  border-radius: 20px;
+  background: #2575fc;
 }
 </style>

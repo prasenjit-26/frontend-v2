@@ -36,7 +36,7 @@ const useDarkLogo = computed(() => darkMode.value);
 </script>
 
 <template>
-  <div class="grid grid-flow-col grid-rows-1 gap-2">
+  <div class="grid grid-rows-1 grid-flow-col gap-2">
     <DarkModeToggle v-if="isDesktop" />
     <!-- <AppNavActivityBtn v-if="account" /> -->
     <AppNavNetworkSelect />
