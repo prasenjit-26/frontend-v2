@@ -5,6 +5,7 @@ type Props = {
   trigger?: PopoverTrigger;
   align?: string;
   detached?: boolean;
+  overrideClasses?: string;
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -96,7 +97,8 @@ watch(popoverOpened, () => {
         shadow="lg"
         v-bind="$attrs"
         darkBgColor="800"
-        class="popover-card"
+        exposeOverflow
+        :class="['popover-card', overrideClasses]"
       >
         <slot :close="hidePopover" />
       </BalCard>

@@ -5,6 +5,7 @@ import { isGoerli } from '@/composables/useNetwork';
 import { applyNavGuards } from './nav-guards';
 
 const ClaimPage = () => import('@/pages/claim/index.vue');
+const BridgePage = () => import('@/pages/bridge/index.vue');
 const LegacyClaimPage = () => import('@/pages/claim/legacy.vue');
 const CookiesPolicyPage = () => import('@/pages/cookies-policy.vue');
 const GetVeBalPage = () => import('@/pages/get-vebal.vue');
@@ -73,6 +74,11 @@ const routes: RouteRecordRaw[] = [
     path: '/:networkSlug/swap/:assetIn?/:assetOut?',
     name: 'swap',
     component: SwapPage,
+  },
+  {
+    path: '/:networkSlug/bridge',
+    name: 'bridge',
+    component: BridgePage,
   },
   {
     path: '/:networkSlug/trade/:assetIn?/:assetOut?',

@@ -54,7 +54,6 @@ const { fNum } = useNumbers();
  * COMPUTED
  */
 const hasToken = computed(() => !!props.modelValue);
-
 const token = computed((): TokenInfo | null => {
   if (!hasToken.value) return null;
   return getToken(props.modelValue);
