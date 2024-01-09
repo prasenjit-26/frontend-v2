@@ -5,12 +5,12 @@
 import useBreakpoints from '@/composables/useBreakpoints';
 import Web3Avatar from 'web3-avatar-vue';
 import useWeb3 from '@/services/web3/useWeb3';
-import { shorten } from '@/lib/utils';
+// import { shorten } from '@/lib/utils';
 
 import AppNavSettings from './AppNavSettings.vue';
 import 'web3-avatar-vue/dist/style.css';
-const { upToLargeBreakpoint, isMobile } = useBreakpoints();
-const { isLoadingProfile, profile, account } = useWeb3();
+const { isMobile } = useBreakpoints();
+const { account } = useWeb3();
 // const avatarSize = computed(() => {
 //   if (bp.value === 'sm') {
 //     return 35;
@@ -29,14 +29,10 @@ const { isLoadingProfile, profile, account } = useWeb3();
     :detached="isMobile ? true : undefined"
   >
     <template #activator>
-      <div v-if="isMobile" class="mobile-account ml-[20px] mr-[20px]">
-        <Web3Avatar
-          address="0x11Ed0AC7D6142481E459B6e5d4bfB5646277796f"
-          class="w-[24px] h-[24px]"
-        />
+      <div class="mobile-account ml-[20px] mr-[20px] pointer">
+        <Web3Avatar :address="account" class="w-[40px] h-[40px]" />
       </div>
-      <BalBtn
-        v-else
+      <!-- <BalBtn
         class="text-base ml-[40px] account-button"
         :class="{ btn: upToLargeBreakpoint }"
         :loading="isLoadingProfile"
@@ -45,11 +41,11 @@ const { isLoadingProfile, profile, account } = useWeb3();
         :size="upToLargeBreakpoint ? 'md' : 'sm'"
         :circle="upToLargeBreakpoint"
       >
-        <!-- <Avatar
+        <Avatar
           :iconURI="profile?.avatar || ''"
           :address="account"
           :size="avatarSize"
-        /> -->
+        /> 
         <span
           v-if="profile && profile.ens"
           class="hidden lg:inline-block text-[15px]"
@@ -60,7 +56,7 @@ const { isLoadingProfile, profile, account } = useWeb3();
           class="hidden lg:inline-block pl-2 eth-address text-[20px] font-[500]"
           v-text="shorten(account)"
         />
-      </BalBtn>
+      </BalBtn> -->
     </template>
     <AppNavSettings />
   </BalPopover>

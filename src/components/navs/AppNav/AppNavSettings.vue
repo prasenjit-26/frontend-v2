@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AppSlippageForm from '@/components/forms/AppSlippageForm.vue';
-import Avatar from '@/components/images/Avatar.vue';
 import useEthereumTxType from '@/composables/useEthereumTxType';
 import { ethereumTxTypeOptions } from '@/constants/options';
 import useWeb3 from '@/services/web3/useWeb3';
@@ -12,22 +11,15 @@ import { useUserSettings } from '@/providers/user-settings.provider';
 import { useTokens } from '@/providers/tokens.provider';
 import { isEIP1559SupportedNetwork } from '@/composables/useNetwork';
 import { Network } from '@/lib/config';
-import Cede from '../../../pages/cede.vue';
+import useNumbers from '@/composables/useNumbers';
 
 // COMPOSABLES
-const { darkMode, setDarkMode } = useDarkMode();
-const showCedestoreModal = ref(false);
-const emit = defineEmits(['close', 'success']);
-const {
-  balanceFor,
-  priceFor,
-  nativeAsset,
-  wrappedNativeAsset,
-  dynamicDataLoading,
-} = useTokens();
+const { setDarkMode } = useDarkMode();
+const isDarkMode = ref(false);
+const { balanceFor, nativeAsset, wrappedNativeAsset } = useTokens();
+const { toFiat } = useNumbers();
 const {
   account,
-  profile,
   disconnectWallet,
   toggleWalletSelectModal,
   connector,
@@ -38,15 +30,16 @@ const {
 } = useWeb3();
 const { ethereumTxType, setEthereumTxType } = useEthereumTxType();
 const { supportSignatures, setSupportSignatures } = useUserSettings();
-
 // DATA
 const data = reactive({
   copiedAddress: false,
 });
 
 // COMPUTED
-const avatarUri = computed(() => profile.value?.avatar || undefined);
 const tokenBalance = computed(() => balanceFor(nativeAsset.address));
+const tokenBalanceFiat = computed(() =>
+  toFiat(balanceFor(nativeAsset.address), wrappedNativeAsset.value.address)
+);
 const networkColorClass = computed(() => {
   let color = 'green';
 
@@ -80,30 +73,23 @@ function copyAddress() {
     data.copiedAddress = false;
   }, 2 * 1000);
 }
-function handleClose() {
-  showCedestoreModal.value = false;
-  emit('close');
-}
-function showModal() {
-  showCedestoreModal.value = true;
+function toggleDarkMode() {
+  if (isDarkMode.value === true) {
+    isDarkMode.value = false;
+    setDarkMode(false);
+  } else {
+    isDarkMode.value = true;
+    setDarkMode(true);
+  }
 }
 </script>
 
 <template>
-  <BalModal :minWidth="438" :show="showCedestoreModal" @close="handleClose">
-    <div>
-      <div class="flex justify-between items-center mb-[25px]">
-        <p class="title-cede-text">CeDe Store</p>
-        <BalBtn class="bal-btn-cede" :onclick="handleClose">Close</BalBtn>
-      </div>
-      <Cede />
-    </div>
-  </BalModal>
   <div>
     <div class="p-4">
-      <div class="flex justify-between items-center">
-        <h5 class="tracking-tight leading-none" v-text="$t('account')" />
-        <div class="flex gap-2 items-center">
+      <div class="flex items-center justify-between">
+        <h5 class="leading-none tracking-tight" v-text="$t('account')" />
+        <div class="flex items-center gap-2">
           <BalBtn color="gray" size="xs" @click="toggleWalletSelectModal">
             {{ $t('change') }}
           </BalBtn>
@@ -168,49 +154,54 @@ function showModal() {
           </div>
         </div>
       </div>
-      <div class="info-conatainer-modal rounded-[12px] mt-[20px] mb-[20px]">
-        <div class="flex">
-          <img
-            src="~@/assets/images/eth.png"
-            alt="LineaEth"
-            width="25"
-            class="object-contain mr-[10px]"
-          />
-          {{ parseFloat(tokenBalance.toString()).toFixed(3) }} ETH
-        </div>
-      </div>
-      <div class="flex items-center">
-        <BalBtn class="w-full modal-button"> Bridge </BalBtn>
-        <BalBtn class="w-full ml-[15px] modal-button" :onclick="showModal">
-          Add Funds
-        </BalBtn>
-      </div>
-    </div>
-    <div class="hidden px-4 mt-4">
-      <span class="mb-2 font-medium" v-text="$t('theme')" />
-      <div class="flex mt-1">
-        <div
-          class="flex justify-center items-center py-1.5 mr-2 w-16 rounded-xl border cursor-pointer option"
-          :class="{ active: !darkMode }"
-          @click="setDarkMode(false)"
-        >
-          <BalIcon name="sun" size="sm" />
-        </div>
-        <div
-          class="flex justify-center items-center py-1.5 mr-2 w-16 rounded-xl border cursor-pointer option"
-          :class="{ active: darkMode }"
-          @click="setDarkMode(true)"
-        >
-          <BalIcon name="moon" size="sm" />
+      <div class="mt-[20px]">
+        <div class="flex justify-between w-full">
+          <div class="flex items-center">
+            <img
+              src="~@/assets/images/eth.png"
+              alt="LineaEth"
+              width="25"
+              class="object-contain mr-[10px]"
+            />
+            {{ parseFloat(tokenBalance.toString()).toFixed(3) }} ETH
+          </div>
+          <div>
+            {{ parseFloat(tokenBalanceFiat.toString()).toFixed(3) }} USD
+          </div>
         </div>
       </div>
     </div>
+    <div class="flex justify-between items-center px-4 mt-4 mb-[20px]">
+      <span class="text-[20px] font-[600]" v-text="'Dark Theme'" />
+      <BalToggle
+        :checked="isDarkMode"
+        name="isDarkMode"
+        @toggle="toggleDarkMode"
+      />
+    </div>
+    <div class="flex items-center justify-between px-4 mb-2">
+      <div class="flex items-baseline">
+        <span class="text-[20px] font-[600]" v-text="$t('useSignatures')" />
+        <BalTooltip>
+          <template #activator>
+            <BalIcon name="info" size="xs" class="ml-1 -mb-px text-gray-400" />
+          </template>
+          <div v-text="$t('useSignaturesTooltip')" />
+        </BalTooltip>
+      </div>
+      <BalToggle
+        v-model="supportSignatures"
+        name="supportSignatures"
+        @toggle="setSupportSignatures"
+      />
+    </div>
+
     <div class="px-4 mt-4">
       <div class="flex items-baseline">
         <span class="mb-2 font-medium" v-text="$t('slippageTolerance')" />
         <BalTooltip>
           <template #activator>
-            <BalIcon name="info" size="xs" class="-mb-px ml-1 text-gray-400" />
+            <BalIcon name="info" size="xs" class="ml-1 -mb-px text-gray-400" />
           </template>
           <div v-html="$t('marketConditionsWarning')" />
         </BalTooltip>
@@ -222,7 +213,7 @@ function showModal() {
         <span class="mb-2 font-medium" v-text="$t('transactionType')" />
         <BalTooltip>
           <template #activator>
-            <BalIcon name="info" size="xs" class="-mb-px ml-1 text-gray-400" />
+            <BalIcon name="info" size="xs" class="ml-1 -mb-px text-gray-400" />
           </template>
           <div v-text="$t('ethereumTxTypeTooltip')" />
         </BalTooltip>
@@ -233,24 +224,8 @@ function showModal() {
         @update:model-value="setEthereumTxType"
       />
     </div>
-    <div class="px-4 mt-6">
-      <div class="flex items-baseline">
-        <span class="mb-2 font-medium" v-text="$t('useSignatures')" />
-        <BalTooltip>
-          <template #activator>
-            <BalIcon name="info" size="xs" class="-mb-px ml-1 text-gray-400" />
-          </template>
-          <div v-text="$t('useSignaturesTooltip')" />
-        </BalTooltip>
-      </div>
-      <BalToggle
-        v-model="supportSignatures"
-        name="supportSignatures"
-        @toggle="setSupportSignatures"
-      />
-    </div>
     <div
-      class="p-4 mt-4 text-sm rounded-b-xl border-t dark:border-gray-900 network"
+      class="p-4 mt-4 text-sm border-t rounded-b-xl dark:border-gray-900 network"
     >
       <div v-text="$t('network')" />
       <div class="flex items-baseline">

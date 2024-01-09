@@ -154,7 +154,13 @@ export const tokensProvider = (
     isError: priceQueryError,
     refetch: refetchPrices,
   } = useTokenPricesQuery(toRef(state, 'injectedPrices'));
-
+  console.log(
+    'injectedPrices',
+    priceData,
+    priceQueryLoading.value,
+    priceQueryLoading.value,
+    priceQueryError.value
+  );
   const {
     data: balanceData,
     isSuccess: balanceQuerySuccess,
@@ -176,7 +182,7 @@ export const tokensProvider = (
     contractAddresses: toRef(state, 'spenders'),
     isEnabled: queriesEnabled,
   });
-
+  console.log('priceData', priceData.value);
   const prices = computed(
     (): TokenPrices => (priceData.value ? priceData.value : {})
   );

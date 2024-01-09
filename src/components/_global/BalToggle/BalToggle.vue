@@ -54,7 +54,7 @@ export default defineComponent({
 
 <style>
 .bal-toggle {
-  @apply relative inline-block w-10 align-middle select-none transition duration-200 ease-out;
+  @apply relative inline-block w-[45px] align-middle select-none transition duration-200 ease-out;
 }
 
 .dark .bal-toggle-checkbox {

@@ -28,9 +28,12 @@ export default {
       logoTheme: 'light',
       borderRadius: 6,
       primaryColor: darkMode ? '#151526' : '#acb0ff',
-      borderColor: darkMode ? '#000000' : '#ffffff',
-      accentColor: '#8B8DFC',
-      buttonTextColor: darkMode ? '#fafafa' : '#000000',
+      primaryTextColor: '#ffffff',
+      secondaryTextColor: '#ffffff',
+      secondaryColor: '#00000000',
+      borderColor: darkMode ? '#fefefe' : '#ffffff',
+      accentColor: darkMode ? '#6162B0' : '#8a8dfc',
+      buttonTextColor: darkMode ? '#fafafa' : '#fcf5f5',
     }"
   >
   </BasicPure>
