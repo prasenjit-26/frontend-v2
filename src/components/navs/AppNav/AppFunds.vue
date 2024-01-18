@@ -58,7 +58,7 @@ const fiatLabel = computed(() => {
       <div class="flex justify-between items-center mb-[25px]">
         <p class="title-cede-text">Cede.store</p>
         <BalBtn class="bal-btn-cede" :onclick="handleClose" :rounded="true">
-          <BalCloseIcon class="text-black cursor-pointer dark:text-white" />
+          <BalCloseIcon class="text-black dark:text-white cursor-pointer" />
         </BalBtn>
       </div>
       <Cede />
@@ -102,7 +102,7 @@ const fiatLabel = computed(() => {
         </div>
         <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">
-            Transfer assets from CEX Using Cede Store
+            Transfer assets from CEX Using cede.store
           </p>
           <BalBtn class="w-[30%] assets-button" :onclick="showModal">
             Transfer assets
