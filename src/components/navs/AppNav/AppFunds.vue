@@ -92,14 +92,14 @@ const fiatLabel = computed(() => {
         </div>
       </div>
       <div class="mt-[24px]">
-        <div class="flex justify-between items-center mb-[20px]">
+        <!-- <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">Bridge funds from other networks</p>
           <BalBtn class="w-[30%] assets-button"> Bridge </BalBtn>
-        </div>
-        <div class="flex justify-between items-center mb-[20px]">
+        </div> -->
+        <!-- <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">Add funds using Credit cards</p>
           <BalBtn class="w-[30%] assets-button"> Add Funds </BalBtn>
-        </div>
+        </div> -->
         <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">
             Transfer assets from CEX Using cede.store
