@@ -3,10 +3,10 @@ import { reactive, Ref, ref } from 'vue';
 import { useQuery, UseQueryOptions } from '@tanstack/vue-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import useNetwork from '../useNetwork';
-import { getApi } from '@/dependencies/balancer-api';
-import { GqlTokenPrice } from '@/services/api/graphql/generated/api-types';
+// import { getApi } from '@/dependencies/balancer-api';
+// import { GqlTokenPrice } from '@/services/api/graphql/generated/api-types';
 import { oneMinInMs } from '../useTime';
-import { getAddress } from '@ethersproject/address';
+// import { getAddress } from '@ethersproject/address';
 
 /**
  * TYPES
@@ -26,27 +26,28 @@ export default function useTokenPricesQuery(
   const queryKey = reactive(
     QUERY_KEYS.Tokens.Prices(networkId, pricesToInject)
   );
-  function priceArrayToMap(prices: GqlTokenPrice[]): TokenPrices {
-    return prices.reduce(
-      (obj, item) => ((obj[getAddress(item.address)] = item.price), obj),
-      {}
-    );
-  }
+  // function priceArrayToMap(prices: GqlTokenPrice[]): TokenPrices {
+  //   return prices.reduce(
+  //     (obj, item) => ((obj[getAddress(item.address)] = item.price), obj),
+  //     {}
+  //   );
+  // }
 
   function injectCustomTokens(
     prices: TokenPrices,
     pricesToInject: TokenPrices,
     lineaTokenPrices: any
   ): TokenPrices {
+    console.log('lineaTokenPrices', lineaTokenPrices);
     for (const address of Object.keys(pricesToInject)) {
       prices[address] = pricesToInject[address];
     }
     return { ...prices, ...lineaTokenPrices };
   }
-
-  const api = getApi();
+  // const api = getApi();
   const queryFn = async () => {
-    const { prices } = await api.GetCurrentTokenPrices();
+    // const { prices } = await api.GetCurrentTokenPrices();
+    // console.log('prices', prices);
     const fetchTokens = await fetch(
       'https://raw.githubusercontent.com/Chimp-Exchange/chimp-tokenlists/main/generated/balancer.tokenlist.json'
     );
@@ -61,6 +62,7 @@ export default function useTokenPricesQuery(
       `https://api.coingecko.com/api/v3/simple/token_price/linea?contract_addresses=${filterLineaTokens.toString()}&vs_currencies=usd`
     );
     const pricesData = await getTokenPrices.json();
+    console.log('pricesData', pricesData);
     let lineaTokenPrices = {};
     for (const property in pricesData) {
       lineaTokenPrices = {
@@ -68,7 +70,7 @@ export default function useTokenPricesQuery(
         [property]: pricesData[property].usd,
       };
     }
-    let pricesMap = priceArrayToMap(prices);
+    let pricesMap = {};
     pricesMap = injectCustomTokens(
       pricesMap,
       pricesToInject.value,
