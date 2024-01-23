@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AppSlippageForm from '@/components/forms/AppSlippageForm.vue';
-import Avatar from '@/components/images/Avatar.vue';
 import useEthereumTxType from '@/composables/useEthereumTxType';
 import { ethereumTxTypeOptions } from '@/constants/options';
 import useWeb3 from '@/services/web3/useWeb3';
@@ -9,15 +8,18 @@ import useDarkMode from '@/composables/useDarkMode';
 import { getConnectorLogo } from '@/services/web3/wallet-logos';
 import { getConnectorName } from '@/services/web3/wallet-names';
 import { useUserSettings } from '@/providers/user-settings.provider';
+import { useTokens } from '@/providers/tokens.provider';
 import { isEIP1559SupportedNetwork } from '@/composables/useNetwork';
 import { Network } from '@/lib/config';
+import useNumbers from '@/composables/useNumbers';
 
 // COMPOSABLES
-const { darkMode, setDarkMode } = useDarkMode();
-
+const { setDarkMode } = useDarkMode();
+const isDarkMode = ref(false);
+const { balanceFor, nativeAsset, wrappedNativeAsset } = useTokens();
+const { toFiat } = useNumbers();
 const {
   account,
-  profile,
   disconnectWallet,
   toggleWalletSelectModal,
   connector,
@@ -28,14 +30,16 @@ const {
 } = useWeb3();
 const { ethereumTxType, setEthereumTxType } = useEthereumTxType();
 const { supportSignatures, setSupportSignatures } = useUserSettings();
-
 // DATA
 const data = reactive({
   copiedAddress: false,
 });
 
 // COMPUTED
-const avatarUri = computed(() => profile.value?.avatar || undefined);
+const tokenBalance = computed(() => balanceFor(nativeAsset.address));
+const tokenBalanceFiat = computed(() =>
+  toFiat(balanceFor(nativeAsset.address), wrappedNativeAsset.value.address)
+);
 const networkColorClass = computed(() => {
   let color = 'green';
 
@@ -69,14 +73,23 @@ function copyAddress() {
     data.copiedAddress = false;
   }, 2 * 1000);
 }
+function toggleDarkMode() {
+  if (isDarkMode.value === true) {
+    isDarkMode.value = false;
+    setDarkMode(false);
+  } else {
+    isDarkMode.value = true;
+    setDarkMode(true);
+  }
+}
 </script>
 
 <template>
   <div>
-    <div class="p-4 border-b dark:border-gray-900">
-      <div class="flex justify-between items-center mb-6">
-        <h5 class="tracking-tight leading-none" v-text="$t('account')" />
-        <div class="flex gap-2 items-center">
+    <div class="p-4">
+      <div class="flex items-center justify-between">
+        <h5 class="leading-none tracking-tight" v-text="$t('account')" />
+        <div class="flex items-center gap-2">
           <BalBtn color="gray" size="xs" @click="toggleWalletSelectModal">
             {{ $t('change') }}
           </BalBtn>
@@ -93,95 +106,102 @@ function copyAddress() {
           </div>
         </div>
       </div>
-      <div class="flex mt-1 mb-1">
-        <div class="flex">
-          <div class="relative">
-            <Avatar :iconURI="avatarUri" :address="account" :size="44" />
-            <div class="connector-icon-wrapper">
-              <img
-                :src="connectorLogo"
-                class="flex absolute right-0 bottom-0 justify-center items-center p-0.5 w-5 h-5 bg-white rounded-full"
-              />
-            </div>
+    </div>
+    <div class="info-conatainer-modal rounded-[20px] m-[20px]">
+      <div class="flex items-center">
+        <div class="flex items-center">
+          <img :src="connectorLogo" class="w-[50px] h-[50px]" />
+          <div class="ml-[10px]">
+            <p class="font-[400]">
+              {{
+                isUnsupportedNetwork ? $t('unsupportedNetwork') : networkName
+              }}
+            </p>
+            <p
+              class="font-bold text-black dark:text-white"
+              v-text="shorten(account)"
+            />
           </div>
-          <div class="ml-2">
-            <div class="flex items-baseline address">
-              <div
-                class="font-bold text-black dark:text-white"
-                v-text="shorten(account)"
-              />
-              <div class="flex ml-3">
-                <BalTooltip width="auto">
-                  <template #activator>
-                    <BalBtn
-                      circle
-                      color="gray"
-                      size="xs"
-                      flat
-                      @click="copyAddress"
-                    >
-                      <BalIcon
-                        v-if="data.copiedAddress"
-                        name="check"
-                        size="xs"
-                      />
-                      <BalIcon v-else name="clipboard" size="xs" />
-                    </BalBtn>
-                  </template>
-                  <div
-                    class="text-center"
-                    v-text="
-                      data.copiedAddress ? $t('copied') : $t('copyAddress')
-                    "
+          <div class="flex ml-3">
+            <BalTooltip width="auto">
+              <template #activator>
+                <BalBtn class="button-container" @click="copyAddress">
+                  <img
+                    src="~@/assets/images/copy.svg"
+                    alt="twitter"
+                    class="w-[30px]"
                   />
-                </BalTooltip>
-                <BalBtn
-                  circle
-                  flat
-                  color="gray"
-                  size="xs"
-                  tag="a"
-                  :href="explorerLinks.addressLink(account)"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="ml-2"
-                >
-                  <BalIcon name="arrow-up-right" size="xs" />
                 </BalBtn>
-              </div>
-            </div>
-            <div class="text-sm">
-              {{ connectorName }}
-            </div>
+              </template>
+              <div
+                class="text-center"
+                v-text="data.copiedAddress ? $t('copied') : $t('copyAddress')"
+              />
+            </BalTooltip>
+            <BalBtn
+              class="ml-2 button-container"
+              tag="a"
+              :href="explorerLinks.addressLink(account)"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="~@/assets/images/logout.svg"
+                alt="twitter"
+                class="w-[30px]"
+              />
+            </BalBtn>
+          </div>
+        </div>
+      </div>
+      <div class="mt-[20px]">
+        <div class="flex justify-between w-full">
+          <div class="flex items-center">
+            <img
+              src="~@/assets/images/eth.png"
+              alt="LineaEth"
+              width="25"
+              class="object-contain mr-[10px]"
+            />
+            {{ parseFloat(tokenBalance.toString()).toFixed(3) }} ETH
+          </div>
+          <div>
+            {{ parseFloat(tokenBalanceFiat.toString()).toFixed(3) }} USD
           </div>
         </div>
       </div>
     </div>
-    <div class="hidden px-4 mt-4">
-      <span class="mb-2 font-medium" v-text="$t('theme')" />
-      <div class="flex mt-1">
-        <div
-          class="flex justify-center items-center py-1.5 mr-2 w-16 rounded-xl border cursor-pointer option"
-          :class="{ active: !darkMode }"
-          @click="setDarkMode(false)"
-        >
-          <BalIcon name="sun" size="sm" />
-        </div>
-        <div
-          class="flex justify-center items-center py-1.5 mr-2 w-16 rounded-xl border cursor-pointer option"
-          :class="{ active: darkMode }"
-          @click="setDarkMode(true)"
-        >
-          <BalIcon name="moon" size="sm" />
-        </div>
-      </div>
+    <div class="flex justify-between items-center px-4 mt-4 mb-[20px]">
+      <span class="text-[20px] font-[600]" v-text="'Dark Theme'" />
+      <BalToggle
+        :checked="isDarkMode"
+        name="isDarkMode"
+        @toggle="toggleDarkMode"
+      />
     </div>
+    <div class="flex items-center justify-between px-4 mb-2">
+      <div class="flex items-baseline">
+        <span class="text-[20px] font-[600]" v-text="$t('useSignatures')" />
+        <BalTooltip>
+          <template #activator>
+            <BalIcon name="info" size="xs" class="ml-1 -mb-px text-gray-400" />
+          </template>
+          <div v-text="$t('useSignaturesTooltip')" />
+        </BalTooltip>
+      </div>
+      <BalToggle
+        v-model="supportSignatures"
+        name="supportSignatures"
+        @toggle="setSupportSignatures"
+      />
+    </div>
+
     <div class="px-4 mt-4">
       <div class="flex items-baseline">
         <span class="mb-2 font-medium" v-text="$t('slippageTolerance')" />
         <BalTooltip>
           <template #activator>
-            <BalIcon name="info" size="xs" class="-mb-px ml-1 text-gray-400" />
+            <BalIcon name="info" size="xs" class="ml-1 -mb-px text-gray-400" />
           </template>
           <div v-html="$t('marketConditionsWarning')" />
         </BalTooltip>
@@ -193,7 +213,7 @@ function copyAddress() {
         <span class="mb-2 font-medium" v-text="$t('transactionType')" />
         <BalTooltip>
           <template #activator>
-            <BalIcon name="info" size="xs" class="-mb-px ml-1 text-gray-400" />
+            <BalIcon name="info" size="xs" class="ml-1 -mb-px text-gray-400" />
           </template>
           <div v-text="$t('ethereumTxTypeTooltip')" />
         </BalTooltip>
@@ -204,24 +224,8 @@ function copyAddress() {
         @update:model-value="setEthereumTxType"
       />
     </div>
-    <div class="px-4 mt-6">
-      <div class="flex items-baseline">
-        <span class="mb-2 font-medium" v-text="$t('useSignatures')" />
-        <BalTooltip>
-          <template #activator>
-            <BalIcon name="info" size="xs" class="-mb-px ml-1 text-gray-400" />
-          </template>
-          <div v-text="$t('useSignaturesTooltip')" />
-        </BalTooltip>
-      </div>
-      <BalToggle
-        v-model="supportSignatures"
-        name="supportSignatures"
-        @toggle="setSupportSignatures"
-      />
-    </div>
     <div
-      class="p-4 mt-4 text-sm rounded-b-xl border-t dark:border-gray-900 network"
+      class="p-4 mt-4 text-sm border-t rounded-b-xl dark:border-gray-900 network"
     >
       <div v-text="$t('network')" />
       <div class="flex items-baseline">
@@ -253,5 +257,29 @@ function copyAddress() {
 
 .slippage-input.active {
   @apply text-blue-500 border-blue-500 border-2 ring;
+}
+.info-conatainer-modal {
+  border: 1px solid #8b8dfc;
+  padding: 20px 15px;
+  border: 1px solid #8b8dfc;
+  background: rgba(134, 136, 255, 0.39);
+  box-shadow: 0px 0px 0px 2px rgba(134, 136, 255, 0.39);
+}
+.dark .info-conatainer-modal {
+  border: 1px solid #8b8dfc;
+  background: #141438;
+  padding: 20px 15px;
+  box-shadow: 0px 0px 0px 2px rgba(134, 136, 255, 0.39);
+}
+.button-container {
+  border-radius: 8px;
+  background: #8b8dfc;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+}
+.modal-button {
+  border-radius: 20px;
+  background: #2575fc;
 }
 </style>

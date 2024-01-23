@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // import { computed } from 'vue';
 
-import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
+// import DarkModeToggle from '@/components/btns/DarkModeToggle.vue';
 import useBreakpoints from '@/composables/useBreakpoints';
 import { useSidebar } from '@/composables/useSidebar';
 import useWeb3 from '@/services/web3/useWeb3';
@@ -9,6 +9,7 @@ import useWeb3 from '@/services/web3/useWeb3';
 import AppNavAccountBtn from './AppNavAccountBtn.vue';
 // import AppNavActivityBtn from './AppNavActivityBtn/AppNavActivityBtn.vue';
 import AppNavNetworkSelect from './AppNavNetworkSelect.vue';
+import AppFunds from './AppFunds.vue';
 import { Goals, trackGoal } from '@/composables/useFathom';
 import useDarkMode from '@/composables/useDarkMode';
 
@@ -37,8 +38,9 @@ const useDarkLogo = computed(() => darkMode.value);
 
 <template>
   <div class="grid grid-flow-col grid-rows-1 gap-2">
-    <DarkModeToggle v-if="isDesktop" />
+    <!-- <DarkModeToggle v-if="isDesktop" /> -->
     <!-- <AppNavActivityBtn v-if="account" /> -->
+    <AppFunds v-if="isDesktop" />
     <AppNavNetworkSelect />
     <AppNavAccountBtn v-if="account" />
     <BalBtn
@@ -57,7 +59,7 @@ const useDarkLogo = computed(() => darkMode.value);
       color="white"
       flat
       circle
-      class="h-[24px]"
+      class="h-[40px]"
       @click="setSidebarOpen(true)"
     >
       <img
@@ -65,12 +67,14 @@ const useDarkLogo = computed(() => darkMode.value);
         src="~@/assets/images/hamBurgerMenu.png"
         alt="menu"
         width="30"
+        height="40"
       />
       <img
         v-else
         src="~@/assets/images/hamburgerBlack.png"
         alt="menu"
         width="30"
+        height="40"
       />
     </BalBtn>
   </div>

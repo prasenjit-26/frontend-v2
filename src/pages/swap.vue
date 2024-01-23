@@ -57,7 +57,7 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
   <div>
     <div class="container mx-auto max-w-[1300px] h-[75vh] pl-[24px] pr-[24px]">
       <div
-        class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xs:grid-cols-1 gap-4"
+        class="grid gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xs:grid-cols-1"
       >
         <!-- <template #gutterLeft>
         <MyWallet />
@@ -94,7 +94,7 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
         </div>
         <div>
           <SwapCard />
-          <div v-if="isDesktop" class="p-4 sm:p-0 lg:p-0 mt-8">
+          <div v-if="isDesktop" class="p-4 mt-8 sm:p-0 lg:p-0">
             <BalAccordion
               v-if="upToLargeBreakpoint"
               class="w-full"
@@ -145,5 +145,29 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
   padding: 3.6px;
   justify-content: center;
   align-items: center;
+}
+.bal-btn-cede {
+  color: #000000;
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  width: 80px;
+  border-radius: 25.2px;
+  border: 0.9px solid #8b8dfc;
+  padding: 3.6px;
+  background: #dadbff;
+}
+.dark .bal-btn-cede {
+  color: var(--Text-White, #fff);
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  width: 80px;
+  border-radius: 25.2px;
+  border: 0.9px solid #8b8dfc;
+  padding: 3.6px;
+  background: #34355f;
 }
 </style>

@@ -16,6 +16,7 @@ import DiscordIcon from '@/components/_global/icons/brands/DiscordIcon.vue';
 import MediumIcon from '@/components/_global/icons/brands/MediumIcon.vue';
 import YoutubeIcon from '@/components/_global/icons/brands/YoutubeIcon.vue';
 import GithubIcon from '@/components/_global/icons/brands/GithubIcon.vue';
+import AppFunds from '../AppFunds.vue';
 
 /**
  * PROPS & EMITS
@@ -145,7 +146,9 @@ watch(blockNumber, async () => {
         <BalIcon name="arrow-up-right" size="sm" class="ml-1 text-secondary" />
       </BalLink>
     </div> -->
-
+    <div class="mt-6 ml-[19px] mr-[19px]">
+      <AppFunds />
+    </div>
     <div class="px-4 mt-6">
       <div class="mt-2 side-bar-btn" @click="toggleDarkMode">
         <MoonIcon v-if="!darkMode" class="mr-2" />
@@ -154,7 +157,7 @@ watch(blockNumber, async () => {
       </div>
     </div>
 
-    <div class="flex justify-center items-center px-4 mt-4">
+    <div class="flex items-center justify-center px-4 mt-4">
       <a
         href="https://twitter.com/ChimpExchange"
         target="_blank"

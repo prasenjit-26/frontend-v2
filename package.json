@@ -86,7 +86,7 @@
     "@types/parse-filepath": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^4.5.2",
     "@vitest/coverage-c8": "^0.30.1",
     "@vue/test-utils": "^2.3.2",
     "@vueuse/core": "^4.3.4",
@@ -173,6 +173,12 @@
   "dependencies": {
     "@auroblocks/chimp-sdk": "^0.0.24",
     "@auroblocks/chimp-sor": "0.0.8",
+    "@cedelabs/widgets": "0.6.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "veaury": "^2.3.12",
     "web3-avatar-vue": "^1.0.3"
   }
 }
