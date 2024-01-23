@@ -70,14 +70,14 @@ function isActive(page: string): boolean {
     >
       slChimp
     </DesktopLinkItem> -->
-    <DesktopLinkItem
+    <!-- <DesktopLinkItem
       :to="{ name: 'bridge', params: { networkSlug } }"
       :active="isActive('bridge')"
       prefetch
       @click="trackGoal(Goals.ClickNavVebal)"
     >
       Bridge
-    </DesktopLinkItem>
+    </DesktopLinkItem> -->
   </div>
   <!-- <div class="container">
     <div class="tabs">
@@ -100,5 +100,6 @@ function isActive(page: string): boolean {
   box-shadow: inset 0px 4px 4px 0px #31313140, 0px 0px 0px 2px #8b8dfc;
   border-radius: 77px;
   background: #8b8dfc26;
+  height: 57px;
 }
 </style>
