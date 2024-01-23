@@ -4,7 +4,9 @@ import { Contract, ethers } from 'ethers';
 import useBreakpoints from '@/composables/useBreakpoints';
 import BigNumber from 'bignumber.js';
 import ERC20_ABI from '@/lib/abi/ERC20.json';
+import useTransactions from '@/composables/useTransactions';
 import useWeb3 from '@/services/web3/useWeb3';
+import { useWallets } from '@/providers/wallet.provider';
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
@@ -21,7 +23,7 @@ const chainIdRpcMapping = {
   '59140': 'https://rpc.goerli.linea.build',
   '5001': 'https://rpc.testnet.mantle.xyz',
   '11155111': 'https://rpc2.sepolia.org',
-  '1': 'https://mainnet.infura.io/v3/',
+  '1': 'https://rpc.ankr.com/eth',
   '42161': 'https://arb1.arbitrum.io/rpc',
   zksync: 'https://mainnet.era.zksync.io',
   '137': 'https://polygon-rpc.com',
@@ -70,9 +72,11 @@ const activeNetworkDestination = ref({} as NetworkRef);
 const sourceToken = ref({} as TokenRef);
 const destinationToken = ref({} as TokenRef);
 const receiveAmountInEth = ref('0');
+const txLoading = ref(false);
 const sourceTokenBalance = ref('0');
 const destinationTokenBalance = ref('0');
 const { upToLargeBreakpoint } = useBreakpoints();
+const { addTransaction } = useTransactions();
 const state = reactive<{
   supportedChain: NetworkRef[];
   sourceTokens: TokenRef[];
@@ -96,6 +100,7 @@ const amount = reactive<{
   receiveDataRouter: null,
 });
 const { account, getSigner, chainId } = useWeb3();
+const { provider } = useWallets();
 const API_LINK = 'https://api.orbiter.finance/sdk';
 const onPageLoad = async () => {
   // Example: Fetch data from an API and update reactive state
@@ -226,9 +231,12 @@ const getReceiveAmount = async () => {
       const valueInWei = new BigNumber(amount.sourceAmount)
         .multipliedBy(10 ** parseFloat(sourceToken.value.decimals.toString()))
         .toString();
-      console.log('valueInWei', valueInWei, amount.sourceAmount);
+      const prefix = valueInWei.slice(0, -4);
+      // Concatenate the prefix and the replacement
+      const resultString = prefix + state.selectedCrosschainLink.vc;
+      console.log('valueInWei', valueInWei, amount.sourceAmount, resultString);
       const checkReceiveAmount = await fetch(
-        `${API_LINK}/routers/simulation/receiveAmount?line=${state.selectedCrosschainLink.line}&value=${valueInWei}${state.selectedCrosschainLink.vc}`
+        `${API_LINK}/routers/simulation/receiveAmount?line=${state.selectedCrosschainLink.line}&value=${resultString}`
       );
       const amountResp = await checkReceiveAmount.json();
       if (amountResp.status === 'success') {
@@ -244,6 +252,9 @@ const getReceiveAmount = async () => {
           .toString();
         receiveAmountInEth.value = receiveValue;
         amount.receiveDataRouter = amountResp.result.router;
+      } else {
+        amount.receiveDataRouter = null;
+        receiveAmountInEth.value = '0';
       }
       console.log('checkReceiveAmount', amountResp);
     }
@@ -252,24 +263,76 @@ const getReceiveAmount = async () => {
   }
 };
 const bridgeTranscation = async () => {
-  const signer = getSigner();
-  console.log('signer', signer);
-  if (amount && amount.receiveDataRouter) {
-    const sourceAmountResp = new BigNumber(amount.sourceAmount)
-      .multipliedBy(10 ** parseFloat(sourceToken.value.decimals.toString()))
-      .toString();
-    const txData = {
-      value:
-        sourceAmountResp.substring(0, sourceAmountResp.length - 4) +
-        amount.receiveDataRouter.vc,
-      to: amount.receiveDataRouter.endpoint,
-    };
-    console.log('txData', txData);
-    const tx = await signer.sendTransaction(txData);
-    console.log('before', tx);
-    await tx.wait();
-    console.log('after', tx);
-    console.log(tx);
+  try {
+    txLoading.value = true;
+    const signer = getSigner();
+    if (chainId.value.toString() !== activeNetwork.value.chainId.toString()) {
+      // @ts-ignore
+      const hexChainId = `0x${activeNetwork.value.chainId.toString(16)}`;
+      if (provider.value.request) {
+        await provider.value.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: hexChainId }],
+        });
+      }
+    }
+    if (amount && amount.receiveDataRouter) {
+      const sourceAmountResp = new BigNumber(amount.sourceAmount)
+        .multipliedBy(10 ** parseFloat(sourceToken.value.decimals.toString()))
+        .toString();
+      if (
+        sourceToken.value.address ===
+        '0x0000000000000000000000000000000000000000'
+      ) {
+        const txData = {
+          value:
+            sourceAmountResp.substring(0, sourceAmountResp.length - 4) +
+            amount.receiveDataRouter.vc,
+          to: amount.receiveDataRouter.endpoint,
+        };
+        console.log('txData', txData);
+        const tx = await signer.sendTransaction(txData);
+        addTransaction({
+          id: tx.hash,
+          type: 'tx',
+          action: 'Bridge',
+          summary: 'Birdge Transcation',
+          details: {
+            spender: account.value,
+          },
+        });
+        await tx.wait();
+        console.log('after', tx);
+      } else {
+        const erc20Token = new Contract(
+          sourceToken.value.address,
+          ERC20_ABI,
+          signer
+        );
+        const sourceAmountResp = new BigNumber(amount.sourceAmount)
+          .multipliedBy(10 ** parseFloat(sourceToken.value.decimals.toString()))
+          .toString();
+        const tx = await erc20Token.transfer(
+          amount.receiveDataRouter?.endpoint,
+          sourceAmountResp.substring(0, sourceAmountResp.length - 4) +
+            amount.receiveDataRouter.vc
+        );
+        addTransaction({
+          id: tx.hash,
+          type: 'tx',
+          action: 'Bridge',
+          summary: 'Birdge Transcation',
+          details: {
+            spender: account.value,
+          },
+        });
+        await tx.wait();
+        console.log('after', tx);
+      }
+    }
+    txLoading.value = false;
+  } catch (error) {
+    console.log('error', error);
   }
 };
 const getFee = () => {
@@ -279,12 +342,22 @@ const getFee = () => {
     state.selectedCrosschainLink.withholdingFee
   ) {
     fess = state.selectedCrosschainLink.withholdingFee;
+    let feesinWei = new BigNumber(fess).multipliedBy(
+      10 ** parseFloat(sourceToken.value.decimals.toString())
+    );
+    feesinWei = feesinWei.plus(state.selectedCrosschainLink.tradeFee);
+    fess = feesinWei
+      .dividedBy(10 ** parseFloat(sourceToken.value.decimals.toString()))
+      .toString();
   }
   return fess;
 };
 const handleSouceAmount = event => {
   amount.sourceAmount = event.target.value;
   getReceiveAmount();
+};
+const handlePopOverClose = () => {
+  console.log('in close');
 };
 onBeforeMount(() => {
   onPageLoad();
@@ -304,7 +377,11 @@ console.log('amount', amount);
         <p class="swap-title mb-[20px]">Bridge</p>
         <div class="relative p-5 bal-text-input-container">
           <div class="flex justify-between">
-            <BalPopover noPad overrideClasses="popuover-override">
+            <BalPopover
+              noPad
+              overrideClasses="popuover-override"
+              @close="handlePopOverClose"
+            >
               <template #activator>
                 <BalBtn
                   class="ml-4 network-button-bride"
@@ -321,30 +398,33 @@ console.log('amount', amount);
                   </template>
                 </BalBtn>
               </template>
-              <div
-                role="menu"
-                class="flex flex-col w-52 rounded-lg max-h-[300px] overflow-scrolll wallet-menu wallet-menu-scroll"
-              >
+              <template #default="{ close }">
                 <div
-                  class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
-                >
-                  Select Network
-                </div>
-                <div
-                  v-for="network in state.supportedChain"
-                  :key="network.chainId"
-                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  role="menu"
+                  class="flex flex-col w-52 rounded-lg max-h-[300px] overflow-scrolll wallet-menu wallet-menu-scroll"
+                  @click="close"
                 >
                   <div
-                    class="flex items-center"
-                    :onclick="() => handleSourceNetwork(network)"
+                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
                   >
-                    <span class="ml-1">
-                      {{ network.name }}
-                    </span>
+                    Select Network
+                  </div>
+                  <div
+                    v-for="network in state.supportedChain"
+                    :key="network.chainId"
+                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  >
+                    <div
+                      class="flex items-center"
+                      :onclick="() => handleSourceNetwork(network)"
+                    >
+                      <span class="ml-1">
+                        {{ network.name }}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </template>
             </BalPopover>
             <BalPopover noPad overrideClasses="popuover-override">
               <template #activator>
@@ -354,12 +434,17 @@ console.log('amount', amount);
                   :size="upToLargeBreakpoint ? 'md' : 'sm'"
                 >
                   <template v-if="sourceToken.name">
-                    <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
-                    >
-                      {{ sourceToken.name }}
-                    </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    <div class="flex justify-between items-center w-full">
+                      <div class="flex items-center">
+                        <BalAsset :address="sourceToken.address" :size="20" />
+                        <span
+                          class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                        >
+                          {{ sourceToken.name }}
+                        </span>
+                      </div>
+                      <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    </div>
                   </template>
                   <template v-else>
                     <span
@@ -371,30 +456,34 @@ console.log('amount', amount);
                   </template>
                 </BalBtn>
               </template>
-              <div
-                role="menu"
-                class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu wallet-menu-scroll"
-              >
+              <template #default="{ close }">
                 <div
-                  class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
-                >
-                  Select Network
-                </div>
-                <div
-                  v-for="token in state.sourceTokens"
-                  :key="token.address"
-                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  role="menu"
+                  class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu wallet-menu-scroll"
+                  @click="close"
                 >
                   <div
-                    class="flex items-center"
-                    :onclick="() => handleSourceTokne(token)"
+                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
                   >
-                    <span class="ml-1">
-                      {{ token.name }}
-                    </span>
+                    Select Network
+                  </div>
+                  <div
+                    v-for="token in state.sourceTokens"
+                    :key="token.address"
+                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  >
+                    <div
+                      class="flex items-center"
+                      :onclick="() => handleSourceTokne(token)"
+                    >
+                      <BalAsset :address="token.address" :size="20" />
+                      <span class="ml-[10px]">
+                        {{ token.name }}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </template>
             </BalPopover>
           </div>
           <div class="flex justify-between items-center mt-[20px]">
@@ -441,30 +530,33 @@ console.log('amount', amount);
                   </template>
                 </BalBtn>
               </template>
-              <div
-                role="menu"
-                class="flex flex-col w-52 rounded-lg max-h-[300px] wallet-menu wallet-menu-scroll"
-              >
+              <template #default="{ close }">
                 <div
-                  class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
-                >
-                  Select Network
-                </div>
-                <div
-                  v-for="network in state.supportedChain"
-                  :key="network.chainId"
-                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  role="menu"
+                  class="flex flex-col w-52 rounded-lg max-h-[300px] wallet-menu wallet-menu-scroll"
+                  @click="close"
                 >
                   <div
-                    class="flex items-center"
-                    :onclick="() => handleDestinationNetwork(network)"
+                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
                   >
-                    <span class="ml-1">
-                      {{ network.name }}
-                    </span>
+                    Select Network
+                  </div>
+                  <div
+                    v-for="network in state.supportedChain"
+                    :key="network.chainId"
+                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  >
+                    <div
+                      class="flex items-center"
+                      :onclick="() => handleDestinationNetwork(network)"
+                    >
+                      <span class="ml-1">
+                        {{ network.name }}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </template>
             </BalPopover>
             <BalPopover noPad overrideClasses="popuover-override">
               <template #activator>
@@ -474,12 +566,20 @@ console.log('amount', amount);
                   :size="upToLargeBreakpoint ? 'md' : 'sm'"
                 >
                   <template v-if="destinationToken.name">
-                    <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
-                    >
-                      {{ destinationToken.name }}
-                    </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    <div class="flex justify-between items-center w-full">
+                      <div class="flex items-center">
+                        <BalAsset
+                          :address="destinationToken.address"
+                          :size="20"
+                        />
+                        <span
+                          class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                        >
+                          {{ destinationToken.name }}
+                        </span>
+                      </div>
+                      <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    </div>
                   </template>
                   <template v-else>
                     <span
@@ -491,30 +591,34 @@ console.log('amount', amount);
                   </template>
                 </BalBtn>
               </template>
-              <div
-                role="menu"
-                class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu wallet-menu-scroll"
-              >
+              <template #default="{ close }">
                 <div
-                  class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
-                >
-                  Select Token
-                </div>
-                <div
-                  v-for="token in state.destinamtionTokens"
-                  :key="token.address"
-                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  role="menu"
+                  class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu wallet-menu-scroll"
+                  @click="close"
                 >
                   <div
-                    class="flex items-center"
-                    :onclick="() => handleDestinationToken(token)"
+                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
                   >
-                    <span class="ml-1">
-                      {{ token.name }}
-                    </span>
+                    Select Token
+                  </div>
+                  <div
+                    v-for="token in state.destinamtionTokens"
+                    :key="token.address"
+                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                  >
+                    <div
+                      class="flex items-center"
+                      :onclick="() => handleDestinationToken(token)"
+                    >
+                      <BalAsset :address="token.address" :size="20" />
+                      <span class="ml-[10px]">
+                        {{ token.name }}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </template>
             </BalPopover>
           </div>
           <div class="flex justify-between items-center mt-[20px]">
@@ -528,7 +632,7 @@ console.log('amount', amount);
             </p>
           </div>
         </div>
-        <div class="bridge-info-container mt-[30px]">
+        <!-- <div class="bridge-info-container mt-[30px]">
           <div class="flex justify-between">
             <p class="info-title">Estimate Time arrival</p>
             <div class="flex">
@@ -536,7 +640,7 @@ console.log('amount', amount);
               <p class="info-title ml-[5px]">00:20</p>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="bridge-info-container mt-[15px]">
           <div class="flex justify-between">
             <p class="info-title">Bridge Provider</p>
@@ -566,9 +670,23 @@ console.log('amount', amount);
         <BalBtn
           :onclick="bridgeTranscation"
           class="w-full mt-[25px]"
-          :color="'gradient'"
-          >Bridge</BalBtn
+          :disabled="
+            state.selectedCrosschainLink === null ||
+            parseFloat(amount.sourceAmount) <= 0 ||
+            parseFloat(amount.receiveAmount) <= 0 ||
+            txLoading
+          "
+          :color="
+            state.selectedCrosschainLink === null ||
+            parseFloat(amount.sourceAmount) <= 0 ||
+            parseFloat(amount.receiveAmount) <= 0 ||
+            txLoading
+              ? 'gray'
+              : 'gradient'
+          "
         >
+          {{ txLoading ? 'Processing...' : 'Bridge' }}
+        </BalBtn>
       </div>
     </BalCard>
   </div>
