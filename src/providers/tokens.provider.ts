@@ -1,5 +1,6 @@
 import { getAddress, isAddress } from '@ethersproject/address';
 import { compact, omit, pick } from 'lodash';
+import { Contract, ethers } from 'ethers';
 import {
   computed,
   InjectionKey,
@@ -17,6 +18,7 @@ import useTokenPricesQuery, {
 } from '@/composables/queries/useTokenPricesQuery';
 import useConfig from '@/composables/useConfig';
 import symbolKeys from '@/constants/symbol.keys';
+import ERC20_ABI from '@/lib/abi/ERC20.json';
 import { TOKENS } from '@/constants/tokens';
 import {
   bnum,
@@ -439,6 +441,34 @@ export const tokensProvider = (
     }
   }
 
+  async function balanceForUsingRpc(
+    address: string,
+    rpc: string,
+    account: string,
+    decimals: number
+  ) {
+    try {
+      console.log({ address, rpc, account, decimals });
+      let balance = '0';
+      const provider = new ethers.providers.JsonRpcProvider(rpc);
+      if (address === '0x0000000000000000000000000000000000000000') {
+        const ethBalance = await provider.getBalance(account);
+        balance = new BigNumber(ethBalance.toString())
+          .dividedBy(10 ** 18)
+          .toString();
+      } else {
+        const tokenContract = new Contract(address, ERC20_ABI, provider);
+        const balanceResp = await tokenContract.balanceOf(account);
+        balance = new BigNumber(balanceResp.toString())
+          .dividedBy(10 ** decimals)
+          .toString();
+      }
+      return balance;
+    } catch {
+      return '0';
+    }
+  }
+
   /**
    * Checks if token has a balance
    */
@@ -558,6 +588,7 @@ export const tokensProvider = (
     injectPrices,
     getMaxBalanceFor,
     isWethOrEth,
+    balanceForUsingRpc,
   };
 };
 

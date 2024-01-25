@@ -7,6 +7,8 @@ import ERC20_ABI from '@/lib/abi/ERC20.json';
 import useTransactions from '@/composables/useTransactions';
 import useWeb3 from '@/services/web3/useWeb3';
 import { useWallets } from '@/providers/wallet.provider';
+import SelectBirdgeTokenModal from '../../components/modals/SelectBirdgeTokenModal/SelectBirdgeTokenModal.vue';
+
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
@@ -101,6 +103,8 @@ const amount = reactive<{
 });
 const { account, getSigner, chainId } = useWeb3();
 const { provider } = useWallets();
+const selectTokenModalSourceTokens = ref(false);
+const selectTokenModalDesitnationTokens = ref(false);
 const API_LINK = 'https://api.orbiter.finance/sdk';
 const onPageLoad = async () => {
   // Example: Fetch data from an API and update reactive state
@@ -155,8 +159,12 @@ const getCrosschainLink = () => {
             destinationToken.value.address.toLowerCase()
       );
       state.selectedCrosschainLink = crossChainLink || null;
-      getReceiveAmount();
-      console.log('crossChainLink', crossChainLink);
+      if (crossChainLink === null || crossChainLink === undefined) {
+        amount.receiveDataRouter = null;
+        receiveAmountInEth.value = '0';
+      } else {
+        getReceiveAmount();
+      }
     }
   } catch (error) {
     console.log('error', error);
@@ -169,24 +177,29 @@ const handleSourceNetwork = network => {
   getCrosschainLink();
   emit('close');
 };
-const handleSourceTokne = async token => {
-  sourceToken.value = token;
-  getCrosschainLink();
-  if (account.value) {
-    const provider = new ethers.providers.JsonRpcProvider(
-      chainIdRpcMapping[activeNetwork.value.chainId]
-    );
-    if (token.address === '0x0000000000000000000000000000000000000000') {
-      const ethBalance = await provider.getBalance(account.value);
-      sourceTokenBalance.value = new BigNumber(ethBalance.toString())
-        .dividedBy(10 ** 18)
-        .toString();
-    } else {
-      const tokenContract = new Contract(token.address, ERC20_ABI, provider);
-      const balance = await tokenContract.balanceOf(account.value);
-      sourceTokenBalance.value = new BigNumber(balance.toString())
-        .dividedBy(10 ** parseFloat(token.decimals))
-        .toString();
+const handleSourceTokne = async tokenAddress => {
+  const token = state.sourceTokens.find(
+    tokenData => tokenData.address === tokenAddress
+  );
+  if (token) {
+    sourceToken.value = token;
+    getCrosschainLink();
+    if (account.value) {
+      const provider = new ethers.providers.JsonRpcProvider(
+        chainIdRpcMapping[activeNetwork.value.chainId]
+      );
+      if (token.address === '0x0000000000000000000000000000000000000000') {
+        const ethBalance = await provider.getBalance(account.value);
+        sourceTokenBalance.value = new BigNumber(ethBalance.toString())
+          .dividedBy(10 ** 18)
+          .toString();
+      } else {
+        const tokenContract = new Contract(token.address, ERC20_ABI, provider);
+        const balance = await tokenContract.balanceOf(account.value);
+        sourceTokenBalance.value = new BigNumber(balance.toString())
+          .dividedBy(10 ** parseFloat(token.decimals))
+          .toString();
+      }
     }
   }
 };
@@ -195,24 +208,29 @@ const handleDestinationNetwork = network => {
   state.destinamtionTokens = network.tokens;
   getCrosschainLink();
 };
-const handleDestinationToken = async token => {
-  destinationToken.value = token;
-  getCrosschainLink();
-  if (account.value) {
-    const provider = new ethers.providers.JsonRpcProvider(
-      chainIdRpcMapping[activeNetworkDestination.value.chainId]
-    );
-    if (token.address === '0x0000000000000000000000000000000000000000') {
-      const ethBalance = await provider.getBalance(account.value);
-      destinationTokenBalance.value = new BigNumber(ethBalance.toString())
-        .dividedBy(10 ** 18)
-        .toString();
-    } else {
-      const tokenContract = new Contract(token.address, ERC20_ABI, provider);
-      const balance = await tokenContract.balanceOf(account.value);
-      destinationTokenBalance.value = new BigNumber(balance.toString())
-        .dividedBy(10 ** parseFloat(token.decimals))
-        .toString();
+const handleDestinationToken = async tokenAddress => {
+  const token = state.destinamtionTokens.find(
+    tokenData => tokenData.address === tokenAddress
+  );
+  if (token) {
+    destinationToken.value = token;
+    getCrosschainLink();
+    if (account.value) {
+      const provider = new ethers.providers.JsonRpcProvider(
+        chainIdRpcMapping[activeNetworkDestination.value.chainId]
+      );
+      if (token.address === '0x0000000000000000000000000000000000000000') {
+        const ethBalance = await provider.getBalance(account.value);
+        destinationTokenBalance.value = new BigNumber(ethBalance.toString())
+          .dividedBy(10 ** 18)
+          .toString();
+      } else {
+        const tokenContract = new Contract(token.address, ERC20_ABI, provider);
+        const balance = await tokenContract.balanceOf(account.value);
+        destinationTokenBalance.value = new BigNumber(balance.toString())
+          .dividedBy(10 ** parseFloat(token.decimals.toString()))
+          .toString();
+      }
     }
   }
 };
@@ -249,7 +267,7 @@ const getReceiveAmount = async () => {
           .dividedBy(
             10 ** parseFloat(destinationToken.value.decimals.toString())
           )
-          .toString();
+          .toFixed(6);
         receiveAmountInEth.value = receiveValue;
         amount.receiveDataRouter = amountResp.result.router;
       } else {
@@ -363,8 +381,32 @@ onBeforeMount(() => {
   onPageLoad();
 });
 console.log('amount', amount);
+const handleShowModal = () => {
+  selectTokenModalSourceTokens.value = true;
+};
+const handleDestinationTokenModals = () => {
+  selectTokenModalDesitnationTokens.value = true;
+};
 </script>
 <template>
+  <teleport to="#modal">
+    <SelectBirdgeTokenModal
+      v-if="selectTokenModalSourceTokens"
+      :approvedTokenLists="state.sourceTokens"
+      ignoreBalances
+      @close="selectTokenModalSourceTokens = false"
+      @select="handleSourceTokne"
+    />
+  </teleport>
+  <teleport to="#modal">
+    <SelectBirdgeTokenModal
+      v-if="selectTokenModalDesitnationTokens"
+      :approvedTokenLists="state.destinamtionTokens"
+      ignoreBalances
+      @close="selectTokenModalDesitnationTokens = false"
+      @select="handleDestinationToken"
+    />
+  </teleport>
   <div
     class="container mx-auto max-w-[1300px] pl-[24px] pr-[24px] mt-[40px] h-[100vh]"
   >
@@ -374,7 +416,9 @@ console.log('amount', amount);
       noBorder
     >
       <div class="swap-container">
-        <p class="swap-title mb-[20px]">Bridge</p>
+        <p class="text-black dark:text-white swap-title mb-[20px] font-[500]">
+          Bridge
+        </p>
         <div class="relative p-5 bal-text-input-container">
           <div class="flex justify-between">
             <BalPopover
@@ -390,11 +434,15 @@ console.log('amount', amount);
                 >
                   <template v-if="activeNetwork">
                     <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
                       {{ activeNetwork.name }}
                     </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    <BalIcon
+                      name="chevron-down"
+                      size="sm"
+                      class="ml-2 text-white"
+                    />
                   </template>
                 </BalBtn>
               </template>
@@ -426,65 +474,42 @@ console.log('amount', amount);
                 </div>
               </template>
             </BalPopover>
-            <BalPopover noPad overrideClasses="popuover-override">
-              <template #activator>
-                <BalBtn
-                  class="ml-4 network-button-bride"
-                  color="white"
-                  :size="upToLargeBreakpoint ? 'md' : 'sm'"
-                >
-                  <template v-if="sourceToken.name">
-                    <div class="flex justify-between items-center w-full">
-                      <div class="flex items-center">
-                        <BalAsset :address="sourceToken.address" :size="20" />
-                        <span
-                          class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
-                        >
-                          {{ sourceToken.name }}
-                        </span>
-                      </div>
-                      <BalIcon name="chevron-down" size="sm" class="ml-2" />
-                    </div>
-                  </template>
-                  <template v-else>
+            <BalBtn
+              class="ml-4 network-button-bride"
+              color="white"
+              :onclick="handleShowModal"
+              :size="upToLargeBreakpoint ? 'md' : 'sm'"
+            >
+              <template v-if="sourceToken.name">
+                <div class="flex justify-between items-center w-full">
+                  <div class="flex items-center">
+                    <BalAsset :address="sourceToken.address" :size="20" />
                     <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
-                      Select Token
+                      {{ sourceToken.symbol }}
                     </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
-                  </template>
-                </BalBtn>
-              </template>
-              <template #default="{ close }">
-                <div
-                  role="menu"
-                  class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu wallet-menu-scroll"
-                  @click="close"
-                >
-                  <div
-                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
-                  >
-                    Select Network
                   </div>
-                  <div
-                    v-for="token in state.sourceTokens"
-                    :key="token.address"
-                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
-                  >
-                    <div
-                      class="flex items-center"
-                      :onclick="() => handleSourceTokne(token)"
-                    >
-                      <BalAsset :address="token.address" :size="20" />
-                      <span class="ml-[10px]">
-                        {{ token.name }}
-                      </span>
-                    </div>
-                  </div>
+                  <BalIcon
+                    name="chevron-down"
+                    size="sm"
+                    class="ml-2 text-white"
+                  />
                 </div>
               </template>
-            </BalPopover>
+              <template v-else>
+                <span
+                  class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                >
+                  Select Token
+                </span>
+                <BalIcon
+                  name="chevron-down"
+                  size="sm"
+                  class="ml-2 text-white"
+                />
+              </template>
+            </BalBtn>
           </div>
           <div class="flex justify-between items-center mt-[20px]">
             <input
@@ -500,7 +525,7 @@ console.log('amount', amount);
             </p>
           </div>
           <div class="round-icon">
-            <ArrowDownIcon />
+            <ArrowDownIcon class="text-white" />
           </div>
         </div>
         <div class="p-5 bal-text-input-container mt-[20px]">
@@ -514,19 +539,27 @@ console.log('amount', amount);
                 >
                   <template v-if="activeNetworkDestination">
                     <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
                       {{ activeNetworkDestination.name }}
                     </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    <BalIcon
+                      name="chevron-down"
+                      size="sm"
+                      class="ml-2 text-white"
+                    />
                   </template>
                   <template v-else>
                     <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
                     >
                       Select Network
                     </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
+                    <BalIcon
+                      name="chevron-down"
+                      size="sm"
+                      class="ml-2 text-white"
+                    />
                   </template>
                 </BalBtn>
               </template>
@@ -537,7 +570,7 @@ console.log('amount', amount);
                   @click="close"
                 >
                   <div
-                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
+                    class="py-2 px-3 text-sm font-medium text-white whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
                   >
                     Select Network
                   </div>
@@ -558,68 +591,42 @@ console.log('amount', amount);
                 </div>
               </template>
             </BalPopover>
-            <BalPopover noPad overrideClasses="popuover-override">
-              <template #activator>
-                <BalBtn
-                  class="ml-4 network-button-bride"
-                  color="white"
-                  :size="upToLargeBreakpoint ? 'md' : 'sm'"
-                >
-                  <template v-if="destinationToken.name">
-                    <div class="flex justify-between items-center w-full">
-                      <div class="flex items-center">
-                        <BalAsset
-                          :address="destinationToken.address"
-                          :size="20"
-                        />
-                        <span
-                          class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
-                        >
-                          {{ destinationToken.name }}
-                        </span>
-                      </div>
-                      <BalIcon name="chevron-down" size="sm" class="ml-2" />
-                    </div>
-                  </template>
-                  <template v-else>
+            <BalBtn
+              class="ml-4 network-button-bride"
+              color="white"
+              :onclick="handleDestinationTokenModals"
+              :size="upToLargeBreakpoint ? 'md' : 'sm'"
+            >
+              <template v-if="destinationToken.name">
+                <div class="flex justify-between items-center w-full">
+                  <div class="flex items-center">
+                    <BalAsset :address="destinationToken.address" :size="20" />
                     <span
-                      class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
-                      Select Token
+                      {{ destinationToken.name }}
                     </span>
-                    <BalIcon name="chevron-down" size="sm" class="ml-2" />
-                  </template>
-                </BalBtn>
-              </template>
-              <template #default="{ close }">
-                <div
-                  role="menu"
-                  class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu wallet-menu-scroll"
-                  @click="close"
-                >
-                  <div
-                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
-                  >
-                    Select Token
                   </div>
-                  <div
-                    v-for="token in state.destinamtionTokens"
-                    :key="token.address"
-                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
-                  >
-                    <div
-                      class="flex items-center"
-                      :onclick="() => handleDestinationToken(token)"
-                    >
-                      <BalAsset :address="token.address" :size="20" />
-                      <span class="ml-[10px]">
-                        {{ token.name }}
-                      </span>
-                    </div>
-                  </div>
+                  <BalIcon
+                    name="chevron-down"
+                    size="sm"
+                    class="ml-2 text-white"
+                  />
                 </div>
               </template>
-            </BalPopover>
+              <template v-else>
+                <span
+                  class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                >
+                  Select Token
+                </span>
+                <BalIcon
+                  name="chevron-down"
+                  size="sm"
+                  class="ml-2 text-white"
+                />
+              </template>
+            </BalBtn>
           </div>
           <div class="flex justify-between items-center mt-[20px]">
             <div class="ml-4 amount-input w-[50%]">
@@ -713,7 +720,6 @@ console.log('amount', amount);
   max-width: 600px;
 }
 .swap-title {
-  color: #fff;
   font-family: Plus Jakarta Sans;
   font-size: 28px;
   font-style: normal;
@@ -747,9 +753,15 @@ console.log('amount', amount);
     ),
     #8b8dfc;
 }
-.network-button-bride {
+.dark .network-button-bride {
   border-radius: 57.173px;
   background-color: #474881 !important;
+  padding: 25px 18px;
+  width: 200px;
+}
+.network-button-bride {
+  border-radius: 57.173px;
+  background-color: #4e529c !important;
   padding: 25px 18px;
   width: 200px;
 }
@@ -781,9 +793,15 @@ console.log('amount', amount);
   font-weight: 400;
   line-height: 140%; /* 22.4px */
 }
-.bridge-info-container {
+.dark .bridge-info-container {
   border-radius: 10.8px;
   background: #212139;
+  box-shadow: 0px 0px 0px 1.8px rgba(139, 141, 252, 0.6);
+  padding: 16px;
+}
+.bridge-info-container {
+  border-radius: 10.8px;
+  background: #7476f3;
   box-shadow: 0px 0px 0px 1.8px rgba(139, 141, 252, 0.6);
   padding: 16px;
 }
@@ -809,7 +827,10 @@ console.log('amount', amount);
   justify-content: center;
   align-items: center;
 }
-.pop-pill-color {
+.dark .pop-pill-color {
   background: #16162d;
+}
+.pop-pill-color {
+  background: #d5d6ff;
 }
 </style>
