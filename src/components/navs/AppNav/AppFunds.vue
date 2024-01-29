@@ -4,7 +4,7 @@ import { shorten } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
 import { getConnectorLogo } from '@/services/web3/wallet-logos';
 import { useTokens } from '@/providers/tokens.provider';
-import Cede from '../../../pages/cede.vue';
+import CedeWidget from '../../../pages/cedeWidget.vue';
 
 export interface NetworkOption {
   id: string;
@@ -61,7 +61,8 @@ const fiatLabel = computed(() => {
           <BalCloseIcon class="text-black dark:text-white cursor-pointer" />
         </BalBtn>
       </div>
-      <Cede />
+      <!-- <Cede /> -->
+      <CedeWidget />
     </div>
   </BalModal>
   <BalPopover noPad>

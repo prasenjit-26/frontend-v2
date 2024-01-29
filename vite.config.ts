@@ -1,6 +1,5 @@
 import vue from '@vitejs/plugin-vue';
 import { resolve, dirname } from 'path';
-import veauryVitePlugins from 'veaury/vite/index.js';
 import { fileURLToPath } from 'url';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
@@ -22,16 +21,7 @@ export default defineConfig(({ mode }) => {
   const isBuildAnalysis = process.env.BUILD_ANALIZE;
 
   const plugins = [
-    // vue(),
-    veauryVitePlugins({
-      type: 'vue',
-      // Configuration of @vitejs/plugin-vue
-      // vueOptions: {...},
-      // Configuration of @vitejs/plugin-react
-      // reactOptions: {...},
-      // Configuration of @vitejs/plugin-vue-jsx
-      // vueJsxOptions: {...}
-    }),
+    vue(),
     createHtmlPlugin({
       minify: false,
       inject: {
