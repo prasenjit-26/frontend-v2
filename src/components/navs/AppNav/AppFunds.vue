@@ -2,6 +2,7 @@
 import useNumbers from '@/composables/useNumbers';
 import { shorten } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
+import useNetwork from '@/composables/useNetwork';
 import { getConnectorLogo } from '@/services/web3/wallet-logos';
 import { useTokens } from '@/providers/tokens.provider';
 import CedeWidget from '../../../pages/cedeWidget.vue';
@@ -25,6 +26,7 @@ const {
   isUnsupportedNetwork,
   userNetworkConfig,
 } = useWeb3();
+const { networkSlug } = useNetwork();
 const connectorLogo = computed(() =>
   getConnectorLogo(connector.value?.id, provider.value)
 );
@@ -93,10 +95,14 @@ const fiatLabel = computed(() => {
         </div>
       </div>
       <div class="mt-[24px]">
-        <!-- <div class="flex justify-between items-center mb-[20px]">
+        <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">Bridge funds from other networks</p>
-          <BalBtn class="w-[30%] assets-button"> Bridge </BalBtn>
-        </div> -->
+          <BalBtn class="w-[30%] assets-button">
+            <router-link :to="{ name: 'bridge', params: { networkSlug } }">
+              Bridge
+            </router-link>
+          </BalBtn>
+        </div>
         <!-- <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">Add funds using Credit cards</p>
           <BalBtn class="w-[30%] assets-button"> Add Funds </BalBtn>
