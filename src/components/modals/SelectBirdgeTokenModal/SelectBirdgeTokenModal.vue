@@ -7,6 +7,14 @@ import TokenListItem from '../../../components/lists/TokenListItem.vue';
 import { useTokens } from '../../../providers/tokens.provider';
 import { TokenInfoMap } from '../../../types/TokenList';
 import { useMagicKeys } from '@vueuse/core';
+import daiIcon from '../../../assets/images/tokens/dai.png';
+import usdtIcon from '../../../assets/images/tokens/usdt.png';
+import usdcIcon from '../../../assets/images/tokens/usdc.png';
+import bnbIcon from '../../../assets/images/tokens/bnb.png';
+import mantleIcon from '../../../assets/images/tokens/mantle.svg';
+import metisIcon from '../../../assets/images/tokens/metis.png';
+import maticIcon from '../../../assets/images/tokens/matic.webp';
+import wethIcon from '../../../assets/images/tokens/weth.png';
 
 interface Props {
   open?: boolean;
@@ -56,6 +64,17 @@ const state: ComponentState = reactive({
   focussedToken: 0,
 });
 
+const tokenImageMaooing = {
+  usdc: usdcIcon,
+  dai: daiIcon,
+  usdt: usdtIcon,
+  weth: wethIcon,
+  eth: wethIcon,
+  metis: metisIcon,
+  matic: maticIcon,
+  bnb: bnbIcon,
+  mnt: mantleIcon,
+};
 /**
  * COMPOSABLES
  */
@@ -88,6 +107,7 @@ const tokens = computed(() => {
     // const value = Number(balance) * price;
     return {
       ...token,
+      logoURI: tokenImageMaooing[token.symbol.toLowerCase()],
       price: '0',
       balance: '0',
       value: '0',

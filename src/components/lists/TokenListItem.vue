@@ -67,7 +67,6 @@ export default {
     const { fNum } = useNumbers();
     const animateRef = ref();
     const { priceFor, balanceFor } = useTokens();
-
     /**
      * COMPUTED
      */

@@ -6,6 +6,7 @@ type Props = {
   align?: string;
   detached?: boolean;
   overrideClasses?: string;
+  topValue?: string;
 };
 
 const props = withDefaults(defineProps<Props>(), {
@@ -33,6 +34,7 @@ const popoverWrapperClasses = computed(() => ({
   [`${props.align}-0`]: !props.detached,
   'align-center-transform': props.detached && props.align === 'center',
   'align-right-transform': props.detached && props.align === 'right',
+  [`top-[${props.topValue}px]`]: props.topValue,
 }));
 
 const popoverActivatorWrapperClasses = computed(() => ({
@@ -109,7 +111,6 @@ watch(popoverOpened, () => {
 <style scoped>
 .bal-popover-wrapper {
   @apply invisible opacity-0 absolute z-30 pt-3;
-
   transition: all 0.2s ease-in-out;
 }
 .popover-card {

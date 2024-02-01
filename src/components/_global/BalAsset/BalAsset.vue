@@ -41,6 +41,7 @@ const token = computed<TokenInfo | undefined>(() =>
 );
 
 const iconSRC = computed(() => {
+  console.log('props.iconURI', props.iconURI);
   if (props.iconURI) return resolve(props.iconURI);
 
   if (!token.value?.logoURI) return '';

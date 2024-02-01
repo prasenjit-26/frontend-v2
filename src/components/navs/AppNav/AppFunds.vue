@@ -15,8 +15,6 @@ export interface NetworkOption {
 }
 const emit = defineEmits(['close', 'success']);
 const { balances, nativeAsset, wrappedNativeAsset } = useTokens();
-console.log('nativeAsset', nativeAsset.address);
-console.log('wrappedNativeAsset', wrappedNativeAsset.value);
 const { toFiat } = useNumbers();
 const showCedestoreModal = ref(false);
 const {
@@ -67,7 +65,7 @@ const fiatLabel = computed(() => {
       <CedeWidget />
     </div>
   </BalModal>
-  <BalPopover noPad>
+  <BalPopover noPad topValue="60">
     <template #activator>
       <div class="funds-button">
         <img src="~@/assets/images/wallet.svg" alt="wallet" width="20" />
@@ -111,7 +109,10 @@ const fiatLabel = computed(() => {
           <p class="funds-info-text">
             Transfer assets from CEX Using cede.store
           </p>
-          <BalBtn class="w-[30%] assets-button" :onclick="showModal">
+          <BalBtn
+            class="whitespace-nowrap w-[30%] assets-button"
+            :onclick="showModal"
+          >
             Transfer assets
           </BalBtn>
         </div>
@@ -181,7 +182,7 @@ const fiatLabel = computed(() => {
   font-family: Plus Jakarta Sans;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   margin-right: 20px;
   width: 70%;
@@ -192,7 +193,7 @@ const fiatLabel = computed(() => {
   font-family: Plus Jakarta Sans;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   margin-right: 20px;
   width: 70%;

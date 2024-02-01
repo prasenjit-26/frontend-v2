@@ -8,6 +8,26 @@ import useTransactions from '@/composables/useTransactions';
 import useWeb3 from '@/services/web3/useWeb3';
 import { useWallets } from '@/providers/wallet.provider';
 import SelectBirdgeTokenModal from '../../components/modals/SelectBirdgeTokenModal/SelectBirdgeTokenModal.vue';
+import ethIcon from '../../assets/images/icons/networks/ethereum.svg';
+import optisimIcon from '../../assets/images/icons/networks/optimism.svg';
+import arbitrumIcon from '../../assets/images/icons/networks/arbitrum.svg';
+import lineaIcon from '../../assets/images/icons/networks/linea.png';
+import polygonIcon from '../../assets/images/icons/networks/polygon.svg';
+import mantleIcon from '../../assets/images/icons/networks/mantle.svg';
+import blastIcon from '../../assets/images/icons/networks/blast.svg';
+import baseIcon from '../../assets/images/icons/networks/blast.svg';
+import bnbIcon from '../../assets/images/icons/networks/bnb.png';
+import polygonzkEVMIcon from '../../assets/images/icons/networks/zkEVM.png';
+import sepoliaIcon from '../../assets/images/icons/networks/sepolia.png';
+import zksyncIcon from '../../assets/images/icons/networks/zksync.svg';
+import daiIcon from '../../assets/images/tokens/dai.png';
+import usdtIcon from '../../assets/images/tokens/usdt.png';
+import usdcIcon from '../../assets/images/tokens/usdc.png';
+import wethIcon from '../../assets/images/tokens/weth.png';
+import bnbTokenIcon from '../../assets/images/tokens/bnb.png';
+import mantleTokenIcon from '../../assets/images/tokens/mantle.svg';
+import metisIcon from '../../assets/images/tokens/metis.png';
+import maticIcon from '../../assets/images/tokens/matic.webp';
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -37,6 +57,38 @@ const chainIdRpcMapping = {
   '59144': 'https://rpc.linea.build',
   '5000': 'https://rpc.mantle.xyz',
   '8453': 'https://mainnet.base.org',
+};
+const chainIdImageMapping = {
+  '420': optisimIcon,
+  '421613': arbitrumIcon,
+  '97': bnbIcon,
+  '84531': baseIcon,
+  '59140': lineaIcon,
+  '5001': mantleIcon,
+  '11155111': sepoliaIcon,
+  '1': ethIcon,
+  '42161': arbitrumIcon,
+  zksync: zksyncIcon,
+  '137': polygonIcon,
+  '10': optisimIcon,
+  '1088': blastIcon,
+  '56': bnbIcon,
+  '42170': arbitrumIcon,
+  '1101': polygonzkEVMIcon,
+  '59144': lineaIcon,
+  '5000': mantleIcon,
+  '8453': baseIcon,
+};
+const tokenImageMaooing = {
+  usdc: usdcIcon,
+  dai: daiIcon,
+  usdt: usdtIcon,
+  weth: wethIcon,
+  eth: wethIcon,
+  metis: metisIcon,
+  matic: maticIcon,
+  bnb: bnbTokenIcon,
+  mnt: mantleTokenIcon,
 };
 interface TokenRef {
   address: string;
@@ -197,7 +249,7 @@ const handleSourceTokne = async tokenAddress => {
         const tokenContract = new Contract(token.address, ERC20_ABI, provider);
         const balance = await tokenContract.balanceOf(account.value);
         sourceTokenBalance.value = new BigNumber(balance.toString())
-          .dividedBy(10 ** parseFloat(token.decimals))
+          .dividedBy(10 ** parseFloat(token.decimals.toString()))
           .toString();
       }
     }
@@ -433,16 +485,25 @@ const handleDestinationTokenModals = () => {
                   :size="upToLargeBreakpoint ? 'md' : 'sm'"
                 >
                   <template v-if="activeNetwork">
-                    <span
-                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
-                    >
-                      {{ activeNetwork.name }}
-                    </span>
-                    <BalIcon
-                      name="chevron-down"
-                      size="sm"
-                      class="ml-2 text-white"
-                    />
+                    <div class="flex justify-between items-center w-full">
+                      <div class="flex items-center">
+                        <img
+                          :src="chainIdImageMapping[activeNetwork.chainId]"
+                          :alt="activeNetwork.name"
+                          width="20"
+                        />
+                        <span
+                          class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                        >
+                          {{ activeNetwork.name }}
+                        </span>
+                      </div>
+                      <BalIcon
+                        name="chevron-down"
+                        size="sm"
+                        class="ml-2 text-white"
+                      />
+                    </div>
                   </template>
                 </BalBtn>
               </template>
@@ -460,13 +521,18 @@ const handleDestinationTokenModals = () => {
                   <div
                     v-for="network in state.supportedChain"
                     :key="network.chainId"
-                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                    class="flex justify-between items-center p-3 w-full hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
                   >
                     <div
-                      class="flex items-center"
+                      class="flex items-center w-full"
                       :onclick="() => handleSourceNetwork(network)"
                     >
-                      <span class="ml-1">
+                      <img
+                        :src="chainIdImageMapping[network.chainId]"
+                        :alt="network.name"
+                        width="20"
+                      />
+                      <span class="ml-[10px]">
                         {{ network.name }}
                       </span>
                     </div>
@@ -483,7 +549,13 @@ const handleDestinationTokenModals = () => {
               <template v-if="sourceToken.name">
                 <div class="flex justify-between items-center w-full">
                   <div class="flex items-center">
-                    <BalAsset :address="sourceToken.address" :size="20" />
+                    <BalAsset
+                      :iconURI="
+                        tokenImageMaooing[sourceToken.symbol.toLowerCase()]
+                      "
+                      :address="sourceToken.address"
+                      :size="20"
+                    />
                     <span
                       class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
@@ -538,16 +610,29 @@ const handleDestinationTokenModals = () => {
                   :size="upToLargeBreakpoint ? 'md' : 'sm'"
                 >
                   <template v-if="activeNetworkDestination">
-                    <span
-                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
-                    >
-                      {{ activeNetworkDestination.name }}
-                    </span>
-                    <BalIcon
-                      name="chevron-down"
-                      size="sm"
-                      class="ml-2 text-white"
-                    />
+                    <div class="flex justify-between items-center w-full">
+                      <div class="flex items-center">
+                        <img
+                          :src="
+                            chainIdImageMapping[
+                              activeNetworkDestination.chainId
+                            ]
+                          "
+                          :alt="activeNetworkDestination.name"
+                          width="20"
+                        />
+                        <span
+                          class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                        >
+                          {{ activeNetworkDestination.name }}
+                        </span>
+                      </div>
+                      <BalIcon
+                        name="chevron-down"
+                        size="sm"
+                        class="ml-2 text-white"
+                      />
+                    </div>
                   </template>
                   <template v-else>
                     <span
@@ -570,20 +655,25 @@ const handleDestinationTokenModals = () => {
                   @click="close"
                 >
                   <div
-                    class="py-2 px-3 text-sm font-medium text-white whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
+                    class="py-2 px-3 w-full text-sm font-medium text-white whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
                   >
                     Select Network
                   </div>
                   <div
                     v-for="network in state.supportedChain"
                     :key="network.chainId"
-                    class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                    class="flex justify-between items-center p-3 w-full hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
                   >
                     <div
-                      class="flex items-center"
+                      class="flex items-center w-full"
                       :onclick="() => handleDestinationNetwork(network)"
                     >
-                      <span class="ml-1">
+                      <img
+                        :src="chainIdImageMapping[network.chainId]"
+                        :alt="network.name"
+                        width="20"
+                      />
+                      <span class="ml-[10px]">
                         {{ network.name }}
                       </span>
                     </div>
@@ -600,7 +690,13 @@ const handleDestinationTokenModals = () => {
               <template v-if="destinationToken.name">
                 <div class="flex justify-between items-center w-full">
                   <div class="flex items-center">
-                    <BalAsset :address="destinationToken.address" :size="20" />
+                    <BalAsset
+                      :iconURI="
+                        tokenImageMaooing[destinationToken.symbol.toLowerCase()]
+                      "
+                      :address="destinationToken.address"
+                      :size="20"
+                    />
                     <span
                       class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >

@@ -70,14 +70,14 @@ function isActive(page: string): boolean {
     >
       slChimp
     </DesktopLinkItem> -->
-    <!-- <DesktopLinkItem
+    <DesktopLinkItem
       :to="{ name: 'bridge', params: { networkSlug } }"
       :active="isActive('bridge')"
       prefetch
       @click="trackGoal(Goals.ClickNavVebal)"
     >
       Bridge
-    </DesktopLinkItem> -->
+    </DesktopLinkItem>
   </div>
   <!-- <div class="container">
     <div class="tabs">
