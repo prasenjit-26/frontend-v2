@@ -1,7 +1,7 @@
 import { EthereumTransactionData } from 'bnc-sdk/dist/types/src/interfaces';
 import { watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-
+import { useRouter } from 'vue-router';
 import { BLOCKED_ADDRESSES } from '@/constants/blocked';
 import { includesAddress } from '@/lib/utils';
 import useWeb3 from '@/services/web3/useWeb3';
@@ -27,6 +27,9 @@ export default function useWeb3Watchers() {
     disconnectWallet,
   } = useWeb3();
   const { addAlert, removeAlert } = useAlerts();
+  const route = useRouter();
+  const isShowWarning = ref(false);
+  const currentRouteName = computed(() => route.currentRoute.value.name);
   const { refetchBalances, refetchAllowances } = useTokens();
   const { handlePendingTransactions, updateTransaction } = useTransactions();
 
@@ -50,6 +53,7 @@ export default function useWeb3Watchers() {
       chainId.value &&
       (isUnsupportedNetwork.value || isMismatchedNetwork.value)
     ) {
+      isShowWarning.value = true;
       addAlert({
         id: 'network-mismatch',
         label: t('networkMismatch', [appNetworkConfig.name]),
@@ -105,6 +109,11 @@ export default function useWeb3Watchers() {
 
   watch(isWalletReady, () => {
     checkIsUnsupportedNetwork();
+  });
+  watch(currentRouteName, () => {
+    if (currentRouteName.value === 'bridge' && isShowWarning.value) {
+      removeAlert('network-mismatch');
+    }
   });
 
   watch(blockNumber, async () => {

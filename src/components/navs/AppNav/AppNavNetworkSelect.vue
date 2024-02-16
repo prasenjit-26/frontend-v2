@@ -134,7 +134,7 @@ function isActive(network: NetworkOption): boolean {
   <BalPopover noPad>
     <template #activator>
       <BalBtn
-        class="ml-4 network-button"
+        class="ml-4 network-button universal-border"
         color="white"
         :size="upToLargeBreakpoint ? 'md' : 'sm'"
       >
@@ -142,7 +142,7 @@ function isActive(network: NetworkOption): boolean {
           <img
             :src="buildNetworkIconURL(activeNetwork.id)"
             :alt="activeNetwork.name"
-            class="rounded-full w-[30px] h-[30px]"
+            class="rounded-full w-[25px] h-[25px]"
           />
           <!-- <span
             class="ml-2 font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
@@ -155,10 +155,10 @@ function isActive(network: NetworkOption): boolean {
     </template>
     <div
       role="menu"
-      class="flex flex-col overflow-hidden rounded-lg w-52 wallet-menu"
+      class="flex overflow-hidden flex-col w-52 rounded-lg wallet-menu"
     >
       <div
-        class="px-3 py-2 text-sm font-medium text-gray-500 border-b whitespace-nowrap bg-gray-50 dark:bg-gray-800 dark:border-gray-900"
+        class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
       >
         {{ $t('networkSelection') }}:
       </div>
@@ -166,13 +166,13 @@ function isActive(network: NetworkOption): boolean {
         v-for="network in allNetworks"
         :key="network.id"
         :href="getNetworkChangeUrl(network)"
-        class="flex items-center justify-between p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-850"
+        class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer"
       >
         <div class="flex items-center">
           <img
             :src="buildNetworkIconURL(network.id)"
             :alt="network.name"
-            class="w-6 h-6 mr-2 rounded-full"
+            class="mr-2 w-6 h-6 rounded-full"
           />
           <span class="ml-1">
             {{ network.name }}
@@ -191,16 +191,12 @@ function isActive(network: NetworkOption): boolean {
 .dark .network-button {
   @apply lg:min-h-[40px] lg:h-[40px] xs:min-h-[40px] sm:min-h-[40px] h-[40px];
   background-color: #8b8dfc82 !important;
-  box-shadow: inset 0px -5px 4px 0px #31313140, 0px 0px 0px 4px #8b8dfc99,
-    0px 0px 0px 8px #8b8dfc26;
   border-radius: 50%;
   padding: 6px;
 }
 .network-button {
   @apply lg:min-h-[40px] lg:h-[40px] xs:min-h-[30px] sm:min-h-[30px] h-[40px];
   background: #bbbcfd;
-  box-shadow: 0px 0px 0px 3px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 8px rgba(139, 141, 252, 0.15);
   backdrop-filter: blur(20px);
   border-radius: 50%;
   padding: 6px;

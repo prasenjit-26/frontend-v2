@@ -24,7 +24,7 @@ function navigateToCreatePool() {
             v-text="$t('headlineSubText')"
           />
           <button
-            class="flex justify-center mt-5 create-button align-center"
+            class="flex justify-center mt-5 create-button align-center universal-border"
             @click="navigateToCreatePool"
           >
             {{ $t('createAPool.title') }}
@@ -64,8 +64,6 @@ function navigateToCreatePool() {
 .create-button {
   @apply text-white text-[20px] font-[500] py-3 px-6 rounded-full;
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-  box-shadow: 0px 0px 0px 2px #afafaf40, inset 0px 0px 0px 3px #8c8eff82;
-  border: 1px solid #9b9b9b;
   border-radius: 44px;
   min-height: 55px;
   display: flex;

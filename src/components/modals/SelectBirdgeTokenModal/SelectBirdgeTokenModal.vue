@@ -50,7 +50,7 @@ interface ComponentState {
   query: string;
   results: TokenInfoMap;
   focussedToken: number;
-  approvedTokenLists: any[];
+  approvedTokenLists?: any[];
 }
 
 /**
@@ -78,13 +78,7 @@ const tokenImageMaooing = {
 /**
  * COMPOSABLES
  */
-const {
-  getToken,
-  searchTokens,
-  dynamicDataLoading,
-  nativeAsset,
-  injectTokens,
-} = useTokens();
+const { searchTokens, dynamicDataLoading, nativeAsset } = useTokens();
 const { t } = useI18n();
 
 /**
@@ -133,9 +127,9 @@ const focussedTokenAddress = computed((): string => {
  * METHODS
  */
 async function onSelectToken(token: string): Promise<void> {
-  if (!getToken(token)) {
-    await injectTokens([token]);
-  }
+  // if (!getToken(token)) {
+  //   await injectTokens([token]);
+  // }
 
   emit('select', token);
   emit('close');

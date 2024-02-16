@@ -214,7 +214,7 @@ watch(
 <template>
   <div
     :class="[
-      'max-w-full whitespace-nowrap overflow-hidden pre-table',
+      'max-w-full whitespace-nowrap overflow-hidden pre-table universal-border',
       { 'rounded-lg': !square },
     ]"
   >
@@ -474,12 +474,5 @@ tr:last-child td:first-child {
   border-bottom-left-radius: 7px;
   box-shadow: -5px 5px 0px 5px rgba(255, 255, 255, 0.4),
     0px 4px 20px rgba(0, 0, 0, 0.92);
-}
-
-.pre-table {
-  margin: 15px;
-  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
-    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
 }
 </style>

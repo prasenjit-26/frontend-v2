@@ -22,7 +22,7 @@ const { upToLargeBreakpoint } = useBreakpoints();
 
 <template>
   <BalCard
-    class="overflow-x-auto table-details-container"
+    class="overflow-x-auto universal-border"
     noPad
     noBorder
     shadow="none"
@@ -69,13 +69,11 @@ const { upToLargeBreakpoint } = useBreakpoints();
   @apply font-[500] xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px];
   background: #171635;
   border-bottom: 1px solid #8b8dfc99;
-  border-radius: 12px 12px 0px 0px;
 }
 .table-row:first-child {
   @apply font-[500] xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px];
   border-bottom: 1px solid #a5a5fd;
   background: #acb0ff;
-  border-radius: 12px 12px 0px 0px;
 }
 
 .table-row:last-child {

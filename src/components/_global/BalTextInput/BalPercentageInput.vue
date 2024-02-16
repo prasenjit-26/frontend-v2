@@ -148,7 +148,6 @@ onMounted(() => {
   @apply text-xs text-red-500 mt-1 ml-1;
 }
 .bal-text-input-container {
-  box-shadow: 0px 0px 0px 2px #8b8dfc99;
   background: #212139;
 }
 .custom-text-input {

@@ -91,7 +91,12 @@ function symbolFor(token: PoolToken): string {
 </script>
 
 <template>
-  <BalCard shadow="none" noBorder noPad class="postion-container">
+  <BalCard
+    shadow="none"
+    noBorder
+    noPad
+    class="postion-container universal-border"
+  >
     <template #header>
       <div class="card-header">
         <h5
@@ -217,8 +222,6 @@ function symbolFor(token: PoolToken): string {
   @apply py-3 flex justify-between items-center text-lg;
 }
 .postion-container {
-  box-shadow: 0px 0px 0px 5px #8b8dfc99, 0px 0px 0px 10px #8b8dfc40,
-    0px 0px 149px -46px #8b8dfccc;
   background-color: #00000029;
   border-radius: 12px;
 }

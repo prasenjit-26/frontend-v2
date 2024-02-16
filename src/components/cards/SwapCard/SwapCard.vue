@@ -7,7 +7,7 @@
         :isGasless="swapping.swapGasless.value"
       />
     </div>
-    <div class="swap-container">
+    <div class="swap-container universal-border">
       <SwapPair
         v-model:tokenInAmount="tokenInAmount"
         v-model:tokenInAddress="tokenInAddress"
@@ -455,8 +455,6 @@ export default defineComponent({
   background: transparent;
 }
 .dark .swap-container {
-  box-shadow: 0px 0px 0px 4px #8b8dfc99, 0px 0px 0px 8px #8b8dfc40,
-    0px 0px 149px -46px #8b8dfccc;
   background: #151526;
   border-radius: 20px;
   padding: 20px;
@@ -465,9 +463,6 @@ export default defineComponent({
 .swap-container {
   border-radius: 20px;
   background: #d5d6ff;
-  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 8px rgba(139, 141, 252, 0.25),
-    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
   padding: 20px;
   position: relative;
 }

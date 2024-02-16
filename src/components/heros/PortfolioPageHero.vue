@@ -72,7 +72,9 @@ const veBalBalanceTooltip = computed(() => {
   <div
     class="md:container flex justify-center items-center md:mx-auto w-full mt-[50px]"
   >
-    <div class="balance-container sm:p-[28px] xs:p-[24px] xl:p-[50px]">
+    <div
+      class="balance-container universal-border sm:p-[28px] xs:p-[24px] xl:p-[50px]"
+    >
       <div class="flex justify-between items-center w-full">
         <h1
           class="text-white xs:text-[14px] sm:text-[20px] xl:text-[32px] font-[600]"
@@ -134,10 +136,6 @@ const veBalBalanceTooltip = computed(() => {
   border-bottom-right-radius: 8px;
 }
 .dark .balance-container {
-  box-shadow: 0px 0px 0px 2px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 4px rgba(139, 141, 252, 0.25),
-    0px 0px 89.4px -27.6px rgba(139, 141, 252, 0.8);
-
   background: #161627;
   border-radius: 20px;
   display: flex;
@@ -150,9 +148,6 @@ const veBalBalanceTooltip = computed(() => {
 .balance-container {
   border-radius: 20px;
   background: #8b8dfc;
-  box-shadow: 0px 0px 0px 5px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 10px rgba(139, 141, 252, 0.25),
-    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
   display: flex;
   justify-content: center;
   flex-direction: column;

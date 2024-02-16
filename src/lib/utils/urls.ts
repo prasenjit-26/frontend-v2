@@ -12,7 +12,7 @@ export function buildNetworkIconURL(network: Network | string): string {
   const result = new URL(
     // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url
     // Warning: Don't extract this template into a variable or it will stop working in production builds
-    `/src/assets/images/icons/networks/${networkName}.svg`,
+    `/src/assets/images/icons/networks/${networkName}.png`,
     import.meta.url
   ).href;
   return result;

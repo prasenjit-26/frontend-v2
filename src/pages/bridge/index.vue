@@ -126,6 +126,7 @@ const activeNetworkDestination = ref({} as NetworkRef);
 const sourceToken = ref({} as TokenRef);
 const destinationToken = ref({} as TokenRef);
 const receiveAmountInEth = ref('0');
+const noPath = ref(false);
 const txLoading = ref(false);
 const sourceTokenBalance = ref('0');
 const destinationTokenBalance = ref('0');
@@ -214,7 +215,9 @@ const getCrosschainLink = () => {
       if (crossChainLink === null || crossChainLink === undefined) {
         amount.receiveDataRouter = null;
         receiveAmountInEth.value = '0';
+        noPath.value = true;
       } else {
+        noPath.value = false;
         getReceiveAmount();
       }
     }
@@ -467,11 +470,11 @@ const handleDestinationTokenModals = () => {
       shadow="none"
       noBorder
     >
-      <div class="swap-container">
+      <div class="swap-container universal-border">
         <p class="text-black dark:text-white swap-title mb-[20px] font-[500]">
           Bridge
         </p>
-        <div class="relative p-5 bal-text-input-container">
+        <div class="relative p-5 bal-text-input-container universal-border">
           <div class="flex justify-between">
             <BalPopover
               noPad
@@ -600,7 +603,7 @@ const handleDestinationTokenModals = () => {
             <ArrowDownIcon class="text-white" />
           </div>
         </div>
-        <div class="p-5 bal-text-input-container mt-[20px]">
+        <div class="p-5 bal-text-input-container mt-[20px] universal-border">
           <div class="flex justify-between">
             <BalPopover noPad overrideClasses="popuover-override">
               <template #activator>
@@ -770,35 +773,47 @@ const handleDestinationTokenModals = () => {
             </div>
           </div>
         </div>
-        <BalBtn
-          :onclick="bridgeTranscation"
-          class="w-full mt-[25px]"
-          :disabled="
-            state.selectedCrosschainLink === null ||
-            parseFloat(amount.sourceAmount) <= 0 ||
-            parseFloat(amount.receiveAmount) <= 0 ||
-            txLoading
-          "
-          :color="
-            state.selectedCrosschainLink === null ||
-            parseFloat(amount.sourceAmount) <= 0 ||
-            parseFloat(amount.receiveAmount) <= 0 ||
-            txLoading
-              ? 'gray'
-              : 'gradient'
-          "
-        >
-          {{ txLoading ? 'Processing...' : 'Bridge' }}
+        <BalBtn v-if="noPath" class="w-full mt-[25px]" color="red">
+          Unable to bridge selected pair, update token pair.
         </BalBtn>
+        <div v-else>
+          <BalBtn
+            v-if="
+              parseFloat(sourceTokenBalance) < parseFloat(amount.sourceAmount)
+            "
+            class="w-full mt-[25px]"
+            color="red"
+          >
+            Insufficiant Balance
+          </BalBtn>
+          <BalBtn
+            v-else
+            :onclick="bridgeTranscation"
+            class="w-full mt-[25px]"
+            :disabled="
+              state.selectedCrosschainLink === null ||
+              parseFloat(amount.sourceAmount) <= 0 ||
+              parseFloat(amount.receiveAmount) <= 0 ||
+              txLoading
+            "
+            :color="
+              state.selectedCrosschainLink === null ||
+              parseFloat(amount.sourceAmount) <= 0 ||
+              parseFloat(amount.receiveAmount) <= 0 ||
+              txLoading
+                ? 'gray'
+                : 'gradient'
+            "
+          >
+            {{ txLoading ? 'Processing...' : 'Bridge' }}
+          </BalBtn>
+        </div>
       </div>
     </BalCard>
   </div>
 </template>
 <style>
 .dark .swap-container {
-  box-shadow: 0px 0px 0px 3.6px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 7.2px rgba(139, 141, 252, 0.25),
-    0px 0px 134.1px -41.4px rgba(139, 141, 252, 0.8);
   background: #151526;
   border-radius: 20px;
   padding: 20px;
@@ -808,9 +823,6 @@ const handleDestinationTokenModals = () => {
 .swap-container {
   border-radius: 20px;
   background: #d5d6ff;
-  box-shadow: 0px 0px 0px 4px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 8px rgba(139, 141, 252, 0.25),
-    0px 0px 149px -46px rgba(139, 141, 252, 0.8);
   padding: 20px;
   position: relative;
   max-width: 600px;
@@ -823,7 +835,6 @@ const handleDestinationTokenModals = () => {
   line-height: normal;
 }
 .dark .bal-text-input-container {
-  box-shadow: 0px 0px 0px 2px #8b8dfc99;
   background: #212139;
 
   border-radius: 10.8px;
@@ -831,9 +842,6 @@ const handleDestinationTokenModals = () => {
 .bal-text-input-container {
   background: rgba(139, 141, 252, 0.15);
   border-radius: 10.8px;
-  box-shadow: 0px 2px 9px 4px rgba(6, 6, 6, 0.15) inset,
-    0px 0px 0px 3px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 6px rgba(139, 141, 252, 0.25);
 }
 .dark .input-container {
   @apply transition-colors;

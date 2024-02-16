@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import { watch } from 'vue';
 import useNumbers from '@/composables/useNumbers';
-import { shorten } from '@/lib/utils';
+import BigNumber from 'bignumber.js';
+import { Contract, ethers } from 'ethers';
 import useWeb3 from '@/services/web3/useWeb3';
 import useNetwork from '@/composables/useNetwork';
 import { getConnectorLogo } from '@/services/web3/wallet-logos';
 import { useTokens } from '@/providers/tokens.provider';
 import CedeWidget from '../../../pages/cedeWidget.vue';
+import { Children } from 'react';
+
+BigNumber.config({
+  EXPONENTIAL_AT: 1000,
+  DECIMAL_PLACES: 80,
+});
 
 export interface NetworkOption {
   id: string;
@@ -13,21 +21,35 @@ export interface NetworkOption {
   networkSlug?: string;
   key?: string;
 }
+const chainIdRpcMapping = {
+  '420': 'https://rpc.goerli.optimism.gateway.fm',
+  '421613': 'https://rpc.goerli.arbitrum.gateway.fm',
+  '97': 'https://bsc-testnet.publicnode.com',
+  '84531': 'https://goerli.base.org',
+  '59140': 'https://rpc.goerli.linea.build',
+  '5001': 'https://rpc.testnet.mantle.xyz',
+  '11155111': 'https://rpc2.sepolia.org',
+  '1': 'https://rpc.ankr.com/eth',
+  '42161': 'https://arb1.arbitrum.io/rpc',
+  zksync: 'https://mainnet.era.zksync.io',
+  '137': 'https://polygon-rpc.com',
+  '10': 'https://rpc.ankr.com/optimism',
+  '1088': 'https://metis-mainnet.public.blastapi.io',
+  '56': 'https://bsc-dataseed1.defibit.io',
+  '42170': 'https://arbitrum-nova.publicnode.com',
+  '1101': 'https://zkevm-rpc.com',
+  '59144': 'https://rpc.linea.build',
+  '5000': 'https://rpc.mantle.xyz',
+  '8453': 'https://mainnet.base.org',
+};
 const emit = defineEmits(['close', 'success']);
 const { balances, nativeAsset, wrappedNativeAsset } = useTokens();
 const { toFiat } = useNumbers();
+const otherNetworkBalance = ref('0.000 ETH');
 const showCedestoreModal = ref(false);
-const {
-  account,
-  connector,
-  provider,
-  isUnsupportedNetwork,
-  userNetworkConfig,
-} = useWeb3();
+const { account, chainId, isMismatchedNetwork, isUnsupportedNetwork } =
+  useWeb3();
 const { networkSlug } = useNetwork();
-const connectorLogo = computed(() =>
-  getConnectorLogo(connector.value?.id, provider.value)
-);
 
 function handleClose() {
   showCedestoreModal.value = false;
@@ -36,7 +58,6 @@ function handleClose() {
 function showModal() {
   showCedestoreModal.value = true;
 }
-const networkName = computed(() => userNetworkConfig.value?.name);
 const fiatLabel = computed(() => {
   let usdBalance = 0;
   for (let address in balances.value) {
@@ -50,6 +71,31 @@ const fiatLabel = computed(() => {
   }
 
   return usdBalance;
+});
+const checkOtherNetworkBalance = async () => {
+  let usdBalance = '0';
+  if (isMismatchedNetwork.value || isUnsupportedNetwork.value) {
+    const rpcUrl = chainIdRpcMapping[chainId.value];
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+    const ethBalance = await provider.getBalance(account.value);
+    usdBalance = new BigNumber(ethBalance.toString())
+      .dividedBy(10 ** 18)
+      .toFixed(3);
+  }
+  const getChains = await fetch('https://chainid.network/chains.json');
+  const chains = await getChains.json();
+  const chainDetails = chains.find(
+    chain => chain.chainId.toString() === chainId.value.toString()
+  );
+  otherNetworkBalance.value = `${usdBalance} ${
+    chainDetails ? chainDetails.nativeCurrency.symbol : ''
+  }`;
+};
+onMounted(async () => {
+  checkOtherNetworkBalance();
+});
+watch(chainId, () => {
+  checkOtherNetworkBalance();
 });
 </script>
 <template>
@@ -67,16 +113,22 @@ const fiatLabel = computed(() => {
   </BalModal>
   <BalPopover noPad topValue="60">
     <template #activator>
-      <div class="funds-button">
+      <div class="funds-button universal-border">
         <img src="~@/assets/images/wallet.svg" alt="wallet" width="20" />
         <p class="funds-text ml-[15px] mr-[15px]">
-          {{ fiatLabel.toFixed(3) }} USD
+          {{
+            account
+              ? isMismatchedNetwork || isUnsupportedNetwork
+                ? otherNetworkBalance
+                : `${fiatLabel.toFixed(3)} USD`
+              : '0.000 USD'
+          }}
         </p>
         <img src="~@/assets/images/plus.svg" alt="wallet" width="20" />
       </div>
     </template>
     <div class="funds-menu">
-      <div class="account-menu">
+      <!-- <div class="account-menu">
         <div class="flex items-center">
           <img :src="connectorLogo" class="w-[40px] h-[40px]" />
           <div class="ml-[10px]">
@@ -91,7 +143,7 @@ const fiatLabel = computed(() => {
             />
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="mt-[24px]">
         <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">Bridge funds from other networks</p>
@@ -113,7 +165,7 @@ const fiatLabel = computed(() => {
             class="whitespace-nowrap w-[30%] assets-button"
             :onclick="showModal"
           >
-            Transfer assets
+            cede.store
           </BalBtn>
         </div>
       </div>
@@ -125,9 +177,6 @@ const fiatLabel = computed(() => {
   cursor: pointer;
   border-radius: 60px;
   background: rgba(139, 141, 252, 0.51);
-  box-shadow: 0px -5px 4px 0px rgba(49, 49, 49, 0.25) inset,
-    0px 0px 0px 4px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 8px rgba(139, 141, 252, 0.15);
   backdrop-filter: blur(20px);
   display: flex;
   padding: 15px 22px;
@@ -145,7 +194,7 @@ const fiatLabel = computed(() => {
   line-height: normal;
 }
 .dark .funds-menu {
-  width: max-content;
+  width: 360px;
   border-radius: 18px;
   background: var(--Grapgh---Background, #151526);
   box-shadow: 0px 0px 0px 3.6px rgba(139, 141, 252, 0.6),
@@ -154,7 +203,7 @@ const fiatLabel = computed(() => {
   padding: 25px;
 }
 .funds-menu {
-  width: max-content;
+  width: 360px;
   border-radius: 18px;
   background: var(--Grapgh---Background, #d5d6ff);
   box-shadow: 0px 0px 0px 3.6px rgba(139, 141, 252, 0.6),

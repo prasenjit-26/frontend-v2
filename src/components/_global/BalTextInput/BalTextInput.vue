@@ -120,7 +120,7 @@ onMounted(() => {
 <template>
   <div
     :class="[
-      'bal-text-input bal-text-input-container',
+      'bal-text-input bal-text-input-container universal-border',
       parentClasses,
       borderRadiusClasses,
     ]"
@@ -209,14 +209,10 @@ onMounted(() => {
   @apply text-xs text-red-500 mt-1 ml-1;
 }
 .dark .bal-text-input-container {
-  box-shadow: 0px 0px 0px 2px #8b8dfc99;
   background: #212139;
 }
 .bal-text-input-container {
   background: rgba(139, 141, 252, 0.15);
-  box-shadow: 0px 2px 9px 4px rgba(6, 6, 6, 0.15) inset,
-    0px 0px 0px 3px rgba(139, 141, 252, 0.6),
-    0px 0px 0px 6px rgba(139, 141, 252, 0.25);
 }
 .custom-text-input {
   font-weight: 600;

@@ -84,7 +84,7 @@ onMounted(async () => {
     </BalTabs>
   </div>
   <BalCard
-    class="overflow-x-auto whitespace-nowrap table-conatiner"
+    class="overflow-x-auto whitespace-nowrap universal-border"
     noBorder
     noPad
   >

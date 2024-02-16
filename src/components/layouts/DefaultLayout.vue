@@ -12,7 +12,6 @@ const isSwapPage = ref(false);
 // const { isMobile } = useBreakpoints();
 // do a `console.log(route)` to see route attributes (fullPath, hash, params, path...)
 onMounted(() => {
-  console.log('route fullPath mounted', route.fullPath);
   if (route.fullPath.includes('swap')) {
     isSwapPage.value = true;
   } else {
