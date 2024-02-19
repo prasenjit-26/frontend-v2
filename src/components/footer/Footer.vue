@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import useDarkMode from '@/composables/useDarkMode';
+import useNetwork from '@/composables/useNetwork';
 
 // import AppLogo from '../images/AppLogo.vue';
 
 const { darkMode } = useDarkMode();
+const { networkSlug } = useNetwork();
 </script>
 
 <template>
@@ -12,30 +14,46 @@ const { darkMode } = useDarkMode();
     <div class="footer-container">
       <div class="xl:container">
         <div className="footer-navbar">
-          <a
-            href="https://app.chimp.exchange/#/lineatestnet"
-            target="_blank"
-            rel="noreferrer"
+          <router-link
+            :to="{
+              name: 'home',
+              params: { networkSlug },
+            }"
+            as="div"
             className="nav-item"
           >
             Pool
-          </a>
-          <a
-            href="https://app.chimp.exchange/#/lineatestnet/swap"
-            target="_blank"
-            rel="noreferrer"
+          </router-link>
+          <router-link
+            :to="{
+              name: 'swap',
+              params: { networkSlug },
+            }"
+            as="div"
             className="nav-item"
           >
             Swap
-          </a>
-          <a
-            href="https://app.chimp.exchange/#/lineatestnet/portfolio"
-            target="_blank"
-            rel="noreferrer"
+          </router-link>
+          <router-link
+            :to="{
+              name: 'portfolio',
+              params: { networkSlug },
+            }"
+            as="div"
             className="nav-item"
           >
             Portfolio
-          </a>
+          </router-link>
+          <router-link
+            :to="{
+              name: 'bridge',
+              params: { networkSlug },
+            }"
+            as="div"
+            className="nav-item"
+          >
+            Bridge
+          </router-link>
         </div>
         <div className="footer-menu-bottom">
           <div className="footer-logo-container">

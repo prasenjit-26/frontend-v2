@@ -71,7 +71,7 @@ function isActive(page: string): boolean {
       slChimp
     </DesktopLinkItem> -->
     <DesktopLinkItem
-      :to="{ name: 'bridge', params: { networkSlug } }"
+      :to="{ name: 'bridge' }"
       :active="isActive('bridge')"
       prefetch
       @click="trackGoal(Goals.ClickNavVebal)"

@@ -76,7 +76,7 @@ const routes: RouteRecordRaw[] = [
     component: SwapPage,
   },
   {
-    path: '/:networkSlug/bridge',
+    path: '/bridge',
     name: 'bridge',
     component: BridgePage,
   },

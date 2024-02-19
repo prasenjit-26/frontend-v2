@@ -148,9 +148,7 @@ watch(chainId, () => {
         <div class="flex justify-between items-center mb-[20px]">
           <p class="funds-info-text">Bridge funds from other networks</p>
           <BalBtn class="w-[30%] assets-button">
-            <router-link :to="{ name: 'bridge', params: { networkSlug } }">
-              Bridge
-            </router-link>
+            <router-link :to="{ name: 'bridge' }"> Bridge </router-link>
           </BalBtn>
         </div>
         <!-- <div class="flex justify-between items-center mb-[20px]">
@@ -162,7 +160,7 @@ watch(chainId, () => {
             Transfer assets from CEX Using cede.store
           </p>
           <BalBtn
-            class="whitespace-nowrap w-[30%] assets-button"
+            class="lg:whitespace-nowrap lg:w-[30%] assets-button sm:w-fit md:w-fit"
             :onclick="showModal"
           >
             cede.store
@@ -192,6 +190,11 @@ watch(chainId, () => {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+@media (max-width: 768px) {
+  .funds-menu {
+    width: auto !important;
+  }
 }
 .dark .funds-menu {
   width: 360px;
