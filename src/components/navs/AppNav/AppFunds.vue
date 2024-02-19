@@ -180,7 +180,7 @@ watch(chainId, () => {
   padding: 15px 22px;
   justify-content: center;
   align-items: center;
-  max-height: 40px;
+  max-height: 50px;
 }
 .funds-text {
   color: #fff;

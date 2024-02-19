@@ -189,18 +189,17 @@ function isActive(network: NetworkOption): boolean {
 </template>
 <style>
 .dark .network-button {
-  @apply lg:min-h-[40px] lg:h-[40px] xs:min-h-[40px] sm:min-h-[40px] h-[40px];
+  @apply lg:min-h-[50px] lg:h-[50px] xs:min-h-[40px] sm:min-h-[40px] h-[40px] lg:min-w-[50px] lg:w-[50px] xs:min-w-[30px] sm:min-w-[30px] w-[40px];
   background-color: #8b8dfc82 !important;
   border-radius: 50%;
   padding: 6px;
 }
 .network-button {
-  @apply lg:min-h-[40px] lg:h-[40px] xs:min-h-[30px] sm:min-h-[30px] h-[40px];
+  @apply lg:min-h-[50px] lg:h-[50px] xs:min-h-[30px] sm:min-h-[30px] h-[40px] lg:min-w-[50px] lg:w-[50px] xs:min-w-[30px] sm:min-w-[30px] w-[40px];
   background: #bbbcfd;
   backdrop-filter: blur(20px);
   border-radius: 50%;
   padding: 6px;
-  width: 40px;
 }
 .dark .wallet-menu {
   background: #16162d;
