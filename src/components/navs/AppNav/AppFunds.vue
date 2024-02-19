@@ -181,6 +181,7 @@ watch(chainId, () => {
   justify-content: center;
   align-items: center;
   max-height: 50px;
+  margin-left: 10px;
 }
 .funds-text {
   color: #fff;

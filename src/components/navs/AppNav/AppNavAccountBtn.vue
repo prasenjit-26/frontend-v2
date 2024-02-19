@@ -29,7 +29,7 @@ const { account } = useWeb3();
     :detached="isMobile ? true : undefined"
   >
     <template #activator>
-      <div class="mobile-account ml-[20px] mr-[20px] pointer">
+      <div class="mobile-account pointer">
         <Web3Avatar
           :address="account"
           class="lg:w-[50px] lg:h-[50px] sm:w-[40px] sm:h-[40px] xs:w-[40px] xs:h-[40px]"

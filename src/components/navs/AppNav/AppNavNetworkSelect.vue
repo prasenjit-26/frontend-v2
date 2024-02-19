@@ -134,7 +134,7 @@ function isActive(network: NetworkOption): boolean {
   <BalPopover noPad>
     <template #activator>
       <BalBtn
-        class="ml-4 network-button universal-border"
+        class="network-button universal-border"
         color="white"
         :size="upToLargeBreakpoint ? 'md' : 'sm'"
       >
@@ -193,12 +193,14 @@ function isActive(network: NetworkOption): boolean {
   background-color: #8b8dfc82 !important;
   border-radius: 50%;
   padding: 6px;
+  margin: 0px 10px;
 }
 .network-button {
   @apply lg:min-h-[50px] lg:h-[50px] xs:min-h-[30px] sm:min-h-[30px] h-[40px] lg:min-w-[50px] lg:w-[50px] xs:min-w-[30px] sm:min-w-[30px] w-[40px];
   background: #bbbcfd;
   backdrop-filter: blur(20px);
   border-radius: 50%;
+  margin: 0px 10px;
   padding: 6px;
 }
 .dark .wallet-menu {

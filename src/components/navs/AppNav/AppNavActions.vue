@@ -46,7 +46,7 @@ const useDarkLogo = computed(() => darkMode.value);
     <BalBtn
       v-if="!account"
       color="white"
-      class="ml-5 connect-button"
+      class="connect-button"
       :size="isMobile ? 'md' : 'sm'"
       @click="connectWalletHandler"
     >
@@ -81,7 +81,7 @@ const useDarkLogo = computed(() => darkMode.value);
 </template>
 <style>
 .connect-button {
-  @apply text-white font-[500] xs:p-[10px] sm:p-[12px] p-[15px] xs:text-[12px] xs:text-[14px] text-[20px] lg:min-h-[40px] lg:h-[40px] xs:min-h-[30px] sm:min-h-[30px] h-[30px];
+  @apply text-white font-[500] xs:p-[10px] sm:p-[12px] p-[15px] xs:text-[12px] xs:text-[14px] text-[20px] lg:min-h-[50px] lg:h-[50px] xs:min-h-[30px] sm:min-h-[30px] h-[30px];
   background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
   box-shadow: 0px 0px 0px 2px #8b8dfc, 0px 0px 3px 2px #00000040;
   border: 1px solid #9b9b9b;

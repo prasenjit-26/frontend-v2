@@ -41,7 +41,7 @@ const useDarkLogo = computed(() => (props.forceDark ? true : darkMode.value));
       v-if="useDarkLogo"
       src="~@/assets/images/ChimpLogo.png"
       alt="logo"
-      width="280"
+      width="230"
     />
     <img v-else src="~@/assets/images/logoLight.png" alt="logo" width="280" />
   </div>
