@@ -139,7 +139,7 @@ const missingPrices = computed(() => {
   if (pool.value && prices.value && !priceQueryLoading.value) {
     const tokensWithPrice = Object.keys(prices.value);
     const tokens = tokenTreeLeafs(pool.value.tokens);
-
+    console.log('missingPrices', tokensWithPrice, tokens, prices);
     return !tokens.every(token => includesAddress(tokensWithPrice, token));
   }
   return false;

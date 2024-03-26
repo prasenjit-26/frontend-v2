@@ -58,8 +58,13 @@ export default function useTokenPricesQuery(
         filterLineaTokens.push(token.address);
       }
     });
+    const options = {
+      method: 'GET',
+      headers: { 'x-cg-demo-api-key': 'CG-NGC4psS5VnEsTQ9qsmTP1Qk8' },
+    };
     const getTokenPrices = await fetch(
-      `https://api.coingecko.com/api/v3/simple/token_price/linea?contract_addresses=${filterLineaTokens.toString()}&vs_currencies=usd`
+      `https://api.coingecko.com/api/v3/simple/token_price/linea?contract_addresses=${filterLineaTokens.toString()}&vs_currencies=usd`,
+      options
     );
     const pricesData = await getTokenPrices.json();
     console.log('pricesData', pricesData);
