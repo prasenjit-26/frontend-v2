@@ -75,17 +75,8 @@ watch(
       </div>
       <div v-else> -->
       <div>
-        <div v-if="isSwapPage" class="swap-bg">
-          <div class="mt-[100px]">
-            <div class="sm:pb-3 lg:pb-16 xs:pb-3">
-              <slot />
-            </div>
-          </div>
-        </div>
-        <div v-else>
-          <div class="sm:pb-3 lg:pb-16 xs:pb-3">
-            <slot />
-          </div>
+        <div class="sm:pb-3 lg:pb-16 xs:pb-3">
+          <slot />
         </div>
       </div>
       <!-- <div v-else>
@@ -136,19 +127,18 @@ watch(
 
 .app-body {
   @apply bg-cover dark:bg-black;
-  background: #ececfe;
-
   min-height: calc(100vh - 2rem);
+  background-image: url('@/assets/images/bgLight.png');
 }
 .dark .app-body {
-  background-image: url('@/assets/images/bgGradiant.png');
+  background-image: url('@/assets/images/background.png');
 }
 .dark .swap-bg {
   background-size: 101vw 100%;
   background-repeat: no-repeat;
   @apply bg-center;
   transition: all 0.3s ease-in-out;
-  background-image: url('@/assets/images/swapBG.png');
+  background-image: url('@/assets/images/background.png');
 }
 .swap-bg {
   background-size: 101vw 100%;

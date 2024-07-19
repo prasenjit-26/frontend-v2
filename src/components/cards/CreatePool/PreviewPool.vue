@@ -413,12 +413,9 @@ const { isDesktop } = useBreakpoints();
   border-color: #8b8dfc !important;
 }
 .info-container {
-  border: 1px solid #8b8dfc;
   border-radius: 12px;
-  background: linear-gradient(0deg, #8b8dfc 0%, #8b8dfc 100%),
-    var(--Table-Rows, #e2e3ff);
+  background: #c7f0fe;
   padding: 24px;
-  border-color: #8b8dfc !important;
 }
 .asset-container {
   background: #474881;

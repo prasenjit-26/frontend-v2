@@ -137,6 +137,9 @@ onMounted(() => {
           </span>
         </slot>
       </div>
+      <div v-if="$slots.top" class="mb-[20px]">
+        <slot name="top" />
+      </div>
       <div :class="['input-group', inputGroupClasses]">
         <div v-if="$slots.before" :class="['before', prependClasses]">
           <slot name="before" />
@@ -149,7 +152,7 @@ onMounted(() => {
           v-bind="inputAttrs"
           :disabled="disabled"
           :class="[
-            'text-input-placeholder-calass input  font-[600]  text-white',
+            'text-input-placeholder-calass input  font-[600]  dark:text-white text-[#797979]',
             inputClasses,
           ]"
           :style="{
@@ -161,9 +164,6 @@ onMounted(() => {
           @click="onClick"
           @focus="onFocus"
         />
-        <div v-if="$slots.prepend" :class="['prepend', prependClasses]">
-          <slot name="prepend" />
-        </div>
         <div v-if="$slots.append" :class="['append', appendClasses]">
           <slot name="append" />
         </div>
@@ -181,17 +181,11 @@ onMounted(() => {
 <style scoped>
 .dark .input-container {
   @apply transition-colors;
-  background: #212139;
+  background: transparent;
 }
 .input-container {
   @apply transition-colors;
-  border-radius: 12px;
-  background: linear-gradient(
-      0deg,
-      rgba(139, 141, 252, 0.15) 0%,
-      rgba(139, 141, 252, 0.15) 100%
-    ),
-    #8b8dfc;
+  background: transparent;
 }
 .input-group {
   @apply flex;
@@ -209,10 +203,16 @@ onMounted(() => {
   @apply text-xs text-red-500 mt-1 ml-1;
 }
 .dark .bal-text-input-container {
-  background: #212139;
+  background: #252525;
+  box-shadow: 0px 0px 6.2px -3px #00000040 inset, 0px 0px 0px 2px #ffffff00;
+  border: none;
+  border-radius: 18px;
 }
 .bal-text-input-container {
-  background: rgba(139, 141, 252, 0.15);
+  background: #f9f9f9;
+  box-shadow: 0px 0px 6.2px -3px #00000040 inset;
+  border: none;
+  border-radius: 18px;
 }
 .custom-text-input {
   font-weight: 600;
@@ -220,20 +220,20 @@ onMounted(() => {
 }
 .text-input-placeholder-calass::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #fff;
+  color: #797979;
 }
 .text-input-placeholder-calass:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #fff;
+  color: #797979;
   opacity: 1;
 }
 .text-input-placeholder-calass::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #fff;
+  color: #797979;
   opacity: 1;
 }
 .text-input-placeholder-calass:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #fff;
+  color: #797979;
 }
 </style>

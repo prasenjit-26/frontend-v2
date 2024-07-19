@@ -104,9 +104,17 @@ export default {
 <style>
 .token-item {
   border-radius: 12px;
-  background: rgba(139, 141, 252, 0.6);
-  box-shadow: 0px 0px 0px 2px #8b8dfc;
+  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
   margin-top: 5px;
+  margin-bottom: 20px;
+}
+.dark .token-item {
+  border-radius: 12px;
+  border: 1px solid #2e2e2e;
+  background: #252525;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 .token-item-default {
   border-radius: 12px;

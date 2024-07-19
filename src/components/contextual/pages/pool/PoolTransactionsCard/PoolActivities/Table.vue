@@ -278,8 +278,8 @@ function getJoinExitDetails(amounts: PoolActivity['amounts']) {
   color: white;
 }
 .dark .token-conatiner {
-  background-color: #343563;
-  border: 1px solid #8b8dfc;
+  background: #333333;
+  border: 1px solid #2e2e2e;
   padding: 10px 5px;
   border-radius: 6px;
 }

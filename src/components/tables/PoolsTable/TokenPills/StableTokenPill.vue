@@ -98,8 +98,14 @@ withDefaults(defineProps<Props>(), {
   background: #5a5a6763;
 }
 .pill-container {
-  background: #8688ff63;
-  border: 1px solid rgba(139, 141, 252, 1);
+  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+  border-radius: 5px;
+  min-height: 46px;
+}
+.dark .pill-container {
+  background: #333333;
+  border: 1px solid #2e2e2e;
   border-radius: 5px;
   min-height: 46px;
 }

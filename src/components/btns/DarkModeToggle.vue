@@ -26,5 +26,14 @@ const { darkMode, toggleDarkMode } = useDarkMode();
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+  border: 1px solid #e6e6e6;
+}
+.dark .toggle-button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(180deg, #282828 0%, #181818 100%);
+  border: 1px solid #2e2e2e;
 }
 </style>

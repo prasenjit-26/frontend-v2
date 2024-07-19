@@ -56,24 +56,24 @@ const { upToLargeBreakpoint } = useBreakpoints();
 <style scoped>
 .table-row {
   @apply flex border-b font-[400] text-[20px] min-h-[78px] xs:min-h-[48px] sm:min-h-[58px];
-  border-bottom: 1px solid #a5a5fd;
-  background: #d5d6ff;
+  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
 }
 .dark .table-row {
   @apply flex border-b font-[400] text-[20px] min-h-[78px] xs:min-h-[48px] sm:min-h-[58px];
-  border-bottom: 1px solid #8b8dfc99;
-  background: #282853;
+  background: #252525;
+  border-bottom: 1px solid #2e2e2e;
 }
 
 .dark .table-row:first-child {
   @apply font-[500] xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px];
-  background: #171635;
-  border-bottom: 1px solid #8b8dfc99;
+  background: #333333;
+  border: 1px solid #2e2e2e;
 }
 .table-row:first-child {
   @apply font-[500] xs:text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[20px];
-  border-bottom: 1px solid #a5a5fd;
-  background: #acb0ff;
+  border-bottom: 1px solid #e6e6e6;
+  background: #ffffffff;
 }
 
 .table-row:last-child {

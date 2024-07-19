@@ -53,9 +53,9 @@
       <BalBtn
         v-else
         :label="$t('preview')"
+        color="black"
         :disabled="swapDisabled"
-        color="gradient"
-        class="rounded-[12px]"
+        class="text-[#fff] dark:text-[#000] rounded-[12px] dark:bg-[#FFFFFF] bg-[#8183FF]"
         block
         @click.prevent="handlePreviewButton"
       />
@@ -455,14 +455,18 @@ export default defineComponent({
   background: transparent;
 }
 .dark .swap-container {
-  background: #151526;
+  background: #181818;
+  border: 1px solid #2e2e2e;
+  box-shadow: 0px 0px 63.5px 2px #49494940;
   border-radius: 20px;
   padding: 20px;
   position: relative;
 }
 .swap-container {
   border-radius: 20px;
-  background: #d5d6ff;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0px 0px 63.5px 2px #00000040;
   padding: 20px;
   position: relative;
 }

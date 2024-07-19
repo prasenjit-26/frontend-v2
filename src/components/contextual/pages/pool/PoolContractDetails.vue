@@ -147,7 +147,7 @@ const poolManagementText = computed(() => {
 <template>
   <div class="mb-5">
     <h3
-      class="px-4 lg:px-0 mb-[32px] xs:text-[18px] sm:text-[22px] text-[32px] font-[500]"
+      class="px-4 lg:px-0 text-white dark:text-black mb-[32px] xs:text-[18px] sm:text-[22px] text-[32px] font-[500]"
       v-text="$t('poolDetails')"
     />
 

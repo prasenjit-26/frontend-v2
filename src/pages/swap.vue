@@ -57,12 +57,12 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
   <div>
     <div class="container mx-auto max-w-[1300px] h-[75vh] pl-[24px] pr-[24px]">
       <div
-        class="grid gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xs:grid-cols-1"
+        class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xs:grid-cols-1 gap-4"
       >
         <!-- <template #gutterLeft>
         <MyWallet />
       </template> -->
-        <div v-if="isDesktop" class="mt-[25px]">
+        <!-- <div v-if="isDesktop" class="mt-[25px]">
           <div class="flex items-center mb-[20px]">
             <div class="flex items-center mr-[16px]">
               <BalAsset
@@ -88,28 +88,30 @@ const outputTokentoken = computed<TokenInfo | undefined>(() =>
               }}</span>
             </div>
           </div>
-          <!-- <MyWallet /> -->
+          <MyWallet />
           <PairPriceGraph />
-          <!-- <BridgeLink v-if="hasBridge" class="mt-4" /> -->
-        </div>
-        <div>
-          <SwapCard />
-          <div v-if="isDesktop" class="p-4 mt-8 sm:p-0 lg:p-0">
-            <BalAccordion
-              v-if="upToLargeBreakpoint"
-              class="w-full"
-              :sections="sections"
-            >
-              <template #my-wallet>
-                <MyWallet />
-              </template>
-              <template #price-chart>
-                <PairPriceGraph />
-              </template>
-              <template v-if="hasBridge" #bridge>
-                <BridgeLink />
-              </template>
-            </BalAccordion>
+          <BridgeLink v-if="hasBridge" class="mt-4" />
+        </div> -->
+        <div class="flex justify-center items-center">
+          <div style="max-width: 600px">
+            <SwapCard />
+            <div v-if="isDesktop" class="p-4 sm:p-0 lg:p-0 mt-8">
+              <BalAccordion
+                v-if="upToLargeBreakpoint"
+                class="w-full"
+                :sections="sections"
+              >
+                <template #my-wallet>
+                  <MyWallet />
+                </template>
+                <template #price-chart>
+                  <PairPriceGraph />
+                </template>
+                <template v-if="hasBridge" #bridge>
+                  <BridgeLink />
+                </template>
+              </BalAccordion>
+            </div>
           </div>
         </div>
       </div>

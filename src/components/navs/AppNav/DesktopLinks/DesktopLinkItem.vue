@@ -70,19 +70,9 @@ const classes = computed(() => ({
   padding: 16px 32px;
   min-width: fit-content;
   max-height: 43px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 66.64%, #8b8dfc 96.39%),
-    linear-gradient(
-      90deg,
-      rgba(106, 17, 203, 0.8) 0%,
-      rgba(37, 117, 252, 0.8) 100%
-    ),
-    linear-gradient(180deg, #8b8dfc 0%, rgba(0, 0, 0, 0) 66.64%);
+  background: #fff;
   border: 1px solid;
-  border-image-source: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 66.64%,
-    #8b8dfc 96.39%
-  );
+  color: #000;
   font-family: Plus Jakarta Sans;
   font-size: 16px;
   font-weight: 500;

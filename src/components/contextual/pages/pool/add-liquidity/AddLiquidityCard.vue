@@ -81,8 +81,8 @@ function handleClose() {
 </template>
 <style>
 .dark .close-button-modal {
-  border: 0.9px solid #8b8dfc;
-  background: #34355f;
+  border: 1px solid #2e2e2e;
+  background: #252525;
   border-radius: 25px;
   padding: 4px;
   font-size: 14px;

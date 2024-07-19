@@ -466,7 +466,7 @@ const handleDestinationTokenModals = () => {
     class="container mx-auto max-w-[1300px] pl-[24px] pr-[24px] mt-[40px] h-[100vh]"
   >
     <BalCard
-      class="flex relative items-center h-full card-container"
+      class="relative flex items-center h-full card-container"
       shadow="none"
       noBorder
     >
@@ -488,7 +488,7 @@ const handleDestinationTokenModals = () => {
                   :size="upToLargeBreakpoint ? 'md' : 'sm'"
                 >
                   <template v-if="activeNetwork">
-                    <div class="flex justify-between items-center w-full">
+                    <div class="flex items-center justify-between w-full">
                       <div class="flex items-center">
                         <img
                           :src="chainIdImageMapping[activeNetwork.chainId]"
@@ -496,7 +496,7 @@ const handleDestinationTokenModals = () => {
                           width="20"
                         />
                         <span
-                          class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                          class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                         >
                           {{ activeNetwork.name }}
                         </span>
@@ -504,7 +504,7 @@ const handleDestinationTokenModals = () => {
                       <BalIcon
                         name="chevron-down"
                         size="sm"
-                        class="ml-2 text-white"
+                        class="ml-2 text-black dark:text-white"
                       />
                     </div>
                   </template>
@@ -517,14 +517,14 @@ const handleDestinationTokenModals = () => {
                   @click="close"
                 >
                   <div
-                    class="py-2 px-3 text-sm font-medium text-gray-500 whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
+                    class="px-3 py-2 text-sm font-medium text-black border-b dark:text-white whitespace-nowrap bg-gray-50 dark:bg-gray-800 dark:border-gray-900"
                   >
                     Select Network
                   </div>
                   <div
                     v-for="network in state.supportedChain"
                     :key="network.chainId"
-                    class="flex justify-between items-center p-3 w-full hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                    class="flex items-center justify-between w-full p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-850 pop-pill-color"
                   >
                     <div
                       class="flex items-center w-full"
@@ -535,7 +535,7 @@ const handleDestinationTokenModals = () => {
                         :alt="network.name"
                         width="20"
                       />
-                      <span class="ml-[10px]">
+                      <span class="text-black dark:text-white ml-[10px]">
                         {{ network.name }}
                       </span>
                     </div>
@@ -550,7 +550,7 @@ const handleDestinationTokenModals = () => {
               :size="upToLargeBreakpoint ? 'md' : 'sm'"
             >
               <template v-if="sourceToken.name">
-                <div class="flex justify-between items-center w-full">
+                <div class="flex items-center justify-between w-full">
                   <div class="flex items-center">
                     <BalAsset
                       :iconURI="
@@ -560,7 +560,7 @@ const handleDestinationTokenModals = () => {
                       :size="20"
                     />
                     <span
-                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                      class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
                       {{ sourceToken.symbol }}
                     </span>
@@ -568,20 +568,20 @@ const handleDestinationTokenModals = () => {
                   <BalIcon
                     name="chevron-down"
                     size="sm"
-                    class="ml-2 text-white"
+                    class="ml-2 text-black dark:text-white"
                   />
                 </div>
               </template>
               <template v-else>
                 <span
-                  class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                  class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
                 >
                   Select Token
                 </span>
                 <BalIcon
                   name="chevron-down"
                   size="sm"
-                  class="ml-2 text-white"
+                  class="ml-2 text-black dark:text-white"
                 />
               </template>
             </BalBtn>
@@ -600,7 +600,7 @@ const handleDestinationTokenModals = () => {
             </p>
           </div>
           <div class="round-icon">
-            <ArrowDownIcon class="text-white" />
+            <ArrowDownIcon class="text-black dark:text-white" />
           </div>
         </div>
         <div class="p-5 bal-text-input-container mt-[20px] universal-border">
@@ -613,7 +613,7 @@ const handleDestinationTokenModals = () => {
                   :size="upToLargeBreakpoint ? 'md' : 'sm'"
                 >
                   <template v-if="activeNetworkDestination">
-                    <div class="flex justify-between items-center w-full">
+                    <div class="flex items-center justify-between w-full">
                       <div class="flex items-center">
                         <img
                           :src="
@@ -625,7 +625,7 @@ const handleDestinationTokenModals = () => {
                           width="20"
                         />
                         <span
-                          class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                          class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                         >
                           {{ activeNetworkDestination.name }}
                         </span>
@@ -633,20 +633,20 @@ const handleDestinationTokenModals = () => {
                       <BalIcon
                         name="chevron-down"
                         size="sm"
-                        class="ml-2 text-white"
+                        class="ml-2 text-black dark:text-white"
                       />
                     </div>
                   </template>
                   <template v-else>
                     <span
-                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                      class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
                     >
                       Select Network
                     </span>
                     <BalIcon
                       name="chevron-down"
                       size="sm"
-                      class="ml-2 text-white"
+                      class="ml-2 text-black dark:text-white"
                     />
                   </template>
                 </BalBtn>
@@ -658,14 +658,14 @@ const handleDestinationTokenModals = () => {
                   @click="close"
                 >
                   <div
-                    class="py-2 px-3 w-full text-sm font-medium text-white whitespace-nowrap bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-900"
+                    class="w-full px-3 py-2 text-sm font-medium text-white border-b whitespace-nowrap bg-gray-50 dark:bg-gray-800 dark:border-gray-900"
                   >
                     Select Network
                   </div>
                   <div
                     v-for="network in state.supportedChain"
                     :key="network.chainId"
-                    class="flex justify-between items-center p-3 w-full hover:bg-gray-50 dark:hover:bg-gray-850 cursor-pointer pop-pill-color"
+                    class="flex items-center justify-between w-full p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-850 pop-pill-color"
                   >
                     <div
                       class="flex items-center w-full"
@@ -691,7 +691,7 @@ const handleDestinationTokenModals = () => {
               :size="upToLargeBreakpoint ? 'md' : 'sm'"
             >
               <template v-if="destinationToken.name">
-                <div class="flex justify-between items-center w-full">
+                <div class="flex items-center justify-between w-full">
                   <div class="flex items-center">
                     <BalAsset
                       :iconURI="
@@ -701,7 +701,7 @@ const handleDestinationTokenModals = () => {
                       :size="20"
                     />
                     <span
-                      class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
+                      class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px] leading-[20px]"
                     >
                       {{ destinationToken.name }}
                     </span>
@@ -709,20 +709,20 @@ const handleDestinationTokenModals = () => {
                   <BalIcon
                     name="chevron-down"
                     size="sm"
-                    class="ml-2 text-white"
+                    class="ml-2 text-black dark:text-white"
                   />
                 </div>
               </template>
               <template v-else>
                 <span
-                  class="ml-2 text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
+                  class="ml-2 text-black dark:text-white font-[500] xs:text-[8px] sm:text-[10px] lg:text-[18px] xl:text-[18px]"
                 >
                   Select Token
                 </span>
                 <BalIcon
                   name="chevron-down"
                   size="sm"
-                  class="ml-2 text-white"
+                  class="ml-2 text-black dark:text-white"
                 />
               </template>
             </BalBtn>
@@ -814,7 +814,9 @@ const handleDestinationTokenModals = () => {
 </template>
 <style>
 .dark .swap-container {
-  background: #151526;
+  background: #181818;
+  border: 1px solid #2e2e2e;
+  box-shadow: 0px 0px 63.5px 2px #49494940;
   border-radius: 20px;
   padding: 20px;
   position: relative;
@@ -822,7 +824,8 @@ const handleDestinationTokenModals = () => {
 }
 .swap-container {
   border-radius: 20px;
-  background: #d5d6ff;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
   padding: 20px;
   position: relative;
   max-width: 600px;
@@ -835,12 +838,13 @@ const handleDestinationTokenModals = () => {
   line-height: normal;
 }
 .dark .bal-text-input-container {
-  background: #212139;
-
+  background: #252525;
+  border: 1px solid #2e2e2e;
   border-radius: 10.8px;
 }
 .bal-text-input-container {
-  background: rgba(139, 141, 252, 0.15);
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
   border-radius: 10.8px;
 }
 .dark .input-container {
@@ -859,13 +863,15 @@ const handleDestinationTokenModals = () => {
 }
 .dark .network-button-bride {
   border-radius: 57.173px;
-  background-color: #474881 !important;
+  background-color: #333333 !important;
+  border: 1px solid #2e2e2e;
   padding: 25px 18px;
   width: 200px;
 }
 .network-button-bride {
   border-radius: 57.173px;
-  background-color: #4e529c !important;
+  background-color: #ffff !important;
+  border: 1px solid #e6e6e6;
   padding: 25px 18px;
   width: 200px;
 }
@@ -889,7 +895,7 @@ const handleDestinationTokenModals = () => {
   font-weight: 600;
 }
 .balance-text {
-  color: #8b8dfc;
+  color: #fff;
   text-align: right;
   font-family: Inter;
   font-size: 16px;
@@ -899,17 +905,18 @@ const handleDestinationTokenModals = () => {
 }
 .dark .bridge-info-container {
   border-radius: 10.8px;
-  background: #212139;
-  box-shadow: 0px 0px 0px 1.8px rgba(139, 141, 252, 0.6);
+  background: #252525;
+  border: 1px solid #2e2e2e;
+  box-shadow: 0px 0px 6.2px -3px #00000040 inset, 0px 0px 0px 2px #ffffff00;
   padding: 16px;
 }
 .bridge-info-container {
   border-radius: 10.8px;
-  background: #7476f3;
-  box-shadow: 0px 0px 0px 1.8px rgba(139, 141, 252, 0.6);
+  background: #f5f5f5;
+  border: 1px solid #e6e6e6;
   padding: 16px;
 }
-.info-title {
+.dark .info-title {
   color: #fff;
   font-family: Plus Jakarta Sans;
   font-size: 18px;
@@ -917,8 +924,33 @@ const handleDestinationTokenModals = () => {
   font-weight: 600;
   line-height: 140%; /* 25.2px */
 }
+.info-title {
+  color: #000;
+  font-family: Plus Jakarta Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 25.2px */
+}
 .round-icon {
-  background: #8b8dfc;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+  border: 1px solid #e6e6e6;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dark .round-icon {
+  background: linear-gradient(180deg, #282828 0%, #181818 100%);
+
+  border: 1px solid #2e2e2e;
   width: 50px;
   height: 50px;
   border-radius: 50%;

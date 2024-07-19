@@ -149,12 +149,12 @@ onMounted(async () => {
     0px 0px 149px -46px #8b8dfccc;
 }
 .dark .row-bg {
-  background-color: #282853;
-  border-bottom: 1px solid #8b8dfc99;
+  background: #252525;
+  border-bottom: 1px solid #2e2e2e;
 }
 .row-bg {
-  border-bottom: 1px solid #a5a5fd;
-  background: #d5d6ff;
+  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
 }
 .table-row-container {
   background: #171635;

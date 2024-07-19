@@ -8,6 +8,7 @@
 html,
 body {
   @apply font-body;
+
   font-family: 'Plus Jakarta Sans', 'Montserrat Alternates', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,9 +56,15 @@ input[type='number'] {
 .font-montserrat {
   font-family: 'Montserrat Alternates';
 }
+
 #spline {
   width: 400px;
 }
+
 .universal-border {
-  border: 1px solid #8b8dfc;
+  border: 1px solid #e6e6e6;
+}
+
+.dark .universal-border {
+  border: 1px solid #2e2e2e;
 }

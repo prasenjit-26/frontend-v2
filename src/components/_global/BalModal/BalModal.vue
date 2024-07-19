@@ -124,14 +124,15 @@ defineExpose({ hide });
 .dark .modal-card {
   @apply mx-auto h-full relative;
   padding: 10px;
-  background: #151526;
+  background: #181818;
+  border: 1px solid #2e2e2e;
   border-radius: 20px;
 }
 .modal-card {
   @apply mx-auto h-full relative;
   padding: 10px;
   border-radius: 12px;
-  background: #d5d6ff;
+  background: #f5f5f5;
   min-height: 88vh;
 }
 

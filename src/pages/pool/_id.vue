@@ -236,7 +236,7 @@ watch(
           </div>
           <div class="mb-4">
             <h3
-              class="px-4 lg:px-0 mb-3 xs:text-[18px] sm:text-[18px] font-[500]"
+              class="px-4 lg:px-0 mb-3 text-white dark:text-black xs:text-[18px] sm:text-[18px] font-[500]"
               v-text="$t('poolComposition.title')"
             />
             <BalLoadingBlock v-if="loadingPool" class="h-64" />

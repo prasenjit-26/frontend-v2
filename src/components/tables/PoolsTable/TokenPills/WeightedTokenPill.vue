@@ -116,14 +116,14 @@ withDefaults(defineProps<Props>(), {
 }
 .dark .pill-bg {
   @apply sm:p-[5px] xs:p-[5px] lg:pt-[12px] lg:pl-[16px] lg:pr-[16px] lg:pb-[12px] lg:min-h-[46px] min-h-[30px];
-  background: #424281;
-  border: 1px solid #8b8dfc;
+  background: #333333;
+  border: 1px solid #2e2e2e;
   border-radius: 6px;
 }
 .pill-bg {
   @apply sm:p-[5px] xs:p-[5px] lg:pt-[12px] lg:pl-[16px] lg:pr-[16px] lg:pb-[12px] lg:min-h-[46px] min-h-[30px];
-  border: 1px solid #8b8dfc;
-  background: #bec0ff;
+  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
   border-radius: 6px;
 }
 </style>

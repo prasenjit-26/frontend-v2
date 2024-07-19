@@ -431,13 +431,13 @@ watch(
 
 .dark .row-bg {
   @apply transition-colors ease-in duration-300;
-  background: #282853;
-  border-bottom: 1px solid #595bac;
+  background: #252525;
+  border-bottom: 1px solid #2e2e2e;
 }
 .row-bg {
   @apply transition-colors ease-in duration-300;
-  border-bottom: 1px solid #a5a5fd;
-  background: #d5d6ff;
+  border: 1px solid #e6e6e6;
+  background: #f0f0f0;
 }
 .bal-table-pagination-btn {
   @apply flex items-center justify-center h-16 transition-all;
@@ -446,11 +446,10 @@ watch(
   @apply hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer;
 }
 .dark .header-bg {
-  background: linear-gradient(0deg, #0e0f35, #0e0f35),
-    linear-gradient(0deg, rgba(139, 141, 252, 0.6), rgba(139, 141, 252, 0.6));
+  background: #181818;
 }
 .header-bg {
-  @apply bg-primary-400;
+  background: #ffffff;
 }
 tr:first-child td:first-child {
   -moz-border-radius-topleft: 7px;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TokenInput from '@/components/inputs/TokenInput/TokenInput.vue';
+import TokenInputSwap from '@/components/inputs/TokenInput/TokenInputSwap.vue';
 import { UseSwapping } from '@/composables/swap/useSwapping';
 import useNumbers, { FNumFormats } from '@/composables/useNumbers';
 import { useTokens } from '@/providers/tokens.provider';
@@ -163,8 +163,8 @@ const { isDesktop } = useBreakpoints();
 </script>
 
 <template>
-  <div>
-    <TokenInput
+  <div class="flex swap-inner-container mb-[30px]">
+    <TokenInputSwap
       :amount="_tokenInAmount"
       :address="_tokenInAddress"
       name="tokenIn"
@@ -172,6 +172,7 @@ const { isDesktop } = useBreakpoints();
       :excludedTokens="veBalTokenInfo ? [veBalTokenInfo.address] : []"
       :ignoreWalletBalance="swapLoading"
       autoFocus
+      noBorder
       :fontSize="isDesktop ? 36 : 20"
       @update:amount="handleInAmountChange"
       @update:address="handleInputTokenChange"
@@ -189,15 +190,16 @@ const { isDesktop } = useBreakpoints();
         v-html="rateLabel"
       /> -->
     </div>
-    <TokenInput
-      class="mt-[20px]"
+    <TokenInputSwap
       :amount="_tokenOutAmount"
+      noBorder
       :address="_tokenOutAddress"
       name="tokenOut"
       :aria-label="$t('inputLabels.tokenOut')"
       :priceImpact="priceImpact"
       noRules
       noMax
+      alignRight
       :fontSize="isDesktop ? 36 : 20"
       disableNativeAssetBuffer
       :excludedTokens="veBalTokenInfo ? [veBalTokenInfo.address] : []"
@@ -205,27 +207,27 @@ const { isDesktop } = useBreakpoints();
       @update:address="handleOutputTokenChange"
       @input="emit('update:exactIn', false)"
     />
-    <div v-if="rateLabel" class="info-conatiner">
-      <div
-        class="flex items-center text-white cursor-pointer text-[20px]"
-        @click="isInRate = !isInRate"
-        v-html="rateLabel"
-      />
-    </div>
+  </div>
+  <div v-if="rateLabel" class="info-conatiner">
+    <div
+      class="flex items-center text-black dark:text-white cursor-pointer text-[20px]"
+      @click="isInRate = !isInRate"
+      v-html="rateLabel"
+    />
   </div>
 </template>
 <style>
 .dark .info-conatiner {
-  box-shadow: 0px 0px 0px 2px #8b8dfc99;
-  background: #212139;
+  box-shadow: 0px 0px 63.5px 2px #49494940;
+  border: 1px solid #2e2e2e;
+  background: #ffffff2b;
   padding: 18px;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 12px;
 }
 .info-conatiner {
-  background: #7476f3;
-  box-shadow: 0px 0px 0px 2px rgba(139, 141, 252, 0.6);
+  background: #f9f9f9;
   padding: 18px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -233,15 +235,25 @@ const { isDesktop } = useBreakpoints();
 }
 .align-center-toggle {
   position: absolute;
-  /* left: 0px; */
-  /* right: 0px; */
   margin: auto;
-  margin-left: auto;
-  margin-right: auto;
   left: 0;
   right: 0;
   text-align: center;
   width: fit-content;
-  top: 117px;
+  top: 0px;
+  bottom: 0px;
+}
+.swap-inner-container {
+  border-radius: 18px;
+  background: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0px 0px 6.2px -3px #00000040 inset;
+  position: relative;
+}
+.dark .swap-inner-container {
+  border-radius: 18px;
+  background: #252525;
+  border: 1px solid #2e2e2e;
+  position: relative;
 }
 </style>

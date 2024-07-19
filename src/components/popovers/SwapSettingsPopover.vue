@@ -143,10 +143,10 @@ function onActivatorClick(): void {
   @apply text-blue-500 border-blue-500;
 }
 .setting-button {
-  border: 1px solid #8b8dfc;
+  border: 1px solid #ffff;
   background: transparent !important;
 }
 .brand-color {
-  color: #8b8dfc;
+  color: #fff;
 }
 </style>

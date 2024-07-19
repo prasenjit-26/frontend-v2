@@ -174,8 +174,9 @@ watch(chainId, () => {
 .funds-button {
   cursor: pointer;
   border-radius: 60px;
-  background: rgba(139, 141, 252, 0.51);
+  background: #ffffff2b;
   backdrop-filter: blur(20px);
+  border: 1px solid #2e2e2e;
   display: flex;
   padding: 15px 22px;
   justify-content: center;

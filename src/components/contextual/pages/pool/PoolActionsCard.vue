@@ -98,10 +98,9 @@ function handleRemoveLiquidityClose() {
         <BalBtn
           :label="$t('withdraw.label')"
           :disabled="!hasBpt"
-          color="gradient"
-          class="rounded-[103px] text-[20px] font-[500] xs:min-h[40px] sm:min-h[40px] min-h-[70px] mr-[30px]"
+          class="text-[20px] font-[500] xs:min-h[40px] sm:min-h[40px] min-h-[40px] mr-[30px]"
           :style="{
-            borderRadius: '103px',
+            borderRadius: '22px',
           }"
           outline
           block
@@ -109,10 +108,9 @@ function handleRemoveLiquidityClose() {
         />
         <BalBtn
           :label="$t('addLiquidity')"
-          color="gradient"
-          class="rounded-[103px] text-[20px] font-[500] xs:min-h[40px] sm:min-h[40px] min-h-[70px]"
+          class="text-[#000] rounded-[12px] bg-[#FFFFFF] text-[20px] font-[500] xs:min-h[40px] sm:min-h[40px] min-h-[40px]"
           :style="{
-            borderRadius: '103px',
+            borderRadius: '22px',
           }"
           :disabled="joinDisabled"
           block

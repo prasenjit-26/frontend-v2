@@ -192,7 +192,7 @@ function symbolFor(titleTokenIndex: number): string {
     </div>
     <div class="flex items-center mt-2">
       <div
-        class="mr-1 xs:text-[12px] sm:text-[14px] text-[16px] font-[400]"
+        class="mr-1 text-white dark:text-black xs:text-[12px] sm:text-[14px] text-[16px] font-[400]"
         v-html="poolFeeLabel"
       />
       <BalTooltip>
@@ -329,13 +329,13 @@ function symbolFor(titleTokenIndex: number): string {
 </template>
 <style scoped>
 .pool-title {
-  @apply mr-4 mb-[20px] capitalize mt-2 xs:text-[24px] sm:text-[28px] md:text-[30px] text-[36px]   font-[500];
+  @apply dark:text-black text-white mr-4 mb-[20px] capitalize mt-2 xs:text-[24px] sm:text-[28px] md:text-[30px] text-[36px]   font-[500];
 
   font-variation-settings: 'wght' 700;
 }
 .assets-container {
-  border: 1px solid #8b8dfc;
-  background-color: #8688ff63;
+  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
   border-radius: 6px;
 }
 </style>

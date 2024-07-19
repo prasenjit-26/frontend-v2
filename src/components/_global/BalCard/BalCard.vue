@@ -136,13 +136,13 @@ export default defineComponent({
 
 .dark .header {
   @apply flex items-center;
-  background-color: #0e0f35;
-  border-bottom: 1px solid #8b8dfc99;
+  background-color: #181818;
+  border-bottom: 1px solid #2e2e2e;
 }
 .header {
   @apply flex items-center;
-  border-bottom: 1px solid #a5a5fd;
-  background: #acb0ff;
+  border-bottom: 1px solid #e6e6e6;
+  background: #ffffff;
 }
 
 .header-content {

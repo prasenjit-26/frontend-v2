@@ -14,7 +14,9 @@ defineProps<Props>();
         {{ label }}
       </slot>
     </div>
-    <div class="flex items-center text-xl font-medium truncate">
+    <div
+      class="flex items-center text-xl font-medium text-white dark:text-black truncate"
+    >
       <slot name="value">
         {{ value }}
       </slot>

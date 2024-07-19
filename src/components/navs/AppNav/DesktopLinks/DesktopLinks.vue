@@ -97,9 +97,15 @@ function isActive(page: string): boolean {
 <style scoped>
 .desktop-links {
   @apply grid gap-8 grid-flow-col grid-rows-1 content-center p-[7px];
-  box-shadow: inset 0px 4px 4px 0px #31313140, 0px 0px 0px 2px #8b8dfc;
   border-radius: 77px;
-  background: #8b8dfc26;
+  background: #ffffff38;
+  height: 57px;
+}
+.dark .desktop-links {
+  @apply grid gap-8 grid-flow-col grid-rows-1 content-center p-[7px];
+  border: 1px solid #2e2e2e;
+  border-radius: 77px;
+  background: #ffffff2b;
   height: 57px;
 }
 </style>
