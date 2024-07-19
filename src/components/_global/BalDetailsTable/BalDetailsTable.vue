@@ -56,7 +56,7 @@ const { upToLargeBreakpoint } = useBreakpoints();
 <style scoped>
 .table-row {
   @apply flex border-b font-[400] text-[20px] min-h-[78px] xs:min-h-[48px] sm:min-h-[58px];
-  border: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
 }
 .dark .table-row {
@@ -81,7 +81,7 @@ const { upToLargeBreakpoint } = useBreakpoints();
 }
 
 .table-row-title {
-  @apply flex items-center py-3 px-4 flex-1 dark:border-gray-700 border-primary-500 xs:text-[12px] sm:text-[14px];
+  @apply flex items-center py-3 px-4 flex-1 dark:border-gray-700 border-gray-500 xs:text-[12px] sm:text-[14px];
 
   border-right-width: 1px;
 }

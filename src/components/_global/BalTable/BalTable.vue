@@ -436,7 +436,7 @@ watch(
 }
 .row-bg {
   @apply transition-colors ease-in duration-300;
-  border: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   background: #f0f0f0;
 }
 .bal-table-pagination-btn {

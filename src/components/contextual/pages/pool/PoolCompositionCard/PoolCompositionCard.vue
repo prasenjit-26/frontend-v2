@@ -153,7 +153,7 @@ onMounted(async () => {
   border-bottom: 1px solid #2e2e2e;
 }
 .row-bg {
-  border: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
 }
 .table-row-container {

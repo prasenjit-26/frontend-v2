@@ -338,4 +338,9 @@ function symbolFor(titleTokenIndex: number): string {
   background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
   border-radius: 6px;
 }
+.dark .assets-container {
+  border: 1px solid #2e2e2e;
+  background: #181818;
+  border-radius: 6px;
+}
 </style>
