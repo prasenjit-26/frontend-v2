@@ -48,7 +48,7 @@ export default defineComponent({
   @apply transition-transform ease-out duration-200;
 }
 .dark .toggle-btn {
-  background: linear-gradient(180deg, #282828 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #282828 0%, #181818 100%);
   border: 1px solid #2e2e2e;
 }
 .toggle-btn {
