@@ -75,13 +75,24 @@ export default function useTokenPricesQuery(
         [property]: pricesData[property].usd,
       };
     }
+    const lumiaTestnetTokenPrices = {
+      '0xa4f6268f8f6ca4d9160c584338587b515aff7b88': 1,
+      '0x286381aedd20e51f642fe4a200b5cb2fe3729695': 0.5,
+      '0x8f60119e7b6d0691097232e8f25e19961623ad27': 1,
+      '0x9140084f70c3df3ed0cf7a13c7617cc7a45c3e25': 1,
+    };
     let pricesMap = {};
     pricesMap = injectCustomTokens(
       pricesMap,
       pricesToInject.value,
-      lineaTokenPrices
+      lineaTokenPrices,
+      lumiaTestnetTokenPrices
     );
-    pricesMap = { ...lineaTokenPrices, ...pricesMap };
+    pricesMap = {
+      ...lineaTokenPrices,
+      ...pricesMap,
+      ...lumiaTestnetTokenPrices,
+    };
     return pricesMap;
   };
 

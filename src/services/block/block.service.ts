@@ -8,6 +8,7 @@ import {
   isMantle,
   isLineaTestnet,
   isLinea,
+  isLumiaTestnet,
 } from '@/composables/useNetwork';
 import { rpcProviderService } from '../rpc-provider/rpc-provider.service';
 import { configService } from '../config/config.service';
@@ -29,7 +30,8 @@ export default class BlockService {
       isGoerli.value ||
       isMantle.value ||
       isLineaTestnet.value ||
-      isLinea.value
+      isLinea.value ||
+      isLumiaTestnet.value
     )
       return this.fetchBlockByApprox(timestamp);
     return this.fetchBlockByTimeWithGraph(timestamp, useRange);

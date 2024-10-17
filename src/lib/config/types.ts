@@ -6,7 +6,8 @@ export type CommonTokens = {
   nativeAsset: string;
   wNativeAsset: string;
   WETH: string;
-  BAL: string;
+  BAL?: string;
+  CTT?: string;
   bbaUSD?: string;
   bbaUSDv2?: string;
   rETH?: string;

@@ -66,7 +66,7 @@ export default class WeightedPoolService {
       owner,
       generateSalt(),
     ];
-
+    console.log('createPool', params, configService);
     const txBuilder = new TransactionBuilder(provider.getSigner());
     return await txBuilder.contract.sendTransaction({
       contractAddress: configService.network.addresses.weightedPoolFactory,

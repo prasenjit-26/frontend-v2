@@ -41,6 +41,7 @@ const chainIdRpcMapping = {
   '59144': 'https://rpc.linea.build',
   '5000': 'https://rpc.mantle.xyz',
   '8453': 'https://mainnet.base.org',
+  '1952959480': 'https://testnet-rpc.lumia.org',
 };
 const emit = defineEmits(['close', 'success']);
 const { balances, nativeAsset, wrappedNativeAsset } = useTokens();

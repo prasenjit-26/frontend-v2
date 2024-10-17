@@ -20,7 +20,7 @@ function navigateToCreatePool() {
             v-text="$t('headlineText')"
           />
           <p
-            class="text-white dark:text-black subtext mt-[20px] mb-[30px] text-[24px] font-montserrat leading-[33px]"
+            class="text-white subtext mt-[20px] mb-[30px] text-[24px] font-montserrat leading-[33px]"
             v-text="$t('headlineSubText')"
           />
           <button

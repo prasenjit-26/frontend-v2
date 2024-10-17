@@ -10,6 +10,7 @@ import zkevm from './zkevm';
 import mantle from './mantle';
 import linea_testnet from './linea_testnet';
 import linea_mainnet from './linea_mainnet';
+import lumia_testnet from './lumia-testnet';
 
 // We don't import Network from sdk to avoid extra bundle size when loading app (while the SDK is not tree-shakable)
 export enum Network {
@@ -25,6 +26,7 @@ export enum Network {
   MANTLE = 5001,
   LINEA_TESTNET = 59140,
   LINEA = 59144,
+  'LUMIA-TESTNET' = 1952959480,
 }
 
 const config: Record<Network | number, Config> = {
@@ -38,6 +40,7 @@ const config: Record<Network | number, Config> = {
   [Network.MANTLE]: mantle,
   [Network.LINEA_TESTNET]: linea_testnet,
   [Network.LINEA]: linea_mainnet,
+  [Network['LUMIA-TESTNET']]: lumia_testnet,
 };
 
 export default config;

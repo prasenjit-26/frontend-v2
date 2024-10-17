@@ -118,7 +118,7 @@ onBeforeMount(async () => {
     createState.isLoadingRestoredTx = false;
     createState.isRestoredTxConfirmed = isConfirmed;
   }
-
+  console.log('networkConfig.addresses.vault', networkConfig, amountsToApprove);
   const approvalActions = await getTokenApprovalActions({
     amountsToApprove,
     spender: networkConfig.addresses.vault,

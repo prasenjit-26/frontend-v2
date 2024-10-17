@@ -12,14 +12,14 @@
         "type": "address"
       },
       {
-        "internalType": "string",
-        "name": "factoryVersion",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "initialPauseWindowDuration",
+        "type": "uint256"
       },
       {
-        "internalType": "string",
-        "name": "poolVersion",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "bufferPeriodDuration",
+        "type": "uint256"
       }
     ],
     "stateMutability": "nonpayable",
@@ -188,19 +188,6 @@
   },
   {
     "inputs": [],
-    "name": "getPoolVersion",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "getProtocolFeePercentagesProvider",
     "outputs": [
       {
@@ -252,19 +239,6 @@
         "internalType": "bool",
         "name": "",
         "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "version",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
       }
     ],
     "stateMutability": "view",
