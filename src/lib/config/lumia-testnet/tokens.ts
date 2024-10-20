@@ -10,7 +10,7 @@ const tokens: TokenConstants = {
   },
   Addresses: {
     nativeAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-    wNativeAsset: '0x1a1aF9C78704D3a0Ab9e031C92E7bd808711A582',
+    wNativeAsset: '0x23CDCd980c45Fd90338E11F1e097652aEe953221',
     WETH: '0x1a1aF9C78704D3a0Ab9e031C92E7bd808711A582',
     CTT: '0x286381aEdd20e51f642fE4A200B5CB2Fe3729695',
   },

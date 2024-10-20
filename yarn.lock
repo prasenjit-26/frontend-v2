@@ -93,12 +93,35 @@
     json-to-graphql-query "^2.2.4"
     lodash "^4.17.21"
 
-"@auroblocks/chimp-sdk@0.0.27":
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.27.tgz#a81641372555b952bf58d9bdebe9d264abe311e7"
-  integrity sha512-KlEkMsr281wSRmAtmlXLZ1q/3IF2q7NtxO7uWrAQoFuLAS+ZL4WWQ0P7N07CfkJKeEJsPoemSykpDO/yxK8E0A==
+"@auroblocks/chimp-sdk@0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.29.tgz#196222f475bc745697043bc6a823f82750ed47e9"
+  integrity sha512-gJDzsjORIkhzlKwrFdfGiOX+Od+scttDZgtQwfQR9yqkZk7UAwnIS0nYXstV5XpV4n1b2eMvgcorPBhdb9dFug==
   dependencies:
     "@auroblocks/chimp-sdk" "^0.0.20"
+    "@auroblocks/chimp-sor" "0.0.10"
+    "@balancer-labs/sor" "4.1.1-beta.9"
+    "@ethersproject/abi" "^5.4.0"
+    "@ethersproject/abstract-signer" "^5.4.0"
+    "@ethersproject/address" "^5.4.0"
+    "@ethersproject/base64" "5.5.0"
+    "@ethersproject/bignumber" "^5.4.0"
+    "@ethersproject/bytes" "^5.4.0"
+    "@ethersproject/constants" "^5.4.0"
+    "@ethersproject/contracts" "^5.4.0"
+    "@ethersproject/providers" "^5.4.5"
+    axios "^0.24.0"
+    graphql "^15.6.1"
+    graphql-request "^3.5.0"
+    json-to-graphql-query "^2.2.4"
+    lodash "^4.17.21"
+
+"@auroblocks/chimp-sdk@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.30.tgz#ca92898c7d3ad9ab7b2d6fd9bef63cd777ae9377"
+  integrity sha512-XohlqGB5hBJ4wbLhjSmNfK0IvR1I5TOkVr0IZ1z+Mph+hKz6083rXb/J/iC/XmOJ96uW57gbwQl2w7b57lFn/A==
+  dependencies:
+    "@auroblocks/chimp-sdk" "0.0.29"
     "@auroblocks/chimp-sor" "0.0.10"
     "@balancer-labs/sor" "4.1.1-beta.9"
     "@ethersproject/abi" "^5.4.0"
