@@ -167,7 +167,7 @@ export const wallets = () => {
       Connector = getEchoooEthConnector();
     }
     if (wallet === 'foxwallet') {
-      await getFoxWalletConnector();
+      await initFoxWalletConnector();
       Connector = getFoxWalletConnector();
     }
     if (wallet === 'walletconnect') {
