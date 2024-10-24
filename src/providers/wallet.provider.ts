@@ -313,9 +313,9 @@ export const wallets = () => {
           } else if (wallet === 'foxwallet') {
             if (isMobile && !getIsMetaMaskBrowser()) {
               window.open(
-                'foxwallet://dapp?url=https%3A%2F%2Fapp.chimp.exchange'
+                'foxwallet://dapp?url=https%3A%2F%2Fchimpmainnet.netlify.app'
               );
-            } else {
+            } else if (!getIsMetaMaskBrowser()) {
               window.open('https://foxwallet.com/download', '_blank');
             }
           }
