@@ -1,8 +1,10 @@
 import { initSafeConnector } from './safe';
 import { initMetamaskConnector } from './metamask';
+import { initFoxWalletConnector } from './foxwallet';
 import { initTallyConnector } from './tally';
 import { initWalletconnectConnector } from './walletconnect';
 import { initWalletLinkConnector } from './walletlink';
+import { initEchoooEthConnector } from './echoooEth';
 
 export function initWalletConnectors() {
   initWalletconnectConnector();
@@ -10,4 +12,6 @@ export function initWalletConnectors() {
   initSafeConnector();
   initWalletLinkConnector();
   initTallyConnector();
+  initFoxWalletConnector();
+  initEchoooEthConnector();
 }
