@@ -30,6 +30,7 @@ import { rpcProviderService } from '@/services/rpc-provider/rpc-provider.service
 import { Connector } from '@/services/web3/connectors/connector';
 import { walletService } from '@/services/web3/wallet.service';
 import { getWeb3Provider } from '@/dependencies/wallets/Web3Provider';
+import { useWalletHelpers } from '@/composables/useWalletHelpers';
 import config from '@/lib/config';
 import {
   getSafeConnector,
@@ -124,6 +125,7 @@ export const isBlocked = ref(false);
 
 export const wallets = () => {
   const { trackGoal, Goals } = useFathom();
+  const { getIsMetaMaskBrowser } = useWalletHelpers();
   const alreadyConnectedAccount = ref(lsGet('connectedWallet', null));
   const alreadyConnectedProvider = ref(lsGet('connectedProvider', null));
   // this data provided is properly typed to all consumers
@@ -309,7 +311,7 @@ export const wallets = () => {
               window.open('https://metamask.io/download/', '_blank');
             }
           } else if (wallet === 'foxwallet') {
-            if (isMobile) {
+            if (isMobile && !getIsMetaMaskBrowser()) {
               window.open(
                 'foxwallet://dapp?url=https%3A%2F%2Fapp.chimp.exchange'
               );
