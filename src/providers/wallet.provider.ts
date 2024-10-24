@@ -2,10 +2,10 @@ import {
   getMetamaskConnector,
   initMetamaskConnector,
 } from '@/dependencies/wallets/metamask';
-// import {
-//   getFoxWalletConnector,
-//   initFoxWalletConnector,
-// } from '@/dependencies/wallets/foxwallet';
+import {
+  getFoxWalletConnector,
+  initFoxWalletConnector,
+} from '@/dependencies/wallets/foxwallet';
 
 import {
   getEchoooEthConnector,
@@ -167,8 +167,8 @@ export const wallets = () => {
       Connector = getEchoooEthConnector();
     }
     if (wallet === 'foxwallet') {
-      await initMetamaskConnector();
-      Connector = getMetamaskConnector();
+      await getFoxWalletConnector();
+      Connector = getFoxWalletConnector();
     }
     if (wallet === 'walletconnect') {
       await initWalletconnectConnector();
@@ -311,7 +311,7 @@ export const wallets = () => {
           } else if (wallet === 'foxwallet') {
             if (isMobile) {
               window.open(
-                ' https://link.foxwallet.com/dapp?url=app.chimp.exchange/'
+                'foxwallet://dapp?url=https%3A%2F%2Fapp.chimp.exchange'
               );
             } else {
               window.open('https://foxwallet.com/download', '_blank');

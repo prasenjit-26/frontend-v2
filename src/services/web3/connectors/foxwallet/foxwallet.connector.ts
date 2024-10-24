@@ -22,7 +22,6 @@ export const getIsFoxWallet = () =>
   );
 
 export function getInjectedProvider() {
-  // @ts-ignore
   const ethereum: any = window.ethereum;
   let provider = ethereum || (window as any).web3?.currentProvider;
 
@@ -86,7 +85,7 @@ export class FoxWalletConnector extends Connector {
       }
     } else {
       console.error(
-        'Tried to connect to MetaMask but it was not detected. Please install MetaMask.'
+        'Tried to connect to FoxWallet but it was not detected. Please install FoxWallet.'
       );
     }
     return {
