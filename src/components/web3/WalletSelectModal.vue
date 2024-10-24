@@ -31,13 +31,13 @@ const wallets = SupportedWallets.filter(id => {
   // if (id === 'metamask' && isMobile && !getIsMetaMaskBrowser()) {
   //   return false;
   // }
-  // if (id === 'foxwallet' && isMobile && !getIsMetaMaskBrowser()) {
-  //   return false;
-  // }
+  if (id === 'foxwallet' && !isMobile) {
+    return false;
+  }
 
   // Hide all wallets except metamask on metamask browser
-  if (id !== 'metamask' && getIsMetaMaskBrowser()) {
-    return false;
+  if ((id === 'metamask' || id === 'foxwallet') && getIsMetaMaskBrowser()) {
+    return true;
   }
 
   return id !== 'safe';
