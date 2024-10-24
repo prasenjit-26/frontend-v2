@@ -28,9 +28,12 @@ const { getIsMetaMaskBrowser } = useWalletHelpers();
 
 const wallets = SupportedWallets.filter(id => {
   // hide metamask wallet on all mobile browsers except metamask
-  if (id === 'metamask' && isMobile && !getIsMetaMaskBrowser()) {
-    return false;
-  }
+  // if (id === 'metamask' && isMobile && !getIsMetaMaskBrowser()) {
+  //   return false;
+  // }
+  // if (id === 'foxwallet' && isMobile && !getIsMetaMaskBrowser()) {
+  //   return false;
+  // }
 
   // Hide all wallets except metamask on metamask browser
   if (id !== 'metamask' && getIsMetaMaskBrowser()) {

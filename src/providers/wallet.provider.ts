@@ -2,6 +2,16 @@ import {
   getMetamaskConnector,
   initMetamaskConnector,
 } from '@/dependencies/wallets/metamask';
+// import {
+//   getFoxWalletConnector,
+//   initFoxWalletConnector,
+// } from '@/dependencies/wallets/foxwallet';
+
+import {
+  getEchoooEthConnector,
+  initEchoooEthConnector,
+} from '@/dependencies/wallets/echoooEth';
+
 import { safeInject } from '@/providers/inject';
 
 import symbolKeys from '@/constants/symbol.keys';
@@ -41,13 +51,17 @@ import {
 export type Wallet =
   | 'metamask'
   | 'walletconnect'
+  | 'foxwallet'
   | 'safe'
+  | 'echoooeth'
   | 'walletlink'
   | 'tally';
 
 export const SupportedWallets = [
   'metamask',
   'walletconnect',
+  'echoooeth',
+  'foxwallet',
   'tally',
   'safe',
   'walletlink',
@@ -55,6 +69,8 @@ export const SupportedWallets = [
 
 export const WalletNameMap: Record<Wallet, string> = {
   metamask: 'Metamask',
+  echoooeth: 'echoooEth',
+  foxwallet: 'FoxWallet',
   walletconnect: 'WalletConnect',
   safe: 'Safe',
   walletlink: 'Coinbase Wallet',
@@ -146,7 +162,14 @@ export const wallets = () => {
       await initMetamaskConnector();
       Connector = getMetamaskConnector();
     }
-
+    if (wallet === 'echoooeth') {
+      await initEchoooEthConnector();
+      Connector = getEchoooEthConnector();
+    }
+    if (wallet === 'foxwallet') {
+      await initMetamaskConnector();
+      Connector = getMetamaskConnector();
+    }
     if (wallet === 'walletconnect') {
       await initWalletconnectConnector();
       Connector = getWalletconnectConnector();
@@ -210,6 +233,49 @@ export const wallets = () => {
       }
     }
   };
+  const switchEchoooChain = async () => {
+    // @ts-ignore
+    if (window && window.echoooEth) {
+      try {
+        // @ts-ignore
+        await window.echoooEth.request({
+          method: 'wallet_switchEthereumChain',
+          params: [
+            {
+              chainId: `0x${Number(import.meta.env.VITE_NETWORK).toString(16)}`,
+            },
+          ],
+        });
+      } catch (e: any) {
+        if (e.code === 4902) {
+          try {
+            // @ts-ignore
+            await window.echoooEth.request({
+              method: 'wallet_addEthereumChain',
+              params: [
+                {
+                  chainId: `0x${Number(import.meta.env.VITE_NETWORK).toString(
+                    16
+                  )}`,
+                  chainName: 'Smart Chain - Testnet',
+                  nativeCurrency: {
+                    name: 'LineaEth',
+                    symbol: 'ETH', // 2-6 characters long
+                    decimals: 18,
+                  },
+                  blockExplorerUrls: ['https://goerli.lineascan.build/'],
+                  rpcUrls: ['https://rpc.goerli.linea.build'],
+                },
+              ],
+            });
+          } catch (addError) {
+            console.error(addError);
+          }
+        }
+        // console.error(e)
+      }
+    }
+  };
   /**
 
   @param wallet User supplied web3 provider. i.e. (web3, ethers)
@@ -232,13 +298,37 @@ export const wallets = () => {
       // the wallet parameter will be provided by the front-end by means of
       // modal selection or otherwise
       const connector = await getWalletConnector(wallet);
+      console.log('connector', connector, wallet);
       if (connector && connector.id && connector.id === 'injectedMetamask') {
+        const isMobile = window.innerWidth < 748;
+        if (connector.provider === null) {
+          if (wallet === 'metamask') {
+            if (isMobile) {
+              window.open('https://metamask.app.link/dapp/app.chimp.exchange/');
+            } else {
+              window.open('https://metamask.io/download/', '_blank');
+            }
+          } else if (wallet === 'foxwallet') {
+            if (isMobile) {
+              window.open(
+                ' https://link.foxwallet.com/dapp?url=app.chimp.exchange/'
+              );
+            } else {
+              window.open('https://foxwallet.com/download', '_blank');
+            }
+          }
+        }
         if (
           connector &&
           connector.chainId &&
+          connector.provider &&
           connector.chainId.value !== Number(import.meta.env.VITE_NETWORK)
         ) {
-          switchEthereumChain();
+          if (connector.provider.isEchooo) {
+            switchEchoooChain();
+          } else {
+            switchEthereumChain();
+          }
         }
       }
       if (!connector) {

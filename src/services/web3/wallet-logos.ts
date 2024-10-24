@@ -2,6 +2,8 @@ import defaultLogo from '@/assets/images/connectors/default.svg';
 import frameLogo from '@/assets/images/connectors/frame.svg';
 import imtokenLogo from '@/assets/images/connectors/imtoken.svg';
 import metamaskLogo from '@/assets/images/connectors/metamask.svg';
+import foxwalletLogo from '@/assets/images/connectors/foxwallet.svg';
+import echooowalletLogo from '@/assets/images/connectors/echooo.svg';
 import statusLogo from '@/assets/images/connectors/status.svg';
 import tallyLogo from '@/assets/images/connectors/tally.svg';
 import trustwalletLogo from '@/assets/images/connectors/trustwallet.svg';
@@ -35,6 +37,12 @@ export function getConnectorLogo(
     }
     if (provider.isFrame) {
       return frameLogo;
+    }
+    if (provider.isFoxWallet) {
+      return foxwalletLogo;
+    }
+    if (provider.isEchooo) {
+      return echooowalletLogo;
     }
     return metamaskLogo;
   }
