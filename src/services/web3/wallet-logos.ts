@@ -3,7 +3,7 @@ import frameLogo from '@/assets/images/connectors/frame.svg';
 import imtokenLogo from '@/assets/images/connectors/imtoken.svg';
 import metamaskLogo from '@/assets/images/connectors/metamask.svg';
 import foxwalletLogo from '@/assets/images/connectors/foxwallet.svg';
-import echooowalletLogo from '@/assets/images/connectors/echooo.svg';
+import echooowalletLogo from '@/assets/images/connectors/echoooeth.svg';
 import statusLogo from '@/assets/images/connectors/status.svg';
 import tallyLogo from '@/assets/images/connectors/tally.svg';
 import trustwalletLogo from '@/assets/images/connectors/trustwallet.svg';
