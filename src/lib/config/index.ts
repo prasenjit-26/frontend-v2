@@ -40,7 +40,7 @@ const config: Record<Network | number, Config> = {
   [Network.MANTLE]: mantle,
   [Network.LINEA_TESTNET]: linea_testnet,
   [Network.LINEA]: linea_mainnet,
-  [Network['LUMIA-TESTNET']]: lumia_testnet,
+  // [Network['LUMIA-TESTNET']]: lumia_testnet,
 };
 
 export default config;
