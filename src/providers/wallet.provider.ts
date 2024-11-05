@@ -70,7 +70,7 @@ export const SupportedWallets = [
 
 export const WalletNameMap: Record<Wallet, string> = {
   metamask: 'Metamask',
-  echoooeth: 'echoooEth',
+  echoooeth: 'Echooo Wallet',
   foxwallet: 'FoxWallet',
   walletconnect: 'WalletConnect',
   safe: 'Safe',
