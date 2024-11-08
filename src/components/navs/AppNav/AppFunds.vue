@@ -42,6 +42,7 @@ const chainIdRpcMapping = {
   '5000': 'https://rpc.mantle.xyz',
   '8453': 'https://mainnet.base.org',
   '1952959480': 'https://testnet-rpc.lumia.org',
+  '28882': 'https://sepolia.boba.network',
 };
 const emit = defineEmits(['close', 'success']);
 const { balances, nativeAsset, wrappedNativeAsset } = useTokens();
@@ -105,7 +106,7 @@ watch(chainId, () => {
       <div class="flex justify-between items-center mb-[25px]">
         <p class="title-cede-text">Cede.store</p>
         <BalBtn class="bal-btn-cede" :onclick="handleClose" :rounded="true">
-          <BalCloseIcon class="text-black dark:text-white cursor-pointer" />
+          <BalCloseIcon class="text-black cursor-pointer dark:text-white" />
         </BalBtn>
       </div>
       <!-- <Cede /> -->

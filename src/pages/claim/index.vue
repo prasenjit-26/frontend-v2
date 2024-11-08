@@ -242,8 +242,8 @@ onBeforeMount(async () => {
       :description="$t('claimHero.description')"
     />
     <div>
-      <div class="xl:container py-12 xl:px-4 xl:mx-auto">
-        <h2 class="px-4 xl:px-0 font-body text-2xl font-semibold">
+      <div class="py-12 xl:container xl:px-4 xl:mx-auto">
+        <h2 class="px-4 text-2xl font-semibold xl:px-0 font-body">
           {{ configService.network.chainName }} {{ $t('liquidityIncentives') }}
         </h2>
         <template v-if="networkHasBalClaiming">
@@ -310,11 +310,11 @@ onBeforeMount(async () => {
             {{ $t('claimPage.tips.OtherIncentives') }}
           </BalTooltip>
         </div>
-        <BalLoadingBlock v-if="loading" class="mt-6 mb-2 h-56" />
+        <BalLoadingBlock v-if="loading" class="h-56 mt-6 mb-2" />
         <template v-if="!isClaimsLoading && gaugeTables.length > 0">
           <div v-for="{ gauge, pool } in gaugeTables" :key="gauge.id">
             <div class="mb-16">
-              <div class="flex px-4 xl:px-0 mt-4">
+              <div class="flex px-4 mt-4 xl:px-0">
                 <h4 class="mb-2 text-base">
                   {{ gaugeTitle(pool) }}
                 </h4>
@@ -327,7 +327,7 @@ onBeforeMount(async () => {
           v-else-if="
             (!isClaimsLoading && gaugeTables.length === 0) || !isWalletReady
           "
-          class="px-4 xl:px-0 mt-4 mb-16"
+          class="px-4 mt-4 mb-16 xl:px-0"
         >
           {{ $t('noClaimableIncentives') }}
         </BalBlankSlate>

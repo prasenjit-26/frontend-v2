@@ -81,6 +81,7 @@ export default function useTokenPricesQuery(
       '0x23cdcd980c45fd90338e11f1e097652aee953221': 0.5,
       '0x8f60119e7b6d0691097232e8f25e19961623ad27': 1,
       '0x9140084f70c3df3ed0cf7a13c7617cc7a45c3e25': 1,
+      '0x7adcda7bbe51376b190814d76a423de6df64a1a1': 1,
     };
     let pricesMap = {};
     pricesMap = injectCustomTokens(

@@ -308,7 +308,7 @@ export const wallets = () => {
             if (isMobile) {
               window.open('https://metamask.app.link/dapp/app.chimp.exchange/');
             } else {
-              window.open('https://metamask.io/download/', '_blank');
+              // window.open('https://metamask.io/download/', '_blank');
             }
           } else if (wallet === 'foxwallet') {
             if (isMobile && !getIsMetaMaskBrowser()) {

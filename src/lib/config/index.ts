@@ -11,6 +11,7 @@ import mantle from './mantle';
 import linea_testnet from './linea_testnet';
 import linea_mainnet from './linea_mainnet';
 import lumia_testnet from './lumia-testnet';
+import boba_sepolia from './boba_sepolia';
 
 // We don't import Network from sdk to avoid extra bundle size when loading app (while the SDK is not tree-shakable)
 export enum Network {
@@ -27,6 +28,7 @@ export enum Network {
   LINEA_TESTNET = 59140,
   LINEA = 59144,
   'LUMIA-TESTNET' = 1952959480,
+  BOBA_SEPOLIA = 28882,
 }
 
 const config: Record<Network | number, Config> = {
@@ -40,7 +42,8 @@ const config: Record<Network | number, Config> = {
   [Network.MANTLE]: mantle,
   [Network.LINEA_TESTNET]: linea_testnet,
   [Network.LINEA]: linea_mainnet,
-  // [Network['LUMIA-TESTNET']]: lumia_testnet,
+  [Network['LUMIA-TESTNET']]: lumia_testnet,
+  [Network.BOBA_SEPOLIA]: boba_sepolia,
 };
 
 export default config;

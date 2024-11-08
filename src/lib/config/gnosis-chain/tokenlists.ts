@@ -7,9 +7,7 @@ const tokenlists: TokenListURLMap = {
     Vetted:
       'https://raw.githubusercontent.com/balancer/tokenlists/main/generated/balancer.tokenlist.json',
   },
-  External: [
-    'https://unpkg.com/@1hive/default-token-list@latest/build/honeyswap-default.tokenlist.json',
-  ],
+  External: [],
 };
 
 export default tokenlists;

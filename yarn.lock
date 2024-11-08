@@ -116,10 +116,10 @@
     json-to-graphql-query "^2.2.4"
     lodash "^4.17.21"
 
-"@auroblocks/chimp-sdk@0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.0.30.tgz#ca92898c7d3ad9ab7b2d6fd9bef63cd777ae9377"
-  integrity sha512-XohlqGB5hBJ4wbLhjSmNfK0IvR1I5TOkVr0IZ1z+Mph+hKz6083rXb/J/iC/XmOJ96uW57gbwQl2w7b57lFn/A==
+"@auroblocks/chimp-sdk@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@auroblocks/chimp-sdk/-/chimp-sdk-0.1.0.tgz#a2100a48dafeb249a05fea692ada0ae466886b19"
+  integrity sha512-NR3+BuGVzuRcLixSQ4p1jt7ZMsRiQ9FTkzNoc/Bq+DCCyf13zWD+WU3nLCNRw1M46lk07WxsmwQpGfkElT+sLg==
   dependencies:
     "@auroblocks/chimp-sdk" "0.0.29"
     "@auroblocks/chimp-sor" "0.0.10"

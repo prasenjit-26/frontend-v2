@@ -47,6 +47,9 @@ export const isLinea = computed(() => networkId.value === Network.LINEA);
 export const isLumiaTestnet = computed(
   () => networkId.value === Network['LUMIA-TESTNET']
 );
+export const isBobaTestnet = computed(
+  () => networkId.value === Network.BOBA_SEPOLIA
+);
 export const hasBridge = computed<boolean>(() => !!networkConfig.bridgeUrl);
 export const isTestnet = computed(() => isGoerli.value);
 

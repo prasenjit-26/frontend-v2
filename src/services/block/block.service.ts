@@ -9,6 +9,7 @@ import {
   isLineaTestnet,
   isLinea,
   isLumiaTestnet,
+  isBobaTestnet,
 } from '@/composables/useNetwork';
 import { rpcProviderService } from '../rpc-provider/rpc-provider.service';
 import { configService } from '../config/config.service';
@@ -31,7 +32,8 @@ export default class BlockService {
       isMantle.value ||
       isLineaTestnet.value ||
       isLinea.value ||
-      isLumiaTestnet.value
+      isLumiaTestnet.value ||
+      isBobaTestnet.value
     )
       return this.fetchBlockByApprox(timestamp);
     return this.fetchBlockByTimeWithGraph(timestamp, useRange);
