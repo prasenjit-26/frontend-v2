@@ -13,7 +13,7 @@ const config: Config = {
   name: 'Linea Mainnet',
   shortName: 'Linea',
   monorepoName: 'Linea',
-  slug: 'linea',
+  slug: 'lineanetwork',
   network: 'Linea',
   trustWalletNetwork: 'linea',
   unknown: false,

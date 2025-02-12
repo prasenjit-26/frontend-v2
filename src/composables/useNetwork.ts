@@ -149,12 +149,14 @@ export function getRedirectUrlFor(
   params: RouteParamsRaw = {}
 ): string | undefined {
   const subdomain = getSubdomain(host);
-  // const subdomainNetwork = networkFromSlug(subdomain);
-  const subdomainNetwork = null;
+  const subdomainNetwork = networkFromSlug(subdomain);
+  // const subdomainNetwork = null;
 
   if (subdomainNetwork) {
     // Legacy network subdomain, we need to redirect to app.balancer.fi.
     const newDomain = appUrl().replace(subdomain, 'app');
+    // const newDomain = appUrl().replace(subdomain, subdomain);
+    // const newDomain = host.replace(subdomain, subdomain);
     // If networkSlug provided it will be in the fullPath, so pass empty string instead.
     const newNetwork = params?.networkSlug
       ? ''
