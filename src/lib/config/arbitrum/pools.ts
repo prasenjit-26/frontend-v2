@@ -153,7 +153,7 @@ const pools: Pools = {
   },
   Metadata: {
     '0x077794c30afeccdf5ad2abc0588e8cee7197b71a000000000000000000000352': {
-      name: 'Chimp Exchange Boosted Reaper Granary USD',
+      name: 'ChimpX AI Boosted Reaper Granary USD',
       hasIcon: true,
       boosted: true,
       boostedProtocols: [BoostedProtocol.Reaper],
@@ -177,7 +177,7 @@ const pools: Pools = {
       boostedProtocols: [BoostedProtocol.Aave],
     },
     '0xee02583596aee94cccb7e8ccd3921d955f17982a00000000000000000000040a': {
-      name: 'Chimp Exchange Boosted Aave v3 USD',
+      name: 'ChimpX AI Boosted Aave v3 USD',
       hasIcon: false,
       boosted: true,
       boostedProtocols: [BoostedProtocol.Aave],
@@ -207,7 +207,7 @@ const pools: Pools = {
       boostedProtocols: [BoostedProtocol.Aave],
     },
     '0xc6eee8cb7643ec2f05f46d569e9ec8ef8b41b389000000000000000000000475': {
-      name: 'Chimp Exchange Boosted Aave v3 USD',
+      name: 'ChimpX AI Boosted Aave v3 USD',
       hasIcon: false,
       boosted: true,
       boostedProtocols: [BoostedProtocol.Aave],

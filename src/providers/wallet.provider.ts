@@ -306,7 +306,7 @@ export const wallets = () => {
         if (connector.provider === null) {
           if (wallet === 'metamask') {
             if (isMobile) {
-              window.open('https://metamask.app.link/dapp/app.chimp.exchange/');
+              window.open('https://metamask.app.link/dapp/linea.chimpx.ai/');
             } else {
               // window.open('https://metamask.io/download/', '_blank');
             }

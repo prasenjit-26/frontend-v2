@@ -8,7 +8,7 @@
     aria-labelledby="githubTitle"
     role="img"
   >
-    <title id="githubTitle">Link to Chimp Exchange's Github</title>
+    <title id="githubTitle">Link to ChimpX AI's Github</title>
     <g fill="none">
       <path
         class="bg"

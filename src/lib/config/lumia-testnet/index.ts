@@ -17,7 +17,7 @@ const config: Config = {
   network: 'lumia',
   trustWalletNetwork: 'lumia',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: false,
   rpc: 'https://testnet-rpc.lumia.org',
   ws: `wss://ws.testnet-rpc.lumia.org`,

@@ -107,7 +107,7 @@ const { isDesktop } = useBreakpoints();
       </template>
     </BalRadio>
   -->
-    <div class="grid sm:grid-cols-1 lg:grid-cols-5 xs:grid-cols-1 gap-4">
+    <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-5 xs:grid-cols-1">
       <div class="relative col-span-2 p-[28px]">
         <p class="connectwallettext mb-[20px]">Connect Wallet</p>
         <span class="recommendedtext mt-[24px] mb-[30px]"> Recommended </span>
@@ -155,7 +155,7 @@ const { isDesktop } = useBreakpoints();
             </BalStack>
           </BalStack>
           <span class="text-center text-[12px] font-[500] gray-color">
-            By connecting a wallet, you agree to ChimpExchange
+            By connecting a wallet, you agree to ChimpX AI
             <!-- <router-link
               target="_blank"
               :to="{ name: 'terms-of-use' }"

@@ -1,4 +1,4 @@
-# Chimp Exchange Components
+# ChimpX AI Components
 
 A set of foundational components for use throughout the UI.
 

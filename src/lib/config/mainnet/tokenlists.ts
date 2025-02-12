@@ -7,7 +7,7 @@ const tokenlists: TokenListURLMap = {
     Vetted:
       'https://raw.githubusercontent.com/balancer/tokenlists/main/generated/balancer.tokenlist.json',
   },
-  External: ['https://www.gemini.com/uniswap/manifest.json'],
+  External: [],
 };
 
 export default tokenlists;

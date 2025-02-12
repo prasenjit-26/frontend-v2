@@ -159,7 +159,7 @@ watch(blockNumber, async () => {
 
     <div class="flex items-center justify-center px-4 mt-4">
       <a
-        href="https://twitter.com/ChimpExchange"
+        href="https://x.com/ChimpxAI"
         target="_blank"
         class="w-[40px] h-[40px] mr-[12px]"
       >

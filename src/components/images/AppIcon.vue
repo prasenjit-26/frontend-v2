@@ -31,12 +31,12 @@ const useDarkLogo = computed(() => (props.forceDark ? true : darkMode.value));
 <template>
   <img
     v-if="useDarkLogo"
-    src="~@/assets/images/ChimpLogo.png"
+    src="~@/assets/images/chimpxOnlyLogo.png"
     class="mr-2 sm:w-[130px] xs:w-[120px] md:w-[150px] lg:w-[150px]"
   />
   <img
     v-else
-    src="~@/assets/images/chimpLight.png"
+    src="~@/assets/images/chimpxOnlyLogo.png"
     class="mr-2 sm:w-[130px] xs:w-[120px] md:w-[150px] lg:w-[150px]"
   />
 </template>

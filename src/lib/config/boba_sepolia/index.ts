@@ -17,7 +17,7 @@ const config: Config = {
   network: 'bobasepolia',
   trustWalletNetwork: 'bobasepolia',
   unknown: false,
-  visibleInUI: true,
+  visibleInUI: false,
   testNetwork: false,
   rpc: 'https://sepolia.boba.network',
   ws: `wss://wss.sepolia.boba.network`,

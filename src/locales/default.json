@@ -28,11 +28,11 @@
     "pools-fetch-error": "Failed to fetch pools.",
     "price-fetch-error": "Our pricing provider, CoinGecko, is currently down.",
     "retry-label": "Refresh to try again",
-    "boostedPools": "Increased yields, greater capital efficiency, deeper liquidity. Try Chimp Exchange Boosted pools now →",
+    "boostedPools": "Increased yields, greater capital efficiency, deeper liquidity. Try ChimpX AI Boosted pools now →",
     "vebalL2": "Staking is live on Polygon and Arbitrum. Incentives for eligible pools will resume on April 28.",
     "withdrawToInternalBalance": {
       "title": "Withdraw to Vault balance",
-      "description": "This transaction will withdraw your tokens from this pool to your Chimp Exchange Vault balance. \n\nYou will then be able to withdraw the relevant tokens from the Vault using the"
+      "description": "This transaction will withdraw your tokens from this pool to your ChimpX AI Vault balance. \n\nYou will then be able to withdraw the relevant tokens from the Vault using the"
     }
   },
   "allow": "Allow",
@@ -55,7 +55,7 @@
     "InsufficientValidTo": "The order you are signing is already expired. This can happen if you set a short expiration in the settings and waited too long before signing the transaction. Please try again.",
     "InsufficientFunds": "The account doesn't have enough funds.",
     "UnsupportedToken": "One of the tokens you are swapping is unsupported.",
-    "WrongOwner": "The signature is invalid.\n\nIt's likely that the signing method provided by your wallet doesn't comply with the standards required by Chimp Exchange.\n\nCheck whether your Wallet app supports off-chain signing (EIP-712 or ETHSIGN).",
+    "WrongOwner": "The signature is invalid.\n\nIt's likely that the signing method provided by your wallet doesn't comply with the standards required by ChimpX AI.\n\nCheck whether your Wallet app supports off-chain signing (EIP-712 or ETHSIGN).",
     "NotFound": "Token pair selected has insufficient liquidity.",
     "OrderNotFound": "The order you are trying to cancel does not exist.",
     "AlreadyCancelled": "Order is already cancelled.",
@@ -109,18 +109,18 @@
   "browseLists": "Browse lists",
   "browserWallet": "Browser Wallet",
   "bugBounty": "Bug bounty",
-  "builtOnBalancer": "Built on Chimp Exchange protocol",
+  "builtOnBalancer": "Built on ChimpX AI protocol",
   "boosted": "Boosted",
   "boostedTooltip": "This pool has a Boosted Pool component. In addition to accumulating swap fees, Boosted pools also generate yield for LPs by lending excess liquidity to other yield generating DeFi protocols.",
   "buy": "Buy",
   "build": "Build",
   "blog": "Blog",
-  "boostedPool": "Chimp Exchange Boosted pool",
-  "byConnectingWallet": "By connecting a wallet, I agree to Chimp Exchange Foundation’s",
+  "boostedPool": "ChimpX AI Boosted pool",
+  "byConnectingWallet": "By connecting a wallet, I agree to ChimpX AI Foundation’s",
   "brandedRedirect": {
     "xave": {
       "title": "Xave Finance",
-      "description": "Xave Finance  (pronounced \"Save Finance\") allows financial services companies (\"fintechs\") to leverage DeFi for real time remittance transfers and high yield consumer savings. Xave does this in a capital efficient way by building liquid FX markets via our custom FXPools integrated with the Chimp Exchange V2 Vault.",
+      "description": "Xave Finance  (pronounced \"Save Finance\") allows financial services companies (\"fintechs\") to leverage DeFi for real time remittance transfers and high yield consumer savings. Xave does this in a capital efficient way by building liquid FX markets via our custom FXPools integrated with the ChimpX AI V2 Vault.",
       "btnText": "Manage liquidity on app.xave.co"
     },
     "gyro": {
@@ -186,7 +186,7 @@
   "copperLaunchPromo": {
     "buttonLabel": "View this auction on Copper",
     "description": "Copper is the platform for FLAs—a simple crowdfunding mechanism that enables projects and ideas from across the world to raise money from individuals without barriers to entry.",
-    "poweredByBalancer": "Copper is built on Chimp Exchange V2 and uses Liquidity Bootstrapping Pools to power its FLAs",
+    "poweredByBalancer": "Copper is built on ChimpX AI V2 and uses Liquidity Bootstrapping Pools to power its FLAs",
     "title": "A Copper fair launch auction pool (FLA)"
   },
   "continueAnyway": "Continue anyway",
@@ -207,8 +207,8 @@
     "enterTokenPrice": "Enter the estimated current price of {0} in $USD",
     "existingPoolInfo": "There’s already another pool with exactly the same tokens and fee structure. It’s recommended to add your liquidity to the other pool or to go back and change your Pool Creation parameters in a material way to avoid fractured liquidity and lower profits for both pools.",
     "fixedFeeRadioLabel": "Permanently fix fees to the initial rate",
-    "governanceFees": "Allow Chimp Exchange governance to manage fees",
-    "governanceFeesTooltip": "Enable this to give Chimp Exchange governance the ability to dynamically manage the fees of this pool in order to maximize profits. But note, Chimp Exchange governance is under no obligation to actually manage the fees and will likely only do so if there is significant swap volume.",
+    "governanceFees": "Allow ChimpX AI governance to manage fees",
+    "governanceFeesTooltip": "Enable this to give ChimpX AI governance the ability to dynamically manage the fees of this pool in order to maximize profits. But note, ChimpX AI governance is under no obligation to actually manage the fees and will likely only do so if there is significant swap volume.",
     "invalidInitialWeightsInfo": "One or more tokens has an initial weight less than 1% which may cause funding to fail. If the token has a missing price, enter in a price. Otherwise, adjust the initial balances in the previous step.",
     "invalidInitialWeightsTitle": "Invalid initial weight",
     "maxInitialLiquidity": "Max initial liquidity",
@@ -307,7 +307,7 @@
     },
     "migrateReason": {
       "title": "Migrate to avoid vulnerability",
-      "description": "A security vulnerability was recently disclosed. Although, no funds are a risk, insofar as the exploit could only be executed by pool owners or Chimp Exchange Governance itself which is composed of known participants in the Chimp Exchange ecosystem, it is recommended to migrate your funds asap."
+      "description": "A security vulnerability was recently disclosed. Although, no funds are a risk, insofar as the exploit could only be executed by pool owners or ChimpX AI Governance itself which is composed of known participants in the ChimpX AI ecosystem, it is recommended to migrate your funds asap."
     },
     "stabal3Pool": {
       "whyMigrate": {
@@ -448,15 +448,15 @@
       "linkText": "Fjord Foundry website"
     },
     "Beets": {
-      "description": "Powered by Chimp Exchange technology, Beethoven X provides a composable liquidity base layer on Fantom and Optimism. From Boosted Pools to Maturity Adjusted fNFTs, the DEX offers a suite of powerful financial primitives.",
+      "description": "Powered by ChimpX AI technology, Beethoven X provides a composable liquidity base layer on Fantom and Optimism. From Boosted Pools to Maturity Adjusted fNFTs, the DEX offers a suite of powerful financial primitives.",
       "linkText": "Beethoven X website"
     },
     "Xave": {
-      "description": "Xave Finance enables real time remittance transfers and high yield consumer savings for Fintechs, with capital efficient liquid FX markets (via custom FXPools) integrated with the Chimp Exchange Vault.",
+      "description": "Xave Finance enables real time remittance transfers and high yield consumer savings for Fintechs, with capital efficient liquid FX markets (via custom FXPools) integrated with the ChimpX AI Vault.",
       "linkText": "Xave website"
     },
     "Gyroscope": {
-      "description": "Gyroscope is a new stablecoin that, like a physical gyroscope, aims to remain stable as the surrounding environment changes. Gyroscope AMMs—Concentrated Liquidity Pools (CLPs)—leverage Chimp Exchange's customizable AMM logic.",
+      "description": "Gyroscope is a new stablecoin that, like a physical gyroscope, aims to remain stable as the surrounding environment changes. Gyroscope AMMs—Concentrated Liquidity Pools (CLPs)—leverage ChimpX AI's customizable AMM logic.",
       "linkText": "Gyroscope website"
     }
   },
@@ -506,7 +506,7 @@
       "header": "The fees on this transaction exceed 20% of the swap amount."
     }
   },
-  "goToBalancerV1Site": "Go to the Chimp Exchange V1 site ->",
+  "goToBalancerV1Site": "Go to the ChimpX AI V1 site ->",
   "goToMigratedPool": "Go to migrated pool",
   "governance": "Governance",
   "grants": "Grants",
@@ -528,7 +528,7 @@
   },
   "highPriceImpact": "High price impact",
   "highPriceImpactDetailed": "This swap is significantly moving the market price.",
-  "highRiskPool": "This is a higher-risk pool that contains one or more unlisted tokens. A liquidity pool is only as good as its weakest token! If a token were blacklisted, infinitely minted, frozen, or exploited in any other way, the value of this pool could go to 0. Chimp Exchange Foundation is never liable for losses incurred through using our UI or the Chimp Exchange protocol. Be careful, and do your own research!",
+  "highRiskPool": "This is a higher-risk pool that contains one or more unlisted tokens. A liquidity pool is only as good as its weakest token! If a token were blacklisted, infinitely minted, frozen, or exploited in any other way, the value of this pool could go to 0. ChimpX AI Foundation is never liable for losses incurred through using our UI or the ChimpX AI protocol. Be careful, and do your own research!",
   "home": "Home",
   "hourAbbrev": "h",
   "incentives": "incentives",

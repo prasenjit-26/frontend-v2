@@ -8,7 +8,7 @@
     aria-labelledby="discordTitle"
     role="img"
   >
-    <title id="discordTitle">Link to Chimp Exchange's Discord</title>
+    <title id="discordTitle">Link to ChimpX AI's Discord</title>
     <g fill="none" fill-rule="evenodd">
       <path
         class="bg"

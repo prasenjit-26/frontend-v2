@@ -39,11 +39,16 @@ const useDarkLogo = computed(() => (props.forceDark ? true : darkMode.value));
   <div class="flex items-center sm:mr-4 app-logo">
     <img
       v-if="useDarkLogo"
-      src="~@/assets/images/ChimpLogo.png"
+      src="~@/assets/images/chimpxOnlyLogo.png"
       alt="logo"
-      width="230"
+      width="60"
     />
-    <img v-else src="~@/assets/images/logoLight.png" alt="logo" width="280" />
+    <img
+      v-else
+      src="~@/assets/images/chimpxOnlyLogo.png"
+      alt="logo"
+      width="60"
+    />
   </div>
 </template>
 

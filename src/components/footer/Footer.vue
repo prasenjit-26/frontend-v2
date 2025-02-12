@@ -60,14 +60,16 @@ const { networkSlug } = useNetwork();
             <div className="footer-logo">
               <img
                 v-if="darkMode"
-                src="~@/assets/images/ChimpLogo.png"
-                alt="Chimp Exchange"
+                src="~@/assets/images/chimpxOnlyLogo.png"
+                alt="ChimpX AI"
+                width="60"
                 className="footer-chimp-exchange-logo"
               />
               <img
                 v-else
-                src="~@/assets/images/logoLight.png"
+                src="~@/assets/images/chimpxOnlyLogo.png"
                 alt="logo"
+                width="60"
                 className="footer-chimp-exchange-logo"
               />
             </div>
@@ -78,7 +80,7 @@ const { networkSlug } = useNetwork();
           <div className="footer-menu-items">
             <div className="menu-items-col col-1">
               <a
-                href="https://docs.chimp.exchange"
+                href="https://docs.chimpx.ai"
                 target="_blank"
                 rel="noreferrer"
                 className="menu-item"
@@ -94,7 +96,7 @@ const { networkSlug } = useNetwork();
                 Rewards
               </a>
               <a
-                href="https://blog.chimp.exchange/"
+                href="https://blog.chimpx.ai/"
                 target="_blank"
                 rel="noreferrer"
                 className="menu-item"
@@ -120,7 +122,7 @@ const { networkSlug } = useNetwork();
                 Discord
               </a>
               <a
-                href="https://twitter.com/ChimpExchange"
+                href="https://x.com/ChimpxAI"
                 target="_blank"
                 rel="noreferrer"
                 className="menu-item"
@@ -146,7 +148,7 @@ const { networkSlug } = useNetwork();
           />
         </div>
         <div className="footer-copyright">
-          ©2023 ChimpExchange. All rights reserved.
+          ©2023 ChimpXAI. All rights reserved.
         </div>
       </div>
     </div>
@@ -360,7 +362,7 @@ footer :deep(.logotype) {
 }
 
 .footer-chimp-exchange-logo {
-  max-width: 300px;
+  max-width: 60px;
   width: 100%;
 }
 

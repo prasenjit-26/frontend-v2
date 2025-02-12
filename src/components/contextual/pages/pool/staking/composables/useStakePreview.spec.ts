@@ -62,7 +62,7 @@ test('Successfully creates and runs stake action', async () => {
     confirmingLabel: 'Confirming...',
     label: `Approve ${defaultWeightedPoolSymbol} for staking`,
     loadingLabel: 'Confirm approval in wallet',
-    stepTooltip: `You must approve ${defaultWeightedPoolSymbol} to stake this token on Chimp Exchange. Approvals are required once per token, per wallet.`,
+    stepTooltip: `You must approve ${defaultWeightedPoolSymbol} to stake this token on ChimpX AI. Approvals are required once per token, per wallet.`,
   });
 
   const stakeAction = stakeActions.value[1];
@@ -130,7 +130,7 @@ test('Successfully creates and runs restake action (unstake + stake)', async () 
     confirmingLabel: 'Confirming...',
     label: `Approve ${defaultWeightedPoolSymbol} for staking`,
     loadingLabel: 'Confirm approval in wallet',
-    stepTooltip: `You must approve ${defaultWeightedPoolSymbol} to stake this token on Chimp Exchange. Approvals are required once per token, per wallet.`,
+    stepTooltip: `You must approve ${defaultWeightedPoolSymbol} to stake this token on ChimpX AI. Approvals are required once per token, per wallet.`,
   });
 
   const unstakeAction = stakeActions.value[1];
