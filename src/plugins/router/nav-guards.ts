@@ -20,7 +20,7 @@ const redirecting = ref(false);
  * Navigation guards
  */
 export function applyNavGuards(router: Router): Router {
-  router = applyNetworkSubdomainRedirect(router);
+  // router = applyNetworkSubdomainRedirect(router);
   router = applyNetworkPathRedirects(router);
   router = applyPoolJoinRedirects(router);
   router = applyMetaData(router);
